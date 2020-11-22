@@ -7,4 +7,4 @@
     @endif
 @endforeach
 
-<p>Powered by: <a href="https://www.cmsmax.com">CMS Max</a></p>
+<p>Powered by: <a href="https://www.evolutionmarketing.com">Evolution Marketing</a></p>

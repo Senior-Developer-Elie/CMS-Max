@@ -76,8 +76,8 @@ class IndexController extends Controller
             'toAdmin'       => true,
             'clientName'    => $proposal->request['clientName']
         ], function($message){
-            $message->to(env("ADMIN_EMAIL_ADDRESS", "info@cmsmax.com"), 'CMS Max')->subject
-                ('CMS Max');
+            $message->to(env("ADMIN_EMAIL_ADDRESS", "info@cmsmax.com"), 'Evolution Marketing - CRM')->subject
+                ('Evolution Marketing - CRM');
         });
 
         return view('manage-proposal.successful', ['type' => 'clientSinged']);

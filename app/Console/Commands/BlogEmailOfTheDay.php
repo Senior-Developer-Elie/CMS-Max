@@ -152,8 +152,8 @@ class BlogEmailOfTheDay extends Command
 
             if( $totalCount > 0 ){ //Send Email
                 \Mail::send('manage-blog.sections.task-notification-mail', ['notifications' => $notifications], function($message) use ($admin, $totalCount){
-                    $message->from(env('MAIL_FROM_ADDRESS', 'info@cmsmax.com'), 'CMS Max');
-                    $message->to($admin->email, 'CMS Max')->subject
+                    $message->from(env('MAIL_FROM_ADDRESS', 'info@cmsmax.com'), 'Evolution Marketing - CRM');
+                    $message->to($admin->email, 'Evolution Marketing - CRM')->subject
                         ('You have ' . $totalCount . ' Pending Jobs to do');
                 });
             }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CRM Dashboard - CMS Max | Forgot Password</title>
+  <title>CRM Dashboard - Evolution Marketing | Forgot Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,7 +22,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <b>CMS Max</b> Admin Panel
+            <b>Evolution Marketing</b> Admin Panel
         </div>
         <!-- /.login-logo -->
         <div class="card">

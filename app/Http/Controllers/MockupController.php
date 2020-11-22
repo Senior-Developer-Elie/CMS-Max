@@ -78,9 +78,9 @@ class MockupController extends Controller
         {
             //Send Email With Attachment
             \Mail::send('mockups.mail', $data, function($message) use ($data){
-                $message->from(env('MAIL_FROM_ADDRESS', 'info@cmsmax.com'), 'CMS Max');
+                $message->from(env('MAIL_FROM_ADDRESS', 'info@cmsmax.com'), 'Evolution Marketing - CRM');
                 $message->to($data['email'], 'CMSMax')->subject
-                    ('New Website Mockup for ' . $data['title'] . ' from CMS Max');
+                    ('New Website Mockup for ' . $data['title'] . ' from Evolution Marketing - CRM');
             });
         }
 

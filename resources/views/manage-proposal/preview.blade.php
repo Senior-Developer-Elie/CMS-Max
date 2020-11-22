@@ -6,7 +6,7 @@
             </div>
 
             <h4 class = "text-center top-title">Building & Branding Custom Websites that Get Results!</h4>
-            <h4 class = "text-center top-title">Proposal Presented by CMS Max, Inc. to {{ $clientName ? $clientName : '' }} on {{ Carbon\Carbon::now()->isoFormat('MMM D, Y') }}</h4>
+            <h4 class = "text-center top-title">Proposal Presented by Evolution Marketing, Inc. to {{ $clientName ? $clientName : '' }} on {{ Carbon\Carbon::now()->isoFormat('MMM D, Y') }}</h4>
             <h4 class = "text-center top-title">Summary of Service Fees for Build and Maintenance of <span class="website-url">{{ $websiteUrl ? $websiteUrl : '' }}</span></h4>
 
             @if( count($oneTimeServices) > 0 )
@@ -131,7 +131,7 @@
             <script src="{{ asset('assets/js/sign-page.js') }}"></script>
         @else
             <footer>
-                <span class = "prepared-by">Prepared by: CMS Max</span>
+                <span class = "prepared-by">Prepared by: Evolution Marketing</span>
                 <span class = "phone-span">Phone: (585) 348-8127</span>
                 <span class = "emaila">Email: info@cmsmax.com</span>
                 <span>&nbsp;</span>

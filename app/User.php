@@ -103,7 +103,7 @@ class User extends Authenticatable
             return 'Writer';
         if( $user->can('inner pages') )
             return 'Jobs To Do Manager';
-        return 'Member Of CMS Max';
+        return 'Member Of Evolution Marketing';
     }
 
     public function getPublicAvatarLink()

@@ -16,14 +16,8 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="https://master.cmsmax.com/webadmin" target="_blank">
+            <a class="nav-link" href="https://evolutionmarketing.com/webadmin" target="_blank">
                 Master/Dev Area
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="https://www.cmsmax.com/versions" target="_blank">
-                CMS Max Version Log
             </a>
         </li>
 

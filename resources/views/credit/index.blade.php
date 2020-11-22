@@ -267,7 +267,7 @@
         <div class="col-md-5 custom-col-md-5 d-flex align-items-center justify-content-center">
             <footer class="text-center">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#generatePDFModal">Generate PDF</button><br>
-                <label class="powered-by mt-1">Powered by: <a href="https://www.cmsmax.com" rel="nofollow">CMS Max</a></label>
+                <label class="powered-by mt-1">Powered by: <a href="https://www.evolutionmarketing.com" rel="nofollow">Evolution Marketing</a></label>
             </footer>
         </div>
     </div>

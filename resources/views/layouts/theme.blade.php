@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CRM Dashboard - CMS Max</title>
+        <title>CRM Dashboard - Evolution Marketing</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -60,7 +60,7 @@
             </div>
 
             <footer class="main-footer">
-                <strong>Powered by <a href = "https://cmsmax.com">CMS Max</a>
+                <strong>Powered by <a href = "https://www.evolutionmarketing.com">Evolution Marketing</a>
             </footer>
         </div>
 
