@@ -1,0 +1,95 @@
+section.content-header{
+    background: white !important;
+}
+section.content{
+    background: white;
+}
+#cms-logo{
+    height: 80px;
+}
+.custom-form-group{
+    line-height: 2rem;
+}
+input.form-control{
+    padding: 0.175rem 0.65rem;
+}
+.custom-form-group input{
+    display: inline;
+    width: 160px;
+}
+.card{
+    padding: 20px;
+}
+.form-check{
+    height: 32px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+.form-check .form-check-input{
+    width: 15px;
+    height: 15px;
+}
+.form-check .form-check-label{
+    margin-top: 6px;
+    margin-left: 5px;
+    line-height: 32px;
+    font-size: 17px;
+}
+.service-container .form-control{
+    height: 32px;
+    margin: 5px 0;
+}
+footer{
+    font-size: 17px;
+}
+footer .powered-by{
+    margin-top: 20px;
+}
+footer .powered-by a{
+    text-decoration: none;
+}
+.ck-editor__editable{
+    font-size: 14px;
+    line-height: 18px;
+}
+.ck-editor__editable p
+{
+    margin: 0;
+}
+#preview-modal .modal-dialog{
+    min-width: 799px;
+}
+#preview-modal .modal-content{
+    overflow: hidden;
+}
+#preview-frame{
+    width: 100%;
+    height: 1085px;
+    border: none;
+}
+
+/* Style for download button */
+#download-button{
+    margin-top: 1px;
+}
+.email-contact-description{
+    margin-left: 26px;
+    font-size: 14px;
+    font-weight: 600;
+    max-width: 500px;
+}
+
+.client-email-wrapper .form-control{
+    height: 32px;
+    margin: 5px 0;
+}
+.service-content-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.preview-button-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

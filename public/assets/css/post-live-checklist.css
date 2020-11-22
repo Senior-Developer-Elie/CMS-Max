@@ -1,0 +1,29 @@
+td.option-cell{
+    cursor: pointer !important;
+}
+td.option-cell a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    text-decoration: none;
+    border-bottom: none;
+}
+td.option-cell a:hover{
+    border: none;
+}
+td.option-cell.yes-value{
+    background-color: #00c0ef;
+    color: red;
+}
+td.option-cell.yes-value a{
+    color: white;
+}
+td.option-cell.not-available-value{
+    background: grey !important;
+    color: white !important;
+}
+
+tr:hover td:not(.yes-value):not(.not-available-value){
+    background: rgb(254, 223, 223) !important;
+}

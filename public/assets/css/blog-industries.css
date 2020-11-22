@@ -1,0 +1,12 @@
+td{
+    vertical-align: middle !important;
+}
+.edit-blog-industry-button{
+    color: #3c8dbc;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.delete-blog-industry-button{
+    color: #dd4b39;
+    cursor: pointer;
+}

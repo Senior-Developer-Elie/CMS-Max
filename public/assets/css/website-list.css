@@ -1,0 +1,55 @@
+.website-url-wrapper{
+    position: relative;
+}
+.website-info-icons{
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.website-info-icons > a {
+    vertical-align: middle;
+}
+.website-info-icon img{
+    height: 16px;
+}
+.website-data-studio-link-icon img{
+    height: 16px;
+}
+.website-google-drive-link-icon img{
+    height: 18px;
+}
+.website-chargebee-icon img{
+    height: 16px;
+}
+table.table tr:hover{
+    background: rgb(254, 223, 223) !important;
+}
+#add-website-modal .form-group{
+    margin-bottom: 8px !important;
+}
+#add-website-modal .modal-footer{
+    display: block !important;
+}
+.manual-value-input{
+    display: inline;
+    width: 18%;
+    height: 28px;
+}
+.dt-buttons.btn-group{
+    /*display: block !important;*/
+    /* margin-bottom: 20px !important; */
+    margin-right: 15px !important;
+}
+.dataTables_length{
+    display: inline-block !important;
+}
+.dataTables_filter{
+    display: inline-block !important;
+    float: right !important;
+}
+.select2-container{
+    margin-right: 5px !important;
+}

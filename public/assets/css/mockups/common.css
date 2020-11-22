@@ -1,0 +1,88 @@
+body {margin: 0;
+    font-family:Arial, Verdana, Helvectica;
+    }
+
+    a { color:#1d7aa2}
+    a:hover { color:#333;}
+
+
+    #intro a:link { color:#FFF;}
+    #intro a:visited { color:#FFF;}
+    #intro a:hover { color:#CCF}
+    #intro a:active { color:#FFF;}
+
+    #header {margin: 15px 10px 10px 50px;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+    align-items: center;
+    }
+    /* #header h1 {margin:0 auto 0 0;} */
+    #header svg {width:180px;height:70px;margin-right:auto;}
+    /* svg g {fill:#1d7aa2} */
+    svg g {fill:#c13000}
+    #header h1 {font-size:16px;}
+
+    #intro {background:#1d7aa2;padding:5px 15px 12px 50px;border-bottom:2px #FFF dotted;border-top:2px #FFF dotted}
+    #intro p, #intro h2 {color:#FFF}
+
+    #intro p span {border-bottom:1px #a57e87 dotted; cursor:help}
+
+    /*
+    h1 {font-family: "Playfair Display", Georgia, serif;font-weight:900;color:#1d7aa2}
+    h1 a {text-decoration:none;color:#1d7aa2}
+    h1 a span {color:#00add7}
+    */
+    h1 {font-family:"Playfair Display", Georgia, serif;font-weight:400;font:16pt;color:#50514f}
+
+    #content {margin:0 10px 10px 50px }
+
+    p, label {font-size:10pt;color:#333}
+    label {display:inline-block;margin-bottom:4px}
+    label.light-label {font-weight:normal}
+    div#alignment input {margin:0}
+    form {margin-top:15px}
+    form span, .note {font-size:8pt;}
+
+    #recent {width:200px;float:right;padding:10px;background-color:#F5F5F5;}
+    #recent p, #quote p {font-size:8pt;}
+    #quote {position:absolute;top:20px;right:10px;padding:5px 10px 5px 15px;background-color:#FFF;border-left:1px #CCC solid;z-index:1}
+
+    .step {border-bottom:1px #CCC dotted;padding-left:35px;background-repeat: no-repeat;background-position: left top;margin-bottom:10px;padding-bottom:10px}
+
+    #upload {
+    background-image: url(/img/step1.png);
+    }
+    #upload span {display:block;margin-bottom:8px;margin-top:8px;color:#999}
+    #custom{
+    background-image: url(/img/step2.png);
+    padding-bottom:20px;
+    }
+    #choose-bg{
+    background-image: url(/img/step3.png);
+    }
+    #alignment{
+    background-image: url(/img/step4.png);
+    }
+
+    #myemail {margin:5px 0 0 22px}
+
+    .box {border:1px #CCC solid;border-radius:4px;padding:10px;background:#FFF;font-family:Arial, sans-serif;font-size:14px}
+    .box:focus {border:1px #999 solid;}
+    .button {font-size:14pt;margin-top:20px;}
+    .small-button {margin:5px 0 5px 0;font-size:8pt}
+    #footer {margin-top:15px;padding:15px 10px 10px 50px;border-top:1px #CCC solid;}
+    #footer p, a.dimmed {color:#999}
+
+    .icon {
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding:4px 0 4px 20px;
+    }
+
+    .email {background-image:url(/img/mail_send.svg);padding:4px 0 4px 28px;background-repeat: no-repeat;background-position: 0 4px}
+
+    .right {float:right}
+    .left {float:left}

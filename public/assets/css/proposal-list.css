@@ -1,0 +1,17 @@
+table.table-bordered.dataTable tbody td{
+    vertical-align: middle;
+    font-size: 14px;
+}
+table.table-bordered.dataTable tbody td label{
+    font-size: 14px;
+}
+#proposal-filter{
+    width: 150px;
+    position: absolute;
+    right: 147px;
+    top: 16px;
+}
+.add-proposal-button{
+    margin-top: 5px;
+    margin-right: 10px;
+}

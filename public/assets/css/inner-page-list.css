@@ -1,0 +1,299 @@
+#add-task-modal .client-list{
+    width: 100%;
+}
+.inner-page-item .tools i{
+    font-size: 16px;
+}
+.inner-page-item .tools .edit-inner-page-button{
+    color: #3c8dbc;
+}
+.inner-page-item .tools .upload-image-button{
+    color: #f39c12 !important;
+}
+.inner-page-item .tools .upload-blog-button{
+    color: #f39c12 !important;
+}
+.inner-page-item .tools .complete-button{
+    color: #00a65a !important;
+}
+.inner-page-item .tools .download-button{
+    color: #ff851b !important;
+}
+.filter-select-wrapper{
+    display: inline-block;
+    margin-left: 15px;
+}
+.download-files-button{
+    color: #00a65a !important;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/**Add Task Modal**/
+.files-wrapper .file-item{
+    display: inline-block;
+    width: 100%;
+}
+.files-wrapper .file-item .file-item-wrapper{
+    margin: 0 15px;
+    padding: 3px 5px;
+}
+.files-wrapper .file-item .file-item-wrapper:hover{
+    color: #444;
+    background: #f7f7f7;
+}
+.file-item .file-item-wrapper i{
+    /*color: grey;*/
+    color: #00a7d0 !important;
+}
+.file-item.marked .file-item-wrapper i{
+    color: #00a7d0 !important;
+}
+.files-wrapper .file-item .file-item-wrapper .name{
+    margin-left: 3px;
+    cursor: pointer;
+}
+.files-wrapper .file-item .file-item-wrapper i, .files-wrapper .file-item .file-item-wrapper .name{
+    line-height: 15px;
+}
+.files-wrapper .file-item .file-item-wrapper .tools{
+    float: right;
+    display: inline-block;
+    opacity: 0;
+}
+.files-wrapper .file-item .file-item-wrapper:hover .tools{
+    opacity: 1;
+}
+.file-item .tools i{
+    cursor: pointer;
+    margin-left: 5px;
+}
+.file-item .tools i.remove-button{
+    color: #dd4b39 !important;
+}
+.file-item .tools i.complete-button{
+    color: #00a65a !important;
+}
+.file-item .tools i.revert-button{
+    color: #d58512 !important;
+    display: none;
+}
+.file-item.marked i.complete-button{
+    display: none;
+}
+.file-item.marked .tools i.revert-button{
+    display: inline;
+}
+.no-file-text{
+    margin-left: 20px;
+}
+.ck-balloon-panel
+{
+    z-index: 10055 !important;
+}
+
+.ck-editor__editable {
+    max-height: 250px !important;
+}
+.assignee-name{
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+}
+.todo-list>li.done .text{
+    text-decoration: none !important;
+}
+#paging {
+    float: right;
+    margin-top: 5px 1px;
+    margin: 2px 0;
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 0;
+    border-radius: 4px;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+}
+
+#paging a {
+    background: #fafafa;
+    color: #666;
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    border: 1px solid #ddd;
+}
+#paging a:hover{
+    z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+#paging a.aktif {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+#paging a:first-child, #paging a:last-child{
+    display: none;
+}
+#complete-task-modal .add-url-button{
+    margin: 8px 3px;
+}
+#complete-task-modal input.website{
+    margin-top: 8px;
+}
+.sub-text-in-list{
+    font-weight: 600;
+}
+.task-list-wrapper .list-header .header-item{
+    display: inline;
+}
+
+table.task-list-table > thead > tr{
+    border: 1px solid #eaeaea !important;
+}
+table.task-list-table > thead > tr > th{
+    border-color: transparent;
+    background: #f7f7f7;
+    color: #555555;
+    border-bottom: 1px solid #eaeaea;
+    vertical-align: middle;
+}
+.tools .tool-button{
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(233, 233, 233);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-right: 5px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: #666666;
+    vertical-align: middle;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.inner-page-item .handle{
+    visibility: hidden;
+    cursor: move;
+}
+.inner-page-item:hover{
+    background: rgb(254, 223, 223)
+}
+.inner-page-item:hover .handle{
+    visibility: visible;
+}
+table tbody td{
+    vertical-align: middle !important;
+}
+td.inner-blog-title{
+    padding-left: 0 !important;
+    cursor: pointer;
+    font-weight: 600;
+}
+.inner-blog-status-label{
+    color: white;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+.inner-page-item.normal .inner-blog-status-label{
+    background-color: #00c0ef !important;
+}
+.inner-page-item.done .inner-blog-status-label{
+    background-color: #00a65a !important;
+}
+.inner-page-item-description td{
+    padding-top: 0 !important;
+    padding-left: 30px !important;
+}
+.table>tbody>tr.inner-page-item-description>td {
+    border-top: 0 !important;
+}
+.table>tbody>tr>td{
+    border-top: 1px solid #eaeaea !important;
+}
+.DomainUserAvatar {
+    align-items: center;
+    border-color: transparent;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: default;
+    display: inline-flex;
+    justify-content: center;
+}
+.AvatarPhoto {
+    align-items: center;
+    background: center/cover #cbd4db;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+    vertical-align: top;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    min-width: 30px;
+    width: 30px;
+    background-color: #4186e0;
+    color: #fff;
+}
+.AssigneeWithName-name {
+    display: inline;
+    font-size: 14px;
+    line-height: 17px;
+    color: #273240;
+    flex: 1 1 auto;
+    margin-left: 5px;
+    min-width: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.task-list-table thead>tr>th.sortable-column {
+    cursor: pointer !important;
+    position: relative;
+}
+.task-list-table thead>tr>th.sortable-column:hover {
+    background: #eee !important;
+}
+.task-list-table thead>tr>th.sortable-column::after{
+    position: absolute;
+    bottom: 0.9em;
+    display: block;
+    opacity: 0.3;
+    right: 0.5em;
+    content: "\2193";
+}
+.task-list-table thead>tr>th.sortable-column::before{
+    position: absolute;
+    bottom: 0.9em;
+    display: block;
+    opacity: 0.3;
+    right: 1em;
+    content: "\2191";
+}
+.task-list-table thead>tr>th.sortable-column.sorting_asc::before{
+    opacity: 1;
+}
+.task-list-table thead>tr>th.sortable-column.sorting-desc::after{
+    opacity: 1;
+}
+
+.due-date-text{
+    color: red;
+}

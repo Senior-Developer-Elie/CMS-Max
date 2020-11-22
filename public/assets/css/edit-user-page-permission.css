@@ -1,0 +1,77 @@
+.page-item-container{
+    display: block;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+.page-item{
+    width: 100%;
+    display: block;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    padding: 3px 8px;
+    margin-bottom: 5px;
+    border: 1px solid rgb(231, 236, 240);
+    border-left: 3px solid #3699dc !important;
+    border-radius: 5px;
+    background-color: #fff;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+.page-item.selected{
+    background: #3699dc;
+    color: white;
+}
+.page-item .page-item-icon{
+    margin-right: 5px;
+    position: relative;
+    top: -5px;
+    color: rgb(56, 155, 217);
+}
+.page-item.selected .page-item-icon{
+    color: white;
+}
+.page-item .page-item-txt{
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+}
+.sub-page-items-wrapper{
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    margin-top: -5px;
+    position: relative;
+    top: initial;
+    bottom: initial;
+    margin-bottom: 5px;
+    width: 100%;
+    min-height: 37px;
+    left: 0;
+    background: transparent;
+    padding-left: 20px;
+}
+.sub-page-items-wrapper .page-item-container::before{
+    display: block;
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 111%;
+    bottom: 50%;
+    left: -12px;
+    border: 1px solid #cde;
+    border-top: 0;
+    border-right: 0;
+    padding: 4px 0 0;
+    z-index: 10;
+}
+.sub-page-items-wrapper .page-item-container:first-child::before{
+    height: 80%;
+}

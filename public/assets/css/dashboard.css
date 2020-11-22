@@ -1,0 +1,73 @@
+.inbox-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.inbox-wrapper .box-header{
+    height: 50px;
+}
+.inbox-wrapper .archive-all-button{
+    display: block;
+    margin-top: 15px;
+}
+.inbox-thread{
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid #f4f4f4;
+    position: relative;
+}
+.inbox-thread:hover{
+    background: #f6f8f9;
+}
+.inbox-thread .inbox-thread-type i, .inbox-thread .inbox-thread-type span{
+    color: rgb(132, 143, 153) !important;
+}
+.inbox-thread .inbox-thread-type span{
+    margin-left: 5px;
+}
+.inbox-thread .inbox-thread-body .description-text{
+    font-weight: 600;
+    font-size: 14px;
+    color: #848f99;
+}
+.inbox-thread .inbox-thread-body .due-date-field{
+    color: rgb(132, 143, 153) !important;
+    font-weight: 600 !important;
+}
+.inbox-thread .archive-notification-button-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    right: 15px;
+    height: 100%;
+}
+.inbox-thread .archive-notification-button{
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0;
+}
+.inbox-thread .archive-notification-button:hover{
+    color: grey !important;
+}
+.inbox-thread:hover .archive-notification-button{
+    opacity: 1;
+}
+.inbox-thread .main-text{
+    display: block;
+    color: #151b26;
+    fill: #151b26;
+    font-weight: 700;
+    margin-left: 20px;
+    font-size: 16px;
+}
+.inbox-thread .main-text:hover{
+    color: #14aaf5;
+}
+.sub-text-in-list{
+    font-size: 17px;
+}
+table td{
+    vertical-align: middle !important;
+}
+.website-sender-value{
+    cursor: pointer;
+}

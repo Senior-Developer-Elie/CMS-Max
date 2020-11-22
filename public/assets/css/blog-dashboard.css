@@ -1,0 +1,99 @@
+.info-box-number {
+    font-size: 20px !important;
+}
+td.client-name-wrapper{
+    position: relative;
+}
+a.client-name{
+    width: 100%;
+    display: block;
+}
+a.client-info-icon{
+    position: absolute;
+    right: 11px;
+    font-size: 18px;
+    color: #f39c12;
+    top: 50%;
+    transform: translateY(-50%);
+}
+td.blog-cell{
+    text-align: center;
+    position: relative;
+}
+td.blog-cell.normal, td.blog-cell.empty, td.blog-cell.not-available{
+    cursor: pointer;
+}
+td.blog-cell.pending{
+    background-color: #f39c12;
+    color: white;
+}
+td.blog-cell.done{
+    background-color: #00a65a;
+    color: white;
+}
+td.blog-cell.pending-to-add-image{
+    background-color: #39cccc;
+    color: white;
+}
+td.blog-cell.normal, td.blog-cell.empty{
+    background-color: #00c0ef;
+    color: white;
+}
+tr{
+    height: 47px;
+}
+td{
+    vertical-align: middle !important;
+}
+.blog-name-input-wrapper{
+    width: 100%;
+    display: flex;
+}
+.blog-name-input-wrapper > input{
+    flex: 1;
+}
+.blog-name-input-wrapper > span{
+    width: 39px !important;
+}
+.blog-name-input-wrapper > span > button{
+    height: 31px;
+}
+.upload-button-wrapper{
+    display: inline;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: 0.3s;
+}
+td.blog-cell:hover .upload-button-wrapper{
+    opacity: 1;
+}
+.upload-button-wrapper img{
+    height: 20px;
+    margin-left: 3px;
+}
+/*
+td.blog-cell a.blog-info-icon{
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+}*/
+ul.dropdown-menu.blog-drop-down{
+    position: absolute;
+    right: 8px;
+    left: unset;
+    top: calc(100% - 12px);
+}
+.custom-col-2-5{
+    width: 20% !important;
+    max-width: 20% !important;
+}
+.info-box-text {
+    white-space: normal !important;
+}
+.info-box i{
+    color: white !important;
+}

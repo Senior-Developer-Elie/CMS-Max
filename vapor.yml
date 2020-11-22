@@ -1,0 +1,17 @@
+id: 7831
+name: crm
+environments:
+    production:
+        storage: cmsmax-crm-second
+        database: crm
+        domain: 'crm.cmsmax.com'
+        memory: 3008
+        cli-memory: 512
+        timeout: 240
+        runtime: php-7.4
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+            #- 'npm ci && npm run prod && rm -rf node_modules'
+        deploy:
+            - 'php artisan migrate --force'

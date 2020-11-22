@@ -1,0 +1,9 @@
+div.dropdown.blog-file{
+    display: inline;
+}
+td{
+    vertical-align: middle !important;
+}
+.completed{
+    color: green;
+}

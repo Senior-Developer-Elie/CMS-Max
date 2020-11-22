@@ -1,0 +1,41 @@
+table.table{
+    font-size: 16px;
+
+}
+table.table td{
+    padding: 7px 15px !important;
+}
+table.table tr > td:first-child{
+    /*font-style: italic;*/
+}
+tr.total-row > td{
+    font-style: normal !important;
+    font-weight: bold;
+    font-size: 17px !important;
+}
+tr.head-row {
+    border-bottom: 2px solid #dee2e6;
+    border-top: 2px solid #dee2e6;
+}
+tr.head-row > td {
+    font-weight: bold;
+}
+tr.odd-background{
+    background-color: #f9f0f0;
+}
+.expense-row .expense-value-wrapper{
+    cursor: pointer;
+}
+input.expense-value-input{
+    width: 70px;
+}
+tr.final-profit-row td{
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.table-title{
+    display: inline;
+}
+#target-month-select{
+    margin-bottom: 10px;
+}

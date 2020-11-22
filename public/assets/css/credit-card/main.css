@@ -1,0 +1,60 @@
+.content-wrapper{
+    padding-top: 20px;
+}
+.custom-container{
+    max-width: 1440px;
+}
+.custom-col-md-5{
+    flex: 0 0 37%;
+    max-width: 37%;
+}
+.custom-col-md-2{
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+table.table-bordered, table.table-bordered > tbody, table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+table.fees-table{
+    text-align: center;
+}
+table.fees-table thead{
+    display: none;
+}
+table.fees-table > tbody > tr > td{
+    padding: 1px 6px;
+    font-size: 12px;
+}
+table.fees-table > tbody > tr > td.page-title{
+    font-size: 20px;
+    font-weight: 700;
+}
+table.fees-table > tbody > tr > td.highlight-cell{
+    background: rgb(51, 102, 153);
+    color: white;
+}
+table.fees-table > tbody > tr.sub-title-row{
+    background: rgb(192, 192, 192);
+}
+table.fees-table > tbody > tr > td.variable{
+    cursor: pointer;
+}
+table.fees-table > tbody > tr > td.variable:hover{
+    color: rgb(220, 30, 30);
+    font-weight: 600;
+}
+table.fees-table > tbody.empty-row{
+    border-color: white !important;
+}
+
+.variable input{
+    width: 60px;
+    height: 18px;
+}
+.fees-table.custom-margin{
+    margin-top: 37px !important;
+}
+.cc-checkbox-group{
+    position: absolute;
+    top: -30px;
+}

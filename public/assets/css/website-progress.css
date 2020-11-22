@@ -1,0 +1,944 @@
+label{
+    margin: 0;
+}
+.content {
+    padding: 0 !important;
+    position: relative;
+}
+.content-wrapper{
+    background: white !important;
+}
+.content-header{
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+.section-title{
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 15px;
+}
+.MiniIcon {
+    height: 12px;
+    width: 12px;
+}
+.Icon {
+    height: 16px;
+    width: 16px;
+}
+.xIcon{
+    width: 10px;
+    height: 10px;
+}
+.TaskGroupHeader-dragMiniIcon, .TaskRow-DragIcon{
+    cursor: grab;
+    fill: #6f7782;
+    margin: 0 4px;
+}
+.TaskGroupHeader{
+    height: 50px;
+    width: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    align-items: center;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 30px;
+    padding-right: 30px;
+    position: relative;
+    cursor: grab;
+}
+.TaskGroupHeader-toggleButton{
+    padding: 0;
+    padding-right: 1px;
+    align-items: center;
+    align-self: stretch;
+    display: inline-flex;
+    flex-shrink: 0;
+    outline: none;
+    background: transparent;
+    border: 0;
+}
+.TaskGroupHeader-headerContainer {
+    flex-grow: 0;
+    min-width: 1px;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+.PotColumnName {
+    align-items: center;
+    display: inline-flex;
+    min-width: 1px;
+    width: 100%;
+}
+.PotColumnName-nameLabel {
+    margin-bottom: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    flex-grow: 0;
+    margin-left: 10px;
+    margin-right: auto;
+    min-width: 1px;
+    outline: none;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    cursor: pointer;
+}
+.TaskHeader{
+    margin-right: 0.4em;
+}
+.TaskHeaderMenuIcon, .TaskHeaderAddTaskIcon{
+    margin-left: 8px;
+    margin-top: 6px;
+    color: #6f7782;
+    fill: #6f7782;
+}
+.TaskHeaderMenuIcon:hover, .TaskHeaderAddTaskIcon:hover{
+    fill: black;
+}
+.TaskGroupHeader:hover .TaskGroupHeader-dragMiniIcon{
+    visibility: hidden;
+}
+.TaskList{
+    min-height: 10px;
+}
+.TaskRow:hover .TaskRow-DragIcon{
+    visibility: visible;
+}
+.TaskHeader, .TaskRow{
+    display: flex;
+    height: 36px;
+    contain: style;
+    margin-bottom: -1px;
+    margin-top: -1px;
+    position: relative;
+    align-items: center;
+}
+.TaskRow.selected .GridCell{
+    background-color: #edf8ff;
+}
+.GridCell{
+    padding: 0 10px;
+    background-color: #fff;
+    border: 1px solid #e8ecee;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+    margin-right: -1px;
+    z-index: 0;
+}
+.GridCell.WithoutLeftBorder{
+    border-left: 0;
+}
+.TaskNameCell{
+    flex: 1 1 auto;
+    padding: 0;
+}
+.AssigneeCell{
+    width: 150px;
+}
+.ProgressCell{
+    width: 90px;
+    justify-content: center;
+}
+.CompletedAtCell{
+    padding: 0 !important;
+    width: 120px;
+    justify-content: center;
+}
+.TaskCell{
+    height: 100%;
+}
+.GridCell:hover{
+    background-color: #f6f8f9;
+    cursor: pointer;
+}
+.TaskCell .task-name{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    min-width: 100px;
+    height: 26px;
+    line-height: 26px;
+    box-sizing: content-box;
+}
+.TaskCell .task-name:hover{
+    background: #fff;
+    border: 1px solid #cbd4db;
+    border-radius: 2px;
+    cursor: text;
+    background: white;
+}
+.TaskCell .editable-container.editable-inline{
+    width: calc(100% - 60px);
+}
+.TaskCell .editable-container.editable-inline .control-group,
+.TaskCell .editable-container.editable-inline .control-group .editable-input,
+.TaskCell .editable-container.editable-inline .control-group .editable-input input{
+    width: 100%;
+    font-size: 14px !important;
+}
+.TaskCell.TaskNameCell .task-status-wrapper{
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex: 1 0 auto;
+    height: 100%;
+}
+.TaskCell.TaskNameCell .task-status-wrapper .count-with-icon{
+    align-items: center;
+    color: #6f7782;
+    display: inline-flex;
+    fill: #6f7782;
+    font-size: 11px;
+    justify-content: center;
+    align-self: stretch;
+    margin-left: 10px;
+}
+.TaskCell.TaskNameCell .task-status-wrapper .count-with-icon .value{
+    margin-right: 5px;
+}
+.TaskCell.TaskNameCell .detailsButton{
+    align-items: center;
+    color: #6f7782;
+    cursor: pointer;
+    display: flex;
+    fill: currentColor;
+    font-size: 12px;
+    height: 100%;
+    justify-content: flex-end;
+    margin-left: auto;
+    opacity: 0;
+}
+.TaskCell:hover .detailsButton{
+    opacity: 1;
+}
+.LeftTriangleIcon{
+    display: none;
+}
+.TaskGroup.open .LeftTriangleIcon{
+    display: inline;
+}
+.TaskGroup.open .RightTriangleIcon{
+    display: none;
+}
+.DomainUserAvatar {
+    align-items: center;
+    border-color: transparent;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: default;
+    display: inline-flex;
+    justify-content: center;
+}
+.AvatarPhoto{
+    align-items: center;
+    background: center/cover #cbd4db;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+    vertical-align: top;
+    font-size: 11px;
+    height: 24px;
+    line-height: 24px;
+    min-width: 24px;
+    width: 24px;
+    background-color: #4186e0;
+    color: #fff;
+}
+.AssigneeWithName-name{
+    display: inline;
+    font-size: 12px;
+    line-height: 17px;
+    color: #273240;
+    flex: 1 1 auto;
+    margin-left: 5px;
+    min-width: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.assignee-value{
+    display: flex;
+    align-items: center;
+}
+.completed-at-value{
+    width: 100%;
+}
+.editable-click, a.editable-click{
+    border-bottom: none !important;
+}
+.TaskGroupHeader:hover .TaskHeaderMenuIcon, .TaskGroupHeader:hover .TaskHeaderAddTaskIcon{
+    display: inline !important;
+}
+#tasks-list-wrapper{
+}
+#TaskGroupWrapper{
+    overflow-x: hidden;
+}
+#TaskGroupWrapper .scroll-box{
+    height: calc(100vh - 217px);
+}
+#task-details-wrapper{
+    /*padding: 10px 0;*/
+    padding-right: 0;
+    background-color: #fff;
+    border: 1px solid #e8ecee;
+    /*border-top: 1px solid #e8ecee;*/
+    position: absolute;
+    width: 40%;
+    left: 100%;
+    top: 0;
+    right: 0;
+    transition: transform .2s ease-in;
+}
+#task-details-wrapper .scroll-box{
+    height: calc(100vh - 396px);
+    /*padding-right: 25px;*/
+    /*padding-left: 25px;*/
+}
+
+/**Scroll Bar Style Start**/
+p {
+    font-family: arial;
+    line-height: 1.4;
+    margin: 0 0 .5em;
+  }
+  .scroll-bar-wrap {
+    position: relative;
+  }
+  .scroll-box {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .scroll-box::-webkit-scrollbar {
+    width: .4em;
+  }
+  .scroll-box::-webkit-scrollbar,
+  .scroll-box::-webkit-scrollbar-thumb {
+    overflow:visible;
+    border-radius: 4px;
+  }
+  .scroll-box::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.2);
+  }
+  .cover-bar {
+    position: absolute;
+    background: #fff;;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: .4em;
+    -webkit-transition: all .5s;
+    opacity: 1;
+  }
+  /* MAGIC HAPPENS HERE */
+  .scroll-bar-wrap:hover .cover-bar {
+     opacity: 0;
+    -webkit-transition: all .5s;
+  }
+/**Scroll Bar Style End**/
+
+.SingleTaskPane{
+    align-items: flex-start;
+    display: flex;
+    /*margin-top: 14px;*/
+    margin-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.SingleTaskPane-icon{
+    align-items: center;
+    display: flex;
+    fill: #9ca6af;
+    flex-shrink: 0;
+    height: 20px;
+    justify-content: center;
+    margin-right: 10px;
+    width: 30px;
+}
+.SingleTaskPane-icon.descriptionIcon{
+    margin-top: 10px;
+}
+.TaskAttributeContent{
+    position: relative;
+    flex: 1 1 auto;
+    overflow: visible;
+}
+.TaskAttributeContent.description-content{
+    min-width: 1px;
+}
+.task-description-edit-textarea{
+    width: 100%;
+}
+.TaskAttributeContent.description-content .task-description-value{
+    min-height: 45px;
+    padding: 10px;
+    cursor: pointer;
+}
+.TaskAttributeContent.description-content .task-description-value:hover{
+    /*border: 1px solid #ddd;*/
+    /*border-radius: 4px;*/
+    /*cursor: text;*/
+}
+.task-description-value p{
+    margin: 1px 0 !important;
+}
+#task-details-wrapper .TaskNameWrapper{
+    position: relative;
+    padding-left: 25px;
+    padding-right: 220px;
+    border-bottom: 1px solid #e8ecee;
+    box-shadow: 0 4px 2px -2px #fafafafa;
+}
+#task-details-wrapper .task-name-value{
+    font-weight: 600;
+    margin: 16px 0;
+    min-height: 20px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button{
+    cursor: pointer;
+    position: absolute;
+    top: 1px;
+    fill: #6f7782;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button:hover{
+    fill: #273240;
+    color: #273240 !important;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.hide-button{
+    right: 50px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.add-file-button{
+    top: 2px;
+    right: 85px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.copy-link-button{
+    right: 120px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.delete-button{
+    top: 2px;
+    right: 155px;
+    color: #6f7782;
+    font-size: 17px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.complete-button{
+    top: 2px;
+    right: 190px;
+    color: #6f7782;
+    font-size: 17px;
+}
+#task-details-wrapper .TaskNameWrapper .header-tool-button.add-comment-button{
+    top: -3px;
+    right: 155px;
+    color: #6f7782;
+    font-size: 17px;
+}
+#task-details-wrapper .Attributes-wrapper{
+    margin-top: 20px;
+    padding: 0 15px;
+}
+#task-details-wrapper .Attributes-wrapper{
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row{
+    margin: 8px 0;
+    display: flex;
+    align-items: baseline;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .attribute-name{
+    line-height: 30px;
+    color: #9ca6af;
+    font-weight: normal;
+    width: 120px;
+    margin-right: 5px;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .attribute-wrapper{
+    margin-top: -4px;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .attribute-value{
+    line-height: 30px;
+    /*flex: 1 1 auto;*/
+    font-weight: 600;
+    cursor: text;
+    color: rgb(81, 81, 81);
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .attribute-value:hover{
+    color: #a3a3a3;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .attribute-value.client-drive-value{
+    flex: unset;
+}
+#task-details-wrapper .Attributes-wrapper .attribute-row .show-link-button{
+    color: #007bff;
+    margin-top: 1px;
+    margin-left: 7px;
+    cursor: pointer;
+}
+#task-details-wrapper .attribute-edit-input{
+    height: 30px;
+    font-size: 14px;
+    width: 270px;
+}
+#task-details-wrapper .task-attachment-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+#task-details-wrapper .task-attachment-list .attachment-item{
+    align-items: center;
+    display: flex;
+    line-height: 16px;
+    margin-bottom: 6px;
+}
+#task-details-wrapper .task-attachment-list .attachment-item .file-icon{
+    fill: #cbd4db;
+    flex-shrink: 0;
+    margin-right: 5px;
+}
+#task-details-wrapper .task-attachment-list .attachment-item .file-name{
+    flex: 0 1 auto;
+    margin-bottom: -1px;
+    min-width: 1px;
+    word-wrap: break-word;
+}
+#task-details-wrapper .task-attachment-list .attachment-item .delete-button{
+    align-items: center;
+    background: #6f7782;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #fff;
+    justify-content: center;
+    padding: 2px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 3px 0 0 12px;
+    position: relative;
+    visibility: hidden;
+}
+#task-details-wrapper .task-attachment-list .attachment-item:hover .delete-button{
+    visibility: visible;
+}
+.ck-balloon-panel
+{
+    z-index: 10055 !important;
+}
+.SingleTaskPane-Separator{
+    border-top: 1px solid #e8ecee;
+    margin-left: 30px;
+    margin-right: 26px;
+}
+.TaskStoryFeed-blockStory{
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-right: 25px;
+    position: relative;
+    margin-bottom: 20px;
+}
+.TaskStoryFeed-blockStory.pinned{
+    background: rgba(255,254,222,.5);
+    box-shadow: inset 3px 0 #ffe01b;
+}
+.BlockStory{
+    display: flex;
+    width: 100%;
+}
+.IconButton{
+    height: 30px;
+    width: 30px;
+    fill: #6f7782;
+    -webkit-box-align: center;
+    align-items: center;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-transition: 200ms box-shadow,200ms color,200ms fill;
+    transition: 200ms box-shadow,200ms color,200ms fill;
+}
+.IconButton:hover {
+    fill: #273240;
+}
+.Comment-DropDownButton{
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+}
+.TaskStoryFeed-blockStory:hover .Comment-DropDownButton{
+    visibility: visible;
+}
+.BlockStory-icon{
+    flex-shrink: 0;
+    margin-right: 10px;
+    width: 30px;
+}
+.BlockStory-block{
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    min-width: 1px;
+    word-wrap: break-word;
+    padding-right: 30px;
+}
+.BlockStory-icon .AvatarPhoto{
+    align-items: center;
+    background: center/cover #cbd4db;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+    vertical-align: top;
+    background-color: #4186e0;
+    color: #fff;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    min-width: 30px;
+    width: 30px;
+}
+.BlockStory-header{
+    -webkit-box-align: start;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: flex;
+}
+.BlockStory-header .BlockStory-headerContent{
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    line-height: 20px;
+    min-width: 1px;
+    margin-top: -2px;
+}
+.BlockStory-header .BlockStory-heartButton{
+    -webkit-box-align: center;
+    align-items: center;
+    color: #6f7782;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    fill: #6f7782;
+    font-size: 11px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.BlockStory-header .BlockStory-heartButton:hover{
+    color: #32c1ff;
+    fill: #32c1ff;
+}
+.BlockStory-header .author-name{
+    font-weight: 700;
+}
+.BlockStory-header .AddedAttachmentStory-content{
+    font-weight: 600;
+}
+.BlockStory-header .AddedAttachmentStory-attachIcon{
+    fill: #9ca6af;
+    vertical-align: sub;
+}
+.BlockStory-header .BlockStory-metadata{
+    color: #6f7782;
+    display: inline;
+    font-size: 11px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+.BlockStory-actorLink {
+    color: #151b26;
+}
+.BlockStory-actorLink:hover {
+    color: #32c1ff;
+    text-decoration: none;
+}
+.BlockStory-body {
+    padding-top: 10px;
+}
+.BlockStory-body .comment-content{
+    display: inline;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.TaskStoryFeed-blockStory ul.dropdown-menu{
+    /*right: 0;*/
+    /*left: unset;*/
+    /*top: 12px;*/
+}
+.TaskStoryFeed-blockStory figure img{
+    max-width: 100%;
+}
+.description-intro-title{
+    margin: 10px 74px;
+    font-size: 16px;
+    color: #9ca6af;
+}
+#task-details-wrapper .sing-task-pane-footer{
+    height: 160px;
+    background: #f6f8f9;
+    border-top: 1px solid #e8ecee;
+    flex-shrink: 0;
+    display: flex;
+    padding: 10px 30px;
+    position: relative;
+}
+#task-details-wrapper .pre-live-options .upload-btn{
+    margin-left: 6px;
+}
+#task-details-wrapper .pre-live-options .download-btn{
+    margin-left: 6px;
+    color:#FFC106;
+}
+
+#task-details-wrapper .pre-live-options .checkbox > label > input{
+    margin-right: 4px;
+}
+
+.sing-task-pane-footer .ck-editor__editable{
+    min-height: 100px !important;
+    max-height: 100px !important;
+}
+.sing-task-pane-footer .ck-editor{
+    width: 100% !important;
+    padding-bottom: 36px !important;
+    position: relative !important;
+}
+.sing-task-pane-footer .ck-editor__top{
+    position: absolute !important;
+    bottom: 7px !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+}
+.sing-task-pane-footer .ck-toolbar{
+    border-top: 0 !important;
+    background: white !important;
+}
+.sing-task-pane-footer .ck-toolbar__items .ck-button{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.sing-task-pane-footer .ck-toolbar__items .add-comment-btn{
+    position: absolute !important;
+    margin: 0 !important;
+    right: 5px !important;
+    padding: 1px 5px !important;
+    color: white !important;
+    cursor: pointer !important;
+    border-color: #14aaf5 !important;
+    background: #14aaf5 !important
+}
+
+#task-details-wrapper .DropTargetAttachment-target{
+    background: none;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#task-details-wrapper .DropTargetAttachment-border {
+    border: 2px dashed #14aaf5;
+    border-radius: 5px;
+    bottom: 20px;
+    display: none;
+    left: 20px;
+    padding: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+#task-details-wrapper .DropTargetAttachment-image {
+    align-self: center;
+    min-height: 1px;
+    opacity: .6;
+    width: 160px;
+}
+#task-details-wrapper .DropTargetAttachment-imageText {
+    color: #14aaf5;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#task-details-wrapper .DropTargetAttachment--dragging.DropTargetAttachment-target {
+    background: rgba(255,255,255,.95);
+}
+
+#task-details-wrapper .DropTargetAttachment--dragging .DropTargetAttachment-border {
+    align-content: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.AttachmentCard {
+    background: #fff;
+    border: 1px solid #cbd4db;
+    border-radius: 8px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: inherit;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+}
+.AttachmentCard--validLink {
+    cursor: pointer;
+}
+.AttachmentCard--validLink:hover {
+    background: #f6f8f9;
+    border: 1px solid #9ca6af;
+    -webkit-transition: border 100ms,background 100ms;
+    transition: border 100ms,background 100ms;
+}
+.AttachmentCard--large.AttachmentCard {
+    max-height: 275px;
+    max-width: 420px;
+}
+.AttachmentCard-info {
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+}
+.AttachmentCard-svg {
+    fill: #9ca6af;
+    height: 30px;
+    margin: 15px;
+    min-width: 30px;
+}
+.AssetIcon-teal {
+    fill: #14aaf5;
+}
+.AttachmentCard-row {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.AttachmentCard-name {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.AttachmentCard-metaData {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    line-height: 17px;
+    color: #6f7782;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.AttachmentCard-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.RichAttachment-labelLink {
+    color: #6f7782;
+    fill: #6f7782;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.AttachmentImage {
+    -webkit-box-align: start;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    white-space: nowrap;
+}
+.AttachmentImage-preview {
+    -webkit-box-align: center;
+    align-items: center;
+    background: #f6f8f9;
+    border: 1px solid #e8ecee;
+    border-radius: 8px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: -webkit-box;
+    display: flex;
+    max-width: 100%;
+    outline: 0;
+    overflow: hidden;
+    position: relative;
+}
+.Thumbnail-image {
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+}
+.AttachmentImage--large .Thumbnail-image {
+    max-height: 320px;
+}
+.AttachmentImage-name {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    line-height: 17px;
+    bottom: 0;
+    color: #6f7782;
+    display: -webkit-box;
+    display: flex;
+    font-weight: 500;
+    max-width: 100%;
+    white-space: pre;
+}
+.AttachmentImage-fileName {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.AttachmentImage-label {
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+}

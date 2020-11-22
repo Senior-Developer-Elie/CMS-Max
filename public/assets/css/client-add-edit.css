@@ -1,0 +1,89 @@
+.client-add-edit-wrapper .control-label{
+    max-width: 120px;
+    min-width: 120px;
+}
+.main-info-wrapper .col-sm-9{
+    width: calc(100% - 130px) !important;
+}
+label.website-header{
+    color: #4985a4;
+    font-weight: 700;
+    font-size: 16px;
+}
+.website-list-note{
+    display: block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(225, 235, 243);
+    border-radius: 2px;
+    background-color: rgb(241, 245, 248);
+    width: 100%;
+    padding: 7px;
+    padding-left: 35px;
+    float: left;
+    position: relative;
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.website-list-note i{
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    color: #3598db;
+    font-size: 16px;
+}
+#add-website-button{
+    display: block;
+}
+.table-col .tabel-head{
+    text-transform: uppercase;
+    color: #2f2f2f;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #f7f7f7;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: 10px;
+}
+.table-col .comp-item{
+    border-bottom: 1px solid #f2f2f2;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.table-col .comp-name{
+    font-weight: bold;
+    color: #2f2f2f;
+    line-height: 34px;
+}
+.table-col .comp-action{
+    padding: 0;
+}
+.table-col .edit-website-btn, .table-col .delete-website-btn{
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: #F7F7F7 !important;
+    color: #666666;
+    border: none;
+    border-radius: 2px;
+}
+.comp-item.default-row{
+    display: none;
+}
+.drive-container{
+    position: relative;
+}
+.show-drive{
+    position: absolute;
+    right: 6px;
+    top: 2px;
+    line-height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #666 !important;
+}
+.notes-wrapper .ck-editor__editable{
+    min-height: 400px !important;
+    max-height: 400px !important;
+}

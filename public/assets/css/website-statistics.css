@@ -1,0 +1,11 @@
+td.date-wrapper{
+    cursor: pointer;
+    padding: 0 !important;
+}
+.completed-at-value{
+    border-bottom: none !important;
+    display: inline-block;
+    width: 100%;
+}
+#chart-wrapper{
+}
