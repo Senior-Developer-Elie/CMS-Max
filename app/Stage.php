@@ -24,7 +24,7 @@ class Stage extends Model
 
             //Set Maximum Priority
             $maxPriorityStage = self::whereRaw('priority = (select max(`priority`) from stages)')->get()->first();
-            $stage->priority = $maxPriorityStage->priority + 1;
+            $stage->priority = $maxPriorityStage ? ($maxPriorityStage->priority + 1) : 1;
         });
     }
 }
