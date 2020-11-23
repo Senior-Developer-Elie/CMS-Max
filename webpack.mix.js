@@ -33,6 +33,7 @@ mix.scripts([
     'resources/js/libs/jszip.min.js',
     'public/assets/js/core.js'
 ], 'public/js/all.js');
+
 //All CSS
 mix.styles([
     'resources/adminLTE3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
@@ -56,6 +57,7 @@ mix.scripts([
     'resources/adminLTE3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js',
     'resources/adminLTE3/plugins/datatables-buttons/js/buttons.colVis.min.js',
     'resources/adminLTE3/plugins/datatables-buttons/js/buttons.html5.min.js',
+    'resources/adminLTE3/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.min.js',
 ], 'public/js/datatable.js');
 
 //Bootstrap Datatable CSS
@@ -63,6 +65,7 @@ mix.styles([
     'resources/adminLTE3/plugins/datatables-bs4/css/dataTables.bootstrap4.css',
     'resources/adminLTE3/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css',
     'resources/adminLTE3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css',
+    'resources/adminLTE3/plugins/datatables-fixedcolumns/css/fixedColumns.bootstrap4.min.css',
 ], 'public/css/datatable.css');
 
 //Chart JS

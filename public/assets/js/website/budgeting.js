@@ -22,6 +22,9 @@ var Websites_Budgeting = {
             ],
             fixedHeader: true,
             "scrollX": true,
+            fixedColumns:   {
+                leftColumns: 1,
+            },
             "footerCallback": function ( row, data, start, end, display ) {
                 var api = this.api(), data;
 
