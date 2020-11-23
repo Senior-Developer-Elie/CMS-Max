@@ -17,10 +17,14 @@ table.table-bordered.dataTable tbody td{
     font-size: 16px !important;
 }
 .brand-text img {
-    width: 100%;
+    max-height: 30px;
 }
 .brand-link{
-    padding: 11px !important;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
 }
 .bg-aqua {
     background-color: #00c0ef !important;

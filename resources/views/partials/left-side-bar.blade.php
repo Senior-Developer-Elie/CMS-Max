@@ -1,7 +1,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-info">
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center">
-        <span class="brand-text font-weight-bold">
+        <span class="brand-text">
             <img src="{{ asset('assets/images/evolution-marketing-logo.png') }}" />
         </span>
     </a>

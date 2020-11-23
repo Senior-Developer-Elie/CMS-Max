@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/all.js": "/js/all.js",
-    "/css/all.css": "/css/all.css",
-    "/js/datatable.js": "/js/datatable.js",
-    "/css/datatable.css": "/css/datatable.css",
-    "/js/chart.js": "/js/chart.js",
-    "/js/download-adaptor.js": "/js/download-adaptor.js"
+    "/js/app.js": "/js/app.js?id=400943bfca4c09c6fc84",
+    "/js/all.js": "/js/all.js?id=dd124a31b90a06e174ab",
+    "/css/all.css": "/css/all.css?id=8ba7d1c7085c7ba2b44d",
+    "/js/datatable.js": "/js/datatable.js?id=6905537d5902d79a92f8",
+    "/css/datatable.css": "/css/datatable.css?id=1a6e3f009b2019dd67ab",
+    "/js/chart.js": "/js/chart.js?id=b5c2301eb15826bf38c9",
+    "/js/download-adaptor.js": "/js/download-adaptor.js?id=64efaa67a9d88b84df95"
 }
