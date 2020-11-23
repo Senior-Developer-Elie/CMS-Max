@@ -29,6 +29,7 @@
                                     <tr>
                                         <th>Website Name</th>
                                         <th>Website Url</th>
+                                        <th>Plan</th>
                                         <th>Budget</th>
                                         <th width="40%">Notes</th>
                                         <th width="120px">Actions</th>
@@ -44,6 +45,9 @@
                                                 <a href = "//{{ $website->website }}" data-value="{{ $website->website }}" target="_blank">
                                                     {{ $website->website }}
                                                 </a>
+                                            </td>
+                                            <td>
+                                                {{ $website->plan ?? "" }}
                                             </td>
                                             <td class="text-center">
                                                 @php
@@ -133,5 +137,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=4') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=5') }}"></script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AngelInvoice;
 use Illuminate\Http\Request;
 
 use App\Website;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Helpers\WebsiteHelper;
 class SocialMediaController extends Controller
 {
+    const SOCIAL_PLANS = [
+        AngelInvoice::CRM_KEY_FACEBOOK_CUSTOM,
+        AngelInvoice::CRM_KEY_FACEBOOK_ACCELERATE,
+        AngelInvoice::CRM_KEY_FACEBOOK_GROW,
+        AngelInvoice::CRM_KEY_FACEBOOK_BUILD
+    ];
+
     /**
      * Create a new controller instance.
      *
@@ -33,10 +41,22 @@ class SocialMediaController extends Controller
 
         $activeWebsites = Website::where('social_media_archived', 0)
             ->where('archived', 0)
-            ->orderBy('name')->get();
+            ->orderBy('name')
+            ->get();
         $archivedWebsites = Website::where('social_media_archived', 1)
             ->where('archived', 0)
-            ->orderBy('name')->get();
+            ->orderBy('name')
+            ->get();
+
+        // Attach plan
+        $activeWebsites->map(function($website) {
+            foreach (self::SOCIAL_PLANS as $crmProductKey) {
+                if ($website->getProductValue($crmProductKey) > 0) {
+                    $website->plan = AngelInvoice::products()[$crmProductKey];
+                    break;
+                }
+            }
+        });
 
         return view('manage-website.social-media-list', [
             'currentSection'        => 'social-media',

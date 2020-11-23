@@ -17,7 +17,7 @@ var Websites_Social_Media = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columnDefs: [
-                {targets: [1, 2, 3], type: 'sortme'},
+                {targets: [1, 3], type: 'sortme'},
             ],
             fixedHeader: true,
             "footerCallback": function ( row, data, start, end, display ) {
@@ -35,7 +35,7 @@ var Websites_Social_Media = {
                         return 0;
                 };
 
-                for( let i = 2; i <= 2; i++ ) {
+                for( let i = 3; i <= 3; i++ ) {
                     // Total over this page
                     let columnData = api
                     .column( i, { page: 'current'} )
