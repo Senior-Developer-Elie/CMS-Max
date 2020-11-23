@@ -22,39 +22,39 @@ var Websites_Budgeting = {
             ],
             fixedHeader: true,
             "scrollX": true,
-            // "footerCallback": function ( row, data, start, end, display ) {
-            //     var api = this.api(), data;
+            "footerCallback": function ( row, data, start, end, display ) {
+                var api = this.api(), data;
 
-            //     // Remove the formatting to get integer data for summation
-            //     var floatConversion = function ( i ) {
-            //         if( i.toString().startsWith("<span") ) {
-            //             value = parseFloat($(i).attr('data-value'));
-            //             if( value < 0 )
-            //                 return 0;
-            //             return value;
-            //         }
-            //         else
-            //             return 0;
-            //     };
+                // Remove the formatting to get integer data for summation
+                var floatConversion = function ( i ) {
+                    if( i.toString().startsWith("<span") ) {
+                        value = parseFloat($(i).attr('data-value'));
+                        if( value < 0 )
+                            return 0;
+                        return value;
+                    }
+                    else
+                        return 0;
+                };
 
-            //     for( let i = 1; i <= 12; i++ ) {
-            //         // Total over this page
-            //         let columnData = api
-            //         .column( i, { page: 'current'} )
-            //         .data();
+                for( let i = 2; i <= 25; i++ ) {
+                    // Total over this page
+                    let columnData = api
+                    .column( i, { page: 'current'} )
+                    .data();
 
-            //         let pageTotal = 0;
+                    let pageTotal = 0;
 
-            //         for( j = 0; j < columnData.length; j++ ){
-            //             pageTotal += floatConversion(columnData[j]);
-            //         }
+                    for( j = 0; j < columnData.length; j++ ){
+                        pageTotal += floatConversion(columnData[j]);
+                    }
 
-            //         // Update footer
-            //         $( api.column( i ).footer() ).html(
-            //             '$' + Math.round(pageTotal).toLocaleString()
-            //         );
-            //     }
-            // }
+                    // Update footer
+                    $( api.column( i ).footer() ).html(
+                        '$' + Math.round(pageTotal).toLocaleString()
+                    );
+                }
+            }
         });
         $.fn.dataTable.ext.type.order['sortme-pre'] = function (a, b) {
             return parseFloat($(a).attr('data-value'));

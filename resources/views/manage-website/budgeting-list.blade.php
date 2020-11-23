@@ -67,23 +67,16 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        {{-- <tfoot>
+                        <tfoot>
                             <tr>
                                 <th>Total</th>
                                 <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
-                                <th class="text-center"></th>
+                                @foreach (\App\AngelInvoice::crmProductKeys() as $crmProductKey)
+                                    <th class="text-center"></th>
+                                @endforeach
                                 <th class="text-center"></th>
                             </tr>
-                        </tfoot> --}}
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -124,5 +117,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
     <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
-    <script src="{{ asset('assets/js/website/budgeting.js?v=19') }}"></script>
+    <script src="{{ asset('assets/js/website/budgeting.js?v=20') }}"></script>
 @endsection
