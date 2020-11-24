@@ -65,8 +65,8 @@ Route::group(['middleware' => 'web'], function () {
 
     //Edit Credit Card Default Rate
     Route::get('/calculate-card-rate', 'CreditRateController@index');
-    Route::get('/manage-default-rate', 'CreditRateController@manageDefaultRate');
-    Route::post('/manage-default-rate', 'CreditRateController@manageDefaultRate');
+    // Route::get('/manage-default-rate', 'CreditRateController@manageDefaultRate');
+    // Route::post('/manage-default-rate', 'CreditRateController@manageDefaultRate');
     Route::get('/generate-pdf', 'CreditRateController@generatePDF');
     Route::post('/generate-pdf', 'CreditRateController@generatePDF');
 
