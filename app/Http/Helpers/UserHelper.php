@@ -178,12 +178,12 @@ class UserHelper {
                     'link'      => '/manage-default-text',
                     'section'   => 'manage-default'
                 ],
-                [
-                    'name'      => 'Manage Default Card Rate',
-                    'icon'      => 'fa fa-edit',
-                    'link'      => '/manage-default-rate',
-                    'section'   => 'manage-default-rate'
-                ],
+                // [
+                //     'name'      => 'Manage Default Card Rate',
+                //     'icon'      => 'fa fa-edit',
+                //     'link'      => '/manage-default-rate',
+                //     'section'   => 'manage-default-rate'
+                // ],
                 [
                     'name'      => 'Manage Website Sender',
                     'icon'      => 'fas fa-envelope-square',
