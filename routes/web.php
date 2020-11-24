@@ -173,6 +173,7 @@ Route::group(['middleware' => 'web'], function () {
 
     /**Clients */
     Route::get('/client-list', 'ClientController@index');
+    Route::get('/client-notes-versions', 'ClientNotesVersionsController@show');
     Route::get('/client-history', 'ClientController@clientHistory');
     Route::post('/edit-blog-client/{client_id}', 'ClientController@editClient');
     Route::get('/delete-client/{client_id}', 'ClientController@deleteClient');

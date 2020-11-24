@@ -20,6 +20,6 @@
 @section('javascript')
     <!-- bootstrap datepicker -->
     <script src="https://cdn.ckeditor.com/ckeditor5/12.3.0/classic/ckeditor.js"></script>
-    <script src="{{ asset('assets/js/client/client-add-edit.js?v=10') }}"></script>
+    <script src="{{ asset('assets/js/client/client-add-edit.js?v=11') }}"></script>
 @endsection
 

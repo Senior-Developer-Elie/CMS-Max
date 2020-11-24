@@ -1,7 +1,10 @@
 var Client_Add_Edit = {
+    notesEditor: false,
+
     init: function(){
         this.initComponents();
         this.initActions();
+        this.initRestoreNotesAction();
     },
 
     initComponents: function(){
@@ -32,6 +35,7 @@ var Client_Add_Edit = {
                 }
             })
             .then( editor => {
+                Client_Add_Edit.notesEditor = editor;
             } )
             .catch( error => {
                 console.error( error );
@@ -102,6 +106,48 @@ var Client_Add_Edit = {
             return true;
         })
     },
+
+    initRestoreNotesAction: function() {
+        $("#restore-button").click(function() {
+            
+            let clientNotesVersionId = $("select[name=restore]").val();
+            if (clientNotesVersionId == "") {
+                return;
+            }
+            $('body').waitMe({
+                effect : 'bounce',
+                text : 'Please wait while fetching history...',
+                bg : 'rgba(255,255,255,0.7)',
+                color : '#000'
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: siteUrl + '/client-notes-versions',
+                data : {
+                    client_notes_version_id : clientNotesVersionId
+                },
+                success: function(data){
+                    
+                    if( data.status == 'success' )
+                    {
+                        Client_Add_Edit.notesEditor.setData(data.notes)
+
+                        $.notify("Notes history fetched.", {
+                            type: 'success',
+                            animate: {
+                                enter: 'animated lightSpeedIn',
+                                exit: 'animated lightSpeedOut'
+                            }
+                        })
+                    }
+                },
+                complete: function(){
+                    $('body').waitMe('hide');
+                }
+            });
+        })
+    }
 };
 
 $(document).ready(function(){

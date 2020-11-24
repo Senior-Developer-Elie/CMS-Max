@@ -38,6 +38,27 @@
                             <textarea class="form-control pull-right" id="notes" name = "notes">{{ isset($client) ? $client->notes : '' }}</textarea>
                         </div>
                     </div>
+
+                    @if (isset($client))
+                        <div class="form-group">
+                            <label for="restore" class="text-bold mb-1">Restore Notes From Previous Save</label>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <select name="restore" class="form-control">
+                                        @foreach ($client->notesVersions()->latest()->get() as $notesVersion)
+                                            <option value="{{ $notesVersion->id }}">
+                                                {{ \Carbon\Carbon::parse($notesVersion->created_at)->format('M d, Y g:i:s A') }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br class="visible-xs">
+                                <div class="col-sm-2">
+                                    <button id="restore-button" type="button" class="btn btn-block btn-default">Restore</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

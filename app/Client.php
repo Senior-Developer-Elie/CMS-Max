@@ -54,6 +54,12 @@ class Client extends Model
                     $website->save();
                 }
             }
+
+            if (! empty($originalClient['notes']) && $originalClient['notes'] != $client->notes) {
+                $client->notesVersions()->create([
+                    'notes' => $originalClient['notes']
+                ]);;
+            }
         });
     }
 
@@ -93,5 +99,10 @@ class Client extends Model
         ]);
 
         return $clientApiProduct->value;
+    }
+
+    public function notesVersions()
+    {
+        return $this->hasMany(ClientNotesVersion::class);
     }
 }
