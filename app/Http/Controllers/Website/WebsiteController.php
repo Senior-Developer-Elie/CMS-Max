@@ -8,15 +8,19 @@ use App\Website;
 use App\User;
 use App\AdminHistory;
 use App\BlogIndustry;
-use App\PaymentGateway;
-
+use App\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 use App\Http\Helpers\WebsiteHelper;
+use App\Sanitizers\WebsiteSanitizer;
+use App\Validators\WebsiteValidator;
+
 class WebsiteController extends Controller
 {
+    protected $data = [];
+
     /**
      * Create a new controller instance.
      *
@@ -36,239 +40,110 @@ class WebsiteController extends Controller
         if( !Auth::user()->hasPagePermission('Websites') )
             return redirect('/webadmin');
 
-        $blogIndustries = BlogIndustry::orderBy('name')->get();
-        $prettyBlogIndustries = [];
-        foreach( $blogIndustries as $industry ){
-            $prettyBlogIndustries[] = [
-                'value' => $industry->id,
-                'text'  => $industry->name
+        $this->data = [];
+
+        // Prepare blog industries
+        $blogIndustries = array_map(function($blogIndustry){
+            return [
+                'value' => $blogIndustry['id'],
+                'text'  => $blogIndustry['name']
             ];
-        }
+        }, BlogIndustry::orderBy('name')->get()->toArray());
 
-        return view('manage-website.website-list', [
-            'currentSection'            => 'website-list',
-            'websites'                  => Website::where('archived', 0)->get(),
-            'archivedWebsites'          => Website::where('archived', 1)->get(),
-            'allWebsiteTypes'           => WebsiteHelper::getAllWebsiteTypes(),
-            'allAffiliateTypes'         => WebsiteHelper::getAllWebsiteAffiliates(),
-            'allDNSTypes'               => WebsiteHelper::getAllWebsiteDNS(),
-            'allPaymentGateways'        => WebsiteHelper::getAllPaymentGateways(),
-            'allEmailTypes'             => WebsiteHelper::getAllEmailTypes(),
-            'allSitemapTypes'           => WebsiteHelper::getAllSitemapTypes(),
-            'allLeftReviewTypes'        => WebsiteHelper::getAllLeftReviewTypes(),
-            'allPortfolioTypes'         => WebsiteHelper::getOnPortfolioTypes(),
-            'allShippingMethodTypes'    => WebsiteHelper::getShippingMethodTypes(),
-            'allYextTypes'              => WebsiteHelper::getYextTypes(),
-            'blogIndustries'            => BlogIndustry::orderBy('name')->get(),
-            'allIndustries'             => $prettyBlogIndustries,
-            'admins'                    => User::get(),
-            'initialExpandOnHover'      => true
-        ]);
+        $this->data['currentSection']           = 'website-list';
+        $this->data['initialExpandOnHover']     = true;
+        $this->data['websites']                 = Website::where('archived', 0)->get();
+        $this->data['archivedWebsites']         = Website::where('archived', 1)->get();
+        $this->data['blogIndustries']           = BlogIndustry::orderBy('name')->get();
+        $this->data['allIndustries']            = $blogIndustries;
+        $this->data['admins']                   = User::get();
+
+        $this->prepareWebsiteAttributes();
+
+        return view('websites.index', $this->data);
     }
 
     /**
-     * Get Website Info
+     * Show the form for creating a new resource.
+     *
+     * @return Response
      */
-    public function getWebsiteInfo(Request $request)
+    public function create()
     {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
-            ]);
+        $this->prepareWebsiteAttributes();
+        $this->data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
+        $this->data['admins'] = User::orderBy('name')->get();
+        $this->data['clients'] = Client::orderBy('name')->get();
 
-        $data = $website->toArray();
-        $data['start_date'] = (new Carbon($website->start_date))->format('m/Y');
-
-        if( !is_null($website->client()) && $website->client()->archived )
-            $data['client_archived'] = true;
-        else
-            $data['client_archived'] = false;
-
-        return response()->json([
-            'status'    => 'success',
-            'data'      => $data
-        ]);
+        return view('websites.create', $this->data);
     }
 
     /**
-     * Add Website
+     * Store a newly created resource in storage.
+     * @return Response
      */
-    public function addWebsite(Request $request)
+    public function store(Request $request)
     {
-        $websiteId = $request->input('websiteId');
-        $data = $request->all();
+        // Sanitize
+        $data = (new WebsiteSanitizer)->sanitize($request->all());
 
-        // is blog client data
-        if( isset($data['is_blog_client']) && $data['is_blog_client'] == 'on')
-            $data['is_blog_client'] = true;
-        else
-            $data['is_blog_client'] = false;
-
-        // Chargebee
-        if( isset($data['chargebee']) && $data['chargebee'] == 'on')
-            $data['chargebee'] = true;
-        else
-            $data['chargebee'] = false;
-
-        // sync from client data
-        if( isset($data['sync_from_client']) && $data['sync_from_client'] == 'on')
-            $data['sync_from_client'] = true;
-        else
-            $data['sync_from_client'] = false;
-
-        // Change -1 if manual value is set n/a
-        $data['service'] = $data['service'] == 'n/a' ? -1 : $data['service'];
-        $data['yext'] = $data['yext'];
-        if( $data['yext'] == 'n/a' || $data['yext'] == 'not-needed' )
-            $data['yext'] = -1;
-        else if( $data['yext'] == 'need-to-sell' )
-            $data['yext'] = -3;
-        else if( $data['yext'] == 'not-interested' )
-            $data['yext'] = -4;
-        $data['g_suite'] = $data['g_suite'] == 'n/a' ? -1 : $data['g_suite'];
-        $data['hosting'] = $data['hosting'] == 'n/a' ? -1 : $data['hosting'];
-        $data['ssl'] = $data['ssl'] == 'n/a' ? -1 : $data['ssl'];
-        $data['googleAds'] = $data['googleAds'] == 'n/a' ? -1 : $data['googleAds'];
-        $data['googleManagementFee'] = $data['googleManagementFee'] == 'n/a' ? -1 : $data['googleManagementFee'];
-        $data['support_maintenance'] = $data['support_maintenance'] == 'n/a' ? -1 : $data['support_maintenance'];
-        $data['internet_marketing'] = $data['internet_marketing'] == 'n/a' ? -1 : $data['internet_marketing'];
-        $data['cmsmax_software'] = $data['cmsmax_software'] == 'n/a' ? -1 : $data['cmsmax_software'];
-        $data['cmsmax_ecommerce_software'] = $data['cmsmax_ecommerce_software'] == 'n/a' ? -1 : $data['cmsmax_ecommerce_software'];
-        $data['social_media_management'] = $data['social_media_management'] == 'n/a' ? -1 : $data['social_media_management'];
-        $data['domain'] = $data['domain'] == 'n/a' ? -1 : $data['domain'];
-        $data['dont_go'] = $data['dont_go'] == 'n/a' ? -1 : $data['dont_go'];
-        $data['order_snapp'] = $data['order_snapp'] == 'n/a' ? -1 : $data['order_snapp'];
-        $data['cms_max_plus'] = $data['cms_max_plus'] == 'n/a' ? -1 : $data['cms_max_plus'];
-        $data['cms_max_ecommerce_plus'] = $data['cms_max_ecommerce_plus'] == 'n/a' ? -1 : $data['cms_max_ecommerce_plus'];
-
-        $data['start_date'] = self::getCarbonFromYearMonth($data['start_date']);
-
-        if( $data['completed_at'] == null || $data['completed_at'] == '' || $data['completed_at'] == 'null' )
-            $data['completed_at'] = null;
-
-        if( $websiteId == "-1" ) {
-            $website = new Website($data);
-            $website->save();
-
-            //Add Admin History
-            AdminHistory::addHistory([
-                'user_id'   => Auth::user()->id,
-                'type'      => 'add website',
-                'message'   => 'Add website : ' . $website->name,
-                'ref'       => $website->id
-            ]);
-
-            Session::flash('message', 'Website added Successfully!');
-            Session::flash('alert-class', 'alert-success');
-        }
-        else {
-            $website = Website::find($websiteId);
-            if( is_null($website) ){
-                return resposne()->json([
-                    'status'    => 'error'
-                ]);
-            }
-            $website->fill($data);
-            $website->save();
-
-            //Add Admin History
-            AdminHistory::addHistory([
-                'user_id'   => Auth::user()->id,
-                'type'      => 'edit website',
-                'message'   => 'Edit website : ' . $website->name,
-                'ref'       => $website->id
-            ]);
-
-            Session::flash('message', 'Website updated Successfully!');
-            Session::flash('alert-class', 'alert-success');
+        // Validate
+        $validator = new WebsiteValidator();
+        if (! $validator->validate($data, 'create')) {
+            return redirect()->back()->withInput($data)->withErrors($validator->getErrors());
         }
 
-        return response()->json([
-            'status'    => 'success',
-            'data'      => $website->toArray()
-        ]);
-    }
+        $website = Website::create($data);
 
-    /**
-     * Delete Website
-     */
-    public function deleteWebsite(Request $request)
-    {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
-            ]);
-        AdminHistory::addHistory([
-            'user_id'   => Auth::user()->id,
-            'type'      => 'delete website',
-            'message'   => 'Delete website : ' . $website->name,
-            'ref'       => $website->id
-        ]);
-        $website->delete();
-
-        Session::flash('message', 'Website Deleted Successfully!');
+        Session::flash('message', 'Website created successfully.');
         Session::flash('alert-class', 'alert-success');
 
-        return response()->json([
-            'status'    => 'success'
-        ]);
+        return redirect()->route('websites.edit', [$website->id]);
     }
 
     /**
-     * Archive Website
+     * Show the form for creating a new resource.
+     *
+     * @param Website $website
+     * 
+     * @return Response
      */
-    public function archiveWebsite(Request $request)
+    public function edit(Website $website)
     {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
-            ]);
-        AdminHistory::addHistory([
-            'user_id'   => Auth::user()->id,
-            'type'      => 'archive website',
-            'message'   => 'Archive website : ' . $website->name,
-            'ref'       => $website->id
-        ]);
-        $website->archived = true;
-        $website->archived_at = Carbon::now();
+        $this->prepareWebsiteAttributes();
+        
+        $this->data['website'] = $website;
+        $this->data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
+        $this->data['admins'] = User::orderBy('name')->get();
+        $this->data['clients'] = Client::orderBy('name')->get();
+
+        return view('websites.edit', $this->data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $product
+     * @return Response
+     */
+    public function update(Website $website, Request $request)
+    {
+        // Sanitize
+        $data = (new WebsiteSanitizer)->sanitize($request->all());
+
+        // Validate
+        $validator = new WebsiteValidator();
+        if (! $validator->validate($data, 'update')) {
+            return redirect()->back()->withInput($data)->withErrors($validator->getErrors());
+        }
+
+        $website->fill($data);
         $website->save();
 
-        Session::flash('message', 'Website is archived Successfully!');
+        Session::flash('message', 'Website updated successfully.');
         Session::flash('alert-class', 'alert-success');
 
-        return response()->json([
-            'status'    => 'success'
-        ]);
-    }
-
-    /**
-     * Archive Website
-     */
-    public function unarchiveWebsite(Request $request)
-    {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
-            ]);
-        AdminHistory::addHistory([
-            'user_id'   => Auth::user()->id,
-            'type'      => 'unarchive website',
-            'message'   => 'Re-enable website : ' . $website->name,
-            'ref'       => $website->id
-        ]);
-        $website->archived = false;
-        $website->save();
-
-        Session::flash('message', 'Website is Re-enabled Successfully!');
-        Session::flash('alert-class', 'alert-success');
-
-        return response()->json([
-            'status'    => 'success'
-        ]);
+        return redirect()->route('websites.index');
     }
 
     /**
@@ -294,15 +169,18 @@ class WebsiteController extends Controller
         ]);
     }
 
-    /**
-     * Get Carbon object from month and year
-     */
-    public static function getCarbonFromYearMonth($dateStr)
+    protected function prepareWebsiteAttributes()
     {
-        $dateMonthArray = explode('/', $dateStr);
-        $month = $dateMonthArray[0];
-        $year = $dateMonthArray[1];
-
-        return (Carbon::createFromDate($year, $month, 1))->startOfMonth();
+        $this->data['websiteTypes'] = WebsiteHelper::getAllWebsiteTypes();
+        $this->data['affiliateTypes'] = WebsiteHelper::getAllWebsiteAffiliates();
+        $this->data['dnsTypes'] = WebsiteHelper::getAllWebsiteDNS();
+        $this->data['paymentGateways'] = WebsiteHelper::getAllPaymentGateways();
+        $this->data['emailTypes'] = WebsiteHelper::getAllEmailTypes();
+        $this->data['sitemapTypes'] = WebsiteHelper::getAllSitemapTypes();
+        $this->data['leftReviewTypes'] = WebsiteHelper::getAllLeftReviewTypes();
+        $this->data['portfolioTypes'] = WebsiteHelper::getOnPortfolioTypes();
+        $this->data['shippingMethodTypes'] = WebsiteHelper::getShippingMethodTypes();
+        $this->data['yextTypes'] = WebsiteHelper::getYextTypes();
+        $this->data['blogFrequencies'] = WebsiteHelper::getBlogFrequencies();
     }
 }

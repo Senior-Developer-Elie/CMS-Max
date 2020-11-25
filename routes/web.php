@@ -194,14 +194,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/unarchive-api-client', 'ApiClientController@unArchiveApiClient');
 
     /**Website */
-    Route::resource('websites', 'WebsiteController');
+    Route::resource('websites', 'Website\WebsiteController');
+    Route::post('/update-website-attribute', 'Website\WebsiteController@updateAttribute');
 
-    Route::get('/get-website-info', 'WebsiteController@getWebsiteInfo');
-    Route::post('/add-website', 'WebsiteController@addWebsite');
-    Route::post('/delete-website', 'WebsiteController@deleteWebsite');
-    Route::post('/archive-website', 'WebsiteController@archiveWebsite');
-    Route::post('/un-archive-website', 'WebsiteController@unarchiveWebsite');
-    Route::post('/update-website-attribute', 'WebsiteController@updateAttribute');
+    // Route::get('/get-website-info', 'WebsiteController@getWebsiteInfo');
+    // Route::post('/add-website', 'WebsiteController@addWebsite');
+    // Route::post('/delete-website', 'WebsiteController@deleteWebsite');
+    // Route::post('/archive-website', 'WebsiteController@archiveWebsite');
+    // Route::post('/un-archive-website', 'WebsiteController@unarchiveWebsite');
+    
     
     // Website Manage Sender
     Route::get('/manage-website-sender', 'Website\WebsiteManageSenderController@index');

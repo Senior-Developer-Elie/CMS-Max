@@ -12,6 +12,14 @@
                     <i class="fa fa-calendar-times-o"></i>
 
                     <h3 class="card-title">Website List</h3>
+
+                    <div class="card-tools pull-right">
+                        <a href="{{ route('websites.create') }}">
+                            <button type="button" class="btn btn-primary pull-right">
+                                <i class="fa fa-plus"></i> Add Website
+                            </button>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
@@ -34,11 +42,6 @@
             </div>
         </div>
     </div>
-
-    @include("manage-client.modals.add-website")
-    @include("manage-client.modals.delete-website")
-    @include("manage-client.modals.archive-website")
-
 @endsection
 
 @section('css')
@@ -52,18 +55,19 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=6') }}">
 @endsection
+
 @section('javascript')
     <script>
-        var allWebsiteTypes = {!! json_encode($allWebsiteTypes) !!};
-        var allAffiliateTypes = {!! json_encode($allAffiliateTypes) !!};
-        var allDNSTypes = {!! json_encode($allDNSTypes) !!};
-        var allPaymentGateways = {!! json_encode($allPaymentGateways) !!};
-        var allEmailTypes = {!! json_encode($allEmailTypes) !!};
-        var allSitemapTypes = {!! json_encode($allSitemapTypes) !!};
-        var allLeftReviewTypes = {!! json_encode($allLeftReviewTypes) !!};
-        var allPortfolioTypes = {!! json_encode($allPortfolioTypes) !!};
-        var allShippingMethodTypes = {!! json_encode($allShippingMethodTypes) !!};
-        var allYextTypes = {!! json_encode($allYextTypes) !!};
+        var allWebsiteTypes = {!! json_encode($websiteTypes) !!};
+        var allAffiliateTypes = {!! json_encode($affiliateTypes) !!};
+        var allDNSTypes = {!! json_encode($dnsTypes) !!};
+        var allPaymentGateways = {!! json_encode($paymentGateways) !!};
+        var allEmailTypes = {!! json_encode($emailTypes) !!};
+        var allSitemapTypes = {!! json_encode($sitemapTypes) !!};
+        var allLeftReviewTypes = {!! json_encode($leftReviewTypes) !!};
+        var allPortfolioTypes = {!! json_encode($portfolioTypes) !!};
+        var allShippingMethodTypes = {!! json_encode($shippingMethodTypes) !!};
+        var allYextTypes = {!! json_encode($yextTypes) !!};
         var allIndustries = {!! json_encode($allIndustries) !!};
     </script>
 
@@ -72,6 +76,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
     <script src="{{ asset('assets/js/website/website-list.js?v=43') }}"></script>
 @endsection

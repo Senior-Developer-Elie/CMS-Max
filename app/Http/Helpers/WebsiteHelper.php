@@ -135,4 +135,14 @@ class WebsiteHelper {
             -4  => 'Not Interested'
         ];
     }
+
+    public static function getBlogFrequencies()
+    {
+        return [
+            "monthly" => 'Monthly',
+            "bi-monthly" => 'Bi-Monthly',
+            "quarterly" => 'Quarterly',
+            "6 months" => '6 Months',
+        ];
+    }
 }

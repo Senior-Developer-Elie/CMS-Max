@@ -1,5 +1,30 @@
 <?php
 
+/**
+ * Get old checked value fora checkbox input
+ *
+ * @param $inputName
+ * @param $defaultValue
+ * @return string
+ */
+function old_checked($inputName, $defaultValue = null)
+{
+    return old($inputName, $defaultValue) ? 'checked' : '';
+}
+
+/**
+ * Helper for selecting dropdown option
+ *
+ * @param $field
+ * @param $comparison
+ * @param null $defaultValue
+ * @return string
+ */
+function old_selected($field, $comparison, $defaultValue = null)
+{
+    return old($field, $defaultValue) == $comparison ? 'selected' : '';
+}
+
 function get_global_notifications(){
     $notifications = [];
 

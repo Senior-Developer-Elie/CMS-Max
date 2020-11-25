@@ -14,7 +14,7 @@
             @foreach ($websites as $website)
                 <tr data-website-id={{ $website->id }}>
                     <td class="website-url-wrapper">
-                        <a href="#" class="website-url" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
+                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                             {{ $website->website }}
                         </a>
                         <div class="website-info-icons">
@@ -64,7 +64,7 @@
     <table id = "website-list-table" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th width="140px">Website</th>
+                <th width="200px">Website</th>
                 <th>Website Name</th>
                 <th>Listings Management</th>
                 <th width="150px">Email</th>
@@ -82,7 +82,7 @@
             @foreach ($websites as $website)
                 <tr data-website-id={{ $website->id }}>
                     <td class="website-url-wrapper">
-                        <a href="#" class="website-url" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
+                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                             {{ $website->website }}
                         </a>
                         <div class="website-info-icons">

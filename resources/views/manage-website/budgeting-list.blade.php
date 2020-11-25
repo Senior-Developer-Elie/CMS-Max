@@ -36,7 +36,7 @@
                                         $websiteService = $website->getProductValues(\App\AngelInvoice::crmProductKeys());
                                     ?>
                                     <td class="website-url-wrapper">
-                                        <a href="#" class="website-url" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
+                                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                                             {{ $website->website }}
                                         </a>
                                         <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
