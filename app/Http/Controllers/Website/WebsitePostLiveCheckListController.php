@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Website;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Helpers\WebsiteHelper;
 
-class PostLiveCheckListController extends Controller
+class WebsitePostLiveCheckListController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -67,6 +67,29 @@ class PostLiveCheckListController extends Controller
 
         Session::flash('message', 'Website is mark as completed successfully!');
         Session::flash('alert-class', 'alert-success');
+
+        return response()->json([
+            'status'    => 'success'
+        ]);
+    }
+
+    /**
+     * Inline Editing for post_live field
+     */
+    public function updatePostLive(Request $request)
+    {
+        $websiteId  = $request->input('pk');
+        $option        = $request->input('name');
+        $value      = $request->input('value');
+
+        $website = Website::find($websiteId);
+        if( is_null($website) ){
+            return response()->json([
+                'status'    => 'error'
+            ]);
+        }
+
+        $website->updatePostLiveOption($option, $value);
 
         return response()->json([
             'status'    => 'success'

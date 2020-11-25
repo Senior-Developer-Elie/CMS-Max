@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Website;
 
 use App\AngelInvoice;
 use Illuminate\Http\Request;
@@ -9,6 +9,7 @@ use App\Website;
 use App\User;
 use App\BlogIndustry;
 use App\Http\Helpers\WebsiteHelper;
+use App\Http\Controllers\Controller;
 
 class WebsiteBudgetingController extends Controller
 {

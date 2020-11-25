@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Website;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Task;
 use App\Stage;
 use App\User;

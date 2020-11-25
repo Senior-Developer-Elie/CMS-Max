@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Website;
 
 use App\CreditCardProcessing;
 use App\Http\Helpers\WebsiteHelper;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Website;
 use App\PaymentGateway;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CreditCardProcessingController extends Controller
+class WebsiteCreditCardProcessingController extends Controller
 {
     /**
      * Create a new controller instance.

@@ -194,41 +194,49 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/unarchive-api-client', 'ApiClientController@unArchiveApiClient');
 
     /**Website */
-    Route::resource('websites', 'WebsiteController', [
-        'except' => ['show', 'destroy']
-    ]);
+    Route::resource('websites', 'WebsiteController');
 
     Route::get('/get-website-info', 'WebsiteController@getWebsiteInfo');
     Route::post('/add-website', 'WebsiteController@addWebsite');
     Route::post('/delete-website', 'WebsiteController@deleteWebsite');
     Route::post('/archive-website', 'WebsiteController@archiveWebsite');
     Route::post('/un-archive-website', 'WebsiteController@unarchiveWebsite');
-    Route::post('/payroll-archive-website', 'WebsiteController@payrollArchiveWebsite');
-    Route::post('/payroll-un-archive-website', 'WebsiteController@payrollUnarchiveWebsite');
     Route::post('/update-website-attribute', 'WebsiteController@updateAttribute');
-    Route::post('/update-website-post-live-attribute', 'WebsiteController@updatePostLive');
-    Route::get('/post-live-checklist', 'PostLiveCheckListController@index');
-    Route::post('/post-live-checklist/archive', 'PostLiveCheckListController@archive');
-    Route::get('/marketing', 'WebsiteController@marketing');
-    Route::get('/budgeting', 'WebsiteBudgetingController@index');
-    Route::get('/payroll', 'WebsiteController@payroll');
-    Route::get('/manage-website-sender', 'WebsiteController@manageSender');
+    
+    // Website Manage Sender
+    Route::get('/manage-website-sender', 'Website\WebsiteManageSenderController@index');
+    
+    // Website marketing
+    Route::get('/marketing', 'Website\WebsiteMarketingController@index');
+    
+    // Website Budgeting
+    Route::get('/budgeting', 'Website\WebsiteBudgetingController@index');
+
+    // Website post live checklist
+    Route::get('/post-live-checklist', 'Website\WebsitePostLiveCheckListController@index');
+    Route::post('/post-live-checklist/archive', 'Website\WebsitePostLiveCheckListController@archive');
+    Route::post('/update-website-post-live-attribute', 'Website\WebsitePostLiveCheckListController@updatePostLive');
+
+    // Website payroll
+    Route::get('/payroll', 'Website\WebsitePayrollController@index');
+    Route::post('/payroll-archive-website', 'Website\WebsitePayrollController@archiveWebsite');
+    Route::post('/payroll-un-archive-website', 'Website\WebsitePayrollController@unarchiveWebsite');
 
     //Credit Card Processing
-    Route::get('/credit-card-processing', 'CreditCardProcessingController@index');
-    Route::post('/credit-card-processing/archive-website', 'CreditCardProcessingController@archiveWebsite');
-    Route::post('/credit-card-processing/un-archive-website', 'CreditCardProcessingController@unarchiveWebsite');
-    Route::post('/credit-card-processing/store', 'CreditCardProcessingController@store');
-    Route::post('/credit-card-processing/destroy', 'CreditCardProcessingController@destroy');
-    Route::post('/credit-card-processing/update-attribute', 'CreditCardProcessingController@updateAttribute');
+    Route::get('/credit-card-processing', 'Website\WebsiteCreditCardProcessingController@index');
+    Route::post('/credit-card-processing/archive-website', 'Website\WebsiteCreditCardProcessingController@archiveWebsite');
+    Route::post('/credit-card-processing/un-archive-website', 'Website\WebsiteCreditCardProcessingController@unarchiveWebsite');
+    Route::post('/credit-card-processing/store', 'Website\WebsiteCreditCardProcessingController@store');
+    Route::post('/credit-card-processing/destroy', 'Website\WebsiteCreditCardProcessingController@destroy');
+    Route::post('/credit-card-processing/update-attribute', 'Website\WebsiteCreditCardProcessingController@updateAttribute');
 
     /**Website in Progress */
-    Route::get('/website-progress', 'WebsiteProgressController@index');
-    Route::post('/update-stage-priorities', 'WebsiteProgressController@updateStagePriorities');
+    Route::get('/website-progress', 'Website\WebsiteProgressController@index');
+    Route::post('/update-stage-priorities', 'Website\WebsiteProgressController@updateStagePriorities');
 
     //Website Statistics
-    Route::get('/website-completed', 'WebsitesStatisticsController@index');
-    Route::get('/website-completed-statistics', 'WebsitesStatisticsController@getWebsiteCompletionStatusForBarChart');
+    Route::get('/website-completed', 'Website\WebsitesStatisticsController@index');
+    Route::get('/website-completed-statistics', 'Website\WebsitesStatisticsController@getWebsiteCompletionStatusForBarChart');
 
     //Task Route
     Route::post('/update-task-priorities', 'TaskController@updateTaskPriorities');
