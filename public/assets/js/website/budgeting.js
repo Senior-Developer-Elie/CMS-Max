@@ -7,6 +7,7 @@ var Websites_Budgeting = {
     },
 
     initDataTable: function(){
+        console.log($(window).height())
         clientListTable = $('#website-list-table').DataTable({
             dom: 'Bfrtip',
             buttons: [
@@ -22,7 +23,7 @@ var Websites_Budgeting = {
             ],
             fixedHeader: true,
             "scrollX": true,
-            scrollY:        "300px",
+            scrollY:        ($(window).height()-450) + "px",
             scrollX:        true,
             scrollCollapse: true,
             fixedColumns:   {
