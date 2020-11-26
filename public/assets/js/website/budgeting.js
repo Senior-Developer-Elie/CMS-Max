@@ -22,6 +22,9 @@ var Websites_Budgeting = {
             ],
             fixedHeader: true,
             "scrollX": true,
+            scrollY:        "300px",
+            scrollX:        true,
+            scrollCollapse: true,
             fixedColumns:   {
                 leftColumns: 1,
             },
