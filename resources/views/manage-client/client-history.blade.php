@@ -30,12 +30,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        @if( Auth::user()->hasRole('super admin') )
-                            <button id="add-website-button" type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Website
-                            </button>
-                        @endif
-                    </div>
                 </div>
             </div>
         </div>
