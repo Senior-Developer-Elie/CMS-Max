@@ -28,7 +28,7 @@
     ?>
 
     <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed {{ $initialExpandOnHover ? 'sidebar-collapse' : ''}} text-sm">
-        <div class="wrapper">
+        <div id="app" class="wrapper">
 
             <!-- Navbar -->
             @include('partials.top-nav-bar')

@@ -20,7 +20,7 @@ class CreateWebsitesTable extends Migration {
 			$table->string('frequency', 50)->nullable();
 			$table->string('target_area', 191)->nullable();
 			$table->timestamps();
-			$table->dateTime('start_date');
+			$table->dateTime('start_date')->nullable();
 			$table->bigInteger('blog_industry_id')->nullable();
 			$table->bigInteger('assignee_id')->nullable()->index('assignee_id');
 			$table->text('notes')->nullable();
@@ -29,12 +29,12 @@ class CreateWebsitesTable extends Migration {
 			$table->bigInteger('api_id')->nullable();
 			$table->dateTime('synced_at')->nullable();
 			$table->string('type', 191)->default('regular');
-			$table->string('affiliate', 191)->default('none');
-			$table->string('dns', 191)->default('cms-max');
+			$table->string('affiliate', 191)->nullable();
+			$table->string('dns', 191)->nullable();
 			$table->text('payment_gateway')->nullable();
 			$table->string('email', 191)->nullable();
 			$table->boolean('sync_from_client')->default(1);
-			$table->string('sitemap', 191)->default('not-installed');
+			$table->string('sitemap', 191)->nullable();
 			$table->string('left_review', 191)->nullable();
 			$table->string('on_portfolio', 191)->nullable();
 			$table->string('shipping_method', 191)->nullable();

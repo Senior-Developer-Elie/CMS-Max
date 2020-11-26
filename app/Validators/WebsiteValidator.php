@@ -18,7 +18,7 @@ class WebsiteValidator extends BaseValidator
             'target_area' => 'required',
             'blog_industry_id' => 'nullable|exists:blog_industries,id',
             'type' => 'required',
-            'completed_at' => 'date',
+            'completed_at' => 'nullable|date',
             'affiliate' => 'nullable|exists:affiliates,id',
             'dns' => 'nullable|exists:dns,id',
             'email' => 'nullable',
@@ -30,9 +30,11 @@ class WebsiteValidator extends BaseValidator
             'chargebee' => 'required|in:0,1',
             'sync_from_client' => 'required|in:0,1',
             'is_blog_client' => 'required|in:0,1',
-            'assignee_id' => 'required_if:is_blog_client,1|exists:users,id',
+            'assignee_id' => 'nullable|required_if:is_blog_client,1|exists:users,id',
             'frequency' => 'required_if:is_blog_client,1',
-            'start_date' => 'required_if:is_blog_client,1|date',
+            'start_date' => 'nullable|required_if:is_blog_client,1|date',
+            'drive' => 'required',
+            'website_products' => 'required|array'
         ],
 
         'update' => [
@@ -42,7 +44,7 @@ class WebsiteValidator extends BaseValidator
             'target_area' => 'required',
             'blog_industry_id' => 'nullable|exists:blog_industries,id',
             'type' => 'required',
-            'completed_at' => 'date',
+            'completed_at' => 'nullable|date',
             'affiliate' => 'nullable|exists:affiliates,id',
             'dns' => 'nullable|exists:dns,id',
             'email' => 'nullable',
@@ -54,9 +56,11 @@ class WebsiteValidator extends BaseValidator
             'chargebee' => 'required|in:0,1',
             'sync_from_client' => 'required|in:0,1',
             'is_blog_client' => 'required|in:0,1',
-            'assignee_id' => 'required_if:is_blog_client,1|exists:users,id',
+            'assignee_id' => 'nullable|required_if:is_blog_client,1|exists:users,id',
             'frequency' => 'required_if:is_blog_client,1',
-            'start_date' => 'required_if:is_blog_client,1|date',
+            'start_date' => 'nullable|required_if:is_blog_client,1|date',
+            'drive' => 'required',
+            'website_products' => 'required|array'
         ],
     ];
 }

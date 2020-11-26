@@ -75,6 +75,8 @@ class WebsiteController extends Controller
         $this->data['admins'] = User::orderBy('name')->get();
         $this->data['clients'] = Client::orderBy('name')->get();
 
+        $this->data['websiteProducts'] = Website::getDefaultProducts();
+
         return view('websites.create', $this->data);
     }
 
@@ -94,6 +96,8 @@ class WebsiteController extends Controller
         }
 
         $website = Website::create($data);
+
+        $this->updateWebsiteApiProducts($website, $data);
 
         Session::flash('message', 'Website created successfully.');
         Session::flash('alert-class', 'alert-success');
@@ -116,6 +120,7 @@ class WebsiteController extends Controller
         $this->data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
         $this->data['admins'] = User::orderBy('name')->get();
         $this->data['clients'] = Client::orderBy('name')->get();
+        $this->data['websiteProducts'] = $website->getProductsWithDefault();
 
         return view('websites.edit', $this->data);
     }
@@ -130,7 +135,7 @@ class WebsiteController extends Controller
     {
         // Sanitize
         $data = (new WebsiteSanitizer)->sanitize($request->all());
-
+        
         // Validate
         $validator = new WebsiteValidator();
         if (! $validator->validate($data, 'update')) {
@@ -140,10 +145,12 @@ class WebsiteController extends Controller
         $website->fill($data);
         $website->save();
 
+        $this->updateWebsiteApiProducts($website, $data);
+
         Session::flash('message', 'Website updated successfully.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('websites.index');
+        return redirect()->route('websites.edit', [$website->id]);
     }
 
     /**
@@ -256,5 +263,20 @@ class WebsiteController extends Controller
         $this->data['shippingMethodTypes'] = WebsiteHelper::getShippingMethodTypes();
         $this->data['yextTypes'] = WebsiteHelper::getYextTypes();
         $this->data['blogFrequencies'] = WebsiteHelper::getBlogFrequencies();
+    }
+
+    protected function updateWebsiteApiProducts(Website $website, array $data)
+    {
+        $syncedWebsiteApiProductIds = [];
+        
+        foreach ($data['website_products'] as $crmProductKey => $websiteProduct) {
+            $websiteApiProduct = $website->saveProduct($crmProductKey, $websiteProduct['value'], $websiteProduct['frequency']);
+
+            $syncedWebsiteApiProductIds[] = $websiteApiProduct->id;
+        }
+
+        $website->apiProducts()
+            ->whereNotIn('id', $syncedWebsiteApiProductIds)
+            ->delete();
     }
 }

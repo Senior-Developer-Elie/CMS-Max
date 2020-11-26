@@ -299,12 +299,11 @@
                         <h3 class="card-title">Product Fees</h3>
                     </div>
                     <div class="card-body">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="sync_from_client" {{ old_checked('sync_from_client', $website->sync_from_client) }}>
-                                <strong class="ml-1">Sync From Client</strong>
-                            </label>
-                        </div>
+                        <website-product-fees 
+                            :initial-sync-from-client="{{ old('sync_from_client', $website->sync_from_client) ? 'true' : 'false' }}"
+                            :products="{{ json_encode(\App\AngelInvoice::products()) }}"
+                            :initial-website-products="{{ json_encode($websiteProducts) }}"
+                        />
                     </div>
                 </div>
             </div>

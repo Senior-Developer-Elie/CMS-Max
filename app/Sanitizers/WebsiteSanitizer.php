@@ -16,7 +16,9 @@ class WebsiteSanitizer extends BaseSanitizer
         'IsBlogClient',
         'CompletedAt',
         'ControlScanRenewalDate',
-        'StartDate'
+        'StartDate',
+        'WebsiteProducts',
+        'AssigneeId'
     ];
 
     protected function sanitizeWebsite()
@@ -41,12 +43,20 @@ class WebsiteSanitizer extends BaseSanitizer
 
     protected function sanitizeCompletedAt()
     {
-        $this->dateify('completed_at');
+        if (empty($this->get('completed_at'))) {
+            $this->nullify('completed_at');
+        } else {
+            $this->dateify('completed_at');
+        }
     }
 
     protected function sanitizeControlScanRenewalDate()
     {
-        $this->dateify('control_scan_renewal_date');
+        if (empty($this->get('control_scan_renewal_date'))) {
+            $this->nullify('control_scan_renewal_date');
+        } else {
+            $this->dateify('control_scan_renewal_date');
+        }
     }
 
     protected function sanitizeStartDate()
@@ -54,6 +64,26 @@ class WebsiteSanitizer extends BaseSanitizer
         if (! empty($this->get('start_date'))) {
             $startDate = \Carbon\Carbon::createFromFormat('m/Y', $this->get('start_date'));
             $this->set('start_date', $startDate->format('Y-m') . '-01');
+        } else {
+            $this->nullify('start_date');
         }
+    }
+
+    protected function sanitizeWebsiteProducts()
+    {
+        $websiteProducts = [];
+        foreach ($this->get('website_products') as $crmProductKey => $websiteProduct) {
+            $websiteProducts[$crmProductKey] = [
+                'frequency' => intval($websiteProduct['frequency']),
+                'value' => floatval($websiteProduct['value']),
+            ];
+        }
+
+        $this->set('website_products', $websiteProducts);
+    }
+
+    protected function sanitizeAssigneeId()
+    {
+        $this->nullify('assignee_id');
     }
 }

@@ -137,29 +137,6 @@ class Website extends Model
         return $this->belongsTo('App\Client', 'client_id')->get()->first();
     }
 
-    public function getSserviceFee($type, $ignoreBlogExpense = false, $client = FALSE, $website = FALSE)
-    {
-        if( $client === FALSE )
-            $client = $this->client()->toArray();
-        if( $website === FALSE )
-            $website = $this->toArray();
-
-        $typeFrequency = $type."_frequency";
-        //Not Available
-        if( $website[$type] < 0 )
-            return $website[$type];
-        //Sync From Client
-        if( $website['sync_from_client'] ){
-            if( $website['is_blog_client'] && $type == 'service' && !$ignoreBlogExpense )
-                return $client[$type]/$website[$typeFrequency] - 100 / $this->getDuration();
-            return $client[$type]/$website[$typeFrequency];
-        }
-        //Manual Value
-        if($website['is_blog_client'] && $type == 'service' && $client[$type] > 0 && !$ignoreBlogExpense )
-            return $website[$type] / $website[$typeFrequency] - 100 / $this->getDuration();
-        return $website[$type] / $website[$typeFrequency];
-    }
-
     public function getProductValues($crmProductKeys){
 
         $fees = [];
@@ -186,41 +163,6 @@ class Website extends Model
             $string = substr($string, 0, -2);
 
         return $string;
-    }
-
-    public function emailString()
-    {
-        if( is_null($this->email) )
-            return "";
-        $allEmailTypes = WebsiteHelper::getAllEmailTypes();
-        if( !isset($allEmailTypes[$this->email]) )
-            return "";
-        $string = $allEmailTypes[$this->email];
-        if( $this->email == 'g-suite' )
-            $string .= " - " . getPrettyServiceString($this->getSserviceFee('g_suite'));
-        return $string;
-    }
-
-    public function sitemapString()
-    {
-        $allSitemapTypes = WebsiteHelper::getAllSitemapTypes();
-        if( isset($allSitemapTypes[$this->sitemap]) )
-            return $allSitemapTypes[$this->sitemap];
-        return "";
-    }
-    public function left_reviewString()
-    {
-        $allLeftReviewTypes = WebsiteHelper::getAllLeftReviewTypes();
-        if( isset($allLeftReviewTypes[$this->left_review]) )
-            return $allLeftReviewTypes[$this->left_review];
-        return "";
-    }
-    public function on_portfolioString()
-    {
-        $allPortfolioTypes  = WebsiteHelper::getOnPortfolioTypes();
-        if( isset($allPortfolioTypes[$this->on_portfolio]) )
-            return $allPortfolioTypes[$this->on_portfolio];
-        return "";
     }
 
     /**
@@ -280,22 +222,6 @@ class Website extends Model
         return $duration;
     }
 
-    /*
-    *Get Sum of multiple service fees
-    *@param array $keys
-    */
-    public function getServiceFeeSum($keys)
-    {
-        $sum = 0;
-
-        foreach( $keys as $key ){
-            $fee = $this->getSserviceFee($key);
-            if( $fee > 0 )
-                $sum += $fee;
-        }
-        return $sum;
-    }
-
     /**
      * Check if website is completed for post check list
      */
@@ -341,32 +267,42 @@ class Website extends Model
         return $this->hasMany(\App\WebsiteApiProduct::class);
     }
 
-    public function saveProduct(string $crmProductKey, float $value = 0, int $frequency = 1) : bool
+    public function saveProduct(string $crmProductKey, float $value = 0, int $frequency = 1)
     {
         if (! in_array($crmProductKey, AngelInvoice::crmProductKeys())) {
-            return false;
+            return null;
         }
 
-        $this->apiProducts()->updateOrCreate([
+        return $this->apiProducts()->updateOrCreate([
             'key' => $crmProductKey
         ], [
             'value' => $value,
             'frequency' => $frequency
         ]);
-
-        return true;
     }
 
-    public function getProductValue(string $crmProductKey)
+    public function getWebsiteApiProduct(string $crmProductKey)
     {
-        $websiteApiProduct = $this->apiProducts()->firstOrCreate([
+        if (! in_array($crmProductKey, AngelInvoice::crmProductKeys())) {
+            return null;
+        }
+
+        return $this->apiProducts()->firstOrCreate([
             'key' => $crmProductKey
         ], [
             'value' => 0,
             'frequency' => 1
         ]);
+    }
 
-        $value = 0;
+    public function getProductValue(string $crmProductKey)
+    {
+        $websiteApiProduct = $this->getWebsiteApiProduct($crmProductKey);
+
+        if ($websiteApiProduct->value < 0) {
+            return $websiteApiProduct->value;
+        }
+
         if ($this->sync_from_client) {
             $value = $this->client()->getProductValue($crmProductKey);
         } else {
@@ -374,5 +310,37 @@ class Website extends Model
         }
 
         return $value / $websiteApiProduct->frequency;
+    }
+
+    public static function getDefaultProducts()
+    {
+        $websiteProducts = [];
+        $crmProductKeys = AngelInvoice::crmProductKeys();
+
+        foreach ($crmProductKeys as $crmProductKey) {
+            $websiteProducts[$crmProductKey] = [
+                'value' => 0,
+                'frequency' => 1,
+            ];
+        }
+
+        return $websiteProducts;
+    }
+
+    public function getProductsWithDefault()
+    {
+        $websiteProducts = [];
+        $crmProductKeys = AngelInvoice::crmProductKeys();
+
+        foreach ($crmProductKeys as $crmProductKey) {
+            $websiteApiProduct = $this->getWebsiteApiProduct($crmProductKey);
+
+            $websiteProducts[$crmProductKey] = [
+                'value' => $websiteApiProduct->value,
+                'frequency' => $websiteApiProduct->frequency,
+            ];
+        }
+
+        return $websiteProducts;
     }
 }
