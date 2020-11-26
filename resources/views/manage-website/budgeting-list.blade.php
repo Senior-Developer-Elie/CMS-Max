@@ -21,8 +21,8 @@
                     <table id = "website-list-table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th width="150px">Website</th>
-                                <th class="text-center">Blog</th>
+                                <th width="200px">Website</th>
+                                <th width="150px" class="text-center">Blog</th>
                                 @foreach (\App\AngelInvoice::apiProductKeys() as $apiProductKey)
                                     <th class="text-center" style="white-space: nowrap;">{{ $apiProductKey }}</th>    
                                 @endforeach

@@ -94,13 +94,10 @@ function getCleanUrl($url)
     return $domain;
 }
 
-function getPrettyServiceString($price, $not_needed = false)
+function getPrettyServiceString($price)
 {
     if( $price == -1 ){
-        if( $not_needed )
-            return "Not Needed";
-        else
-            return "N/A";
+        return "N/A";
     }
     if( $price == -2 )
         return "";
