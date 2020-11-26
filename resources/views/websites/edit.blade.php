@@ -324,10 +324,16 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header with-border">
                         <h3 class="card-title">Client</h3>
+                        <div class="card-tools pull-right">
+                            <a href="{{ url('/client-history?clientId=' . $website->client_id) }}" target="_blank">
+                                <button type="button" class="btn btn-xs btn-info pull-right">
+                                    <i class="fa fa-external-link-alt"></i> View Client
+                                </button>
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body clearfix">
                         <div class="form-group">
-                            <label for="client_id">Client</label>
                             <div class="">
                                 <select class="form-control" name="client_id">
                                     <option value=""></option>

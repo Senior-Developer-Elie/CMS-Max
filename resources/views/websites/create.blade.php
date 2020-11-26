@@ -326,7 +326,6 @@
                     </div>
                     <div class="card-body clearfix">
                         <div class="form-group">
-                            <label for="client_id">Client</label>
                             <div class="">
                                 <select class="form-control" name="client_id">
                                     <option value=""></option>
