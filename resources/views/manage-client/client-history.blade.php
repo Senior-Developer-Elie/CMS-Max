@@ -30,6 +30,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        @if( Auth::user()->hasRole('super admin') )
+                            <a href="{{ route('websites.create') }}">
+                                <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Website
+                                </button>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
