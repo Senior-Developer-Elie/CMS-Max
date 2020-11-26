@@ -1,7 +1,7 @@
 @extends('layouts.theme')
 
 @section('content-header')
-    <h3>Edit Website</h3>
+    <h3>Edit Website: <strong>{{ $website->name }}</strong></h3>
 @endsection
 
 @section('content')
@@ -319,7 +319,14 @@
                             <a href="{{ route('websites.confirm-delete', $website) }}">
                                 <button type="button" class="btn btn-danger pull-left">Delete</button>
                             </a>
-                            <button type="button" class="btn btn-warning pull-left ml-2">Archive</button>
+
+                            @if( Auth::user()->hasRole('super admin') )
+                                @if ($website->archived)
+                                    <button type="button" id="restore-button" class="btn btn-info pull-left ml-2">Restore</button>
+                                @else
+                                    <button type="button" id="archive-button" class="btn btn-warning pull-left ml-2">Archive</button>
+                                @endif
+                            @endif
                             
                             <button type="submit" class="btn btn-primary pull-right">Save</button>
                         </div>
@@ -413,6 +420,14 @@
                 </div>
             </div>
         </div>
+    </form>
+
+    <form id="archive-website-form" role="form" action="{{ route("websites.archive", $website) }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    <form id="restore-website-form" role="form" action="{{ route("websites.restore", $website) }}" method="POST" style="display: none;">
+        @csrf
     </form>
 @endsection
 

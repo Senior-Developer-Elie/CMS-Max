@@ -182,6 +182,45 @@ class WebsiteController extends Controller
     }
 
     /**
+     * Archive website
+     *
+     * @param $websiteId
+     * @return Response
+     */
+    public function archive($websiteId)
+    {
+        $website = Website::findOrFail($websiteId);
+
+        $website->archived = 1;
+        $website->archived_at = Carbon::now();
+        $website->save();
+
+        Session::flash('message', 'Website archived successfully.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('websites.edit', [$website->id]);
+    }
+
+    /**
+     * Restore website
+     *
+     * @param $websiteId
+     * @return Response
+     */
+    public function restore($websiteId)
+    {
+        $website = Website::findOrFail($websiteId);
+
+        $website->archived = 0;
+        $website->save();
+
+        Session::flash('message', 'Website restored successfully.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('websites.edit', [$website->id]);
+    }
+
+    /**
      * Inline Editing Update attribute of website
      */
     public function updateAttribute(Request $request)

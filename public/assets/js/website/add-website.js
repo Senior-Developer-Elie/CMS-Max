@@ -2,6 +2,7 @@ var AddWebsite = {
     init: () => {
         AddWebsite.initComponents();
         AddWebsite.initBlogAction();
+        AddWebsite.initArchiveAction();
     },
 
     initComponents: () => {
@@ -36,6 +37,16 @@ var AddWebsite = {
                 $("#client-detail-info-wrapper").hide();
             }
         }).trigger('change');
+    },
+
+    initArchiveAction: () => {
+        $("#archive-button").click(function() {
+            $("#archive-website-form").submit();
+        })
+
+        $("#restore-button").click(function() {
+            $("#restore-website-form").submit();
+        })
     }
 };
 
