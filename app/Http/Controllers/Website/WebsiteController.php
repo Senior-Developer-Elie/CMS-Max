@@ -147,6 +147,41 @@ class WebsiteController extends Controller
     }
 
     /**
+     * Show the page for confirming delete
+     *
+     * @param $websiteId
+     * @return \Illuminate\View\View
+     */
+    public function confirmDelete($websiteId)
+    {
+        if (! $website = Website::find($websiteId)) {
+            abort(404);
+        }
+
+        $this->data['website'] = $website;
+
+        return view('websites.confirm-delete', $this->data);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $website
+     * @return Response
+     */
+    public function destroy($websiteId)
+    {
+        $website = Website::findOrFail($websiteId);
+
+        $website->delete();
+
+        Session::flash('message', 'Website deleted successfully.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('websites.index');
+    }
+
+    /**
      * Inline Editing Update attribute of website
      */
     public function updateAttribute(Request $request)

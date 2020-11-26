@@ -316,6 +316,11 @@
                     </div>
                     <div class="card-body clearfix">
                         <div class="form-group">
+                            <a href="{{ route('websites.confirm-delete', $website) }}">
+                                <button type="button" class="btn btn-danger pull-left">Delete</button>
+                            </a>
+                            <button type="button" class="btn btn-warning pull-left ml-2">Archive</button>
+                            
                             <button type="submit" class="btn btn-primary pull-right">Save</button>
                         </div>
                     </div>

@@ -195,6 +195,8 @@ Route::group(['middleware' => 'web'], function () {
 
     /**Website */
     Route::resource('websites', 'Website\WebsiteController');
+    //Route::delete('websites/{website}', 'Website\WebsiteController@destroy');
+    Route::get('websites/{website}/delete', ['as' => 'websites.confirm-delete', 'uses' => 'Website\WebsiteController@confirmDelete']);
     Route::post('/update-website-attribute', 'Website\WebsiteController@updateAttribute');
 
     // Route::get('/get-website-info', 'WebsiteController@getWebsiteInfo');
