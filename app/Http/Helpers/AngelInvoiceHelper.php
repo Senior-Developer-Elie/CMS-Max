@@ -130,7 +130,7 @@ class AngelInvoiceHelper {
                 foreach( $invoice['invoice_items'] as $item ){
                     foreach( $prices as $key => $value ) {
                         if( in_array($item['product_key'], $productKeyFields[$key]) ) {
-                            $prices[$key]['price'] += $item['cost'] * $item['qty'] / (self::API_FREQUENCIES[$invoice['frequeny_id']] ?? 1);
+                            $prices[$key]['price'] += $item['cost'] * $item['qty'] / (self::API_FREQUENCIES[$invoice['frequency_id']] ?? 1);
                             $prices[$key]['invoiceFound'] = true;
                         }
 
