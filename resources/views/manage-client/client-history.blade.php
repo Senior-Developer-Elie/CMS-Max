@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-footer">
                         @if( Auth::user()->hasRole('super admin') )
-                            <a href="{{ route('websites.create') }}">
+                            <a href="{{ route('websites.create', ['client_id' => $client->id]) }}">
                                 <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Website
                                 </button>
                             </a>

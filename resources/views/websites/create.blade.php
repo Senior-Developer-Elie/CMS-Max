@@ -329,7 +329,7 @@
                                 <select class="form-control" name="client_id">
                                     <option value=""></option>
                                     @foreach ($clients as $client)
-                                        <option value="{{ $client->id }}" {{ old_selected('client_id', $client->id) }}>
+                                        <option value="{{ $client->id }}" {{ old_selected('client_id', $client->id, Request::input('client_id')) }}>
                                             {{ $client->name }}
                                         </option>
                                     @endforeach
