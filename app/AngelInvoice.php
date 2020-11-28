@@ -4,6 +4,7 @@ namespace App;
 
 class AngelInvoice
 {
+    const CRM_KEY_CMS_MAX = "cms_max";
     const CRM_KEY_WEBSITE_DEVELOPMENT = "website_development";
     const CRM_KEY_SUPPORT_MAINTENANCE = "support_maintenance";
     const CRM_KEY_SOCIAL_MEDIA_SETUP = "social_media_setup";
@@ -29,6 +30,7 @@ class AngelInvoice
     const CRM_KEY_GOOGLE_WORKSPACE = "google_workspace";
 
     static protected $products = [
+        self::CRM_KEY_CMS_MAX => "CMS Max",
         self::CRM_KEY_WEBSITE_DEVELOPMENT => "Website Development",
         self::CRM_KEY_SUPPORT_MAINTENANCE => "Support/Maintenance",
         self::CRM_KEY_SOCIAL_MEDIA_SETUP => "Social Media Setup",
