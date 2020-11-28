@@ -5,6 +5,10 @@ use App\AngelInvoice;
 
 class AngelInvoiceHelper {
 
+    const API_FREQUENCIES = [
+        4 => 1,
+        9 => 12
+    ];
     public static  $apiUrl = "https://billing.evolutionmarketing.com/api/v1";
     protected static $token = "5hfjqhupy4mckigy2k2jssysov53mgrb";
 
@@ -126,7 +130,7 @@ class AngelInvoiceHelper {
                 foreach( $invoice['invoice_items'] as $item ){
                     foreach( $prices as $key => $value ) {
                         if( in_array($item['product_key'], $productKeyFields[$key]) ) {
-                            $prices[$key]['price'] += $item['cost'] * $item['qty'];
+                            $prices[$key]['price'] += $item['cost'] * $item['qty'] / (self::API_FREQUENCIES[$invoice['frequeny_id']] ?? 1);
                             $prices[$key]['invoiceFound'] = true;
                         }
 

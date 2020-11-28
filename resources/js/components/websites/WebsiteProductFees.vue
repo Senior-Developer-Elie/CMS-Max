@@ -17,7 +17,11 @@
                     <option value="not-available">Not Available</option>
                 </select>
 
-                <select class="form-control mr-2" :name="`website_products[${websiteProduct.crmProductKey}][frequency]`" v-model="websiteProduct.frequency">
+                <select 
+                    class="form-control mr-2"
+                    :name="`website_products[${websiteProduct.crmProductKey}][frequency]`"
+                    v-model="websiteProduct.frequency"
+                    :style="`${getStyleForManualValue(websiteProduct)}`">
                     <option value="1">Monthly</option>
                     <option value="23">Yearly</option>
                 </select>
