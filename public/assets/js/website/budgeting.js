@@ -36,7 +36,7 @@ var Websites_Budgeting = {
                 var floatConversion = function ( i ) {
                     if( i.toString().startsWith("<span") ) {
                         value = parseFloat($(i).attr('data-value'));
-                        if( value < 0 )
+                        if( value < 0 || isNaN(value))
                             return 0;
                         return value;
                     }
