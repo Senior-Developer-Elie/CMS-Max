@@ -33,7 +33,7 @@ class AngelInvoice
         self::CRM_KEY_CMS_MAX => "CMS Max",
         self::CRM_KEY_WEBSITE_DEVELOPMENT => "Website Development",
         self::CRM_KEY_SUPPORT_MAINTENANCE => "Support/Maintenance",
-        self::CRM_KEY_SOCIAL_MEDIA_SETUP => "Social Media Setup",
+        // self::CRM_KEY_SOCIAL_MEDIA_SETUP => "Social Media Setup",
         self::CRM_KEY_SEO => "SEO",
         self::CRM_KEY_PINTEREST_MANAGEMENT => "Pinterest - Management",
         self::CRM_KEY_PINTEREST_SPEND => "Pinterest - Spend",
