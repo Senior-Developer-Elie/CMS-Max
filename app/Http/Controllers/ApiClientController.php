@@ -29,10 +29,16 @@ class ApiClientController extends Controller
         $apiClientIds = array_column($apiClients, 'id');
         $clientIds = array_column($clients->toArray(), 'api_id');
         $archivedApiClientIds = array_column(ArchivedApiClient::get()->toArray(), 'api_client_id');
+        $realArchivedApiClientIds = [];
+        foreach ($archivedApiClientIds as $apiClientId) {
+            if (in_array($apiClientId, $apiClientIds)) {
+                $realArchivedApiClientIds[] = $apiClientId;
+            }
+        }
 
         $pendingApiClientIds = [];
         foreach( $apiClientIds as $apiId ){
-            if(  !in_array($apiId, $clientIds) && !in_array($apiId, $archivedApiClientIds) )
+            if(  !in_array($apiId, $clientIds) && !in_array($apiId, $realArchivedApiClientIds) )
                 $pendingApiClientIds[] = $apiId;
         }
 
@@ -40,7 +46,7 @@ class ApiClientController extends Controller
             'currentSection'        => 'api-client-list',
             'apiClients'            => $apiClients,
             'pendingApiClientIds'   => $pendingApiClientIds,
-            'archivedApiClientIds'  => $archivedApiClientIds
+            'archivedApiClientIds'  => $realArchivedApiClientIds
         ]);
     }
 
