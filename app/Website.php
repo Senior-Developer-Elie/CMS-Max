@@ -267,7 +267,7 @@ class Website extends Model
         return $this->hasMany(\App\WebsiteApiProduct::class);
     }
 
-    public function saveProduct(string $crmProductKey, float $value = 0, int $frequency = 1)
+    public function saveProduct(string $crmProductKey, $data)
     {
         if (! in_array($crmProductKey, AngelInvoice::crmProductKeys())) {
             return null;
@@ -275,10 +275,7 @@ class Website extends Model
 
         return $this->apiProducts()->updateOrCreate([
             'key' => $crmProductKey
-        ], [
-            'value' => $value,
-            'frequency' => $frequency
-        ]);
+        ], $data);
     }
 
     public function getWebsiteApiProduct(string $crmProductKey)

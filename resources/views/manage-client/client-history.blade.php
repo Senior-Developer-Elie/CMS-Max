@@ -221,6 +221,6 @@
     <script src="{{ asset('assets/js/client-history.js') }}"></script>
     <script src="{{ asset('assets/js/client/client-add-edit.js?v=15') }}"></script>
     <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
-    <script src="{{ asset('assets/js/website/website-list.js?v=43') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=44') }}"></script>
     <script src="{{ asset('assets/js/upload-action.js') }}"></script>
 @endsection

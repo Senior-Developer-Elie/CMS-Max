@@ -96,15 +96,15 @@ function getCleanUrl($url)
 
 function getPrettyServiceString($price)
 {
-    if( $price == -1 ){
+    if ($price == -1) {
         return "N/A";
     }
-    if( $price == -2 )
-        return "";
-    if( $price == -3 )
+    if ($price == -2) {
         return "Need to Sell";
-    if( $price == -4 )
+    }
+    if ($price == -3) {
         return "Not Interested";
+    }
     return "$" . round($price);
 }
 function find_pretty_price($prices, $name)

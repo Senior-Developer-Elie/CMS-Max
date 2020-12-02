@@ -302,6 +302,7 @@
                             :initial-sync-from-client="{{ old('sync_from_client', true) ? 'true' : 'false' }}"
                             :products="{{ json_encode(\App\AngelInvoice::products()) }}"
                             :initial-website-products="{{ json_encode($websiteProducts) }}"
+                            :crm-product-keys-with-additional-values="{{ json_encode(\App\AngelInvoice::crmProductKeysWithAdditionalValues()) }}"
                         />
                     </div>
                 </div>

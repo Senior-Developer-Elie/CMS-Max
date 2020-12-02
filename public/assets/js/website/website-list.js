@@ -91,7 +91,8 @@ var Website_List = {
                 pk          : websiteId,
                 source      : prettyYext,
                 showbuttons : false,
-                name        : 'yext',
+                name        : 'listings_management',
+                url         : siteUrl + '/update-website-product-value',
                 display     : function( value, sourceData ){
                     if( value == "0" )
                     {

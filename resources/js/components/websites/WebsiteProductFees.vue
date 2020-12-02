@@ -15,6 +15,10 @@
                 <select class="form-control mr-2" v-model="websiteProduct.availability" @change="onChangeAvailability($event, websiteProduct)">
                     <option value="available">Available</option>
                     <option value="not-available">Not Available</option>
+                    <template v-if="crmProductKeysWithAdditionalValues.includes(websiteProduct.crmProductKey)">
+                        <option value="need-to-sell">Need to Sell</option>
+                        <option value="not-interested">Not Interested</option>
+                    </template>
                 </select>
 
                 <select 
@@ -45,7 +49,8 @@
     props: [
         'initialSyncFromClient',
         'products',
-        'initialWebsiteProducts'
+        'initialWebsiteProducts',
+        'crmProductKeysWithAdditionalValues'
     ],
     
     data() {
@@ -63,6 +68,14 @@
                 return "not-available"
             }
 
+            if (product.value == -2) {
+                return "need-to-sell"
+            }
+
+            if (product.value == -3) {
+                return "not-interested"
+            }
+
             return "available"
         },
 
@@ -77,6 +90,10 @@
         onChangeAvailability($event, websiteProduct) {
             if ($event.target.value == 'not-available') {
                 websiteProduct.value = -1;
+            } else if ($event.target.value == 'need-to-sell') {
+                websiteProduct.value = -2;
+            } else if ($event.target.value == 'not-interested') {
+                websiteProduct.value = -3;
             } else {
                 websiteProduct.value = 0;
             }

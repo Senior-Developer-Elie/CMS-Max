@@ -131,8 +131,8 @@ class WebsiteHelper {
         return [
             0   => 'Available',
             -1  => 'N/A',
-            -3  => 'Need to Sell',
-            -4  => 'Not Interested'
+            -2  => 'Need to Sell',
+            -3  => 'Not Interested'
         ];
     }
 

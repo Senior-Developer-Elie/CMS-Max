@@ -200,6 +200,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('websites/{website}/archive', ['as' => 'websites.archive', 'uses' => 'Website\WebsiteController@archive']);
     Route::post('websites/{website}/restore', ['as' => 'websites.restore', 'uses' => 'Website\WebsiteController@restore']);
     Route::post('/update-website-attribute', 'Website\WebsiteController@updateAttribute');
+    Route::post('/update-website-product-value', 'Website\WebsiteController@updateProductValue');
 
     // Route::get('/get-website-info', 'WebsiteController@getWebsiteInfo');
     // Route::post('/add-website', 'WebsiteController@addWebsite');

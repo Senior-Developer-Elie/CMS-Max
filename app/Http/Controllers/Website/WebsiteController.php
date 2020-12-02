@@ -250,6 +250,33 @@ class WebsiteController extends Controller
         ]);
     }
 
+    /**
+     * Inline Editing Update for website product value
+     */
+    public function updateProductValue(Request $request)
+    {
+        $websiteId  = $request->input('pk');
+        $key        = $request->input('name');
+        $value      = $request->input('value');
+
+        $website = Website::find($websiteId);
+        if( is_null($website) ){
+            return response()->json([
+                'status'    => 'error'
+            ]);
+        }
+        
+        if (in_array(intval($value), [-1, -2, -3])) {
+            $website->saveProduct($key, [
+                'value' => $value
+            ]);
+        }
+
+        return response()->json([
+            'status'    => 'success'
+        ]);
+    }
+
     protected function prepareWebsiteAttributes()
     {
         $this->data['websiteTypes'] = WebsiteHelper::getAllWebsiteTypes();
@@ -270,7 +297,10 @@ class WebsiteController extends Controller
         $syncedWebsiteApiProductIds = [];
         
         foreach ($data['website_products'] as $crmProductKey => $websiteProduct) {
-            $websiteApiProduct = $website->saveProduct($crmProductKey, $websiteProduct['value'], $websiteProduct['frequency']);
+            $websiteApiProduct = $website->saveProduct($crmProductKey, [
+                'value' => $websiteProduct['value'],
+                'frequency' => $websiteProduct['frequency']
+            ]);
 
             $syncedWebsiteApiProductIds[] = $websiteApiProduct->id;
         }

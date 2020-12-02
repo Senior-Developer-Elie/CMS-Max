@@ -70,4 +70,11 @@ class AngelInvoice
     {
         return array_values(self::$products);
     }
+
+    public static function crmProductKeysWithAdditionalValues()
+    {
+        return [
+            self::CRM_KEY_LISTINGS_MANAGEMENT
+        ];
+    }
 }
