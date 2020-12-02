@@ -96,7 +96,7 @@
                                                     {{ $apiClients[$apiClientId]['address1'] }}
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-info pull-left enable-btn">Enable Client</button>
+                                                    <button type="button" class="btn btn-info pull-left unarchive-btn">Enable Client</button>
                                                 </td>
                                             </tr>
                                         @endif
@@ -123,5 +123,5 @@
     <!-- DataTables -->
     <script src="{{ mix('js/datatable.js') }}"></script>
 
-    <script src="{{ asset('assets/js/client/api-client-list.js?v=5') }}"></script>
+    <script src="{{ asset('assets/js/client/api-client-list.js?v=6') }}"></script>
 @endsection
