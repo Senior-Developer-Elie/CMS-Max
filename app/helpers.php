@@ -118,7 +118,7 @@ function find_pretty_price($prices, $name)
 
 function prettyFloat($number)
 {
-    return number_format(floatval($number), 0, '.', ',');
+    return number_format(floatval($number), 2, '.', ',');
 }
 
 function getBadgeContent($target){
