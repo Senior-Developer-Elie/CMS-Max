@@ -283,13 +283,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="chargebee" {{ old_checked('chargebee', $website->chargebee) }}>
-                                <strong class="ml-1">Chargebee</strong>
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="card card-primary card-outline">

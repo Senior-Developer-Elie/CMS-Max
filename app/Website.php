@@ -27,7 +27,6 @@ class Website extends Model
         'dns',
         'payment_gateway',
         'email',
-        'chargebee',
 
         "completed_at",
 
