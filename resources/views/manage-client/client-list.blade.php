@@ -50,7 +50,7 @@
                                                 @if( !empty($client->api_id) && isset($apiClients[$client->api_id]) )
                                                     <span data-value="{{ $apiClients[$client->api_id]['balance'] }}">${{ prettyFloat($apiClients[$client->api_id]['balance']) }}</span>
                                                 @else
-                                                    <span data-value="-1">$0.00</span>
+                                                    <span data-value="-1">$0</span>
                                                 @endif
                                             </td>
                                             <td>
