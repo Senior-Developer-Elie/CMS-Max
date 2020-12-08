@@ -105,12 +105,6 @@ class WebsiteHelper {
             $prettyGateways[$gateway->id] = $gateway->name;
         }
         return $prettyGateways;
-        return [
-            "cms-max"       => "CMS Max",
-            "easy-ship"     => "EasyShip",
-            "ship-station"  => "ShipStation",
-            "shipping-easy" => "ShippingEasy"
-        ];
     }
 
     public static function getAllPostLiveOptions()

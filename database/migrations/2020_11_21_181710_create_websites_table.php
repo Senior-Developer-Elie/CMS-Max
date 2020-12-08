@@ -29,8 +29,8 @@ class CreateWebsitesTable extends Migration {
 			$table->bigInteger('api_id')->nullable();
 			$table->dateTime('synced_at')->nullable();
 			$table->string('type', 191)->default('regular');
-			$table->string('affiliate', 191)->nullable();
-			$table->string('dns', 191)->nullable();
+			$table->integer('affiliate')->nullable();
+			$table->integer('dns')->nullable();
 			$table->text('payment_gateway')->nullable();
 			$table->string('email', 191)->nullable();
 			$table->boolean('sync_from_client')->default(1);
