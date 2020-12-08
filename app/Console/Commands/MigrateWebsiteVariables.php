@@ -109,7 +109,7 @@ class MigrateWebsiteVariables extends Command
 
     protected function migrateVariables(&$website, $oldWebsite)
     {
-        $website->frequency = $oldWebsite->frequency;
+        $website->start_date = $oldWebsite->start_date;
         $website->save();
         return;
         $this->fillSimpleEntity($website, $oldWebsite, 'target_area');
