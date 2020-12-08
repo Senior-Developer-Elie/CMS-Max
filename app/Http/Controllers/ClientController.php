@@ -316,7 +316,11 @@ class ClientController extends Controller
         $client->save();
 
         foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
-            $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+            if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
+                $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
+            } else {
+                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+            }
         }
 
         Session::flash('message', 'Client ' . $client->name . ' manually selected successfully!');
@@ -346,7 +350,11 @@ class ClientController extends Controller
 
             // Save products
             foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
-                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
+                    $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
+                } else {
+                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                }
             }
 
             // Sync Websites
@@ -361,7 +369,7 @@ class ClientController extends Controller
                 ]);
             }
 
-            // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -3);
+            // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -2);
         }
 
         Session::flash('message', 'Selected clients added successfully!');
@@ -397,12 +405,16 @@ class ClientController extends Controller
 
                 // Sync Products
                 foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
-                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                    if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
+                        $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
+                    } else {
+                        $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                    }
                 }
 
                 self::updateWebsitesForClient($client);
 
-                // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -3);
+                // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -2);
             }
         }
 
@@ -451,7 +463,11 @@ class ClientController extends Controller
 
             // Sync Products
             foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
-                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
+                    $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
+                } else {
+                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                }
             }
 
             //Sync website if this client doesn't have any website
@@ -468,7 +484,7 @@ class ClientController extends Controller
                 }
             }
 
-            // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -3);
+            // $client->updateWebsitesFeeValue('yext', $prices['yext']['invoiceFound'] ? 0 : -2);
         }
     }
 
