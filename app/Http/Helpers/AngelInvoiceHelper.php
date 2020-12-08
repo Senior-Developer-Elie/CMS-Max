@@ -50,7 +50,7 @@ class AngelInvoiceHelper {
      */
     public static function getInvoices()
     {
-        return self::get("/invoices?per_page=100000");
+        return self::get("/invoices?per_page=100000&is_recurring=1");
     }
 
     public static function get($url)

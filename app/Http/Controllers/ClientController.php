@@ -397,8 +397,8 @@ class ClientController extends Controller
 
         $clients = Client::get();
         foreach( $clients as $client ) {
-            if( !is_null($client->api_id) && $client->api_id > 0 && isset($recurringInvoices[$client->api_id]) ){
-                $prices = AngelInvoiceHelper::getPrices($client->api_id, $recurringInvoices[$client->api_id]);
+            if( !is_null($client->api_id) && $client->api_id > 0 && isset($apiClients[$client->api_id])){
+                $prices = AngelInvoiceHelper::getPrices($client->api_id, $recurringInvoices[$client->api_id] ?? []);
                 $client->synced_at                  = Carbon::now();
                 $client->api_updated_at = Carbon::createFromTimestamp($apiClients[$client->api_id]['updated_at']);
                 $client->save();
