@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration {
 			$table->string('name')->nullable();
 			$table->string('label')->nullable();
 			$table->float('price')->nullable();
-			$table->text('content', 65535);
+			$table->text('content', 65535)->nullable();
 		});
 	}
 
