@@ -65,6 +65,12 @@ class UserHelper {
             'link'      => '/budgeting',
             'section'   => 'budgeting'
         ],
+        [
+            'name'      => 'Billing',
+            'icon'      => 'fas fa-search-dollar',
+            'link'      => '/billing',
+            'section'   => 'billing'
+        ],
         // [
         //     'name'      => 'Profit & Loss',
         //     'icon'      => 'fas fa-hand-holding-usd',

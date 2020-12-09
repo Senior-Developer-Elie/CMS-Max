@@ -4,6 +4,7 @@ namespace App\Http\Helpers;
 use App\PaymentGateway;
 use App\ShippingMethod;
 use App\Affiliate;
+use App\AngelInvoice;
 use App\Dns;
 
 class WebsiteHelper {
@@ -117,6 +118,15 @@ class WebsiteHelper {
             "configure-search-console"  => "Configure Search Console",
             "install-and-run-sitemap"   => "Install and run Sitemap",
             'hide-on-marketing'         => "Hide on Google Ads"
+        ];
+    }
+
+    public static function getAllBillingtypes()
+    {
+        return [
+            'cms-max' => 'CMS Max',
+            'chargebee' => 'Chargebee',
+            'n/a' => 'N/A'
         ];
     }
 
