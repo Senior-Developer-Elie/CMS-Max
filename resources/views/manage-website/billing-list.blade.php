@@ -35,7 +35,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" class="billing-type-value" data-value="{{ empty($website->billing_type) ? ($cmsMaxPrice > 0 ? 'cms-max' 'n/a') : $website->billing_type }}">
+                                        <a href="#" class="billing-type-value" data-value="{{ empty($website->billing_type) ? ($cmsMaxPrice > 0 ? 'cms-max' : 'n/a') : $website->billing_type }}">
                                             
                                         </a>
                                     </td>
