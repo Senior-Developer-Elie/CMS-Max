@@ -31,7 +31,8 @@ class WebsiteBillingController extends Controller
         if( !Auth::user()->hasPagePermission('Billing') )
             return redirect('/webadmin');
 
-        $this->data['websites'] = Website::orderBy('website')->get();
+        $this->data['websites'] = Website::where('archived', 0)
+            ->orderBy('website')->get();
         $this->data['billingTypes'] = WebsiteHelper::getAllBillingtypes();
 
         return view('manage-website.billing-list', $this->data);

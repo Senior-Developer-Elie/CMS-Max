@@ -124,7 +124,7 @@ class WebsiteHelper {
     public static function getAllBillingtypes()
     {
         return [
-            'cms-max' => 'CMS Max',
+            'cms-max' => 'Invoice Ninja',
             'chargebee' => 'Chargebee',
             'n/a' => 'N/A'
         ];
