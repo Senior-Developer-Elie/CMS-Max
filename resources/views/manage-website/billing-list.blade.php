@@ -28,14 +28,16 @@
                                 <tr data-website-id="{{ $website->id }}">
                                     <?php
                                         $cmsMaxPrice = $website->getProductValue(\App\AngelInvoice::CRM_KEY_CMS_MAX);
+                                        $billingTypeValue = empty($website->billing_type) ? ($cmsMaxPrice > 0 ? 'cms-max' : 'n/a') : $website->billing_type;
                                     ?>
                                     <td>
                                         <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                                             {{ $website->website }}
                                         </a>
                                     </td>
+
                                     <td>
-                                        <a href="#" class="billing-type-value" data-value="{{ empty($website->billing_type) ? ($cmsMaxPrice > 0 ? 'cms-max' : 'n/a') : $website->billing_type }}">
+                                        <a href="#" class="billing-type-value" data-value="{{ $billingTypeValue }}">
                                             
                                         </a>
                                     </td>
@@ -67,5 +69,5 @@
 
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
-    <script src="{{ asset('assets/js/website/billing.js') }}"></script>
+    <script src="{{ asset('assets/js/website/billing.js?v=2') }}"></script>
 @endsection

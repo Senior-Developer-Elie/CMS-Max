@@ -18,7 +18,14 @@ var Websites_Billing = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             fixedHeader: true,
+            columnDefs: [
+                {targets: ([1]), type: 'sortme'},
+            ],
         });
+        
+        $.fn.dataTable.ext.type.order['sortme-comment'] = function (a, b) {
+            return $(a).attr('data-value');
+        };
     },
 
     initInlineEditAction: function(){
