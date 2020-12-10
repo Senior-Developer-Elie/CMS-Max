@@ -63,7 +63,8 @@ class Website extends Model
         'marketing_notes',
         'post_live_check_archived',
 
-        'billing_type'
+        'billing_type',
+        'billing_amount'
     ];
 
     protected $casts = [
