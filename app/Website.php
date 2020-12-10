@@ -305,8 +305,8 @@ class Website extends Model
         if ($this->sync_from_client) {
             return $this->client()->getProductValue($crmProductKey);
         }
-        
-        $websiteApiProduct->value / $websiteApiProduct->frequency;
+
+        return $websiteApiProduct->value / $websiteApiProduct->frequency;
     }
 
     public static function getDefaultProducts()
