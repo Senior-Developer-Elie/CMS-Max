@@ -177,6 +177,7 @@
             }
             .top-title{
                 margin: 5px 0;
+                font-weight: normal;
             }
             .website-url{
                 color: rgb(41, 132, 196)
@@ -209,7 +210,6 @@
             }
             .service-single-wrapper{
                 font-size: 13px;
-                font-weight: 600;
             }
             .service-single-wrapper .service-single-title{
                 margin: 5px 5px;
@@ -218,7 +218,7 @@
                 margin: 0;
             }
             table.service-table .price{
-                font-weight: 600;
+                
             }
             .fees-wrapper, .fees-wrapper .service-single-wrapper .service-single-title{
                 font-size: 16px;
@@ -235,7 +235,6 @@
                 width: 220px;
                 border-bottom: solid 2px grey;
                 font-size: 20px;
-                font-weight: 600;
             }
             .signature-wrapper div.signature-line{
                 height: 60px;
@@ -257,7 +256,6 @@
                 display: block;
             }
             .signature-wrapper .signature-line-description{
-                font-weight: 600;
                 margin: 5px 0 10px 5px;
                 color: #777777;
             }
