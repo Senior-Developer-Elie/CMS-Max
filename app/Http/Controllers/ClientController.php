@@ -316,10 +316,10 @@ class ClientController extends Controller
         $client->save();
 
         foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
+            $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+            
             if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
                 $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
-            } else {
-                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
             }
         }
 
@@ -350,10 +350,11 @@ class ClientController extends Controller
 
             // Save products
             foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
+
+                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                
                 if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
                     $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
-                } else {
-                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
                 }
             }
 
@@ -405,10 +406,11 @@ class ClientController extends Controller
 
                 // Sync Products
                 foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
+
+                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+                    
                     if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
                         $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
-                    } else {
-                        $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
                     }
                 }
 
@@ -463,10 +465,10 @@ class ClientController extends Controller
 
             // Sync Products
             foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
+                $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
+
                 if ($crmProductKey == AngelInvoice::CRM_KEY_LISTINGS_MANAGEMENT) {
                     $client->updateWebsitesProducts($crmProductKey, ['value' => $prices[$crmProductKey]['invoiceFound'] ? 0 : -2]);
-                } else {
-                    $client->saveProduct($crmProductKey, $prices[$crmProductKey]['price'] ?? 0);
                 }
             }
 
