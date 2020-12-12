@@ -14,7 +14,7 @@ class AddBillingAmountColumnToWebsitesTable extends Migration
     public function up()
     {
         Schema::table('websites', function (Blueprint $table) {
-            $table->float('billing_amount');
+            $table->float('billing_amount')->default(0);
         });
     }
 
