@@ -62,6 +62,9 @@ class Website extends Model
         'post_live',
         'marketing_notes',
         'post_live_check_archived',
+
+        'billing_type',
+        'billing_amount'
     ];
 
     protected $casts = [
@@ -302,8 +305,8 @@ class Website extends Model
         if ($this->sync_from_client) {
             return $this->client()->getProductValue($crmProductKey);
         }
-        
-        $websiteApiProduct->value / $websiteApiProduct->frequency;
+
+        return $websiteApiProduct->value / $websiteApiProduct->frequency;
     }
 
     public static function getDefaultProducts()

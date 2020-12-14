@@ -72,6 +72,12 @@ class UserHelper {
             'section'   => 'profit-loss'
         ],
         [
+            'name'      => 'Billing',
+            'icon'      => 'fas fa-search-dollar',
+            'link'      => '/billing',
+            'section'   => 'billing'
+        ],
+        [
             'name'      => 'Admin History',
             'icon'      => 'fa fa-history',
             'link'      => '/admin-history',

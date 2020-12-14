@@ -27,7 +27,7 @@ class CreateMailgunEventsTable extends Migration {
 			$table->string('envelope_transport', 191)->nullable();
 			$table->string('envelope_targets', 191)->nullable();
 			$table->string('recipient', 191)->nullable();
-			$table->string('message_to', 191)->nullable();
+			$table->string('message_to', 512)->nullable();
 			$table->string('message_id', 191)->nullable();
 			$table->string('message_from', 191)->nullable();
 			$table->string('message_subject', 512)->nullable();

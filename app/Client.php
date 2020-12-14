@@ -31,6 +31,17 @@ class Client extends Model
         return $this->hasMany('App\Website', 'client_id')->where('archived', 1);
     }
 
+    public function syncingWebsites(){
+        return $this->websites()->where('sync_from_client', 1);
+    }
+
+    public function updateWebsitesProducts(string $crmProductKey, array $data)
+    {
+        foreach ($this->syncingWebsites()->get() as $website) {
+            $website->saveProduct($crmProductKey, $data);
+        }
+    }
+
     //Event Handler
     public static function boot() {
         parent::boot();
