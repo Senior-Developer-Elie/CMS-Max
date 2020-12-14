@@ -65,12 +65,12 @@ class UserHelper {
             'link'      => '/budgeting',
             'section'   => 'budgeting'
         ],
-        // [
-        //     'name'      => 'Profit & Loss',
-        //     'icon'      => 'fas fa-hand-holding-usd',
-        //     'link'      => '/profit-loss',
-        //     'section'   => 'profit-loss'
-        // ],
+        [
+            'name'      => 'Profit & Loss',
+            'icon'      => 'fas fa-hand-holding-usd',
+            'link'      => '/financial-reports',
+            'section'   => 'profit-loss'
+        ],
         [
             'name'      => 'Admin History',
             'icon'      => 'fa fa-history',

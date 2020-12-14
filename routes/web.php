@@ -194,7 +194,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/unarchive-api-client', 'ApiClientController@unArchiveApiClient');
 
     /**Website */
-    Route::resource('websites', 'Website\WebsiteController');
+    Route::resource('websites', 'Website\WebsiteController', [
+        'except' => ['show']
+    ]);
     //Route::delete('websites/{website}', 'Website\WebsiteController@destroy');
     Route::get('websites/{website}/delete', ['as' => 'websites.confirm-delete', 'uses' => 'Website\WebsiteController@confirmDelete']);
     Route::post('websites/{website}/archive', ['as' => 'websites.archive', 'uses' => 'Website\WebsiteController@archive']);
@@ -267,7 +269,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/task-download-pre-image', 'TaskController@downloadPreImage');
 
     /**Profit & Loss */
-    Route::get('/profit-loss', 'ProfitLossController@index');
+    Route::resource('financial-reports', 'FinancialReportController', [
+        'except' => ['show']
+    ]);
     Route::post('/track-profit-loss-history', 'ProfitLossController@trackMonthProfitLoss');
 
     //Manage Expense

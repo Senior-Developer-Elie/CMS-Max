@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
       $this->call('UsersPermissionsSeeder');
       $this->call('PaymeentGatewaysTableSeeder');
       $this->call('StagesTableSeeder');
+      $this->call('ExpensesTableSeeder');
     }
 }

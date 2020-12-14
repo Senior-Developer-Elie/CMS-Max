@@ -1,0 +1,6 @@
+.expense-row .expense-value-wrapper{
+    cursor: pointer;
+}
+input.expense-value-input{
+    width: 70px;
+}
