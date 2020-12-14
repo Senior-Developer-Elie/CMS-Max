@@ -32,7 +32,9 @@ class WebsiteBillingController extends Controller
             return redirect('/webadmin');
 
         $this->data['websites'] = Website::where('archived', 0)
-            ->orderBy('website')->get();
+            ->where('type', '!=', 'no-website')
+            ->orderBy('website')
+            ->get();
         $this->data['billingTypes'] = WebsiteHelper::getAllBillingtypes();
 
         return view('manage-website.billing-list', $this->data);
