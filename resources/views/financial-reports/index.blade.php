@@ -8,7 +8,7 @@
         <div class="col-md-12 col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Manage Profit & Expenses</h2>
+                    <h2 class="card-title">Manage Sales & Expenses</h2>
 
                     <div class="card-tools pull-right">
                         <a href="{{ route('financial-reports.create') }}">
