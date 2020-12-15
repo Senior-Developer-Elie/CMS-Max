@@ -58,7 +58,7 @@ class AngelInvoice
         self::CRM_KEY_CMS_MAX,
         self::CRM_KEY_PINTEREST_SPEND,
         self::CRM_KEY_LINKEDIN_ADS_SPEND,
-        self::CRM_KEY_GOOGLE_ADS_MANAGEMENT,
+        self::CRM_KEY_GOOGLE_ADS_SPEND,
         self::CRM_KEY_GEO_FENCING,
         self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM,
         self::CRM_KEY_DONT_GO
