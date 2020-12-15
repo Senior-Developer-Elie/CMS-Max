@@ -158,30 +158,24 @@ class FinancialReportController extends Controller
     }
 
     protected function getProductFees()
-    {
-        $oneDay = 60 * 24;
-        return \Cache::remember('product_total_fees', $oneDay, function () {
-            
-            $productFees = [];
-            
-            array_map(function ($productName, $crmProduct) use (&$productFees){
-                $productFees[$crmProduct] = [
-                    'name' => $productName,
-                    'value' => 0
-                ];
-            }, AngelInvoice::products(), array_keys(AngelInvoice::products()));
-    
-            foreach (Website::all() as $website) {
-                foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
-                    $productValue = $website->getProductValue($crmProductKey);
-                    $productFees[$crmProductKey]['value'] += $productValue > 0 ? $productValue : 0;
-                }
+    {            
+        $productFees = [];
+
+        array_map(function ($productName, $crmProduct) use (&$productFees){
+            $productFees[$crmProduct] = [
+                'name' => $productName,
+                'value' => 0
+            ];
+        }, AngelInvoice::products(), array_keys(AngelInvoice::products()));
+
+        foreach (Website::all() as $website) {
+            foreach (AngelInvoice::crmProductKeys() as $crmProductKey) {
+                $productValue = $website->getProductValue($crmProductKey);
+                $productFees[$crmProductKey]['value'] += $productValue > 0 ? $productValue : 0;
             }
+        }
 
-            return $productFees;
-        });
-
-        
+        return $productFees;
     }
 
     protected function saveProfits(FinancialReport $financialReport, array $data)
