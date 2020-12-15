@@ -91,8 +91,8 @@ class FinancialReportController extends Controller
     {        
         $this->data['currentSection'] = 'profit-loss';
         $this->data['financialReport'] = $financialReport;
-        $this->data['profits'] = $financialReport->profitItems->toArray();
-        $this->data['expenses'] = $financialReport->expenseItems->toArray();
+        $this->data['profits'] = $financialReport->profitItems()->orderBy('name')->get()->toArray();
+        $this->data['expenses'] = $financialReport->expenseItems()->orderBy('name')->get()->toArray();
 
         return view('financial-reports.edit', $this->data);
     }
@@ -133,12 +133,22 @@ class FinancialReportController extends Controller
         $productFees = $this->getProductFees();
 
         $this->data['profits'] = [];
-        foreach ($productFees as $productFee) {
+        $this->data['expenses'] = [];
+
+        foreach ($productFees as $crmProductKey => $productFee) {
             $this->data['profits'][] = [
                 'id' => uniqid(),
                 'name' => $productFee['name'],
                 'value' => $productFee['value']
             ];
+
+            if (in_array($crmProductKey, AngelInvoice::expenseCrmProductKeys())) {
+                $this->data['expenses'][] = [
+                    'id' => uniqid(),
+                    'name' => $productFee['name'],
+                    'value' => $productFee['value']
+                ];  
+            }
         }
 
         foreach ($manualProfits as $manualProfit) {
@@ -149,7 +159,6 @@ class FinancialReportController extends Controller
             ];
         }
 
-        $this->data['expenses'] = [];
         foreach ($manualExpenses as $manualExpense) {
             $this->data['expenses'][] = [
                 'id' => uniqid(),
@@ -157,6 +166,14 @@ class FinancialReportController extends Controller
                 'value' => $manualExpense->price
             ];
         }
+
+        usort($this->data['profits'], function($a, $b) {
+            return strcmp($a["name"], $b["name"]);
+        });
+
+        usort($this->data['expenses'], function($a, $b) {
+            return strcmp($a["name"], $b["name"]);
+        });
     }
 
     protected function getProductFees()

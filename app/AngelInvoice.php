@@ -24,12 +24,11 @@ class AngelInvoice
     const CRM_KEY_FACEBOOK_GROW = "facebook_grow";
     const CRM_KEY_FACEBOOK_BUILD = "facebook_build";
     const CRM_KEY_DONT_GO = "dont_go";
-    const CRM_KEY_DOMAIN = "domain";
     const CRM_KEY_DATA_ENTRY = "data_entry";
     const CRM_KEY_COMMISSION = "commission";
     const CRM_KEY_GOOGLE_WORKSPACE = "google_workspace";
 
-    static protected $products = [
+    const PRODUCTS = [
         self::CRM_KEY_CMS_MAX => "CMS Max",
         self::CRM_KEY_WEBSITE_DEVELOPMENT => "Website Development",
         self::CRM_KEY_SUPPORT_MAINTENANCE => "Support/Maintenance",
@@ -50,25 +49,34 @@ class AngelInvoice
         self::CRM_KEY_FACEBOOK_GROW => "Facebook - Grow",
         self::CRM_KEY_FACEBOOK_BUILD => "Facebook - Build",
         self::CRM_KEY_DONT_GO => "DontGo",
-        self::CRM_KEY_DOMAIN => "Domain",
         self::CRM_KEY_DATA_ENTRY => "Data Entry",
         self::CRM_KEY_COMMISSION => "Commission",
         self::CRM_KEY_GOOGLE_WORKSPACE => "Google Workspace",
     ];
 
+    const EXPENSE_CRM_PRODUCT_KEYS = [
+        self::CRM_KEY_CMS_MAX,
+        self::CRM_KEY_PINTEREST_SPEND,
+        self::CRM_KEY_LINKEDIN_ADS_SPEND,
+        self::CRM_KEY_GOOGLE_ADS_MANAGEMENT,
+        self::CRM_KEY_GEO_FENCING,
+        self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM,
+        self::CRM_KEY_DONT_GO
+    ];
+
     public static function products()
     {
-        return self::$products;
+        return self::PRODUCTS;
     }
 
     public static function crmProductKeys()
     {
-        return array_keys(self::$products);
+        return array_keys(self::PRODUCTS);
     }
 
     public static function apiProductKeys()
     {
-        return array_values(self::$products);
+        return array_values(self::PRODUCTS);
     }
 
     public static function crmProductKeysWithAdditionalValues()
@@ -76,5 +84,10 @@ class AngelInvoice
         return [
             self::CRM_KEY_LISTINGS_MANAGEMENT
         ];
+    }
+
+    public static function expenseCrmProductKeys()
+    {
+        return self::EXPENSE_CRM_PRODUCT_KEYS;
     }
 }
