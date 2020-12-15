@@ -46,7 +46,7 @@
                             <div class="card-header">
                                 <i class="fa fa-calendar-times-o"></i>
             
-                                <h3 class="card-title">Profits</h3>
+                                <h3 class="card-title">Sales</h3>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-sm">
@@ -131,7 +131,7 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body clearfix">
                         <div class="row">
-                            <div class="col-sm-9 text-right text-success">Total Profit:</div>
+                            <div class="col-sm-9 text-right text-success">Total Sales:</div>
                             <div id="total-profit-value" class="col-sm-3 text-right"></div>
                         </div>
                         <div class="row mt-1">

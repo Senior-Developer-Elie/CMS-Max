@@ -32,7 +32,7 @@ class FinancialReportController extends Controller
     public function index()
     {
         //Check page permission and redirect
-        if( !Auth::user()->hasPagePermission('Profit & Loss') )
+        if( !Auth::user()->hasPagePermission('Sales & Loss') )
             return redirect('/webadmin');
 
         $this->data['currentSection'] = 'profit-loss';

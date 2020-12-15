@@ -66,7 +66,7 @@ class UserHelper {
             'section'   => 'budgeting'
         ],
         [
-            'name'      => 'Profit & Loss',
+            'name'      => 'Sales & Loss',
             'icon'      => 'fas fa-hand-holding-usd',
             'link'      => '/financial-reports',
             'section'   => 'profit-loss'
