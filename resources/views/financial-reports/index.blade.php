@@ -19,32 +19,48 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped" style="width:100%">
+                    <table id="financial-reports-table" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th width="200px">Date</th>
+                                <th style="min-width: 100px">Date</th>
                                 <th>Profit</th>
                                 <th>Expense</th>
-                                <th width="150px">Total</th>
+                                <th>Total</th>
+                                @foreach ($profitNames as $profitName)
+                                    <th style="white-space: nowrap;">{{ $profitName }}</th>
+                                @endforeach
+                                @foreach ($expenseNames as $expenseName)
+                                    <th style="white-space: nowrap;">{{ $expenseName }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($financialReports as $financialReport)
                                 <tr>
-                                    <td>
+                                    <td style="min-width: 100px">
                                         <a href="{{ route('financial-reports.edit', $financialReport) }}">
-                                            {{ \Carbon\Carbon::parse($financialReport->date)->format('m/Y') }}
+                                            {{ \Carbon\Carbon::parse($financialReport->date)->format('M Y') }}
                                         </a>
                                     </td>
-                                    <td>
-                                        ${{ number_format($profit = $financialReport->profitItems()->sum('value'), 2, '.', ',') }}
+                                    <td class="text-success">
+                                        ${{ prettyFloat($profit = $financialReport->profitItems()->sum('value')) }}
                                     </td>
-                                    <td>
-                                        ${{ number_format($expense = $financialReport->expenseItems()->sum('value'), 2, '.', ',') }}
+                                    <td class="text-danger">
+                                        ${{ prettyFloat($expense = $financialReport->expenseItems()->sum('value')) }}
                                     </td>
-                                    <td>
-                                        ${{ number_format($profit - $expense, 2, '.', ',') }}
+                                    <td class="text-primary">
+                                        ${{ prettyFloat($profit - $expense) }}
                                     </td>
+                                    @foreach ($profitNames as $profitName)
+                                        <td class="text-success">
+                                            {{ isset($financialReport->profitItemsArray[$profitName]) ? ("$" . prettyFloat($financialReport->profitItemsArray[$profitName])) : 'N/A'}}
+                                        </td>
+                                    @endforeach
+                                    @foreach ($expenseNames as $expenseName)
+                                        <td class="text-danger">
+                                            {{ isset($financialReport->expenseItemsArray[$expenseName]) ? ("$-" . prettyFloat($financialReport->expenseItemsArray[$expenseName])) : 'N/A'}}
+                                        </td>
+                                    @endforeach
                                 </tr>
                             @endforeach
                         </tbody>
@@ -53,4 +69,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <link href="{{ mix("css/datatable.css") }}" rel="stylesheet">
+@endsection
+
+@section('javascript')
+    <script src="{{ mix('js/datatable.js') }}"></script>
+    <script src="{{ asset('assets/js/website/financial-reports.js?v=24') }}"></script>
 @endsection

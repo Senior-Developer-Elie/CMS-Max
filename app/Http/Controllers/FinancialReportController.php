@@ -10,6 +10,8 @@ use App\Profit;
 use App\Website;
 use App\AngelInvoice;
 use App\FinancialReport;
+use App\FinancialReportLossItem;
+use App\FinancialReportProfitItem;
 use App\Sanitizers\FinancialReportSanitizer;
 use App\Validators\FinancialReportValidator;
 
@@ -34,7 +36,7 @@ class FinancialReportController extends Controller
             return redirect('/webadmin');
 
         $this->data['currentSection'] = 'profit-loss';
-        $this->data['financialReports'] = FinancialReport::orderByDesc('date')->get();
+        $this->prepareReports();
         
         return view('financial-reports.index', $this->data);
     }
@@ -87,8 +89,8 @@ class FinancialReportController extends Controller
      */
     public function edit(FinancialReport $financialReport)
     {        
+        $this->data['currentSection'] = 'profit-loss';
         $this->data['financialReport'] = $financialReport;
-        
         $this->data['profits'] = $financialReport->profitItems->toArray();
         $this->data['expenses'] = $financialReport->expenseItems->toArray();
 
@@ -206,5 +208,43 @@ class FinancialReportController extends Controller
 
             $savedIds[] = $financialReportExpenseItem->id;
         }
+    }
+
+    protected function prepareReports()
+    {
+        $this->data['profitNames'] = FinancialReportProfitItem::groupBy('name')
+            ->orderBy('name')
+            ->pluck('name')
+            ->toArray();
+        
+        $this->data['expenseNames'] = FinancialReportLossItem::groupBy('name')
+            ->orderBy('name')
+            ->pluck('name')
+            ->toArray();
+
+        $financialReports = FinancialReport::orderByDesc('date')
+            ->with('profitItems')
+            ->with('expenseItems')
+            ->get();
+
+        $financialReports = $financialReports->map(function($financialReport) {
+            $profitItemsArray = [];
+            $expenseItemsArray = [];
+
+            foreach ($financialReport->profitItems as $profitItem) {
+                $profitItemsArray[$profitItem->name] = $profitItem->value;
+            }
+
+            foreach ($financialReport->expenseItems as $expenseItem) {
+                $expenseItemsArray[$expenseItem->name] = $expenseItem->value;
+            }
+
+            $financialReport->profitItemsArray = $profitItemsArray;
+            $financialReport->expenseItemsArray = $expenseItemsArray;
+
+            return $financialReport;
+        });
+
+        $this->data['financialReports'] = $financialReports;
     }
 }
