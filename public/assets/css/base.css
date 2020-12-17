@@ -74,3 +74,6 @@ table.table td{
 .nav-sidebar .nav-link>.right, .nav-sidebar .nav-link>p>.right {
     top: 5px !important;
 }
+.content-wrapper{
+    background-color: white;
+}

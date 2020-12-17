@@ -7,7 +7,7 @@
     <div class = "container mt-2">
 
         <div class = "logo-wrapper text-center">
-            <img id = "cms-logo" src = "{{ asset('assets/images/cms-max-rectangle-white.jpg') }}">
+            <img id = "cms-logo" src = "{{ asset('assets/images/evolution-marketing-logo.png') }}">
         </div>
 
         <h4 class = "text-center m-2">Building & Branding Custom Websites that Get Results!</h4>
