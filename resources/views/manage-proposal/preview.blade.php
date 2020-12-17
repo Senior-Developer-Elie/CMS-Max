@@ -133,7 +133,7 @@
             <footer>
                 <span class = "prepared-by">Prepared by: Evolution Marketing</span>
                 <span class = "phone-span">Phone: (585) 348-8127</span>
-                <span class = "emaila">Email: info@cmsmax.com</span>
+                <span class = "emaila">Email: info@evolutionmarketing.com</span>
                 <span>&nbsp;</span>
             </footer>
         @endif
@@ -304,21 +304,21 @@
 
             footer .prepared-by{
                 display: inline-block;
-                margin-left: 20px;
+                margin-left: 0;
             }
             footer .phone-span{
                 display: inline-block;
-                margin-left: 74px;
+                margin-left: 30px;
             }
             footer .emaila{
                 display: inline-block;
-                margin-left: 58px;
+                margin-left: 30px;
             }
 
             footer {
                 position: fixed;
                 bottom: 0px;
-                left: 82px;
+                left: 55px;
                 right: 82px;
                 height: 50px;
             }
