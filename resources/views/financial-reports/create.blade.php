@@ -142,6 +142,10 @@
                             <div class="col-sm-9 text-right text-primary">Total:</div>
                             <div id="total-value" class="col-sm-3 text-right"></div>
                         </div>
+                        <div class="row mt-1">
+                            <div class="col-sm-9 text-right text-secondary">Expense Percentage:</div>
+                            <div id="expense-percentage-value" class="col-sm-3 text-right"></div>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -150,7 +154,7 @@
 @endsection
 
 @section('javascript')
-    <script src="{{ asset('assets/js/website/add-financial-report.js') }}"></script>
+    <script src="{{ asset('assets/js/website/add-financial-report.js?v=2') }}"></script>
 @endsection
 
 @section('css')

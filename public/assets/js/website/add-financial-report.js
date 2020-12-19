@@ -79,6 +79,7 @@ var Add_Financial_Report = {
         $("#total-profit-value").text("$" + totalProfit.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
         $("#total-expense-value").text("$" + totalExpense.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
         $("#total-value").text("$" + (totalProfit - totalExpense).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
+        $("#expense-percentage-value").text((totalExpense * 100 / totalProfit).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }) + "%");
     }
 };
 
