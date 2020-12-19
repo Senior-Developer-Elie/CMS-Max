@@ -79,7 +79,14 @@ var Add_Financial_Report = {
         $("#total-profit-value").text("$" + totalProfit.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
         $("#total-expense-value").text("$" + totalExpense.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
         $("#total-value").text("$" + (totalProfit - totalExpense).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }));
-        $("#expense-percentage-value").text((totalExpense * 100 / totalProfit).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }) + "%");
+        
+        let expensePercentage = totalExpense * 100 / totalProfit;
+        $("#expense-percentage-value").text(expensePercentage.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 }) + "%");
+        if (expensePercentage <= 60) {
+            $("#expense-percentage-value").addClass('text-success').removeClass('text-danger')
+        } else {
+            $("#expense-percentage-value").removeClass('text-success').addClass('text-danger')
+        }
     }
 };
 
