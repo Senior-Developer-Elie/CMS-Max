@@ -93,3 +93,8 @@ footer .powered-by a{
     justify-content: center;
     margin-top: 15px;
 }
+.template-type-form-group {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+}

@@ -10,6 +10,7 @@ var Proposal_Generator = {
         this.initCkeditor();
         this.initActions();
         this.initPreFillActions();
+        this.initTemplateChangeActions();
 
         if( typeof editMode != 'undefined' && editMode == true ){
             this.initEditAction();
@@ -185,6 +186,20 @@ var Proposal_Generator = {
             });
             return true;
         })
+    },
+
+    initTemplateChangeActions: function() {
+        $(".template-type-select").select2({
+            width: "220"
+        });
+
+        $(".template-type-select").change(function() {
+            if ($(this).val() == 'evolution-marketing') {
+                $("#cms-logo").attr('src', 'assets/images/evolution-marketing-logo.png');
+            } else {
+                $("#cms-logo").attr('src', 'assets/images/evolution-marketing-south-fl.png');
+            }
+        }).trigger('change');
     }
 };
 $(document).ready(function(){

@@ -7,13 +7,19 @@
     <div class = "container mt-2">
 
         <div class = "logo-wrapper text-center">
-            <img id = "cms-logo" src = "{{ asset('assets/images/evolution-marketing-logo.png') }}">
+            <img id = "cms-logo" src = "">
         </div>
 
         <h4 class = "text-center m-2">Building & Branding Custom Websites that Get Results!</h4>
 
         <form id = "proposal-form" method="{{ isset($editMode) ? 'POST' : 'GET' }}" action="{{ isset($editMode) ? '/edit-proposal' : '/process' }}">
             @csrf
+            <div class="form-group template-type-form-group">
+                <select class="form-group template-type-select" name="template_type">
+                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING) ? 'selected' : '' }}>Evolution Marketting</option>
+                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA) ? 'selected' : '' }}>Evolution Marketing Florida</option>
+                </select>
+            </div>
             <p class = "text-center mt-3 custom-form-group">
                 <input type="text" class="form-control" name="clientName" placeholder="Client Name" value = "{{ isset($editMode) ? $request['clientName'] : '' }}"> - This will automatically form the sentence<br>
                 <strong>Proposal Presented by CMS Max, Inc. to <span class = "client-name">Client Name</span></strong>
@@ -134,5 +140,5 @@
         @endif
     </script>
 
-    <script src="{{ asset('assets/js/main.js?v=4') }}"></script>
+    <script src="{{ asset('assets/js/main.js?v=5') }}"></script>
 @endsection

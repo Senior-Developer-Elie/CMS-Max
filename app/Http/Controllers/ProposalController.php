@@ -70,6 +70,7 @@ class ProposalController extends Controller
     {
         $data = $this->getAvailableServices($request->all());
         $data = array_merge($request->all(), $data);
+        $data['templateType'] = $request->input('template_type');
 
         if( $request->get('requestType') == 'preview' ) //Preview Request
         {
@@ -128,7 +129,8 @@ class ProposalController extends Controller
                 'editMode'          => true,
                 'services'          => Service::getServices(),
                 'bottomDescription' => Service::getBottomDescription(),
-                'request'           => $proposal->request
+                'request'           => $proposal->request,
+                'proposal'          => $proposal
             ];
             return view("manage-proposal.add-proposal", $data);
         }
@@ -138,6 +140,7 @@ class ProposalController extends Controller
             $data = array_merge($request->all(), $data);
             $proposal->request = $data;
             $proposal->status = 'not-signed';
+            $proposal->template_type = $request->input('template_type');
             $proposal->save();
 
             Session::flash('message', 'Proposal is updated successfully!');
@@ -166,6 +169,7 @@ class ProposalController extends Controller
         $data['fullName']       = $proposal->full_name;
         $data['jobTitle']       = $proposal->job_title;
         $data['signature']      = $proposal->signature;
+        $data['templateType']   = $proposal->template_type;
 
         return self::outputPdfFile($data);
     }
