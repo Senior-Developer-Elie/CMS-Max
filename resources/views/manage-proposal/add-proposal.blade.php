@@ -16,7 +16,7 @@
             @csrf
             <div class="form-group template-type-form-group">
                 <select class="form-group template-type-select" name="template_type">
-                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING) ? 'selected' : '' }}>Evolution Marketting</option>
+                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING) ? 'selected' : '' }}>Evolution Marketing</option>
                     <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA) ? 'selected' : '' }}>Evolution Marketing Florida</option>
                 </select>
             </div>
