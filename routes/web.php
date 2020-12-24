@@ -226,9 +226,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/update-website-post-live-attribute', 'Website\WebsitePostLiveCheckListController@updatePostLive');
 
     // Website payroll
-    Route::get('/payroll', 'Website\WebsitePayrollController@index');
-    Route::post('/payroll-archive-website', 'Website\WebsitePayrollController@archiveWebsite');
-    Route::post('/payroll-un-archive-website', 'Website\WebsitePayrollController@unarchiveWebsite');
+    // Route::get('/payroll', 'Website\WebsitePayrollController@index');
+    // Route::post('/payroll-archive-website', 'Website\WebsitePayrollController@archiveWebsite');
+    // Route::post('/payroll-un-archive-website', 'Website\WebsitePayrollController@unarchiveWebsite');
 
     //Credit Card Processing
     Route::get('/credit-card-processing', 'Website\WebsiteCreditCardProcessingController@index');
