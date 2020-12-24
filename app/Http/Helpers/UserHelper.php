@@ -89,12 +89,12 @@ class UserHelper {
             'link'      => '/credit-card-processing',
             'section'   => 'credit-card-processing'
         ],
-        [
-            'name'      => 'Payroll',
-            'icon'      => 'fas fa-cash-register',
-            'link'      => '/payroll',
-            'section'   => 'website-payroll'
-        ],
+        // [
+        //     'name'      => 'Payroll',
+        //     'icon'      => 'fas fa-cash-register',
+        //     'link'      => '/payroll',
+        //     'section'   => 'website-payroll'
+        // ],
         [
             'name'      => 'Proposals List',
             'icon'      => 'far fa-file-pdf',
