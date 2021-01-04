@@ -117,5 +117,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
     <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
-    <script src="{{ asset('assets/js/website/budgeting.js?v=25') }}"></script>
+    <script src="{{ asset('assets/js/website/budgeting.js?v=26') }}"></script>
 @endsection
