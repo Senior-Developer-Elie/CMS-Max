@@ -14,16 +14,7 @@ var Post_Live_Checklist = {
             text : 'N/A'
         }
     ],
-    PostLiveHideOnGoogleOptionSource: [
-        {
-            value : 'yes',
-            text : 'Yes'
-        },
-        {
-            value : 'no',
-            text : 'No'
-        }
-    ],
+
     init: function(){
 
         Post_Live_Checklist.initDataTables();
@@ -142,7 +133,7 @@ var Post_Live_Checklist = {
             $(element).editable({
                 type        : 'select',
                 pk          : websiteId,
-                source      : $(element).closest('td').attr('data-option-value') == 'hide-on-marketing' ?  Post_Live_Checklist.PostLiveHideOnGoogleOptionSource : Post_Live_Checklist.PostLiveOptionSource,
+                source      : Post_Live_Checklist.PostLiveOptionSource,
                 showbuttons : false,
                 name        : $(element).closest('td').attr('data-option-value'),
                 display     : function( value, sourceData ){

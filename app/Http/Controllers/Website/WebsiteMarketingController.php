@@ -34,7 +34,7 @@ class WebsiteMarketingController extends Controller
         $marketingWebsites = [];
 
         foreach( $websites as $website ){
-            if(  !$website->isHideOnMarketing() && $website->type != 'redirect-website' && !$website->archived ){
+            if ($website->type != 'redirect-website' && !$website->archived ){
 
                 if( $filterStatus == 'on' ){
                     if( $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_SPEND) >= 1 OR $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_MANAGEMENT) >= 1 )

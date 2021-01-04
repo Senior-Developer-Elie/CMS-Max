@@ -234,8 +234,8 @@ class Website extends Model
 
         $allPostLiveOptions = WebsiteHelper::getAllPostLiveOptions();
 
-        foreach( $allPostLiveOptions as $postLiveOption => $optionText) {
-            if( ( !isset($this->post_live[$postLiveOption]) || $this->post_live[$postLiveOption] == 'no' )  && $postLiveOption != 'hide-on-marketing' )
+        foreach ( $allPostLiveOptions as $postLiveOption => $optionText) {
+            if ((!isset($this->post_live[$postLiveOption]) || $this->post_live[$postLiveOption] == 'no' ))
                 return false;
         }
         return true;
@@ -253,15 +253,6 @@ class Website extends Model
         $postLive[$option] = $value;
         $this->post_live = $postLive;
         $this->save();
-    }
-
-    /**
-     * public function is hide on google
-     */
-    public function isHideOnMarketing()
-    {
-        return isset($this->post_live['hide-on-marketing'])
-            && $this->post_live['hide-on-marketing'] == 'yes';
     }
 
     public function apiProducts()

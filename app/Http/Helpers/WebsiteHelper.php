@@ -117,7 +117,6 @@ class WebsiteHelper {
             "setup-google-analytics"    => "Setup Google Analytics",
             "configure-search-console"  => "Configure Search Console",
             "install-and-run-sitemap"   => "Install and run Sitemap",
-            'hide-on-marketing'         => "Hide on Google Ads"
         ];
     }
 
