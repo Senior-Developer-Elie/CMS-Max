@@ -7,7 +7,6 @@ class AngelInvoice
     const CRM_KEY_CMS_MAX = "cms_max";
     const CRM_KEY_WEBSITE_DEVELOPMENT = "website_development";
     const CRM_KEY_SUPPORT_MAINTENANCE = "support_maintenance";
-    const CRM_KEY_SOCIAL_MEDIA_SETUP = "social_media_setup";
     const CRM_KEY_SEO = "seo";
     const CRM_KEY_PINTEREST_MANAGEMENT = "pinterest_management";
     const CRM_KEY_PINTEREST_SPEND = "pinterest_spend";
@@ -27,15 +26,24 @@ class AngelInvoice
     const CRM_KEY_DATA_ENTRY = "data_entry";
     const CRM_KEY_COMMISSION = "commission";
     const CRM_KEY_GOOGLE_WORKSPACE = "google_workspace";
+    const CRM_KEY_TWITTER_MANAGEMENT = "twitter-management";
+    const CRM_KEY_INSTAGRAM_STORIES_MANAGEMENT = "instagram-stories-management";
+    const CRM_KEY_SNAPCHAT_MANAGEMENT = "snapchat-management";
+    const CRM_KEY_SNAPCHAT_ADS_SPEND = "snapchat-ads-spend";
+    const CRM_KEY_TIKTOK_MANAGEMENT = "tiktok-management";
+    const CRM_KEY_TIKTOK_ADS_SPEND = "tiktok-ads-spend";
+    const CRM_KEY_FACEBOOK_ADS_SPEND = "facebook-ads-spend";
+    const CRM_KEY_FACEBOOK_MANAGEMENT = "facebook-management";
+    const CRM_KEY_FACEBOOK_REMARKETING = "facebook-remarketing";
+    const CRM_KEY_DOMAIN = "domain";
 
     const PRODUCTS = [
         self::CRM_KEY_CMS_MAX => "CMS Max",
         self::CRM_KEY_WEBSITE_DEVELOPMENT => "Website Development",
         self::CRM_KEY_SUPPORT_MAINTENANCE => "Support/Maintenance",
-        // self::CRM_KEY_SOCIAL_MEDIA_SETUP => "Social Media Setup",
         self::CRM_KEY_SEO => "SEO",
         self::CRM_KEY_PINTEREST_MANAGEMENT => "Pinterest - Management",
-        self::CRM_KEY_PINTEREST_SPEND => "Pinterest - Spend",
+        self::CRM_KEY_PINTEREST_SPEND => "Pinterest Ads - Spend",
         self::CRM_KEY_LISTINGS_MANAGEMENT => "Listings Management",
         self::CRM_KEY_LINKEDIN_ADS_MANAGEMENT => "LinkedIn Ads - Management",
         self::CRM_KEY_LINKEDIN_ADS_SPEND => "LinkedIn Ads - Spend",
@@ -52,6 +60,16 @@ class AngelInvoice
         self::CRM_KEY_DATA_ENTRY => "Data Entry",
         self::CRM_KEY_COMMISSION => "Commission",
         self::CRM_KEY_GOOGLE_WORKSPACE => "Google Workspace",
+        self::CRM_KEY_TWITTER_MANAGEMENT => "Twitter - Management",
+        self::CRM_KEY_INSTAGRAM_STORIES_MANAGEMENT => "Instagram Stories - Management",
+        self::CRM_KEY_SNAPCHAT_MANAGEMENT => "SnapChat - Management",
+        self::CRM_KEY_SNAPCHAT_ADS_SPEND => "SnapChat Ads - Spend",
+        self::CRM_KEY_TIKTOK_MANAGEMENT => "TikTok - Management",
+        self::CRM_KEY_TIKTOK_ADS_SPEND => "TikTok Ads - Spend",
+        self::CRM_KEY_FACEBOOK_ADS_SPEND => "Facebook Ads - Spend",
+        self::CRM_KEY_FACEBOOK_MANAGEMENT => "Facebook - Management",
+        self::CRM_KEY_FACEBOOK_REMARKETING => "Facebook - Remarketing",
+        self::CRM_KEY_DOMAIN => "Domain",
     ];
 
     const EXPENSE_CRM_PRODUCT_KEYS = [
@@ -71,12 +89,17 @@ class AngelInvoice
 
     public static function crmProductKeys()
     {
-        return array_keys(self::PRODUCTS);
+        $products = self::PRODUCTS;
+        asort($products);
+        return array_keys($products);
     }
 
     public static function apiProductKeys()
     {
-        return array_values(self::PRODUCTS);
+        $products = self::PRODUCTS;
+        asort($products);
+
+        return array_values($products);
     }
 
     public static function crmProductKeysWithAdditionalValues()
