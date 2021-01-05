@@ -355,6 +355,30 @@
 
                 <div class="card card-primary card-outline">
                     <div class="card-header with-border">
+                        <h3 class="card-title">Budget</h3>
+                    </div>
+                    <div class="card-body clearfix">
+                        <table class="table table-bordered table-sm">
+                            <tbody>
+                                @foreach ($budgetProducts as $product)
+                                    <tr>
+                                        <td>{{ $products[$product->key] }}</td>
+                                        <td>${{ prettyFloat($product->value) }}</td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td><strong>${{ prettyFloat($totalBudget) }}</strong></td>
+                                    </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header with-border">
                         <h3 class="card-title">Blog Details</h3>
                     </div>
                     <div class="card-body clearfix">

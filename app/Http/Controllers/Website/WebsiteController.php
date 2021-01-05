@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Website;
 use App\User;
 use App\AdminHistory;
+use App\AngelInvoice;
 use App\BlogIndustry;
 use App\Client;
 use Illuminate\Support\Facades\Auth;
@@ -121,6 +122,9 @@ class WebsiteController extends Controller
         $this->data['admins'] = User::orderBy('name')->get();
         $this->data['clients'] = Client::orderBy('name')->get();
         $this->data['websiteProducts'] = $website->getProductsWithDefault();
+        $this->data['budgetProducts'] = $website->client()->apiProducts()->where('value', '>', 0)->get();
+        $this->data['totalBudget'] = $website->client()->apiProducts()->where('value', '>', 0)->sum('value');
+        $this->data['products'] = AngelInvoice::products();
 
         return view('websites.edit', $this->data);
     }
