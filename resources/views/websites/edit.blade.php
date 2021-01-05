@@ -361,10 +361,12 @@
                         <table class="table table-bordered table-sm">
                             <tbody>
                                 @foreach ($budgetProducts as $product)
-                                    <tr>
-                                        <td>{{ $products[$product->key] }}</td>
-                                        <td>${{ prettyFloat($product->value) }}</td>
-                                    </tr>
+                                    @if (isset($products[$product->key]))
+                                        <tr>
+                                            <td>{{ $products[$product->key] }}</td>
+                                            <td>${{ prettyFloat($product->value) }}</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 <tr>
                                     <tr>
