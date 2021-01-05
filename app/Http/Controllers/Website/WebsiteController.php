@@ -122,7 +122,7 @@ class WebsiteController extends Controller
         $this->data['admins'] = User::orderBy('name')->get();
         $this->data['clients'] = Client::orderBy('name')->get();
         $this->data['websiteProducts'] = $website->getProductsWithDefault();
-        $this->data['budgetProducts'] = $website->client()->apiProducts()->where('value', '>', 0)->get();
+        $this->data['budgetProducts'] = $website->client()->apiProducts()->where('value', '>', 0)->orderBy('key')->get();
         $this->data['totalBudget'] = $website->client()->apiProducts()->where('value', '>', 0)->sum('value');
         $this->data['products'] = AngelInvoice::products();
 
