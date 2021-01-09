@@ -29,8 +29,8 @@
                                         <th>Client Name</th>
                                         <th>Balance</th>
                                         <th>Assigned Websites</th>
-                                        <th>Updated At</th>
-                                        <th>Sync Status</th>
+                                        <th>Client Lead</th>
+                                        <th>Project Manager</th>
                                         @if( Auth::user()->hasRole('super admin') )
                                             <th>
                                                 <button id = "sync-all-clent-info" class="btn btn-info">Sync</button>
@@ -56,19 +56,11 @@
                                             <td>
                                                 {{ count($client->websites()->get()) }}
                                             </td>
-                                            <th>
-                                                @if( !is_null($client->api_id) && $client->api_id > 0 && !is_null($client->api_updated_at) )
-                                                    {{ (new \Carbon\Carbon($client->api_updated_at))->format('m/d/Y h:i a') }}
-                                                @endif
-                                            </th>
                                             <td>
-                                                @if( !is_null($client->api_id) && $client->api_id > 0 )
-                                                    <label class="label bg-green">Synced at {{ (new \Carbon\Carbon($client->synced_at))->format('m/d/Y h:i a') }}</label>
-                                                @else
-                                                    <label class="label bg-red">
-                                                        Not Synced
-                                                    </label>
-                                                @endif
+                                                {{ $client->clientLead ? $client->clientLead->name : '' }}
+                                            </td>
+                                            <td>
+                                                {{ $client->projectManager ? $client->projectManager->name : '' }}
                                             </td>
                                             @if( Auth::user()->hasRole('super admin') )
                                                 <td>

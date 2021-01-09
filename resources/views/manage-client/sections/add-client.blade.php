@@ -24,6 +24,35 @@
                             <input type="text" class="form-control" id="clientName" placeholder="Enter client name" name = "name" value="{{ isset($client) ? $client->name : '' }}" required>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label>Client Lead</label>
+                        <div class="">
+                            <select class="form-control" name="client_lead" style="width: 100%;">
+                                <option value=""></option>
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}" {{ old_selected('client_lead', $admin->id, $client->client_lead ?? null) }}>
+                                        {{ $admin->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project Manager</label>
+                        <div class="">
+                            <select class="form-control" name="project_manager" style="width: 100%;">
+                                <option value=""></option>
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}" {{ old_selected('project_manager', $admin->id, $client->project_manager ?? null) }}>
+                                        {{ $admin->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Contacts:</label>
                         <div class="">

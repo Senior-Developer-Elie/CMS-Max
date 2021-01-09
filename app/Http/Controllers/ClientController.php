@@ -36,7 +36,10 @@ class ClientController extends Controller
         if( !Auth::user()->hasPagePermission('Clients') )
             return redirect('/webadmin');
 
-        $clients = Client::where('archived', 0)->get();
+        $clients = Client::where('archived', 0)
+            ->with('clientLead')
+            ->with('projectManager')
+            ->get();
         $archivedClients = Client::where('archived', 1)->get();
 
         $apiClients = AngelInvoiceHelper::getClients(true);
@@ -92,9 +95,10 @@ class ClientController extends Controller
         if( $client )
         {
             $data['client']         = $client;
-            $data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
-            $data['admins']         = User::get();
         }
+
+        $data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
+        $data['admins']         = User::orderBy('name')->get();
 
         $data['pendingBlogs']   = $pendingBlogs;
         $data['completedBlogs'] = $completedBlogs;
@@ -169,6 +173,8 @@ class ClientController extends Controller
             $client->name       = $request->name;
             $client->notes      = $request->notes;
             $client->contacts   = $request->contacts;
+            $client->client_lead = $request->client_lead;
+            $client->project_manager = $request->project_manager;
             $client->save();
 
             //Add Admin History

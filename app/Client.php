@@ -17,6 +17,8 @@ class Client extends Model
         'api_updated_at',
         'archived',
         'archived_at',
+        'client_lead',
+        'project_manager',
     ];
 
     public function websites(){
@@ -40,6 +42,16 @@ class Client extends Model
         foreach ($this->syncingWebsites()->get() as $website) {
             $website->saveProduct($crmProductKey, $data);
         }
+    }
+
+    public function clientLead()
+    {
+        return $this->belongsTo(User::class, 'client_lead');
+    }
+
+    public function projectManager()
+    {
+        return $this->belongsTo(User::class, 'project_manager');
     }
 
     //Event Handler
