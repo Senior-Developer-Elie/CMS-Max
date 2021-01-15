@@ -169,5 +169,5 @@
     <!-- ChartJS -->
     <script src="{{ mix('js/chart.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-statistics.js?v=14') }}"></script>
+    <script src="{{ asset('assets/js/website/website-statistics.js?v=15') }}"></script>
 @endsection

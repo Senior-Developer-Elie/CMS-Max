@@ -16,13 +16,16 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    const USER_TYPE_EMPLOYEE = 'employee';
+    const USER_TYPE_CONTRACTOR = 'contractor';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'page_permissions'
+        'name', 'email', 'password', 'avatar', 'page_permissions', 'type', 'job_roles'
     ];
 
     /**
@@ -42,6 +45,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'page_permissions'  => 'array',
+    ];
+
+    protected static $types = [
+        self::USER_TYPE_EMPLOYEE => 'Employee',
+        self::USER_TYPE_CONTRACTOR => 'Contractor',
     ];
 
     // event handler
@@ -130,5 +138,42 @@ class User extends Authenticatable
         if( is_array($this->page_permissions) && in_array($permission, $this->page_permissions))
             return true;
         return false;
+    }
+
+    public function getRoleNamesAttribute()
+    {
+        return $this->getRoleNames()->toArray();
+    }
+
+    public function getPermissionNamesAttribute()
+    {
+        return array_column($this->getAllPermissions()->toArray(), 'name');
+    }
+
+    public function grantPermissions(array $permissionNames)
+    {
+        foreach ($permissionNames as $permissionName) {
+            $this->givePermissionTo($permissionName);
+        }
+    }
+
+    public function clientLeads()
+    {
+        return $this->hasMany(Client::class, 'client_lead');
+    }
+
+    public function projectManagers()
+    {
+        return $this->hasMany(Client::class, 'project_manager');
+    }
+
+    /**
+     * Get types
+     *
+     * @return array
+     */
+    public static function types()
+    {
+        return static::$types;
     }
 }

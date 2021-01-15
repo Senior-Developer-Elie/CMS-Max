@@ -254,6 +254,11 @@ var Website_List = {
                 text : object[key]
             })
         });
+
+        array.sort( (a, b) => {
+            return a.text.localeCompare(b.text);
+        } );
+
         return array;
     }
 };

@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Admins List</h3>
                     <div class="card-tools">
-                        <a href="{{ url('add-admin') }}">
+                        <a href="{{ route('users.create') }}">
                             <button type="button" class="btn btn-primary mb-1"><i class = "fa fa-plus"></i></button>
                         </a>
                     </div>
@@ -23,9 +23,8 @@
                                 <th width="50px"></th>
                                 <th width="115px">Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
+                                <th>Employee Status</th>
                                 <th>Permissions</th>
-                                <th width="150px">Last Activity</th>
                                 <th width = "75px">Edit</th>
                                 @can('delete ability')
                                     <th width = "75px">Delete</th>
@@ -36,40 +35,40 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>
-                                        <img class="img-responsive img-circle profile-image" src="{{ $user['avatar'] }}">
+                                        <img class="img-responsive img-circle profile-image" src="{{ $user->getPublicAvatarLink() }}">
                                     </td>
                                     <td>
-                                        {{ $user['name'] }}
+                                        {{ $user->name }}
                                     </td>
                                     <td>
-                                        {{ $user['email'] }}
+                                        {{ $user->email }}
+                                    </td>
+                                    <td>
+                                        {{ ucfirst($user->type) }}
                                     </td>
                                     <td style="text-transform: capitalize;">
-                                        {{ implode(', ', $user['roles']) }}
-                                    </td>
-                                    <td style="text-transform: capitalize;">
-                                        @if( in_array('super admin', $user['roles']) )
+                                        @if ($user->hasRole('super admin'))
                                             All
                                         @else
-                                            {{ implode(', ', $user['permissions']) }}
+                                            {{ implode(', ', $user->permission_names) }}
                                         @endif
                                     </td>
-                                    <td>
-                                        {{ $user['last_activity'] }}
-                                    </td>
-                                    @if( !in_array('super admin', $user['roles']) )
+                                    @if (! $user->hasRole('super admin'))
                                         <td>
-                                            <a href="{{ url('edit-admin/' . $user['id'] ) }}">
+                                            <a href="{{ route('users.edit', $user) }}">
                                                 <button type="button" class="btn btn-primary">Edit</button>
                                             </a>
                                         </td>
                                         @can('delete ability')
                                             <td>
-                                                <a href="{{ url('delete-admin/' . $user['id'] ) }}">
+                                                <a href="{{ route('users.confirm-delete', $user) }}">
                                                     <button type="button" class="btn btn-danger">Delete</button>
                                                 </a>
                                             </td>
                                         @endcan
+                                    @else
+                                        <td></td>
+                                        <td></td>
                                     @endif
                                 </tr>
                             @endforeach
@@ -101,7 +100,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $allPermissions as $permission )
+                                @foreach ( $permissions as $permission )
                                     <tr class="permission-row" data-permission-id="{{ $permission->id }}">
                                         <td style="text-transform:capitalize;">
                                             <a href = "#" class="name">
@@ -119,7 +118,7 @@
                 </div>
         </div>
     </div>
-    @include('manage-users.modals.edit-description-modal')
+    @include('users.modals.edit-description-modal')
 @endsection
 
 @section('css')

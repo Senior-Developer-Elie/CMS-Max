@@ -36,10 +36,14 @@ class ClientController extends Controller
         if( !Auth::user()->hasPagePermission('Clients') )
             return redirect('/webadmin');
 
-        $clients = Client::where('archived', 0)
+        $query = Client::where('archived', 0)
             ->with('clientLead')
-            ->with('projectManager')
-            ->get();
+            ->with('projectManager');
+
+        $this->applyFilters($query);
+        
+        $clients = $query->get();
+
         $archivedClients = Client::where('archived', 1)->get();
 
         $apiClients = AngelInvoiceHelper::getClients(true);
@@ -532,5 +536,14 @@ class ClientController extends Controller
         return response()->json([
             'status'    => 'success'
         ]);
+    }
+
+    protected function applyFilters($query)
+    {
+        if (! empty(request()->input('user_id')) && ! empty(request()->input('filter_type'))) {
+            $query->where(request()->input('filter_type'), request()->input('user_id'));
+        }
+
+        return $query;
     }
 }

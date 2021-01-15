@@ -235,7 +235,7 @@ class UserHelper {
                 [
                     'name'      => 'Manage Admins',
                     'icon'      => 'fa fa-users',
-                    'link'      => '/manage-admin',
+                    'link'      => '/users',
                     'section'   => 'manage-users'
                 ],
                 [

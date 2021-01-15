@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\InnerBlog;
 use App\Blog;
 use App\BlogIndustry;
+use App\Client;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -49,10 +50,7 @@ class AdminController extends Controller
                 'targetLink'        => NotificationHelper::getTargetTextLink($notification),
                 'targetText'        => NotificationHelper::getTargetText($notification),
             ];
-            if( $notification->type == 'complete job' ) {
-                $prettyNotification['innerBlog'] = InnerBlog::find($notification->reference_id);
-            }
-            else if( $notification->type == 'complete blog' ) {
+            if( $notification->type == 'complete blog' ) {
                 $prettyNotification['blog'] = Blog::find($notification->reference_id);
             }
             $prettyNotifications[] = $prettyNotification;
@@ -68,24 +66,15 @@ class AdminController extends Controller
             ];
         }
 
-        return view("dashboard", [
-            'currentSection'            => 'dashboard',
-            'notifications'             => $prettyNotifications,
-            'upcomingJobs'              => JobHelper::getUpcomingJobsForUser(),
-            'allWebsiteTypes'           => WebsiteHelper::getAllWebsiteTypes(),
-            'allAffiliateTypes'         => WebsiteHelper::getAllWebsiteAffiliates(),
-            'allDNSTypes'               => WebsiteHelper::getAllWebsiteDNS(),
-            'allPaymentGateways'        => WebsiteHelper::getAllPaymentGateways(),
-            'allEmailTypes'             => WebsiteHelper::getAllEmailTypes(),
-            'allSitemapTypes'           => WebsiteHelper::getAllSitemapTypes(),
-            'allLeftReviewTypes'        => WebsiteHelper::getAllLeftReviewTypes(),
-            'allPortfolioTypes'         => WebsiteHelper::getOnPortfolioTypes(),
-            'allShippingMethodTypes'    => WebsiteHelper::getShippingMethodTypes(),
-            'allYextTypes'              => WebsiteHelper::getYextTypes(),
-            'blogIndustries'            => BlogIndustry::orderBy('name')->get(),
-            'allIndustries'             => $prettyBlogIndustries,
-            'admins'                    => User::get(),
-        ]);
+        $this->data['currentSection'] = 'dashboard';
+        $this->data['notifications'] = $prettyNotifications;
+        $this->data['users'] = User::where('type', User::USER_TYPE_EMPLOYEE)
+            ->with('clientLeads')
+            ->with('projectManagers')
+            ->orderBy('name')
+            ->get();
+
+        return view("dashboard", $this->data);
 
     }
 
@@ -115,17 +104,18 @@ class AdminController extends Controller
      */
     public function dbSeed(Request $request)
     {
-        $histories = \App\ProfitLossHistory::all();
-        foreach ($histories as $history) {
-            $data = $history->data;
-            foreach( $data['profits'] as $index => $profit ) {
-                $data['profits'][$index]['name'] = str_replace('G Suite', 'Google Workspace', $data['profits'][$index]['name']);
+        return;
+        foreach (Client::get() as $client) {
+            $total = 0;
+            foreach ($client->websites as $website) {
+                $websiteService = $website->getProductValues(\App\AngelInvoice::crmProductKeys());
+                $total += $websiteService['total'];
             }
-            foreach( $data['expenses'] as $index => $expense ) {
-                $data['expenses'][$index]['name'] = str_replace('G Suite', 'Google Workspace', $data['expenses'][$index]['name']);
+
+            if ($total >= 0 && $total <= 300) {
+                $client->client_lead = 1;
+                $client->save();
             }
-           $history->data = $data;
-           $history->save();
         }
     }
 

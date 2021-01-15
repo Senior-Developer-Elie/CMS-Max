@@ -91,6 +91,7 @@
                                 @can('content manager')
                                     <th>Writer</th>
                                 @endcan
+                                <th>Project Manager</th>
                                 @foreach ($futureMonths as $index => $month)
                                     <th class = "text-center month-name-wrapper" width="350px">
                                         <span href="#" class="month-info-icon" data-toggle="tooltip" data-placement="top" title="Total Blogs for the month: {{ $totalBlogsForMonth[$index] }}">
@@ -123,6 +124,11 @@
                                         <th>{{ is_null($website['website']->assignee()) ? '' : $website['website']->assignee()->name }}</th>
                                     @endcan
 
+                                    <td>
+                                        @if ($website['website']->client()->projectManager)
+                                            {{ $website['website']->client()->projectManager->name }}
+                                        @endif
+                                    </td>
                                     @foreach ( $website['futureBlogs'] as $index => $blog )
                                         <td class="blog-cell {{ $blog['class'] }}" data-desired-date="{{ $futureMonths[$index] }}">
                                             <?php

@@ -113,7 +113,7 @@ var Completed_Websites = {
                         data: data.chartData,
                         options: barChartOptions
                     })
-                    for( let i = 3; i <= 7; i++){
+                    for( let i = 4; i <= 8; i++){
                         Completed_Websites.statisticsChart.getDatasetMeta(i).hidden=true;
                     }
                     Completed_Websites.statisticsChart.update();

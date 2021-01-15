@@ -14,7 +14,59 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-7">
+        <div class="col-6">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Employee Status</h3>
+                </div>
+                <div class="card-body">
+                    <table id="users-table" class="table table-sm table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Client Lead</th>
+                                <th>Project Manager</th>
+                                <th>Job Roles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('users.edit', $user) }}">
+                                            {{ $user->name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if ($user->clientLeads->where('archived', 0)->count() > 0)
+                                            <a href="{{ route('clients.index', ['user_id' => $user->id, 'filter_type' => 'client_lead']) }}">
+                                                {{ $user->clientLeads->count() }}
+                                            </a>
+                                        @else
+                                            {{ $user->clientLeads->where('archived', 0)->count() }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->projectManagers->count() > 0)
+                                            <a href="{{ route('clients.index', ['user_id' => $user->id, 'filter_type' => 'project_manager']) }}">
+                                                {{ $user->projectManagers->count() }}
+                                            </a>
+                                        @else
+                                            {{ $user->projectManagers->count() }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $user->job_roles }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
             <div class="card">
                 <div class="card-header with-border">
                     <h4 class="pull-left">Inbox</h4>
@@ -70,49 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-5">
-            <div class="card">
-                <div class="card-header with-border bg-warning">
-                    <h4 class="pull-left">Jobs within 7 days</h4>
-                </div>
-                <div class="card-body upcoming-jobs-wrapper">
-                    @foreach ($upcomingJobs as $job)
-                        <div class="inbox-thread">
-                            <div class="inbox-thread-type">
-                                <i class="fa fa-tasks"></i>
-                                <span class="text">Jobs To Do
-                            </div>
-                            <div class="inbox-thread-body">
-                                <h5 class="description-text">
-                                    <a href="/jobs?editInnerBlogId={{ $job->id }}" target="_blank">
-                                        {{ $job->title }}
-                                    </a>
-                                </h5>
-                                <div class="due-date-field">
-                                    Due Date : {{ (new \Carbon\Carbon($job->due_date))->format('m/d/y') }}
-                                </div>
-                                <div class="due-date-field">
-                                    Assignee  : {{ $job->assignee()->name }}
-                                </div>
-                                @if( !empty($job->needed_text) )
-                                    <h5 class="sub-text-in-list"><strong>Job Content</strong></h5>
-                                    <p> {!! $job->needed_text !!} </p>
-                                @endif
-                            </div>
-                            <div class="archive-notification-button-wrapper">
-                            </div>
-                        </div>
-                    @endforeach
-
-                    @if( count($upcomingJobs) == 0 )
-                        <h4 class="text-center">You don&rsquo;t have any jobs to do within 7 days.</h4>
-                    @endif
-                </div>
-            </div>
-        </div>
     </div>
-
-    @include("manage-client.modals.add-website")
 @endsection
 
 @section('css')

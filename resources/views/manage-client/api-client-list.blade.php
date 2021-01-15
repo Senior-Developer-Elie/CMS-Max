@@ -123,5 +123,5 @@
     <!-- DataTables -->
     <script src="{{ mix('js/datatable.js') }}"></script>
 
-    <script src="{{ asset('assets/js/client/api-client-list.js?v=6') }}"></script>
+    <script src="{{ asset('assets/js/client/api-client-list.js?v=7') }}"></script>
 @endsection

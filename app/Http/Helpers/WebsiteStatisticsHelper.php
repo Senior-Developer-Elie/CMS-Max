@@ -83,6 +83,16 @@ class WebsiteStatisticsHelper {
             'pointHighlightFill'    => '#fff',
             'pointHighlightStroke'  => 'rgba(198, 116, 80, 1)',
         ],
+        #591807
+        [
+            'backgroundColor'       => 'rgba(89, 24, 7, 0.9)',
+            'borderColor'           => 'rgba(89, 24, 7, 0.8)',
+            'pointRadius'           => false,
+            'pointColor'            => 'rgb(87,22,5)',
+            'pointStrokeColor'      => 'rgba(89, 24, 7, 1)',
+            'pointHighlightFill'    => '#fff',
+            'pointHighlightStroke'  => 'rgba(89, 24, 7, 1)',
+        ],
     ];
     /**
      * Get yearly chart data

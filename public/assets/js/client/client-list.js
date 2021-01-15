@@ -12,9 +12,11 @@ var Client_List = {
             "pageLength": 100,
             "columnDefs": [
                 isSuperAdmin ? {
-                    "targets": 3,
+                    "targets": 5,
                     "orderable": false
-                } : {}
+                } : {},
+
+                {targets: [3, 4], type: 'sortme'},
             ]
         });
         archivedClientListTable = $('#archived-clients-table').DataTable({
@@ -23,6 +25,14 @@ var Client_List = {
             'searching' : true,
             "pageLength": 100
         });
+
+        $.fn.dataTable.ext.type.order['sortme-pre'] = function (a, b) {
+            if (a == "") {
+                return "zzzzzzzz";
+            }
+
+            return a;
+        };
     },
 
     initActions: function(){

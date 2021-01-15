@@ -16,9 +16,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#crm-clients" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Clients : {{ count($clients) }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#archived-clients" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Archived Clients : {{ count($archivedClients) }}</a>
-                        </li>
+                        @if (! request()->has('user_id'))
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#archived-clients" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Archived Clients : {{ count($archivedClients) }}</a>
+                            </li>
+                        @endif
                     </ul>
                     <div class="tab-content" id="custom-content-below-tabContent">
                         <div class="tab-pane fade show active" role="tabpanel" id="crm-clients">
@@ -73,34 +75,36 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade show" role="tabpanel" id="archived-clients">
-                            <table id = "archived-clients-table" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Client Name</th>
-                                        <th>Assigned Websites</th>
-                                        <th>Archived At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($archivedClients as $client)
-                                        <tr data-client-id="{{ $client->id }}">
-                                            <td>
-                                                <a href = "{{ url('/client-history?clientId=' . $client->id) }}">
-                                                    {{ $client->name }}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                {{ count($client->websites()->get()) }}
-                                            </td>
-                                            <th>
-                                                {{ (new \Carbon\Carbon($client->archived_at))->format('m/d/Y') }}
-                                            </th>
+                        @if (! request()->has('user_id'))
+                            <div class="tab-pane fade show" role="tabpanel" id="archived-clients">
+                                <table id = "archived-clients-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Assigned Websites</th>
+                                            <th>Archived At</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($archivedClients as $client)
+                                            <tr data-client-id="{{ $client->id }}">
+                                                <td>
+                                                    <a href = "{{ url('/client-history?clientId=' . $client->id) }}">
+                                                        {{ $client->name }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ count($client->websites()->get()) }}
+                                                </td>
+                                                <th>
+                                                    {{ (new \Carbon\Carbon($client->archived_at))->format('m/d/Y') }}
+                                                </th>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -115,5 +119,5 @@
 @section('javascript')
     <!-- DataTables -->
     <script src="{{ mix('js/datatable.js') }}"></script>
-    <script src="{{ asset('assets/js/client/client-list.js?v=5') }}"></script>
+    <script src="{{ asset('assets/js/client/client-list.js?v=7') }}"></script>
 @endsection

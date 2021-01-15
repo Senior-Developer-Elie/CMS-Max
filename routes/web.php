@@ -71,17 +71,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/generate-pdf', 'CreditRateController@generatePDF');
 
     //Manage Users
-    Route::get('/manage-admin', 'ManageUsersController@index');
-    Route::get('/add-admin', 'ManageUsersController@addUser');
-    Route::post('/add-admin', 'ManageUsersController@addUser');
-    Route::get('/edit-admin/{user_id}', 'ManageUsersController@editUser');
-    Route::post('/edit-admin/{user_id}', 'ManageUsersController@editUser');
-    Route::get('/delete-admin/{user_id}', 'ManageUsersController@deleteUser');
-    Route::post('/delete-admin/{user_id}', 'ManageUsersController@deleteUser');
-    Route::post('/update-user-page-permissions', 'ManageUsersController@updatePagePermissions');
+    Route::group(['middleware' => 'admin:Manage Admins'], function() {
+        Route::resource('users', 'UserController', [
+            'except' => ['show']
+        ]); 
+        Route::get('users/{user}/delete', ['as' => 'users.confirm-delete', 'uses' => 'UserController@confirmDelete']);
 
-    Route::get('/get-permission', 'ManageUsersController@getPermission');
-    Route::post('/update-permission', 'ManageUsersController@updatePermission');
+        Route::post('/update-user-page-permissions', 'UserPagePermissionController@updatePagePermissions');
+        Route::get('/get-permission', 'UserPagePermissionController@getPermission');
+        Route::post('/update-permission', 'UserPagePermissionController@updatePermission');
+    });
 
     //Manage Blogs
     Route::get('/blog-dasboard', 'BlogController@index');
@@ -151,7 +150,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/inner-page-revert-file', 'InnerBlogController@markFileAsPending');
 
     //DB SEED
-    //Route::get('/db-seed', 'AdminController@dbSeed');
+    // Route::get('/db-seed', 'AdminController@dbSeed');
     Route::get('/remove-temp-uploaded-blog-files', 'AdminController@removeUploadedFiles');
 
     //Blog Industries
@@ -172,7 +171,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/archive-all-notifications', 'NotificationController@archiveAllNotifications');
 
     /**Clients */
-    Route::get('/client-list', 'ClientController@index');
+    Route::get('/client-list', ['as' => 'clients.index', 'uses' => 'ClientController@index']);
     Route::get('/client-notes-versions', 'ClientNotesVersionsController@show');
     Route::get('/client-history', 'ClientController@clientHistory');
     Route::post('/edit-blog-client/{client_id}', 'ClientController@editClient');

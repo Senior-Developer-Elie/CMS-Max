@@ -39,31 +39,10 @@ class WebsiteBudgetingController extends Controller
         else
             $websites = Website::where('archived', 0)->orderBy('name')->get();
 
-        $blogIndustries = BlogIndustry::orderBy('name')->get();
-        $prettyBlogIndustries = [];
-        foreach( $blogIndustries as $industry ){
-            $prettyBlogIndustries[] = [
-                'value' => $industry->id,
-                'text'  => $industry->name
-            ];
-        }
         return view('manage-website.budgeting-list', [
             'currentSection'            => 'budgeting',
             'websites'                  => $websites,
             'filterType'                => $filterType,
-            'allWebsiteTypes'           => WebsiteHelper::getAllWebsiteTypes(),
-            'allAffiliateTypes'         => WebsiteHelper::getAllWebsiteAffiliates(),
-            'allDNSTypes'               => WebsiteHelper::getAllWebsiteDNS(),
-            'allPaymentGateways'        => WebsiteHelper::getAllPaymentGateways(),
-            'allEmailTypes'             => WebsiteHelper::getAllEmailTypes(),
-            'allSitemapTypes'           => WebsiteHelper::getAllSitemapTypes(),
-            'allLeftReviewTypes'        => WebsiteHelper::getAllLeftReviewTypes(),
-            'allPortfolioTypes'         => WebsiteHelper::getOnPortfolioTypes(),
-            'allShippingMethodTypes'    => WebsiteHelper::getShippingMethodTypes(),
-            'allYextTypes'              => WebsiteHelper::getYextTypes(),
-            'blogIndustries'            => BlogIndustry::orderBy('name')->get(),
-            'allIndustries'             => $prettyBlogIndustries,
-            'admins'                    => User::get(),
             'apiProductsFields'         => AngelInvoice::products()
         ]);
     }
