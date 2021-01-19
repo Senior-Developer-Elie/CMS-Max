@@ -8,19 +8,22 @@ class ProposalTemplateService
 {
     const TEMPLATE_DATA = [
         Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING => [
+            'prepared_by' => 'Evolution Marketing',
             'phone' => "(585) 348-8127",
             'email' => "info@evolutionmarketing.com",
             'logo' => "evolution_marketing.logo"
         ],
         Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA => [
+            'prepared_by' => 'Evolution Marketing FLORIDA',
             'phone' => "954-932-4499",
             'email' => "info@evolutionsouthflorida.com",
             'logo' => "evolution_marketing_florida.logo"
         ],
         Proposal::TEMPLATE_TYPE_VENICE_ONWARD => [
+            'prepared_by' => 'Venice Onward',
             'phone' => "941-315-4004",
             'email' => "sam@veniceonward.com",
-            'logo' => "venice_onward.logo"
+            'logo' => "venice_onward.logo"  
         ]
     ];
 

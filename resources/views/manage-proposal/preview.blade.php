@@ -134,7 +134,7 @@
             <script src="{{ asset('assets/js/sign-page.js') }}"></script>
         @else
             <footer>
-                <span class = "prepared-by">Prepared by: Evolution Marketing</span>
+                <span class = "prepared-by">Prepared by: {{ $templateContent['prepared_by'] }}</span>
                 <span class = "phone-span">Phone: {{ $templateContent['phone'] }}</span>
                 <span class = "emaila">Email: {{ $templateContent['email'] }}</span>
                 <span>&nbsp;</span>
