@@ -8,6 +8,7 @@ class Proposal extends Model
 {
     const TEMPLATE_TYPE_EVOLUTION_MARKETING = 'evolution-marketing';
     const TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA = 'evolution-marketing-florida';
+    const TEMPLATE_TYPE_VENICE_ONWARD = 'venice-onward';
 
     //Casts
     protected $casts = [

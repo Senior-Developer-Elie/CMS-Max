@@ -196,8 +196,10 @@ var Proposal_Generator = {
         $(".template-type-select").change(function() {
             if ($(this).val() == 'evolution-marketing') {
                 $("#cms-logo").attr('src', 'assets/images/evolution-marketing-logo.png');
-            } else {
+            } else if ($(this).val() == 'evolution-marketing-florida') {
                 $("#cms-logo").attr('src', 'assets/images/evolution-marketing-south-fl.png');
+            } else if ($(this).val() == 'venice-onward') {
+                $("#cms-logo").attr('src', 'assets/images/venice-onward-logo.png');
             }
         }).trigger('change');
     }
