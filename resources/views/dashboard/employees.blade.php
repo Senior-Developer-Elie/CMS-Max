@@ -1,6 +1,6 @@
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="card-title">Employee Status</h3>
+        <h3 class="card-title">Employees ({{ count($employees) }})</h3>
     </div>
     <div class="card-body">
         <table id="users-table" class="table table-sm table-bordered table-striped table-hover">
