@@ -122,9 +122,9 @@ class WebsiteController extends Controller
         $this->data['admins'] = User::orderBy('name')->get();
         $this->data['clients'] = Client::orderBy('name')->get();
         $this->data['websiteProducts'] = $website->getProductsWithDefault();
-        $this->data['budgetProducts'] = $website->client()->apiProducts()->where('value', '>', 0)->orderBy('key')->get();
-        $this->data['totalBudget'] = $website->client()->apiProducts()->where('value', '>', 0)->sum('value');
         $this->data['products'] = AngelInvoice::products();
+
+        $this->prepareBudgetProducts($website);
 
         return view('websites.edit', $this->data);
     }
@@ -312,5 +312,26 @@ class WebsiteController extends Controller
         $website->apiProducts()
             ->whereNotIn('id', $syncedWebsiteApiProductIds)
             ->delete();
+    }
+
+    protected function prepareBudgetProducts(Website $website)
+    {
+        $budgetProducts = collect();
+        $totalBudget = 0;
+
+        $websiteService = $website->getProductValues(\App\AngelInvoice::crmProductKeys());
+
+        foreach (AngelInvoice::products() as $crmProductKey => $apiProductKey) {
+            if (($websiteService[$crmProductKey] ?? 0) > 0) {
+                $budgetProducts[] = (object)[
+                    'value' => $websiteService[$crmProductKey],
+                    'name' => $apiProductKey,
+                ];
+
+                $totalBudget += $websiteService[$crmProductKey];
+            }
+        }
+        $this->data['budgetProducts'] = $budgetProducts;
+        $this->data['totalBudget'] = $totalBudget;
     }
 }

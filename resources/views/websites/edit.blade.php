@@ -360,13 +360,11 @@
                     <div class="card-body clearfix">
                         <table class="table table-bordered table-sm">
                             <tbody>
-                                @foreach ($budgetProducts as $product)
-                                    @if (isset($products[$product->key]))
-                                        <tr>
-                                            <td>{{ $products[$product->key] }}</td>
-                                            <td>${{ prettyFloat($product->value) }}</td>
-                                        </tr>
-                                    @endif
+                                @foreach ($budgetProducts as $budgetProduct)
+                                    <tr>
+                                        <td>{{ $budgetProduct->name }}</td>
+                                        <td>${{ prettyFloat($budgetProduct->value) }}</td>
+                                    </tr>
                                 @endforeach
                                 <tr>
                                     <tr>
