@@ -163,6 +163,7 @@ class BlogController extends Controller
 
         $data = [
             'currentSection'                => 'blog-dashboard',
+            'initialExpandOnHover'          => true,
             'websites'                      => $prettyWebsites,
             'pendingBlogsToAddTitle'        => count(BlogHelper::getPendingToAddTitleBlogs(Auth::user())),
             'pendingBlogsToWrite'           => count(BlogHelper::getPendingToWriteBlogs(Auth::user())),

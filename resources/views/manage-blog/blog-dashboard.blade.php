@@ -86,7 +86,6 @@
                         <thead>
                             <tr>
                                 <th width="250px">Website Name</th>
-                                <th width="180px">Target Area</th>
                                 <th width="80px">Frequency</th>
                                 @can('content manager')
                                     <th>Writer</th>
@@ -109,12 +108,10 @@
                                         <a class="client-name" href="{{ url('client-history?clientId=' . $website['website']->client()->id) }}">
                                             <span data-toggle="tooltip" data-placement="top" title="View Client">{{ $website['website']->name }}</span>
                                         </a>
+                                        {{ $website['website']->target_area }}
                                         <a href="//{{ $website['website']->website }}" target="_blank" class="client-info-icon" data-toggle="tooltip" data-placement="top" title="{{ $website['website']->website }}">
                                             <i class="fa fa-info-circle"></i>
                                         </a>
-                                    </td>
-                                    <td>
-                                        {{ $website['website']->target_area }}
                                     </td>
                                     <td style="text-transform:capitalize">
                                         {{ $website['website']->frequency }}

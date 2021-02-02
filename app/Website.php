@@ -173,7 +173,7 @@ class Website extends Model
      */
     public function futureBlogs($months)
     {
-        $startDate = (new Carbon('first day of this month'))->startOfDay();
+        $startDate = (new Carbon('first day of this month'))->startOfDay()->subMonths(1);
         $endDate = (new Carbon('first day of this month'))->startOfDay()->addMonths($months);
 
         $blogs = $this->blogs()
@@ -193,7 +193,7 @@ class Website extends Model
         $availableMonths = [];
 
         $createdDate = (new Carbon($this->start_date))->startOfMonth();
-        for( $i = 0; $i < $months; $i++ ) {
+        for( $i = -1; $i < $months; $i++ ) {
             $date = (new Carbon('first day of this month'))->startOfDay()->addMonths($i);
 
             if( $date < $createdDate )

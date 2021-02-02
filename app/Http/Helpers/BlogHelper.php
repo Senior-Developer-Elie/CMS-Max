@@ -17,7 +17,7 @@ class BlogHelper {
     {
         $futureDates = [];
 
-        for( $i = 0; $i < $months; $i++ ) {
+        for( $i = -1; $i < $months; $i++ ) {
             $futureDates[] = (new Carbon('first day of this month'))->startOfDay()->addMonths($i);
         }
         return $futureDates;
