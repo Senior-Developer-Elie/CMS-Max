@@ -638,7 +638,7 @@ class BlogController extends Controller
                 foreach( explode(',', $blog->blog_image) as $index=>$path) {
                     $filePath = Storage::url($path);
                     $path_info = pathinfo($filePath);
-                    $zip->addFromString(str_replace('?', '', $blog->name) . (count(explode(',', $blog->blog_image)) == 1 ? '' : (' - ' . ($index+1))) . '.' . $path_info['extension'], Storage::disk('s3')->get($path));
+                    $zip->addFromString(str_replace('/', '', str_replace('?', '', $blog->name)) . (count(explode(',', $blog->blog_image)) == 1 ? '' : (' - ' . ($index+1))) . '.' . $path_info['extension'], Storage::disk('s3')->get($path));
                 }
             }
             $downloadFileName = $blog->name . " " . (new Carbon($blog->desired_date))->format('M Y') . ".zip";
@@ -652,14 +652,14 @@ class BlogController extends Controller
 
             $filePath = Storage::url($blog->blog_url);
             $path_info = pathinfo($filePath);
-            $zip->addFromString(str_replace('?', '', $blog->name) . '.' . $path_info['extension'], Storage::disk('s3')->get($blog->blog_url));
+            $zip->addFromString(str_replace('/', '', str_replace('?', '', $blog->name)) . '.' . $path_info['extension'], Storage::disk('s3')->get($blog->blog_url));
             $zip->addEmptyDir('images');
 
             if( !is_null($blog->blog_image) ){
                 foreach( explode(',', $blog->blog_image) as $index=>$path) {
                     $filePath = Storage::url($path);
                     $path_info = pathinfo($filePath);
-                    $zip->addFromString('images/' . str_replace('?', '', $blog->name) . (count(explode(',', $blog->blog_image)) == 1 ? '' : (' - ' . ($index+1))) . '.' . $path_info['extension'], Storage::disk('s3')->get($path));
+                    $zip->addFromString('images/' . str_replace('/', '', str_replace('?', '', $blog->name)) . (count(explode(',', $blog->blog_image)) == 1 ? '' : (' - ' . ($index+1))) . '.' . $path_info['extension'], Storage::disk('s3')->get($path));
                 }
             }
 
