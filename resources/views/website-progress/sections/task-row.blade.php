@@ -33,7 +33,7 @@
         </a>
     </div>
     <div class="TaskCell GridCell ProgressCell text-center">
-        <span class="pre-live-check-count">{{ $task === false ? "" : (is_null($task->pre_live) ? 0 : count($task->pre_live)) }}/12</span>
+        <span class="pre-live-check-count">{{ $task === false ? "" : (is_null($task->pre_live) ? 0 : count($task->pre_live)) }}/13</span>
     </div>
     @if( $task !== false && $task->completed )
         <div class="TaskCell GridCell CompletedAtCell text-center">
