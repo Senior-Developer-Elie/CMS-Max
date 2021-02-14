@@ -26,6 +26,7 @@ class TaskHelper {
             //"cross-browser-testing"         => "Cross browser testing",
             "broken-link-scanner-done"      => "Broken link scanner done",
             "google-analytics-access"       => "Google Analytics Access",
+            "setup-google-search-console"   => "Setup Google Search Console",
             "checked-301-redirects"         => "Checked 301 Redirects",
             "favicon"                       => "Favicon",
             "social-media-image"            => "Social Media Image"
