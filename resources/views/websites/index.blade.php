@@ -19,6 +19,9 @@
                                 <i class="fa fa-plus"></i> Add Website
                             </button>
                         </a>
+                        <button id="export-websites-budget-button" type="button" class="btn btn-info pull-right mr-3">
+                            <i class="fas fa-download"></i> Export Websites Budget
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -42,6 +45,10 @@
             </div>
         </div>
     </div>
+
+    <form id="websites-budget-export-form" role="form" action="{{ route("websites.export-budget") }}" target="_blank" method="POST" style="display:none;">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </form>
 @endsection
 
 @section('css')
@@ -76,5 +83,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-list.js?v=45') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=46') }}"></script>
 @endsection

@@ -197,6 +197,7 @@ Route::group(['middleware' => 'web'], function () {
         'except' => ['show']
     ]);
     //Route::delete('websites/{website}', 'Website\WebsiteController@destroy');
+    Route::post('websites/export-budget', ['as' => 'websites.export-budget', 'uses' => 'Website\WebsiteBudgetExportController@index']);
     Route::get('websites/{website}/delete', ['as' => 'websites.confirm-delete', 'uses' => 'Website\WebsiteController@confirmDelete']);
     Route::post('websites/{website}/archive', ['as' => 'websites.archive', 'uses' => 'Website\WebsiteController@archive']);
     Route::post('websites/{website}/restore', ['as' => 'websites.restore', 'uses' => 'Website\WebsiteController@restore']);

@@ -11,6 +11,7 @@ var Website_List = {
 
         //init website add edit action
         this.initWebsiteAddEditAction();
+        this.initExportWebsitesBudget();
     },
 
     initDataTable: function(){
@@ -260,6 +261,12 @@ var Website_List = {
         } );
 
         return array;
+    },
+
+    initExportWebsitesBudget: function() {
+        $("#export-websites-budget-button").click(function() {
+            $("#websites-budget-export-form").submit();
+        })
     }
 };
 
