@@ -29,7 +29,7 @@ class TaskHelper {
             "setup-google-search-console"   => "Setup Google Search Console",
             "checked-301-redirects"         => "Checked 301 Redirects",
             "favicon"                       => "Favicon",
-            "social-media-image"            => "Social Media Image"
+            "tap-clicks"                    => "TapClicks"
         ];
     }
 }
