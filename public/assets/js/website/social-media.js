@@ -16,7 +16,7 @@ var Websites_Social_Media = {
 
     initDataTable: function(){
         Websites_Social_Media.activeWebsitesTable = $('#website-list-table').DataTable({
-            "order"     : [[ 0, "asc" ]],
+            "order"     : [[ 3, "desc" ]],
             'paging'    : true,
             'searching' : true,
             "pageLength": -1,
