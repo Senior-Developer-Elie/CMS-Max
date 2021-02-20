@@ -12,6 +12,7 @@ var Website_List = {
         //init website add edit action
         this.initWebsiteAddEditAction();
         this.initExportWebsitesBudget();
+        this.initFilter();
     },
 
     initDataTable: function(){
@@ -267,6 +268,12 @@ var Website_List = {
         $("#export-websites-budget-button").click(function() {
             $("#websites-budget-export-form").submit();
         })
+    },
+
+    initFilter: function() {
+        $("#blog-industry-filter").change(function() {
+            location.href = siteUrl + "/websites?blog_industry_id=" + $(this).val()
+        });
     }
 };
 

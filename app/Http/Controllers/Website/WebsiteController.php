@@ -43,20 +43,19 @@ class WebsiteController extends Controller
 
         $this->data = [];
 
-        // Prepare blog industries
-        $blogIndustries = array_map(function($blogIndustry){
+        $this->data['blogIndustries']           = $this->getBlogIndustriesForFilter();
+        $this->data['blogIndustriesForInline'] = array_map(function($blogIndustry){
             return [
                 'value' => $blogIndustry['id'],
                 'text'  => $blogIndustry['name']
             ];
-        }, BlogIndustry::orderBy('name')->get()->toArray());
+        }, $this->data['blogIndustries']->toArray());
 
         $this->data['currentSection']           = 'website-list';
         $this->data['initialExpandOnHover']     = true;
-        $this->data['websites']                 = Website::where('archived', 0)->get();
+        $this->data['websites']                 = $this->getActiveWebsites();
         $this->data['archivedWebsites']         = Website::where('archived', 1)->get();
-        $this->data['blogIndustries']           = BlogIndustry::orderBy('name')->get();
-        $this->data['allIndustries']            = $blogIndustries;
+        $this->data['blogIndustries']           = $this->getBlogIndustriesForFilter();
         $this->data['admins']                   = User::get();
 
         $this->prepareWebsiteAttributes();
@@ -333,5 +332,30 @@ class WebsiteController extends Controller
         }
         $this->data['budgetProducts'] = $budgetProducts;
         $this->data['totalBudget'] = $totalBudget;
+    }
+    
+    protected function getActiveWebsites()
+    {
+        $query = Website::where('archived', 0);
+
+        if (! empty(request()->input('blog_industry_id'))) {
+            $query->where('blog_industry_id', request()->input('blog_industry_id'));
+        }
+
+        return $query->get();
+    }
+
+    protected function getBlogIndustriesForFilter()
+    {
+        return BlogIndustry::orderBy('name')
+            ->with('websites')
+            ->get()
+            ->map(function($blogIndustry) {
+                $blogIndustry->active_websites_count = $blogIndustry->websites->filter(function($website) {
+                    return ! $website->archived;
+                })->count();
+
+                return $blogIndustry;
+            });
     }
 }

@@ -35,6 +35,15 @@
                     </ul>
                     <div class="tab-content" id="custom-content-below-tabContent">
                         <div class="tab-pane fade show active" role="tabpanel" id="websites-wrapper">
+                            
+                            <select class="form-control" id="blog-industry-filter">
+                                <option>All Industries</option>
+                                @foreach ($blogIndustries as $blogIndustry)
+                                    <option value="{{ $blogIndustry->id }}" {{ Request::input('blog_industry_id') == $blogIndustry->id ? 'selected' : '' }}>
+                                        {{ $blogIndustry->name }} ({{ $blogIndustry->active_websites_count }})
+                                    </option>
+                                @endforeach
+                            </select>
                             @include('manage-website.sections.website-table', [ 'websites' => $websites, 'archived' => false ])
                         </div>
                         <div class="tab-pane fade show" role="tabpanel" id="archived-websites-wrapper">
@@ -75,7 +84,7 @@
         var allPortfolioTypes = {!! json_encode($portfolioTypes) !!};
         var allShippingMethodTypes = {!! json_encode($shippingMethodTypes) !!};
         var allYextTypes = {!! json_encode($yextTypes) !!};
-        var allIndustries = {!! json_encode($allIndustries) !!};
+        var allIndustries = {!! json_encode($blogIndustriesForInline) !!};
     </script>
 
     <script src="{{ mix('js/datatable.js') }}"></script>
@@ -83,5 +92,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-list.js?v=46') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=47') }}"></script>
 @endsection

@@ -53,3 +53,7 @@ table.table tr:hover{
 .select2-container{
     margin-right: 5px !important;
 }
+#blog-industry-filter{
+    margin-bottom: 5px;
+    width: 250px;
+}

@@ -13,6 +13,6 @@ class BlogIndustry extends Model
      */
     public function websites()
     {
-        return $this->hasMany('App\Website', 'blog_industry_id')->get();
+        return $this->hasMany('App\Website', 'blog_industry_id');
     }
 }
