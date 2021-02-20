@@ -1,12 +1,13 @@
 var Websites_Social_Media = {
 
     activeWebsitesTable: false,
-    archivedWebsitesTable: false,
+    // archivedWebsitesTable: false,
 
     init : function(){
         this.initDataTable();
         this.initInlineEditable();
-        this.initArchiveActions();
+        this.initFilterActions();
+        // this.initArchiveActions();
         this.initTooltip();
     },
 
@@ -60,8 +61,9 @@ var Websites_Social_Media = {
 
                 // Remove the formatting to get integer data for summation
                 var floatConversion = function ( i ) {
-                    if( i.toString().startsWith("<span") ) {
+                    if( i.toString().startsWith("<a") ) {
                         value = parseFloat($(i).attr('data-value'));
+                        value = isNaN(value) ? 0 : value;
                         if( value < 0 )
                             return 0;
                         return value;
@@ -87,15 +89,41 @@ var Websites_Social_Media = {
                         '$' + Math.round(pageTotal).toLocaleString()
                     );
                 }
-            }
+            },
+            'language' : {
+                'lengthMenu': `
+                    Show _MENU_ entries<div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="show-clients-only" checked>
+                        <label class="form-check-label" for="show-clients-only">Show clients only</label>
+                    </div>`,
+            },
+            "rowCallback": function( row, data ) {
+                let budgetValue = parseFloat($(row).find('a.social-budget-value').attr('data-value'));
+                budgetValue = isNaN(budgetValue) ? 0 : budgetValue;
+
+                if ($("#show-clients-only").prop('checked') && budgetValue < 1) {
+                    $(row).hide();
+                } else {
+                    $(row).show();
+                }
+            },
+            "drawCallback":function(){
+                $("#websites-count").text('(' +$("#website-list-table tbody tr:visible").length + ')');
+            },
         });
-        Websites_Social_Media.archivedWebsitesTable = $('#archived-website-list-table').DataTable({
-            "order"     : [[ 0, "asc" ]],
-            'paging'    : true,
-            'searching' : true,
-            "pageLength": -1,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            fixedHeader: true,
+        // Websites_Social_Media.archivedWebsitesTable = $('#archived-website-list-table').DataTable({
+        //     "order"     : [[ 0, "asc" ]],
+        //     'paging'    : true,
+        //     'searching' : true,
+        //     "pageLength": -1,
+        //     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        //     fixedHeader: true,
+        // });
+    },
+
+    initFilterActions: function() {
+        $(document).on('change', '#show-clients-only', function() {
+            Websites_Social_Media.activeWebsitesTable.draw();
         });
     },
 

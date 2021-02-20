@@ -39,14 +39,15 @@ class SocialMediaController extends Controller
         if( !Auth::user()->hasPagePermission('Social Media') )
             return redirect('/webadmin');
 
-        $activeWebsites = Website::where('social_media_archived', 0)
+        $activeWebsites = Website::query()
+            // ->where('social_media_archived', 0)
             ->where('archived', 0)
-            ->orderBy('name')
+            // ->orderBy('name')
             ->get();
-        $archivedWebsites = Website::where('social_media_archived', 1)
-            ->where('archived', 0)
-            ->orderBy('name')
-            ->get();
+        // $archivedWebsites = Website::where('social_media_archived', 1)
+        //     ->where('archived', 0)
+        //     ->orderBy('name')
+        //     ->get();
 
         // Attach plan
         $activeWebsites->map(function($website) {
@@ -61,7 +62,7 @@ class SocialMediaController extends Controller
         return view('manage-website.social-media-list', [
             'currentSection'        => 'social-media',
             'activeWebsites'        => $activeWebsites,
-            'archivedWebsites'      => $archivedWebsites,
+            // 'archivedWebsites'      => $archivedWebsites,
         ]);
     }
 
