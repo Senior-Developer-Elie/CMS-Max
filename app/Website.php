@@ -64,7 +64,9 @@ class Website extends Model
         'post_live_check_archived',
 
         'billing_type',
-        'billing_amount'
+        'billing_amount',
+
+        'social_calendar',
     ];
 
     protected $casts = [

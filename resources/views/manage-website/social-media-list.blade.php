@@ -38,8 +38,22 @@
                                 <tbody>
                                     @foreach ( $activeWebsites as $website )
                                         <tr data-website-id="{{ $website->id }}">
-                                            <td>
-                                                {{ $website->name }}
+                                            <td class="website-url-wrapper">
+                                                <a href="{{ url('/client-history?clientId=' . $website->client_id) }}" data-toggle="tooltip" data-placement="top" title="Go to client" data-html="true">
+                                                    {{ $website->website }}
+                                                </a>
+                                                <div class="website-info-icons">
+                                                    @if( !empty($website->drive) )
+                                                        <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
+                                                            <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
+                                                        </a>
+                                                    @endif
+                                                    @if( !empty($website->social_calendar) )
+                                                        <a class="website-google-drive-link-icon" href = "{{ $website->social_calendar }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Social Calendar">
+                                                            <img src="{{ asset('assets/images/social-calendar-icon.png') }}" />
+                                                        </a>
+                                                    @endif
+                                                </div>
                                             </td>
                                             <td>
                                                 <a href = "//{{ $website->website }}" data-value="{{ $website->website }}" target="_blank">
@@ -130,6 +144,8 @@
 
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/social-media-list.css') }}">
 @endsection
 @section('javascript')
     <script src="{{ mix('js/datatable.js') }}"></script>
@@ -137,5 +153,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=5') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=6') }}"></script>
 @endsection

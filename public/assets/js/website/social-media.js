@@ -7,6 +7,11 @@ var Websites_Social_Media = {
         this.initDataTable();
         this.initInlineEditableForNotes();
         this.initArchiveActions();
+        this.initTooltip();
+    },
+
+    initTooltip: function() {
+        $('[data-toggle="tooltip"]').tooltip();
     },
 
     initDataTable: function(){
