@@ -40,7 +40,7 @@
                                         <tr data-website-id="{{ $website->id }}">
                                             <td class="website-url-wrapper">
                                                 <a href="{{ url('/client-history?clientId=' . $website->client_id) }}" data-toggle="tooltip" data-placement="top" title="Go to client" data-html="true">
-                                                    {{ $website->website }}
+                                                    {{ $website->name }}
                                                 </a>
                                                 <div class="website-info-icons">
                                                     @if( !empty($website->drive) )
@@ -153,5 +153,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=8') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=9') }}"></script>
 @endsection

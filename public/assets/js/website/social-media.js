@@ -15,6 +15,32 @@ var Websites_Social_Media = {
     },
 
     initDataTable: function(){
+        $.fn.dataTable.ext.type.order['float-desc'] = function (x, y) {
+            x = parseFloat($(x).attr('data-value'));
+            y = parseFloat($(y).attr('data-value'));
+            y = parseInt(y);
+
+            if ( x > y)
+            {
+                return -1;
+            }
+
+            return 1;
+        };
+
+        $.fn.dataTable.ext.type.order['float-asc'] = function (x, y) {
+            x = parseFloat($(x).attr('data-value'));
+            y = parseFloat($(y).attr('data-value'));
+            y = parseInt(y);
+
+            if ( x > y)
+            {
+                return 1;
+            }
+
+            return -1;
+        };
+
         Websites_Social_Media.activeWebsitesTable = $('#website-list-table').DataTable({
             "order"     : [[ 3, "desc" ]],
             'paging'    : true,
@@ -22,7 +48,7 @@ var Websites_Social_Media = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columnDefs: [
-                {targets: [1, 3], type: 'sortme'},
+                {targets: [3], type: 'float'},
             ],
             fixedHeader: true,
             "footerCallback": function ( row, data, start, end, display ) {
@@ -65,14 +91,8 @@ var Websites_Social_Media = {
             'searching' : true,
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columnDefs: [
-                {targets: [1, 2], type: 'sortme'},
-            ],
             fixedHeader: true,
         });
-        $.fn.dataTable.ext.type.order['sortme-comment'] = function (a, b) {
-            return parseFloat($(a).attr('data-value'));
-        };
     },
 
     initInlineEditableForNotes: function(){
