@@ -91,6 +91,13 @@ class Website extends Model
         return parent::castAttribute($key, $value);
     }
 
+    public function scopeNotArchived($query)
+    {
+        $query->where('archived', 0);
+
+        return $query;
+    }
+
     //Event Handler
     public static function boot() {
         parent::boot();

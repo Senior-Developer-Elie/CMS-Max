@@ -31,10 +31,23 @@ class WebsitesStatisticsController extends Controller
         if( !Auth::user()->hasPagePermission('History & Stats') )
             return redirect('/webadmin');
 
-        $completedTasks = Task::where('stage_id', 10)->orderBy('name')->whereNull('website_id')->get();
-        $liveWebsites = Website::where('type', '!=', 'no-website')->where('type', '!=', 'redirect-website')->orderBy('name')->get();
-        $noWebsites = Website::where('type', 'no-website')->orderBy('name')->get();
-        $redirectWebsites = Website::where('type', 'redirect-website')->orderBy('name')->get();
+        $completedTasks = Task::where('stage_id', 10)
+            ->orderBy('name')
+            ->whereNull('website_id')
+            ->get();
+        $liveWebsites = Website::where('type', '!=', 'no-website')
+            ->where('type', '!=', 'redirect-website')
+            ->orderBy('name')
+            ->notArchived()
+            ->get();
+        $noWebsites = Website::where('type', 'no-website')
+            ->orderBy('name')
+            ->notArchived()
+            ->get();
+        $redirectWebsites = Website::where('type', 'redirect-website')
+            ->orderBy('name')
+            ->notArchived()
+            ->get();
 
         return view('website-statistics.index', [
             'currentSection'    => 'website-completed',
