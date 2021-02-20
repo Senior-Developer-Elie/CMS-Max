@@ -22,7 +22,7 @@
                                 <th>Plan</th>
                                 <th>Budget</th>
                                 <th width="40%">Notes</th>
-                                <th width="120px">Actions</th>
+                                {{-- <th width="120px">Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -61,9 +61,9 @@
                                         <a href="#" class="social-media-notes" data-value="{{ $website->social_media_notes }}">
                                         </a>
                                     </td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         <button type="button" class="btn btn-warning pull-left archive-btn">Archive Website</button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -99,5 +99,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=11') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=12') }}"></script>
 @endsection

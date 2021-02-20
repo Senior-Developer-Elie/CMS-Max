@@ -166,6 +166,11 @@ var Websites_Social_Media = {
                         $(this).html("$0");
                 }
             });
+
+            $(element).on('save', function(e, params) {
+                $(e.target).attr('data-value', params.newValue);
+                Websites_Social_Media.activeWebsitesTable.draw();
+            });
         })
     },
 
