@@ -80,6 +80,13 @@
                                 <input type="text" name = "job_roles" class="form-control" value="{{ old('job_roles') }}" />
                             </div>
                         </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="email_notification_enabled" {{ old_checked('email_notification_enabled') }}>
+                                <strong class="ml-1">Enable Email Notification</strong>
+                            </label>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

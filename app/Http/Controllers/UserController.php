@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\UserHelper;
+use App\Sanitizers\UserSanitizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -54,7 +55,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = (new UserSanitizer())->sanitize($request->all());
         $validator = new UserValidator();
         if (! $validator->validate($data, 'create')) {
             return redirect()->back()->withInput($data)->withErrors($validator->getErrors());
@@ -101,7 +102,7 @@ class UserController extends Controller
      */
     public function update(User $user, Request $request)
     {
-        $data = $request->all();
+        $data = (new UserSanitizer())->sanitize($request->all());
 
         $validator = new UserValidator();
         $validator->ignoreIdForUniqueRule('update', 'email', $user->id);
