@@ -29,6 +29,7 @@ class TaskHelper {
             "setup-google-search-console"   => "Setup Google Search Console",
             "checked-301-redirects"         => "Checked 301 Redirects",
             "favicon"                       => "Favicon",
+            "setup-google-recaptcha"        => "Setup Google reCAPTCHA",
             "tap-clicks"                    => "TapClicks",
             "signed-up-for-cms-max"         => "Signed up for CMS Max",
         ];
