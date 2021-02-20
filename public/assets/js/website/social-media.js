@@ -5,7 +5,7 @@ var Websites_Social_Media = {
 
     init : function(){
         this.initDataTable();
-        this.initInlineEditableForNotes();
+        this.initInlineEditable();
         this.initArchiveActions();
         this.initTooltip();
     },
@@ -18,7 +18,9 @@ var Websites_Social_Media = {
         $.fn.dataTable.ext.type.order['float-desc'] = function (x, y) {
             x = parseFloat($(x).attr('data-value'));
             y = parseFloat($(y).attr('data-value'));
-            y = parseInt(y);
+
+            x = isNaN(x) ? 0 : x;
+            y = isNaN(y) ? 0 : y;
 
             if ( x > y)
             {
@@ -31,7 +33,9 @@ var Websites_Social_Media = {
         $.fn.dataTable.ext.type.order['float-asc'] = function (x, y) {
             x = parseFloat($(x).attr('data-value'));
             y = parseFloat($(y).attr('data-value'));
-            y = parseInt(y);
+
+            x = isNaN(x) ? 0 : x;
+            y = isNaN(y) ? 0 : y;
 
             if ( x > y)
             {
@@ -95,7 +99,7 @@ var Websites_Social_Media = {
         });
     },
 
-    initInlineEditableForNotes: function(){
+    initInlineEditable: function(){
         //X Editable Options
         $.fn.editable.defaults.send = "always";
         $.fn.editable.defaults.ajaxOptions = {
@@ -114,6 +118,25 @@ var Websites_Social_Media = {
                 type        : 'textarea',
                 pk          : websiteId,
                 name        : 'social_media_notes',
+            });
+        })
+
+        $("a.social-budget-value").each(function(index, element){
+            websiteId = $(element).closest('tr').attr('data-website-id');
+            $(element).editable({
+                type        : 'text',
+                pk          : websiteId,
+                name        : 'social_budget',
+                display     : function( value, sourceData ){
+                    if( value == "0" )
+                    {
+                        $(this).html("$" + value);
+                    }
+                    else if( parseFloat(value) >= 0 )
+                        $(this).html("$" + value);
+                    else
+                        $(this).html("$0");
+                }
             });
         })
     },

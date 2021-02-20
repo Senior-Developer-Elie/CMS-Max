@@ -64,17 +64,8 @@
                                                 {{ $website->plan ?? "" }}
                                             </td>
                                             <td class="text-center">
-                                                @php
-                                                    $socialMediaManagementFee = \array_sum([
-                                                        $website->getProductValue(\App\AngelInvoice::CRM_KEY_FACEBOOK_CUSTOM),
-                                                        $website->getProductValue(\App\AngelInvoice::CRM_KEY_FACEBOOK_ACCELERATE),
-                                                        $website->getProductValue(\App\AngelInvoice::CRM_KEY_FACEBOOK_GROW),
-                                                        $website->getProductValue(\App\AngelInvoice::CRM_KEY_FACEBOOK_BUILD),
-                                                    ]);
-                                                @endphp
-                                                <span data-value="{{ $socialMediaManagementFee }}">
-                                                    {{ getPrettyServiceString($socialMediaManagementFee, true) }}
-                                                </span>
+                                                <a href="#" class="social-budget-value" data-value="{{ $website->social_budget }}">
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href="#" class="social-media-notes" data-value="{{ $website->social_media_notes }}">
@@ -153,5 +144,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=9') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=10') }}"></script>
 @endsection

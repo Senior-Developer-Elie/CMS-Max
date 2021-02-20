@@ -67,6 +67,7 @@ class Website extends Model
         'billing_amount',
 
         'social_calendar',
+        'social_budget'
     ];
 
     protected $casts = [
