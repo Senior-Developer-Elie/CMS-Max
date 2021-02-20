@@ -71,7 +71,7 @@ var Websites_Social_Media = {
             fixedHeader: true,
         });
         $.fn.dataTable.ext.type.order['sortme-comment'] = function (a, b) {
-            return $(a).attr('data-value');
+            return parseFloat($(a).attr('data-value'));
         };
     },
 
