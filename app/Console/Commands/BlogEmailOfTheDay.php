@@ -65,7 +65,7 @@ class BlogEmailOfTheDay extends Command
     {
         $admins = \App\User::get();
         foreach( $admins as $admin ) {
-            if (! $admin->email_notification_enabled) {
+            if (! $admin->email_notification_enabled && ! $admin->hasRole('super admin')) {
                 continue;
             }
             $notifications = [];
