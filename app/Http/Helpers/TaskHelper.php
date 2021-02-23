@@ -28,6 +28,7 @@ class TaskHelper {
             "google-analytics-access"       => "Google Analytics Access",
             "setup-google-search-console"   => "Setup Google Search Console",
             "checked-301-redirects"         => "Checked 301 Redirects",
+            "social-image"                  => "Social Image",
             "favicon"                       => "Favicon",
             "setup-google-recaptcha"        => "Setup Google reCAPTCHA",
             "tap-clicks"                    => "TapClicks",
