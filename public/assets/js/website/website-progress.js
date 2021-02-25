@@ -1789,7 +1789,7 @@ var Task_Details_Widget = {
      * Update Pre Live Check box checked count on task row
      */
     updateProgressCountInTaskRow() {
-        $(".TaskRow[data-task-id='" + Task_Details_Widget.task.id + "']").find(".pre-live-check-count").html($("#task-details-wrapper .pre-live-options .pre-post-option:checked").length + "/12");
+        $(".TaskRow[data-task-id='" + Task_Details_Widget.task.id + "']").find(".pre-live-check-count").html($("#task-details-wrapper .pre-live-options .pre-post-option:checked").length + "/16");
     },
 
     /**

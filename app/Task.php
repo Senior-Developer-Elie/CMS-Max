@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Helpers\TaskHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -118,5 +119,21 @@ class Task extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment', 'task_id');
+    }
+
+    /**
+     * Get active checkboxes count for pre live
+     */
+    public function getPreLiveCheckedCountAttribute()
+    {
+        if (! is_array($this->pre_live)) {
+            return 0;
+        }
+
+        $activePreLiveOptions = array_filter($this->pre_live, function($option) {
+            return $option['checked_by'] ?? 0 > 0;
+        });
+
+        return count(array_intersect(array_keys($activePreLiveOptions), array_keys(TaskHelper::getAllPreLiveOptions())));
     }
 }
