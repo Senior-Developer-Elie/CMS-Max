@@ -68,6 +68,9 @@ class AdminController extends Controller
 
         $this->data['currentSection'] = 'dashboard';
         $this->data['notifications'] = $prettyNotifications;
+        $this->data['users'] = User::orderBy('name')
+            ->where('email', '!=' ,'sam@evolutionmarketing.com')
+            ->get();
         $this->data['employees'] = User::where('type', User::USER_TYPE_EMPLOYEE)
             ->with('clientLeads')
             ->with('projectManagers')

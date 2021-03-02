@@ -18,6 +18,8 @@
             @include('dashboard.employees')
 
             @include('dashboard.contractors')
+
+            @include('dashboard.cmsmax-developers')
         </div>
 
         <div class="col-6">
