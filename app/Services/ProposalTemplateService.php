@@ -24,7 +24,13 @@ class ProposalTemplateService
             'phone' => "941-315-4004",
             'email' => "sam@veniceonward.com",
             'logo' => "venice_onward.logo"  
-        ]
+        ],
+        Proposal::TEMPLATE_TYPE_LIQUOR_CMS => [
+            'prepared_by' => 'Liquor CMS',
+            'phone' => "585-348-8127",
+            'email' => "sam@liquorcms.com",
+            'logo' => "liquor_cms.logo"  
+        ],
     ];
 
     public static function getTemplateContent($templateType)

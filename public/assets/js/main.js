@@ -200,6 +200,8 @@ var Proposal_Generator = {
                 $("#cms-logo").attr('src', 'assets/images/evolution-marketing-south-fl.png');
             } else if ($(this).val() == 'venice-onward') {
                 $("#cms-logo").attr('src', 'assets/images/venice-onward-logo.png');
+            } else if ($(this).val() == 'liquor-cms') {
+                $("#cms-logo").attr('src', 'assets/images/liquor-cms-logo.png');
             }
         }).trigger('change');
     }
