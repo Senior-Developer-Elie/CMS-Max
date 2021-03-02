@@ -102,7 +102,8 @@ class ClientController extends Controller
         }
 
         $data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
-        $data['admins']         = User::orderBy('name')->get();
+        $data['admins']         = User::where('type', User::USER_TYPE_EMPLOYEE)
+            ->orderBy('name')->get();
 
         $data['pendingBlogs']   = $pendingBlogs;
         $data['completedBlogs'] = $completedBlogs;
