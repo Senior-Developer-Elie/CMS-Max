@@ -193,7 +193,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/client-history.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/client-add-edit.css?v=4') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=6') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=7') }}">
 @endsection
 
 @section('javascript')
@@ -221,6 +221,6 @@
     <script src="{{ asset('assets/js/client-history.js') }}"></script>
     <script src="{{ asset('assets/js/client/client-add-edit.js?v=15') }}"></script>
     <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
-    <script src="{{ asset('assets/js/website/website-list.js?v=47') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=48') }}"></script>
     <script src="{{ asset('assets/js/upload-action.js') }}"></script>
 @endsection

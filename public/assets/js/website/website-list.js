@@ -271,8 +271,8 @@ var Website_List = {
     },
 
     initFilter: function() {
-        $("#blog-industry-filter").change(function() {
-            location.href = siteUrl + "/websites?blog_industry_id=" + $(this).val()
+        $("#blog-industry-filter, #affilliate-filter").change(function() {
+            location.href = siteUrl + "/websites?blog_industry_id=" + $("#blog-industry-filter").val() + "&affilliate_id=" + $("#affilliate-filter").val()
         });
     }
 };

@@ -342,6 +342,10 @@ class WebsiteController extends Controller
             $query->where('blog_industry_id', request()->input('blog_industry_id'));
         }
 
+        if (! empty(request()->input('affilliate_id'))) {
+            $query->where('affiliate', request()->input('affilliate_id'));
+        }
+
         return $query->get();
     }
 
