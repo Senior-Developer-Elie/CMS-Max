@@ -31,12 +31,12 @@ class BlogEmailOfTheDay extends Command
      * Stage data for email
      */
     protected $stageTexts = [
-        'Quoting'               => 'You are currently quoting %u websites.',
-        'Gathering Information' => 'You need to gather information for %u websites.',
-        'Home Page Content'     => 'You need to write home page copy for %u websites.',
-        'Design'                => 'You have %u websites to design.',
-        'Website Core Setup'    => 'You have to setup %u websites.',
-        'Inner Page Setup'      => 'You have %u websites to complete for inner pages.',
+        'Quoting'               => 'We are currently quoting %u websites.',
+        'Gathering Information' => 'We are currently gathering information for %u websites.',
+        'Home Page Content'     => 'We are currently writing home page copy for %u websites.',
+        'Design'                => 'We currently have %u websites to design.',
+        'Website Core Setup'    => 'We are ready to setup %u websites.',
+        'Inner Page Setup'      => 'We have %u websites to complete for inner pages.',
         'Final Checks'          => 'Please double check the following websites before we go live. All eyes needed.'
     ];
 
@@ -71,12 +71,12 @@ class BlogEmailOfTheDay extends Command
             $notifications = [];
             $totalCount = 0;
 
-            if( $admin->can('writer') ) {
+            if (true) {
 
                 $pendingBlogsToAddTitle = BlogHelper::getPendingToAddTitleBlogs($admin);
                 if( count($pendingBlogsToAddTitle) > 0 )
                     $notifications[] = [
-                        'text'  => 'You have ' . count($pendingBlogsToAddTitle) . ' Pending blogs to add title.',
+                        'text'  => 'There are ' . count($pendingBlogsToAddTitle) . ' Pending blogs to add title.',
                         'href'  => url('/blog-list?blogType=pendingToAddTitle')
                     ];
                 $totalCount += count($pendingBlogsToAddTitle);
@@ -89,7 +89,7 @@ class BlogEmailOfTheDay extends Command
                             $detailLines[] = "<a href = '//" . $blog->website()->website . "'><strong>" . $blog->website()->name . "</strong></a> " . $blog->name;
                     }
                     $notifications[] = [
-                        'text'          => 'You have ' . count($pendingBlogsToWrite) . ' Pending blogs to write.',
+                        'text'          => 'There are ' . count($pendingBlogsToWrite) . ' Pending blogs to write.',
                         'href'          =>  url('/blog-list?blogType=pendingToWrite'),
                         'detailLines'   => $detailLines,
                     ];
@@ -97,11 +97,11 @@ class BlogEmailOfTheDay extends Command
                 $totalCount += count($pendingBlogsToWrite);
             }
 
-            if( $admin->can('blog images') || $admin->can('content manager') ) {
+            if (true) {
                 $pendingBlogsToAddImage = BlogHelper::getPendingToAddImageBlogs($admin);
                 if( count($pendingBlogsToAddImage) > 0 )
                     $notifications[] = [
-                        'text'  => 'You have ' . count($pendingBlogsToAddImage) . ' Pending blogs to add image.',
+                        'text'  => 'There are ' . count($pendingBlogsToAddImage) . ' Pending blogs to add image.',
                         'href'  => url('/blog-list?blogType=pendingToAddImage')
                     ];
                 $totalCount += count($pendingBlogsToAddImage);
@@ -109,30 +109,15 @@ class BlogEmailOfTheDay extends Command
                 $pendingBlogsToAddToWebsite = BlogHelper::getPendingToAddToWebsiteBlogs($admin);
                 if( count($pendingBlogsToAddToWebsite) > 0 )
                     $notifications[] = [
-                        'text'  => 'You have ' . count($pendingBlogsToAddToWebsite) . ' Pending blogs to add to website.',
+                        'text'  => 'There are ' . count($pendingBlogsToAddToWebsite) . ' Pending blogs to add to website.',
                         'href'  => url('/blog-list?blogType=pendingToAddToWebsite')
                     ];
                 $totalCount += count($pendingBlogsToAddToWebsite);
             }
 
-            $pendingJobsToDo = InnerBlog::where('assignee_id', $admin->id)
-                                        ->where('marked', '!=', 1)
-                                        ->where('to_do', 1)->get();
-                                        if( count($pendingJobsToDo) > 0 )
-            $notifications[] = [
-                'text'  => 'You have ' . count($pendingJobsToDo) . ' Pending tasks assigned to you.',
-                'href'  => url('/jobs')
-            ];
-            $totalCount += count($pendingJobsToDo);
-
-
             /**Jobs by Stages Notification */
             foreach( $this->stageTexts as $key=>$stageText ) {
-                //Get assigned stage tasks for user
-                if( $admin->hasRole('super admin') )
-                    $assignedTasks = Stage::where('name', $key)->first()->tasks()->get();
-                else
-                    $assignedTasks = Stage::where('name', $key)->first()->tasks()->where('assignee_id', $admin->id)->get();
+                $assignedTasks = Stage::where('name', $key)->first()->tasks()->get();
 
                 if( count($assignedTasks) > 0 ) {
                     $notification = [
