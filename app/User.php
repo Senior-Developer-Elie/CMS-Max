@@ -18,6 +18,7 @@ class User extends Authenticatable
 
     const USER_TYPE_EMPLOYEE = 'employee';
     const USER_TYPE_CONTRACTOR = 'contractor';
+    const USER_TYPE_CMS_MAX_DEVELOPER = 'cmsmax-developer';
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +51,7 @@ class User extends Authenticatable
     protected static $types = [
         self::USER_TYPE_EMPLOYEE => 'Employee',
         self::USER_TYPE_CONTRACTOR => 'Contractor',
+        self::USER_TYPE_CMS_MAX_DEVELOPER => "CMS Max Developer",
     ];
 
     // event handler
