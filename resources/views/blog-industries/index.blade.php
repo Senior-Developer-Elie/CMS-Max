@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('/blog-industry-client-list?blogIndustryId=' . $blogIndustry->id ) }}" style="width:100%; display:block;">
-                                            {{ count($blogIndustry->websites()) }}
+                                            {{ count($blogIndustry->websites) }}
                                         </a>
                                     </td>
                                     <td class="text-center">

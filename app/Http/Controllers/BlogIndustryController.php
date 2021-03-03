@@ -29,7 +29,7 @@ class BlogIndustryController extends Controller
         if( !Auth::user()->hasPagePermission('Manage Industries') )
             return redirect('/webadmin');
 
-        $blogIndustries = BlogIndustry::orderBy('name')->get();
+        $blogIndustries = BlogIndustry::orderBy('name')->with('websites')->get();
         return view('blog-industries.index', [
             'currentSection'    => 'blog-industries',
             'blogIndustries'    => $blogIndustries
