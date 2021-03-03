@@ -87,7 +87,7 @@ var Websites_Social_Media = {
                         return 0;
                 };
 
-                for( let i = 3; i <= 3; i++ ) {
+                for( let i = 3; i <= 5; i++ ) {
                     // Total over this page
                     let columnData = api
                     .column( i, { page: 'current'} )
