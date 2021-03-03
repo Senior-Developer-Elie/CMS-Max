@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Helpers\WebsiteHelper;
 class SocialMediaController extends Controller
 {
-    const SOCIAL_PLANS = [
-        AngelInvoice::CRM_KEY_FACEBOOK_CUSTOM,
-        AngelInvoice::CRM_KEY_FACEBOOK_ACCELERATE,
-        AngelInvoice::CRM_KEY_FACEBOOK_GROW,
-        AngelInvoice::CRM_KEY_FACEBOOK_BUILD
-    ];
-
     /**
      * Create a new controller instance.
      *
@@ -39,30 +32,30 @@ class SocialMediaController extends Controller
         if( !Auth::user()->hasPagePermission('Social Media') )
             return redirect('/webadmin');
 
-        $activeWebsites = Website::query()
-            // ->where('social_media_archived', 0)
-            ->where('archived', 0)
-            // ->orderBy('name')
-            ->get();
-        // $archivedWebsites = Website::where('social_media_archived', 1)
-        //     ->where('archived', 0)
-        //     ->orderBy('name')
-        //     ->get();
+        $query = Website::where('archived', 0);
+        $this->applyFilters($query);
+        
+        $activeWebsites = $query->get();
 
         // Attach plan
         $activeWebsites->map(function($website) {
-            foreach (self::SOCIAL_PLANS as $crmProductKey) {
+
+            $website->plan = null;
+            
+            foreach (AngelInvoice::SOCIAL_PLANS_CRM_PRODUCT_KEYS as $crmProductKey) {
                 if ($website->getProductValue($crmProductKey) > 0) {
-                    $website->plan = AngelInvoice::products()[$crmProductKey];
+                    $website->plan = $crmProductKey;
+                    $website->planName = AngelInvoice::products()[$crmProductKey];
                     break;
                 }
             }
+
+            return $website;
         });
 
         return view('manage-website.social-media-list', [
             'currentSection'        => 'social-media',
             'activeWebsites'        => $activeWebsites,
-            // 'archivedWebsites'      => $archivedWebsites,
         ]);
     }
 
@@ -106,5 +99,12 @@ class SocialMediaController extends Controller
         return response()->json([
             'status'    => 'success'
         ]);
+    }
+
+    protected function applyFilters($query)
+    {
+        if (request()->input('show_clients_only') == 'on') {
+            $query->where('social_budget', '>', 0);
+        }
     }
 }

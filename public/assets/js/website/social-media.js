@@ -46,6 +46,20 @@ var Websites_Social_Media = {
             return -1;
         };
 
+        $.fn.dataTable.ext.type.order['plan-desc'] = function (x, y) {
+            x = $(x).attr('data-value');
+            y = $(y).attr('data-value');
+
+            return x.localeCompare(y);
+        };
+
+        $.fn.dataTable.ext.type.order['plan-asc'] = function (x, y) {
+            x = $(x).attr('data-value');
+            y = $(y).attr('data-value');
+
+            return y.localeCompare(x);
+        };
+
         Websites_Social_Media.activeWebsitesTable = $('#website-list-table').DataTable({
             "order"     : [[ 3, "desc" ]],
             'paging'    : true,
@@ -53,7 +67,8 @@ var Websites_Social_Media = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columnDefs: [
-                {targets: [3], type: 'float'},
+                {targets: [3, 4, 5], type: 'float'},
+                {targets: [2], type: 'plan'},
             ],
             fixedHeader: true,
             "footerCallback": function ( row, data, start, end, display ) {
@@ -90,40 +105,12 @@ var Websites_Social_Media = {
                     );
                 }
             },
-            'language' : {
-                'lengthMenu': `
-                    Show _MENU_ entries<div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="show-clients-only" checked>
-                        <label class="form-check-label" for="show-clients-only">Show clients only</label>
-                    </div>`,
-            },
-            "rowCallback": function( row, data ) {
-                let budgetValue = parseFloat($(row).find('a.social-budget-value').attr('data-value'));
-                budgetValue = isNaN(budgetValue) ? 0 : budgetValue;
-
-                if ($("#show-clients-only").prop('checked') && budgetValue < 1) {
-                    $(row).hide();
-                } else {
-                    $(row).show();
-                }
-            },
-            "drawCallback":function(){
-                $("#websites-count").text('(' +$("#website-list-table tbody tr:visible").length + ')');
-            },
         });
-        // Websites_Social_Media.archivedWebsitesTable = $('#archived-website-list-table').DataTable({
-        //     "order"     : [[ 0, "asc" ]],
-        //     'paging'    : true,
-        //     'searching' : true,
-        //     "pageLength": -1,
-        //     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-        //     fixedHeader: true,
-        // });
     },
 
     initFilterActions: function() {
         $(document).on('change', '#show-clients-only', function() {
-            Websites_Social_Media.activeWebsitesTable.draw();
+            location.href = siteUrl + "/social-media?show_clients_only=" + ($(this).prop('checked') ? 'on' : '');
         });
     },
 
@@ -166,10 +153,55 @@ var Websites_Social_Media = {
                         $(this).html("$0");
                 }
             });
+        })
 
-            $(element).on('save', function(e, params) {
-                $(e.target).attr('data-value', params.newValue);
-                Websites_Social_Media.activeWebsitesTable.draw();
+        $("a.social-ad-spend-value").each(function(index, element){
+            websiteId = $(element).closest('tr').attr('data-website-id');
+            $(element).editable({
+                type        : 'text',
+                pk          : websiteId,
+                name        : 'social_ad_spend',
+                display     : function( value ){
+                    if( value == "0" )
+                    {
+                        $(this).html("$" + value);
+                    }
+                    else if( parseFloat(value) >= 0 )
+                        $(this).html("$" + value);
+                    else
+                        $(this).html("$0");
+                }
+            });
+        })
+
+        $("a.social-management-fee-value").each(function(index, element){
+            websiteId = $(element).closest('tr').attr('data-website-id');
+            $(element).editable({
+                type        : 'text',
+                pk          : websiteId,
+                name        : 'social_management_fee',
+                display     : function( value ){
+                    if( value == "0" )
+                    {
+                        $(this).html("$" + value);
+                    }
+                    else if( parseFloat(value) >= 0 )
+                        $(this).html("$" + value);
+                    else
+                        $(this).html("$0");
+                }
+            });
+        })
+
+        let socialPlanSource = Websites_Social_Media.makePrettySource(socialMediaPlans);
+        $("a.manual-social-plan-value").each(function(index, element){
+            websiteId = $(element).closest('tr').attr('data-website-id');
+            $(element).editable({
+                type        : 'select',
+                pk          : websiteId,
+                name        : 'manual_social_plan',
+                showbuttons : false,
+                source      : socialPlanSource,
             });
         })
     },
@@ -215,7 +247,23 @@ var Websites_Social_Media = {
                 }
             });
         });
-    }
+    },
+
+    makePrettySource: function(object){
+        let array = [];
+        Object.keys(object).forEach(key => {
+            array.push({
+                value: key,
+                text : object[key]
+            })
+        });
+
+        array.sort( (a, b) => {
+            return a.text.localeCompare(b.text);
+        } );
+
+        return array;
+    },
 };
 
 $(document).ready(function(){

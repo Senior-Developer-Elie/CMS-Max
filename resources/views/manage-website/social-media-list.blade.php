@@ -11,17 +11,23 @@
                 <div class="card-header">
                     <i class="fa fa-calendar-times-o"></i>
 
-                    <h3 class="card-title">Social Media List <span id="websites-count"></span></h3>
+                    <h3 class="card-title">Social Media List ({{ count($activeWebsites) }})</h3>
                 </div>
                 <div class="card-body">
+                    <div class="form-check mb-2">
+                        <input type="checkbox" class="form-check-input" id="show-clients-only" {{ Request::input('show_clients_only') == 'on' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="show-clients-only">Show clients only</label>
+                    </div>
                     <table id = "website-list-table" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Website Name</th>
                                 <th>Website Url</th>
-                                <th>Plan</th>
+                                <th width="100px">Plan</th>
                                 <th>Budget</th>
-                                <th width="40%">Notes</th>
+                                <th width="100px">Ad Spend</th>
+                                <th width="120px">Management Fee</th>
+                                <th width="200px">Notes</th>
                                 {{-- <th width="120px">Actions</th> --}}
                             </tr>
                         </thead>
@@ -51,10 +57,25 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $website->plan ?? "" }}
+                                        @if (empty($website->plan))
+                                            <a href="#" class="manual-social-plan-value" data-value="{{ $website->manual_social_plan }}">
+                                            </a>
+                                        @else
+                                            <a data-value="{{ $website->plan }}">
+                                                {{ $website->planName }}
+                                            </a>
+                                        @endif
                                     </td>
                                     <td class="text-center">
                                         <a href="#" class="social-budget-value" data-value="{{ $website->social_budget }}">
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" class="social-ad-spend-value" data-value="{{ $website->social_ad_spend }}">
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" class="social-management-fee-value" data-value="{{ $website->social_management_fee }}">
                                         </a>
                                     </td>
                                     <td>
@@ -94,10 +115,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/social-media-list.css') }}">
 @endsection
 @section('javascript')
+    <script>
+        var socialMediaPlans = {!! json_encode(\App\AngelInvoice::socialPlanProducts()) !!}
+    </script>
     <script src="{{ mix('js/datatable.js') }}"></script>
 
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=12') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=13') }}"></script>
 @endsection

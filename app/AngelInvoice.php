@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Arr;
 class AngelInvoice
 {
     const CRM_KEY_CMS_MAX = "cms_max";
@@ -82,6 +83,13 @@ class AngelInvoice
         self::CRM_KEY_DONT_GO
     ];
 
+    const SOCIAL_PLANS_CRM_PRODUCT_KEYS = [
+        self::CRM_KEY_FACEBOOK_CUSTOM,
+        self::CRM_KEY_FACEBOOK_ACCELERATE,
+        self::CRM_KEY_FACEBOOK_GROW,
+        self::CRM_KEY_FACEBOOK_BUILD
+    ];
+
     public static function products()
     {
         return self::PRODUCTS;
@@ -112,5 +120,10 @@ class AngelInvoice
     public static function expenseCrmProductKeys()
     {
         return self::EXPENSE_CRM_PRODUCT_KEYS;
+    }
+
+    public static function socialPlanProducts()
+    {
+        return Arr::only(self::PRODUCTS, self::SOCIAL_PLANS_CRM_PRODUCT_KEYS);
     }
 }

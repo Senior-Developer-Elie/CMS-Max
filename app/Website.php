@@ -67,7 +67,10 @@ class Website extends Model
         'billing_amount',
 
         'social_calendar',
-        'social_budget'
+        'social_budget',
+        'manual_social_plan',
+        'social_ad_spend',
+        'social_management_fee',
     ];
 
     protected $casts = [
