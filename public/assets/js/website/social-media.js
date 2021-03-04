@@ -136,25 +136,6 @@ var Websites_Social_Media = {
             });
         })
 
-        $("a.social-budget-value").each(function(index, element){
-            websiteId = $(element).closest('tr').attr('data-website-id');
-            $(element).editable({
-                type        : 'text',
-                pk          : websiteId,
-                name        : 'social_budget',
-                display     : function( value, sourceData ){
-                    if( value == "0" )
-                    {
-                        $(this).html("$" + value);
-                    }
-                    else if( parseFloat(value) >= 0 )
-                        $(this).html("$" + value);
-                    else
-                        $(this).html("$0");
-                }
-            });
-        })
-
         $("a.social-ad-spend-value").each(function(index, element){
             websiteId = $(element).closest('tr').attr('data-website-id');
             $(element).editable({
@@ -171,6 +152,12 @@ var Websites_Social_Media = {
                     else
                         $(this).html("$0");
                 }
+            });
+
+            $(element).on('save', function(e, params) {
+                $(this).attr('data-value', params.newValue);
+                Websites_Social_Media.updateRowValue($(this));
+                Websites_Social_Media.refreshTable();
             });
         })
 
@@ -190,6 +177,12 @@ var Websites_Social_Media = {
                     else
                         $(this).html("$0");
                 }
+            });
+
+            $(element).on('save', function(e, params) {
+                $(this).attr('data-value', params.newValue);
+                Websites_Social_Media.updateRowValue($(this));
+                Websites_Social_Media.activeWebsitesTable.draw();
             });
         })
 
@@ -264,6 +257,18 @@ var Websites_Social_Media = {
 
         return array;
     },
+
+    updateRowValue: function(elementRow) {
+        let adSpend = parseFloat(elementRow.closest('tr').find('a.social-ad-spend-value').attr('data-value'));
+        let managementFee =  parseFloat(elementRow.closest('tr').find('a.social-management-fee-value').attr('data-value'));
+
+        elementRow.closest('tr').find('a.social-budget-value').attr('data-value', adSpend + managementFee);
+        elementRow.closest('tr').find('a.social-budget-value').text('$' + (adSpend + managementFee));
+    },
+
+    refreshTable: function() {
+        Websites_Social_Media.activeWebsitesTable.draw(false);
+    }
 };
 
 $(document).ready(function(){
