@@ -7,7 +7,7 @@ class UserHelper {
         [
             'name'      => 'Blog Dashboard',
             'icon'      => 'fab fa-blogger-b',
-            'link'      => '/blog-dasboard',
+            'link'      => '/blog-dashboard',
             'section'   => 'blog-dashboard'
         ],
         /*[

@@ -199,5 +199,5 @@
     <script src="{{ mix('js/datatable.js') }}"></script>
 
     <script src="{{ asset('assets/js/blog-dashboard.js?v=3') }}"></script>
-    <script src="{{ asset('assets/js/upload-action.js') }}"></script>
+    <script src="{{ asset('assets/js/upload-action.js?v=3') }}"></script>
 @endsection

@@ -83,7 +83,7 @@ Route::group(['middleware' => 'web'], function () {
     });
 
     //Manage Blogs
-    Route::get('/blog-dasboard', 'BlogController@index');
+    Route::get('/blog-dashboard', 'BlogController@index');
 
     Route::get('/add-client', 'ClientController@addClient');
     Route::post('/add-client', 'ClientController@addClient');

@@ -47,7 +47,7 @@ var Upload_Action = {
                     data: ajaxData,
                     success: function(response){
                         if( response.status == 'success' )
-                            location.href = siteUrl + '/blog-dasboard';
+                            location.href = siteUrl + '/blog-dashboard';
                     },
                     complete: function(){
                         $('body').waitMe('hide');
@@ -86,7 +86,7 @@ var Upload_Action = {
                     data: ajaxData,
                     success: function(response){
                         if( response.status == 'success' )
-                            location.href = siteUrl + '/blog-dasboard';
+                            location.href = siteUrl + '/blog-dashboard';
                     },
                     complete: function(){
                         $('body').waitMe('hide');

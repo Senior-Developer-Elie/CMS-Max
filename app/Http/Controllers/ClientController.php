@@ -229,7 +229,7 @@ class ClientController extends Controller
             Session::flash('message', 'Client is removed successfully!');
             Session::flash('alert-class', 'alert-success');
 
-            return redirect('/blog-dasboard');
+            return redirect('/blog-dashboard');
         }
     }
 

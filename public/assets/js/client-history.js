@@ -28,7 +28,7 @@ var Client_History = {
                 data: ajaxData,
                 success: function(data){
                     if(data.status == 'success'){
-                        location.href = siteUrl + '/blog-dasboard';
+                        location.href = siteUrl + '/blog-dashboard';
                     }
                 }
             });

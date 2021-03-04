@@ -322,7 +322,7 @@ class BlogController extends Controller
             //if( Session::has('backUrl') )
                 //return redirect(Session::get('backUrl'));
             //else
-                return redirect('/blog-dasboard');
+                return redirect('/blog-dashboard');
         }
     }
 
@@ -355,7 +355,7 @@ class BlogController extends Controller
             //if( Session::has('backUrl') )
                 //return redirect(Session::get('backUrl'));
             //else
-                return redirect('/blog-dasboard');
+                return redirect('/blog-dashboard');
         }
     }
 
@@ -411,7 +411,7 @@ class BlogController extends Controller
             if( Session::has('backUrl') )
                 return redirect(Session::get('backUrl'));
             else
-                return redirect('/blog-dasboard');*/
+                return redirect('/blog-dashboard');*/
         }
     }
 
@@ -484,7 +484,7 @@ class BlogController extends Controller
             if( Session::has('backUrl') )
                 return redirect(Session::get('backUrl'));
             else
-                return redirect('/blog-dasboard');
+                return redirect('/blog-dashboard');
             */
         }
     }
@@ -531,7 +531,7 @@ class BlogController extends Controller
             if( Session::has('backUrl') )
                 return redirect(Session::get('backUrl'));
             else
-                return redirect('/blog-dasboard');
+                return redirect('/blog-dashboard');
         }
     }
 
@@ -598,7 +598,7 @@ class BlogController extends Controller
             if( Session::has('backUrl') )
                 return redirect(Session::get('backUrl'));
             else
-                return redirect('/blog-dasboard');
+                return redirect('/blog-dashboard');
         }
     }
 

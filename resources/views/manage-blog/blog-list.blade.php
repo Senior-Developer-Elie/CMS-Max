@@ -84,6 +84,6 @@
 
 @section('javascript')
     <script src="{{ mix('/js/download-adaptor.js') }}"></script>
-    <script src="{{ asset('assets/js/client-history.js') }}"></script>
-    <script src="{{ asset('assets/js/upload-action.js') }}"></script>
+    <script src="{{ asset('assets/js/client-history.js?v=2') }}"></script>
+    <script src="{{ asset('assets/js/upload-action.js?v=3') }}"></script>
 @endsection
