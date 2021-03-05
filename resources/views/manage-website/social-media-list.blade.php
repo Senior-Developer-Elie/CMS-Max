@@ -67,7 +67,8 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="social-budget-value" data-value="{{ $website->social_budget }}">
+                                        <a class="social-budget-value" data-value="{{ $website->social_ad_spend ?? 0 + $website->social_management_fee ?? 0 }}">
+                                            ${{ ($website->social_ad_spend ?? 0) + ($website->social_management_fee ?? 0) }}
                                         </a>
                                     </td>
                                     <td class="text-center">
@@ -125,5 +126,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media.js?v=14') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=15') }}"></script>
 @endsection
