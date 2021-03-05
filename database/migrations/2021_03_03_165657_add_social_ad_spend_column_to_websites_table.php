@@ -14,7 +14,7 @@ class AddSocialAdSpendColumnToWebsitesTable extends Migration
     public function up()
     {
         Schema::table('websites', function (Blueprint $table) {
-            $table->float('social_ad_spend');
+            $table->float('social_ad_spend')->nullable();
         });
     }
 

@@ -14,7 +14,7 @@ class AddSocialManagementFeeColumnToWebsitesTable extends Migration
     public function up()
     {
         Schema::table('websites', function (Blueprint $table) {
-            $table->float('social_management_fee');
+            $table->float('social_management_fee')->nullable();
         });
     }
 
