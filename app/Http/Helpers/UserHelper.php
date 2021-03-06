@@ -101,13 +101,13 @@ class UserHelper {
             'link'      => '/proposal-list',
             'section'   => 'proposal-list'
         ],
-        [
-            'name'          => 'Failed Mails',
-            'icon'          => 'fas fa-ban',
-            'link'          => '/failed-mails',
-            'section'       => 'failed-mails',
-            'badgeFunction' => 'failed-mails'
-        ],
+        // [
+        //     'name'          => 'Failed Mails',
+        //     'icon'          => 'fas fa-ban',
+        //     'link'          => '/failed-mails',
+        //     'section'       => 'failed-mails',
+        //     'badgeFunction' => 'failed-mails'
+        // ],
 
         /*
         [
