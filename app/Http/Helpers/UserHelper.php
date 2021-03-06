@@ -238,12 +238,12 @@ class UserHelper {
                     'link'      => '/users',
                     'section'   => 'manage-users'
                 ],
-                [
-                    'name'      => 'Mailgun Api Keys',
-                    'icon'      => 'fa fa-mail-bulk',
-                    'link'      => '/mailgun-api-keys',
-                    'section'   => 'mailgun-api-keys'
-                ],
+                // [
+                //     'name'      => 'Mailgun Api Keys',
+                //     'icon'      => 'fa fa-mail-bulk',
+                //     'link'      => '/mailgun-api-keys',
+                //     'section'   => 'mailgun-api-keys'
+                // ],
             ]
         ],
     ];
