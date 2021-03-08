@@ -104,7 +104,7 @@ class SocialMediaController extends Controller
     protected function applyFilters($query)
     {
         if (request()->input('show_clients_only') == 'on') {
-            $query->where('social_budget', '>', 0);
+            $query->whereRaw('social_ad_spend + social_management_fee > 0');
         }
     }
 }
