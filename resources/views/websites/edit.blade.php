@@ -124,6 +124,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="uses_our_credit_card" {{ old_checked('uses_our_credit_card', $website->uses_our_credit_card) }}>
+                                        <strong class="ml-1">Uses our Credit Card</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

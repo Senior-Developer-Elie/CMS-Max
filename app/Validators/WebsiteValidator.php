@@ -33,7 +33,8 @@ class WebsiteValidator extends BaseValidator
             'frequency' => 'required_if:is_blog_client,1',
             'start_date' => 'nullable|required_if:is_blog_client,1|date',
             'drive' => 'required',
-            'website_products' => 'required|array'
+            'website_products' => 'required|array',
+            'uses_our_credit_card' => 'required|in:0,1',
         ],
 
         'update' => [
@@ -58,7 +59,8 @@ class WebsiteValidator extends BaseValidator
             'frequency' => 'required_if:is_blog_client,1',
             'start_date' => 'nullable|required_if:is_blog_client,1|date',
             'drive' => 'required',
-            'website_products' => 'required|array'
+            'website_products' => 'required|array',
+            'uses_our_credit_card' => 'required|in:0,1',
         ],
     ];
 }

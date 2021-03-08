@@ -39,6 +39,11 @@
                                             {{ $website->name }}
                                         </a>
                                         <div class="website-info-icons">
+                                            @if( !empty($website->uses_our_credit_card) )
+                                                <a class="website-google-drive-link-icon" data-toggle="tooltip" data-placement="top" title="Uses our Credit Card">
+                                                    <img src="{{ asset('assets/images/dollar-icon.jpg') }}" />
+                                                </a>
+                                            @endif
                                             @if( !empty($website->drive) )
                                                 <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
                                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />

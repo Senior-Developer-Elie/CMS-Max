@@ -71,6 +71,7 @@ class Website extends Model
         'manual_social_plan',
         'social_ad_spend',
         'social_management_fee',
+        'uses_our_credit_card',
     ];
 
     protected $casts = [

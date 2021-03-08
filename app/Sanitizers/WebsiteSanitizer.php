@@ -18,7 +18,8 @@ class WebsiteSanitizer extends BaseSanitizer
         'ControlScanRenewalDate',
         'StartDate',
         'WebsiteProducts',
-        'AssigneeId'
+        'AssigneeId',
+        'UsesOurCreditCard',
     ];
 
     protected function sanitizeWebsite()
@@ -85,5 +86,10 @@ class WebsiteSanitizer extends BaseSanitizer
     protected function sanitizeAssigneeId()
     {
         $this->nullify('assignee_id');
+    }
+
+    protected function sanitizeUsesOurCreditCard()
+    {
+        $this->checkbox('uses_our_credit_card');
     }
 }
