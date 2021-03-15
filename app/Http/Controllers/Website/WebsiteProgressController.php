@@ -35,7 +35,9 @@ class WebsiteProgressController extends Controller
             return redirect('/webadmin');
 
         $stages = Stage::orderBy('priority')->get();
-        $users = User::orderBy('name')->get();
+        $users = User::where('type', '!=', User::USER_TYPE_EMPLOYEE)
+            ->orderBy('name')
+            ->get();
 
         $prettyUsers = [];
         foreach( $users as $user ){
