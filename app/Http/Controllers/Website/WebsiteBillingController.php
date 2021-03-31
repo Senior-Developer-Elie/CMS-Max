@@ -34,6 +34,7 @@ class WebsiteBillingController extends Controller
         $this->data['websites'] = Website::where('archived', 0)
             ->where('type', '!=', 'no-website')
             ->orderBy('website')
+            ->where('client_id', '!=', 64)
             ->get();
         $this->data['billingTypes'] = WebsiteHelper::getAllBillingtypes();
 
