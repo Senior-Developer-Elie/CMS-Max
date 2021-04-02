@@ -35,8 +35,8 @@ class WebsiteBillingController extends Controller
             ->where('type', '!=', 'no-website')
             ->orderBy('website')
             ->where(function($query) {
-                $query->whereNotIn('client_id', [7, 64, 158, 97, 143, 159, 103, 14, 177]);
-                $query->orWhereIn('id', [279, 150, 388, 326, 327, 100, 13, 169]);
+                $query->whereNotIn('client_id', [1, 7, 64, 158, 97, 143, 159, 103, 14, 177, 251, 159]);
+                $query->orWhereIn('id', [1, 279, 150, 388, 327, 100, 13, 169, 342]);
             })
             ->get();
         $this->data['billingTypes'] = WebsiteHelper::getAllBillingtypes();
