@@ -36,9 +36,10 @@ class WebsiteBillingController extends Controller
             ->where('type', '!=', 'no-website')
             ->orderBy('website')
             ->where(function($query) {
-                $query->whereNotIn('client_id', [1, 7, 64, 158, 97, 143, 159, 103, 14, 177, 251, 159]);
+                $query->whereNotIn('client_id', [1, 7, 64, 158, 97, 143, 159, 103, 14, 177, 251, 159, 28]);
                 $query->orWhereIn('id', [1, 279, 150, 388, 327, 100, 13, 169, 342]);
             })
+            ->whereNotIn('id', [318, 361, 99, 164, 168, 173, 256, 18, 460])
             ->get();
         
         $this->data['websites'] = $this->data['websites']->filter(function($website) {
