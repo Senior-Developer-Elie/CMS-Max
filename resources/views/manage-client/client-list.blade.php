@@ -56,7 +56,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ count($client->websites()->get()) }}
+                                                {{ $client->websites()->where('archived', 0)->count() }}
                                             </td>
                                             <td>
                                                 {{ $client->clientLead ? $client->clientLead->name : '' }}
