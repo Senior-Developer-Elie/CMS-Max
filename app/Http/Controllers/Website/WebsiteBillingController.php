@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\WebsiteHelper;
+use App\Task;
 use App\Website;
 
 class WebsiteBillingController extends Controller
@@ -39,6 +40,10 @@ class WebsiteBillingController extends Controller
                 $query->orWhereIn('id', [1, 279, 150, 388, 327, 100, 13, 169, 342]);
             })
             ->get();
+        
+        $this->data['websites'] = $this->data['websites']->filter(function($website) {
+            return Task::where('website_id', $website->id)->count() == 0;
+        });
         $this->data['billingTypes'] = WebsiteHelper::getAllBillingtypes();
 
         return view('manage-website.billing-list', $this->data);
