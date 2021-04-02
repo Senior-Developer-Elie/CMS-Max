@@ -121,6 +121,7 @@ var Websites_Billing = {
 
         $(".invoice-ninja-states-value").html("$ " + invoiceNinjaValue);
         $(".chargebee-states-value").html("$ " + chargebeeValue);
+        $(".total-states-value").html("$ " + (invoiceNinjaValue + chargebeeValue));
     }
 };
 

@@ -32,7 +32,19 @@
                         </span>
                       </div>
                     </div>
-                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green elevation-1"><i class="fab fa-cuttlefish"></i></span>
+        
+                      <div class="info-box-content">
+                          <span class="info-box-text">Total</span>
+                          <span class="info-box-number total-states-value">
+                            $ 10
+                        </span>
+                      </div>
+                    </div>
+                </div>
             </div>
             <div class="card card-primary card-outline">
                 <div class="card-header">
@@ -97,5 +109,5 @@
 
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
-    <script src="{{ asset('assets/js/website/billing.js?v=3') }}"></script>
+    <script src="{{ asset('assets/js/website/billing.js?v=4') }}"></script>
 @endsection
