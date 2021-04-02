@@ -39,7 +39,8 @@ class WebsiteBillingController extends Controller
                 $query->whereNotIn('client_id', [1, 7, 64, 158, 97, 143, 159, 103, 14, 177, 251, 159, 28]);
                 $query->orWhereIn('id', [1, 279, 150, 388, 327, 100, 13, 169, 342]);
             })
-            ->whereNotIn('id', [318, 361, 99, 164, 168, 173, 256, 18, 460])
+            ->whereNotIn('id', [318, 361, 99, 164, 168, 173, 256, 18, 460, 359, 119, 122, 373, 332, 193])
+            ->where('type', '!=', 'redirect-website')
             ->get();
         
         $this->data['websites'] = $this->data['websites']->filter(function($website) {
