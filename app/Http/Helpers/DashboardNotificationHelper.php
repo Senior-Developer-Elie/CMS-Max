@@ -25,7 +25,9 @@ class DashboardNotificationHelper {
      */
     public static function getGoogleDriveMissingWebsites()
     {
-        $data['websitesMissingGoogleDriveCount'] = Website::where('drive', '')->count();
+        $data['websitesMissingGoogleDriveCount'] = Website::where('drive', '')
+            ->where('archived', 0)
+            ->count();
 
         if ($data['websitesMissingGoogleDriveCount'] == 0) {
             return [];
