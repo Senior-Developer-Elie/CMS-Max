@@ -72,7 +72,9 @@ class WebsiteController extends Controller
     {
         $this->prepareWebsiteAttributes();
         $this->data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
-        $this->data['admins'] = User::orderBy('name')->get();
+        $this->data['admins'] = User::orderBy('name')
+            ->where('type', '!=', User::USER_TYPE_CMS_MAX_DEVELOPER)
+            ->get();
         $this->data['clients'] = Client::orderBy('name')->get();
 
         $this->data['websiteProducts'] = Website::getDefaultProducts();
@@ -118,7 +120,9 @@ class WebsiteController extends Controller
         
         $this->data['website'] = $website;
         $this->data['blogIndustries'] = BlogIndustry::orderBy('name')->get();
-        $this->data['admins'] = User::orderBy('name')->get();
+        $this->data['admins'] = User::orderBy('name')
+            ->where('type', '!=', User::USER_TYPE_CMS_MAX_DEVELOPER)
+            ->get();
         $this->data['clients'] = Client::orderBy('name')->get();
         $this->data['websiteProducts'] = $website->getProductsWithDefault();
         $this->data['products'] = AngelInvoice::products();
