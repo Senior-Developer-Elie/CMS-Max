@@ -16,7 +16,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href=" https://docs.google.com/document/d/1kR1wOHdrIwN_EwhRbcnQ7FzR5bzDioeltTqGEU_aUsY/edit" target="_blank">
+            <a class="nav-link" href="https://docs.google.com/document/d/1IcWt_aimDePK1sb9PIY4oydc3kuKHXCI48D-UqEG9Z0/edit" target="_blank">
                 Jason Content To Do
             </a>
         </li>
