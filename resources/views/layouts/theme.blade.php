@@ -60,7 +60,7 @@
             </div>
 
             <footer class="main-footer">
-                <strong>Powered by <a href = "https://www.evolutionmarketing.com">Evolution Marketing</a>
+                Powered by <a href = "https://www.evolutionmarketing.com">Evolution Marketing</a>
             </footer>
         </div>
 

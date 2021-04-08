@@ -14,10 +14,19 @@ var Blog_List = {
 
     initDataTable: function(){
         proposalTable = $('#client-list').DataTable({
+            "bInfo": false,
             "order"     : [[ 0, "asc" ]],
             'paging'    : false,
             'searching'    : false,
-            columnDefs: [{targets: (isBlogManager ? [4,5] : [3,4] ), type: 'sortme'}]
+            columnDefs: [{targets: (isBlogManager ? [4,5] : [3,4] ), type: 'sortme'}],
+            fixedHeader: true,
+            "scrollX": true,
+            scrollY:        ($(window).height()-290) + "px",
+            scrollX:        true,
+            scrollCollapse: true,
+            fixedColumns:   {
+                leftColumns: 4,
+            },
         });
         $.fn.dataTable.ext.type.order['sortme-pre'] = function (a, b) {
             return parseInt($(a).attr('data-order-value'));

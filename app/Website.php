@@ -185,10 +185,10 @@ class Website extends Model
      * Get blogs in future
      * @param int $months
      */
-    public function futureBlogs($months)
+    public function futureBlogs()
     {
-        $startDate = (new Carbon('first day of this month'))->startOfDay()->subMonths(1);
-        $endDate = (new Carbon('first day of this month'))->startOfDay()->addMonths($months);
+        $startDate = Carbon::now()->startOfYear();
+        $endDate = Carbon::now()->startOfYear()->addMonths(12);
 
         $blogs = $this->blogs()
                     ->where('blogs.desired_date', '>=', (string)$startDate)
@@ -201,14 +201,14 @@ class Website extends Model
      * Get Available Months
      * @param int $months
      */
-    public function availableMonths($months)
+    public function availableMonths()
     {
         $duration = $this->getDuration();
         $availableMonths = [];
 
         $createdDate = (new Carbon($this->start_date))->startOfMonth();
-        for( $i = -1; $i < $months; $i++ ) {
-            $date = (new Carbon('first day of this month'))->startOfDay()->addMonths($i);
+        for( $i = 0; $i < 12; $i++ ) {
+            $date = Carbon::now()->startOfYear()->addMonths($i);
 
             if( $date < $createdDate )
                 continue;

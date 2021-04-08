@@ -77,104 +77,97 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Websites : {{ count($websites) }}</h3>
-                </div>
-                <div class="card-body">
-                    <table id="client-list" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="250px">Website Name</th>
-                                <th width="80px">Frequency</th>
-                                @can('content manager')
-                                    <th>Writer</th>
-                                @endcan
-                                <th>Project Manager</th>
-                                @foreach ($futureMonths as $index => $month)
-                                    <th class = "text-center month-name-wrapper" width="350px">
-                                        <span href="#" class="month-info-icon" data-toggle="tooltip" data-placement="top" title="Total Blogs for the month: {{ $totalBlogsForMonth[$index] }}">
-                                            {{ $month->format('M') }}
+            <table id="client-list" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="250px">Website Name ({{ count($websites) }})</th>
+                        <th width="80px">Frequency</th>
+                        @can('content manager')
+                            <th>Writer</th>
+                        @endcan
+                        <th width="120px">Project Manager</th>
+                        @foreach ($futureMonths as $index => $month)
+                            <th class = "text-center month-name-wrapper" width="350px">
+                                <span href="#" class="month-info-icon" data-toggle="tooltip" data-placement="top" title="Total Blogs for the month: {{ $totalBlogsForMonth[$index] }}">
+                                    {{ $month->format('M') }}
+                                </span>
+                            </th>
+                        @endforeach
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($websites as $website)
+                        <tr data-website-id="{{ $website['website']->id }}">
+                            <td class="client-name-wrapper dropdown">
+                                <a class="client-name" href="{{ url('client-history?clientId=' . $website['website']->client()->id) }}">
+                                    <span data-toggle="tooltip" data-placement="top" title="View Client">{{ $website['website']->name }}</span>
+                                </a>
+                                {{ $website['website']->target_area }}
+                                <a href="//{{ $website['website']->website }}" target="_blank" class="client-info-icon" data-toggle="tooltip" data-placement="top" title="{{ $website['website']->website }}">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
+                            </td>
+                            <td style="text-transform:capitalize">
+                                {{ $website['website']->frequency }}
+                            </td>
+
+                            @can('content manager')
+                                <th>{{ is_null($website['website']->assignee()) ? '' : $website['website']->assignee()->name }}</th>
+                            @endcan
+
+                            <td>
+                                @if ($website['website']->client()->projectManager)
+                                    {{ $website['website']->client()->projectManager->name }}
+                                @endif
+                            </td>
+                            @foreach ( $website['futureBlogs'] as $index => $blog )
+                                <td class="blog-cell {{ $blog['class'] }}" data-desired-date="{{ $futureMonths[$index] }}">
+                                    <?php
+                                        $orderValue = 0;
+                                        if($blog['class'] == 'empty')
+                                            $orderValue = 0;
+                                        else if($blog['class'] == 'normal')
+                                            $orderValue = 1;
+                                        else if($blog['class'] == 'pending-to-add-image')
+                                            $orderValue = 2;
+                                        else if($blog['class'] == 'pending')
+                                            $orderValue = 3;
+                                        else if($blog['class'] == 'done')
+                                            $orderValue = 4;
+                                        else
+                                            $orderValue = 5;
+                                    ?>
+                                    <div data-order-value="{{ $orderValue }}">
+                                        <span class="blog-name" data-blog-name="{{ $blog['blogName'] }}">
+                                            {{ $blog['blogName'] }}
                                         </span>
-                                    </th>
-                                @endforeach
-                            </tr>
-                        </thead>
+                                        <div class="blog-name-input-wrapper input-group input-group-sm" style="display:none">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-danger btn-flat blog-name-confirm">Go!</button>
+                                            </span>
+                                        </div>
+                                        <div class="upload-button-wrapper">
+                                            @if( in_array($blog['class'], ['normal']) )
 
-                        <tbody>
-                            @foreach ($websites as $website)
-                                <tr data-website-id="{{ $website['website']->id }}">
-                                    <td class="client-name-wrapper dropdown">
-                                        <a class="client-name" href="{{ url('client-history?clientId=' . $website['website']->client()->id) }}">
-                                            <span data-toggle="tooltip" data-placement="top" title="View Client">{{ $website['website']->name }}</span>
-                                        </a>
-                                        {{ $website['website']->target_area }}
-                                        <a href="//{{ $website['website']->website }}" target="_blank" class="client-info-icon" data-toggle="tooltip" data-placement="top" title="{{ $website['website']->website }}">
-                                            <i class="fa fa-info-circle"></i>
-                                        </a>
-                                    </td>
-                                    <td style="text-transform:capitalize">
-                                        {{ $website['website']->frequency }}
-                                    </td>
-
-                                    @can('content manager')
-                                        <th>{{ is_null($website['website']->assignee()) ? '' : $website['website']->assignee()->name }}</th>
-                                    @endcan
-
-                                    <td>
-                                        @if ($website['website']->client()->projectManager)
-                                            {{ $website['website']->client()->projectManager->name }}
-                                        @endif
-                                    </td>
-                                    @foreach ( $website['futureBlogs'] as $index => $blog )
-                                        <td class="blog-cell {{ $blog['class'] }}" data-desired-date="{{ $futureMonths[$index] }}">
-                                            <?php
-                                                $orderValue = 0;
-                                                if($blog['class'] == 'empty')
-                                                    $orderValue = 0;
-                                                else if($blog['class'] == 'normal')
-                                                    $orderValue = 1;
-                                                else if($blog['class'] == 'pending-to-add-image')
-                                                    $orderValue = 2;
-                                                else if($blog['class'] == 'pending')
-                                                    $orderValue = 3;
-                                                else if($blog['class'] == 'done')
-                                                    $orderValue = 4;
-                                                else
-                                                    $orderValue = 5;
-                                            ?>
-                                            <div data-order-value="{{ $orderValue }}">
-                                                <span class="blog-name" data-blog-name="{{ $blog['blogName'] }}">
-                                                    {{ $blog['blogName'] }}
-                                                </span>
-                                                <div class="blog-name-input-wrapper input-group input-group-sm" style="display:none">
-                                                    <input type="text" class="form-control">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-danger btn-flat blog-name-confirm">Go!</button>
-                                                    </span>
-                                                </div>
-                                                <div class="upload-button-wrapper">
-                                                    @if( in_array($blog['class'], ['normal']) )
-
-                                                        <a href="#" data-blog-id="{{ $blog['blog']->id }}" class="upload-blog-button" data-toggle="tooltip" data-placement="top" title="Upload Word File">
-                                                            <img src="{{ asset('assets/images/iconfinder_word_272702.svg') }}">
-                                                        </a>
-                                                    @endif
-                                                    @if( in_array($blog['class'], ['pending-to-add-image']) )
-                                                        <a href="#" data-blog-id="{{ $blog['blog']->id }}" class="upload-image-button" data-toggle="tooltip" data-placement="top"  title="Upload Image">
-                                                            <img src="{{ asset('assets/images/iconfinder_image_272698.svg') }}">
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </td>
-                                    @endforeach
-                                </tr>
+                                                <a href="#" data-blog-id="{{ $blog['blog']->id }}" class="upload-blog-button" data-toggle="tooltip" data-placement="top" title="Upload Word File">
+                                                    <img src="{{ asset('assets/images/iconfinder_word_272702.svg') }}">
+                                                </a>
+                                            @endif
+                                            @if( in_array($blog['class'], ['pending-to-add-image']) )
+                                                <a href="#" data-blog-id="{{ $blog['blog']->id }}" class="upload-image-button" data-toggle="tooltip" data-placement="top"  title="Upload Image">
+                                                    <img src="{{ asset('assets/images/iconfinder_image_272698.svg') }}">
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
                             @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <!--Hidden Input Fields For Upload -->

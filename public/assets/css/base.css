@@ -76,4 +76,5 @@ table.table td{
 }
 .content-wrapper{
     background-color: white;
+    margin-bottom: 48px !important;
 }

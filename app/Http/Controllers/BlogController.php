@@ -18,7 +18,6 @@ use App\Http\Helpers\NotificationHelper;
 
 class BlogController extends Controller
 {
-    protected $presentMonths = 2;
     /**
      * Create a new controller instance.
      *
@@ -49,7 +48,7 @@ class BlogController extends Controller
         $websites = BlogHelper::getAssignedWebsites(Auth::user());
 
         //Get Future Months
-        $futureMonths = BlogHelper::getFutureMonths($this->presentMonths);
+        $futureMonths = BlogHelper::getFutureMonths();
 
         $prettyWebsites = [];
         $pendingBlogsToAddTitle = 0;
@@ -61,8 +60,8 @@ class BlogController extends Controller
         $totalBlogsForMonth = array_fill(0, count($futureMonths), 0);
         foreach( $websites as $website ){
 
-            $futureBlogs = $website->futureBlogs($this->presentMonths);
-            $availableMonths = $website->availableMonths($this->presentMonths);
+            $futureBlogs = $website->futureBlogs();
+            $availableMonths = $website->availableMonths();
 
             $prettyFutureBlogs = [];    //Fill out empty months as well
 

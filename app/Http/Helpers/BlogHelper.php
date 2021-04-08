@@ -8,18 +8,18 @@ use App\InnerBlog;
 use Carbon\Carbon;
 
 class BlogHelper {
-    static public $presentMonths = 2;
     /**
      * Get Future Dates
      * @param int $months
      */
-    public static function getFutureMonths($months)
+    public static function getFutureMonths()
     {
         $futureDates = [];
 
-        for( $i = -1; $i < $months; $i++ ) {
-            $futureDates[] = (new Carbon('first day of this month'))->startOfDay()->addMonths($i);
+        for( $i = 0; $i < 12; $i++ ) {
+            $futureDates[] = (Carbon::now())->startOfYear()->addMonths($i);
         }
+
         return $futureDates;
     }
 
@@ -102,14 +102,14 @@ class BlogHelper {
     public static function getPendingToAddTitleBlogs($user)
     {
         $websites = BlogHelper::getAssignedWebsites($user);
-        $futureMonths = self::getFutureMonths(self::$presentMonths);
+        $futureMonths = self::getFutureMonths();
 
         $emptyBlogs = [];
 
         foreach( $websites as $website ){
 
-            $futureBlogs = $website->futureBlogs(self::$presentMonths);
-            $availableMonths = $website->availableMonths(self::$presentMonths);
+            $futureBlogs = $website->futureBlogs();
+            $availableMonths = $website->availableMonths();
 
             $prettyFutureBlogs = [];    //Fill out empty months as well
 
