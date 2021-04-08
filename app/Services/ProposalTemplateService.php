@@ -31,6 +31,12 @@ class ProposalTemplateService
             'email' => "sam@liquorcms.com",
             'logo' => "liquor_cms.logo"  
         ],
+        Proposal::TEMPLATE_TYPE_CMS_MAX => [
+            'prepared_by' => 'CMS MAX',
+            'phone' => "585-348-8127",
+            'email' => "sam@cmsmax.com",
+            'logo' => "cms_max.logo"  
+        ],
     ];
 
     public static function getTemplateContent($templateType)

@@ -202,6 +202,8 @@ var Proposal_Generator = {
                 $("#cms-logo").attr('src', 'assets/images/venice-onward-logo.png');
             } else if ($(this).val() == 'liquor-cms') {
                 $("#cms-logo").attr('src', 'assets/images/liquor-cms-logo.png');
+            } else if ($(this).val() == 'cms-max') {
+                $("#cms-logo").attr('src', 'assets/images/cms-max-logo.png');
             }
         }).trigger('change');
     }

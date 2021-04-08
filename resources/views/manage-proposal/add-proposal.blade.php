@@ -16,10 +16,9 @@
             @csrf
             <div class="form-group template-type-form-group">
                 <select class="form-group template-type-select" name="template_type">
-                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING) ? 'selected' : '' }}>Evolution Marketing</option>
-                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA) ? 'selected' : '' }}>Evolution Marketing Florida</option>
-                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_VENICE_ONWARD }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_VENICE_ONWARD) ? 'selected' : '' }}>Venice Onward</option>
-                    <option value="{{ \App\Proposal::TEMPLATE_TYPE_LIQUOR_CMS }}" {{ (isset($editMode) && $proposal->template_type == \App\Proposal::TEMPLATE_TYPE_LIQUOR_CMS) ? 'selected' : '' }}>Liquor CMS</option>
+                    @foreach (\App\Services\ProposalTemplateService::TEMPLATE_DATA as $templateKey => $templateData)
+                        <option value="{{ $templateKey }}" {{ (isset($editMode) && $proposal->template_type == $templateKey) ? 'selected' : '' }}>{{ $templateData['prepared_by'] }}</option>
+                    @endforeach
                 </select>
             </div>
             <p class = "text-center mt-3 custom-form-group">
@@ -142,5 +141,5 @@
         @endif
     </script>
 
-    <script src="{{ asset('assets/js/main.js?v=7') }}"></script>
+    <script src="{{ asset('assets/js/main.js?v=8') }}"></script>
 @endsection
