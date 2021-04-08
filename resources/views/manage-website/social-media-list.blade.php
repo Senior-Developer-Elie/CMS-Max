@@ -53,6 +53,10 @@
                                                 <a class="website-google-drive-link-icon" href = "{{ $website->social_calendar }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Social Calendar">
                                                     <img src="{{ asset('assets/images/social-calendar-icon.png') }}" />
                                                 </a>
+                                            @else
+                                                <a class="website-google-drive-link-icon">
+                                                    <img src="{{ asset('assets/images/social-calendar-disabled-icon.png') }}" />
+                                                </a>
                                             @endif
                                         </div>
                                     </td>
