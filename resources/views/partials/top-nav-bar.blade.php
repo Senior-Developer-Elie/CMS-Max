@@ -10,7 +10,7 @@
         <?php list($notifications, $actionNotifications) = get_global_notifications(); ?>
 
         <li class="nav-item">
-            <a class="nav-link pr-0" href="https://drive.google.com/drive/u/3/folders/0AMOYQpmIJd_3Uk9PVA" target="_blank">
+            <a class="nav-link pr-0" href="https://drive.google.com/drive/u/5/folders/0APUuXZMgJWHWUk9PVA" target="_blank">
                 <img class="h-100" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/512px-Google_Drive_icon_%282020%29.svg.png" />
             </a>
         </li>
