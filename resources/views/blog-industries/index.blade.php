@@ -39,9 +39,7 @@
                                     </td>
                                     <td class="text-center">
                                         <i class="fa fa-edit edit-blog-industry-button" data-toggle="tooltip" data-placement="top" title="Edit Industry"></i>
-                                        @can('delete ability')
-                                            <i class="fa fa-trash-o delete-blog-industry-button" data-toggle="tooltip" data-placement="top" title="Delete Industry"></i>
-                                        @endcan
+                                        <i class="fa fa-trash delete-blog-industry-button" data-toggle="tooltip" data-placement="top" title="Delete Industry"></i>
                                     </td>
                                 </tr>
                             @endforeach

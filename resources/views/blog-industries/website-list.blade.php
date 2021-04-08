@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $blogIndustry->websites() as $website )
+                            @foreach ( $blogIndustry->websites as $website )
                                 <tr>
                                     <td>
                                         <a href="{{ url('client-history?clientId=' . $website->client()->id) }}">
