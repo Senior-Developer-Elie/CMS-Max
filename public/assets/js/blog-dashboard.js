@@ -5,6 +5,7 @@ var Blog_List = {
         this.initTooltip();
         this.initDataTable();
         this.initBlogNameEditAction();
+        this.initWriterFilter();
     },
 
     initTooltip: function(){
@@ -21,7 +22,7 @@ var Blog_List = {
             columnDefs: [{targets: (isBlogManager ? [4,5] : [3,4] ), type: 'sortme'}],
             fixedHeader: true,
             "scrollX": true,
-            scrollY:        ($(window).height()-290) + "px",
+            scrollY:        ($(window).height()-320) + "px",
             scrollX:        true,
             scrollCollapse: true,
             fixedColumns:   {
@@ -113,7 +114,14 @@ var Blog_List = {
                 $(button).trigger('click');
             })
         });
-    }
+    },
+
+    initWriterFilter: function() {
+        $("#writers-filter").change(function() {
+            debugger;
+            location.href = "/blog-dashboard?user_id=" + $(this).val(); 
+        })
+    },
 };
 
 $(document).ready(function(){

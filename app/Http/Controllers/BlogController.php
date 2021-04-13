@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Blog;
 use App\AdminHistory;
+use App\Website;
 
 
 use Illuminate\Support\Facades\Session;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 
 use App\Http\Helpers\BlogHelper;
 use App\Http\Helpers\NotificationHelper;
+use App\User;
 
 class BlogController extends Controller
 {
@@ -45,7 +47,7 @@ class BlogController extends Controller
             return redirect('/webadmin');
 
         //Get Blog Clients
-        $websites = BlogHelper::getAssignedWebsites(Auth::user());
+        $websites = $this->getWebsites();
 
         //Get Future Months
         $futureMonths = BlogHelper::getFutureMonths();
@@ -172,6 +174,7 @@ class BlogController extends Controller
             'futureMonths'                  => $futureMonths,
             'totalBlogsForMonth'            => $totalBlogsForMonth,
             'isBlogManager'                 => Auth::user()->can('content manager'),
+            'users'                         => User::orderBy('name')->get(),
         ];
 
         return view('manage-blog/blog-dashboard', $data);
@@ -705,5 +708,20 @@ class BlogController extends Controller
         if( !is_null($url) && $url !== '' && Storage::disk('s3')->exists($url)) {
             Storage::delete($url);
         }
+    }
+
+    protected function getWebsites()
+    {
+        $query = Website::where('is_blog_client', 1)->where('archived', 0)->orderBy('name');
+        
+        if (empty($userId = request()->input('user_id'))) {
+            $userId = Auth::user()->id;
+        }
+
+        if ($userId != 'all') {
+            $query->where('assignee_id', $userId);
+        }
+
+        return $query->get();
     }
 }

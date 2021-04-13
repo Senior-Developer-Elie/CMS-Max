@@ -77,13 +77,27 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <select id="writers-filter" class="form-control" style="width: 150px;">
+                <option value="all" {{ Request::input('user_id') == 'all' ? 'selected' : '' }}>All Writers</option>
+                @foreach ($users as $user)
+                    @php
+                        $writerSelected = (empty(Request::input('user_id')) && $user->id == Auth::user()->id)
+                            || Request::input('user_id') == $user->id;
+                    @endphp
+                    <option value="{{ $user->id }}" {{ $writerSelected ? 'selected' : '' }}>
+                        {{ $user->name }}
+                    </option>
+                @endforeach
+            </select>
             <table id="client-list" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th width="250px">Website Name ({{ count($websites) }})</th>
                         <th width="80px">Frequency</th>
                         @can('content manager')
-                            <th>Writer</th>
+                            <th>
+                                Writer
+                            </th>
                         @endcan
                         <th width="120px">Project Manager</th>
                         @foreach ($futureMonths as $index => $month)
@@ -191,6 +205,6 @@
     <!-- DataTables -->
     <script src="{{ mix('js/datatable.js') }}"></script>
 
-    <script src="{{ asset('assets/js/blog-dashboard.js?v=4') }}"></script>
+    <script src="{{ asset('assets/js/blog-dashboard.js?v=5') }}"></script>
     <script src="{{ asset('assets/js/upload-action.js?v=3') }}"></script>
 @endsection
