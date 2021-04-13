@@ -174,7 +174,7 @@ class BlogController extends Controller
             'futureMonths'                  => $futureMonths,
             'totalBlogsForMonth'            => $totalBlogsForMonth,
             'isBlogManager'                 => Auth::user()->can('content manager'),
-            'users'                         => User::orderBy('name')->get(),
+            'users'                         => User::where('type', '!=', User::USER_TYPE_CMS_MAX_DEVELOPER)->orderBy('name')->get(),
         ];
 
         return view('manage-blog/blog-dashboard', $data);
