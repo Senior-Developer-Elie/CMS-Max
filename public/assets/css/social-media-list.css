@@ -21,3 +21,19 @@
 .website-google-drive-link-icon img{
     height: 18px;
 }
+.filter-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.filter-wrapper .show-clients-filter{
+    display: inline-block;
+    vertical-align: top;
+}
+#icons-lengeds {
+    display: inline-block;
+    list-style: none;
+}
+#icons-lengeds .legend-item img{
+    height: 18px;
+    margin-left: 5px;
+}

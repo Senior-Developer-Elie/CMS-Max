@@ -14,9 +14,29 @@
                     <h3 class="card-title">Social Media List ({{ count($activeWebsites) }})</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-check mb-2">
-                        <input type="checkbox" class="form-check-input" id="show-clients-only" {{ Request::input('show_clients_only') == 'on' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="show-clients-only">Show clients only</label>
+                    <div class="filter-wrapper">
+                        <div class="form-check mb-2 show-clients-filter">
+                            <input type="checkbox" class="form-check-input" id="show-clients-only" {{ Request::input('show_clients_only') == 'on' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="show-clients-only">Show clients only</label>
+                        </div>
+                        <ul id="icons-lengeds">
+                            <li class="legend-item">
+                                <img src="{{ asset('assets/images/social-calendar-disabled-icon.png') }}" />
+                                <span>No calendar needed, directly send preview posts to client</span>
+                            </li>
+                            <li class="legend-item">
+                                <img src="{{ asset('assets/images/social-calendar-icon.png') }}" />
+                                <span>Calendar used with client</span>
+                            </li>
+                            <li class="legend-item">
+                                <img src="{{ asset('assets/images/dollar-icon.jpg') }}" />
+                                <span>Our company credit card is used for Ad spend</span>
+                            </li>
+                            <li class="legend-item">
+                                <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
+                                <span>Client's drive folder</span>
+                            </li>
+                        </ul>
                     </div>
                     <table id = "website-list-table" class="table table-bordered table-striped" style="width:100%">
                         <thead>
@@ -124,7 +144,7 @@
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/social-media-list.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/social-media-list.css?v=2') }}">
 @endsection
 @section('javascript')
     <script>
