@@ -123,7 +123,7 @@
                             </td>
 
                             @can('content manager')
-                                <th>{{ is_null($website['website']->assignee()) ? '' : $website['website']->assignee()->name }}</th>
+                                <td>{{ is_null($website['website']->assignee()) ? '' : $website['website']->assignee()->name }}</td>
                             @endcan
 
                             <td>
