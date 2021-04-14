@@ -150,12 +150,12 @@
                                     ?>
                                     <div data-order-value="{{ $orderValue }}">
                                         <span class="blog-name" data-blog-name="{{ $blog['blogName'] }}">
-                                            {{ $blog['blogName'] }}
                                             @if ($blog['class'] == 'done')
-                                                <br />
                                                 <a href="{{ $blog['blogWebsite'] }}" target="_blank">
                                                     {{ $blog['blogTitle'] }}
                                                 </a>
+                                            @else
+                                                {{ $blog['blogName'] }}
                                             @endif
                                         </span>
                                         <div class="blog-name-input-wrapper input-group input-group-sm" style="display:none">
