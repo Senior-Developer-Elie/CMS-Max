@@ -151,6 +151,12 @@
                                     <div data-order-value="{{ $orderValue }}">
                                         <span class="blog-name" data-blog-name="{{ $blog['blogName'] }}">
                                             {{ $blog['blogName'] }}
+                                            @if ($blog['class'] == 'done')
+                                                <br />
+                                                <a href="{{ $blog['blogWebsite'] }}" target="_blank">
+                                                    {{ $blog['blogTitle'] }}
+                                                </a>
+                                            @endif
                                         </span>
                                         <div class="blog-name-input-wrapper input-group input-group-sm" style="display:none">
                                             <input type="text" class="form-control">
@@ -168,11 +174,6 @@
                                             @if( in_array($blog['class'], ['pending-to-add-image']) )
                                                 <a href="#" data-blog-id="{{ $blog['blog']->id }}" class="upload-image-button" data-toggle="tooltip" data-placement="top"  title="Upload Image">
                                                     <img src="{{ asset('assets/images/iconfinder_image_272698.svg') }}">
-                                                </a>
-                                            @endif
-                                            @if (in_array($blog['class'], ['done']))
-                                                <a href="{{ $blog['blogWebsite'] }}" target="_blank" class="blog-done-url">
-                                                    <i class="fas fa-external-link-alt"></i>
                                                 </a>
                                             @endif
                                         </div>
