@@ -47,7 +47,8 @@ class BlogController extends Controller
             return redirect('/webadmin');
 
         //Get Blog Clients
-        $websites = $this->getWebsites();
+        $filterUserId = $this->getFilterUserId();
+        $websites = $this->getWebsites($filterUserId);
 
         //Get Future Months
         $futureMonths = BlogHelper::getFutureMonths();
@@ -175,6 +176,7 @@ class BlogController extends Controller
             'totalBlogsForMonth'            => $totalBlogsForMonth,
             'isBlogManager'                 => Auth::user()->can('content manager'),
             'users'                         => User::where('type', '!=', User::USER_TYPE_CMS_MAX_DEVELOPER)->orderBy('name')->get(),
+            'filterUserId'                  => $filterUserId,
         ];
 
         return view('manage-blog/blog-dashboard', $data);
@@ -710,16 +712,24 @@ class BlogController extends Controller
         }
     }
 
-    protected function getWebsites()
+    protected function getFilterUserId()
     {
-        $query = Website::where('is_blog_client', 1)->where('archived', 0)->orderBy('name');
-        
         if (empty($userId = request()->input('user_id'))) {
-            $userId = Auth::user()->id;
+            if (in_array(Auth::user()->id, [1, 2, 3])) {
+                $userId = 'all';
+            } else {
+                $userId = Auth::user()->id;
+            }
         }
 
-        if ($userId != 'all') {
-            $query->where('assignee_id', $userId);
+        return $userId;
+    }
+    protected function getWebsites($filterUserId)
+    {
+        $query = Website::where('is_blog_client', 1)->where('archived', 0)->orderBy('name');
+
+        if ($filterUserId != 'all') {
+            $query->where('assignee_id', $filterUserId);
         }
 
         return $query->get();

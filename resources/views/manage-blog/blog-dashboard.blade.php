@@ -78,13 +78,9 @@
     <div class="row">
         <div class="col-md-12">
             <select id="writers-filter" class="form-control" style="width: 150px;">
-                <option value="all" {{ Request::input('user_id') == 'all' ? 'selected' : '' }}>All Writers</option>
+                <option value="all" {{ $filterUserId == 'all' ? 'selected' : '' }}>All Writers</option>
                 @foreach ($users as $user)
-                    @php
-                        $writerSelected = (empty(Request::input('user_id')) && $user->id == Auth::user()->id)
-                            || Request::input('user_id') == $user->id;
-                    @endphp
-                    <option value="{{ $user->id }}" {{ $writerSelected ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ $filterUserId == $user->id ? 'selected' : '' }}>
                         {{ $user->name }}
                     </option>
                 @endforeach
