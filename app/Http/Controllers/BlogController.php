@@ -143,6 +143,7 @@ class BlogController extends Controller
                                 else {
                                     $prettyFutureBlog['class'] = 'done';
                                     $prettyFutureBlog['blogName'] = 'Done';
+                                    $prettyFutureBlog['blogWebsite'] = $blog->blog_website;
                                     $blogsDone++;
                                 }
                             }

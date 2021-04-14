@@ -170,6 +170,11 @@
                                                     <img src="{{ asset('assets/images/iconfinder_image_272698.svg') }}">
                                                 </a>
                                             @endif
+                                            @if (in_array($blog['class'], ['done']))
+                                                <a href="{{ $blog['blogWebsite'] }}" target="_blank" class="blog-done-url">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
@@ -190,7 +195,7 @@
     <!-- DataTables -->
     <link href="{{ mix("css/datatable.css") }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/blog-dashboard.css?v=2') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/blog-dashboard.css?v=3') }}">
 @endsection
 
 @section('javascript')

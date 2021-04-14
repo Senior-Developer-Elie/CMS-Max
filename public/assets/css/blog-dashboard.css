@@ -45,6 +45,9 @@ tr{
 td{
     vertical-align: middle !important;
 }
+.blog-name a {
+    color: white;
+}
 .blog-name-input-wrapper{
     width: 100%;
     display: flex;
@@ -73,6 +76,10 @@ td.blog-cell:hover .upload-button-wrapper{
 .upload-button-wrapper img{
     height: 20px;
     margin-left: 3px;
+}
+.upload-button-wrapper .blog-done-url{
+    font-size: 20px;
+    color: white;
 }
 /*
 td.blog-cell a.blog-info-icon{
