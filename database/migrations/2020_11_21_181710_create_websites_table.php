@@ -53,7 +53,7 @@ class CreateWebsitesTable extends Migration {
 			$table->text('control_scan_pass', 65535)->nullable();
 			$table->date('control_scan_renewal_date')->nullable();
 			$table->text('data_studio_link', 65535)->nullable();
-			$table->boolean('social_media_archived')->default(0);
+			$table->boolean('social_media_archived')->default(1);
 			$table->text('social_media_notes', 65535)->nullable();
 			$table->boolean('credit_card_archived')->default(0);
 			$table->text('credit_card_notes', 65535)->nullable();

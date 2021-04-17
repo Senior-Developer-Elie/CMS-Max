@@ -44,9 +44,6 @@ class Website extends Model
 
         "data_studio_link",
 
-        "social_media_archived",
-        "social_media_notes",
-
         "credit_card_archived",
         "credit_card_notes",
 
@@ -66,12 +63,16 @@ class Website extends Model
         'billing_type',
         'billing_amount',
 
+        // Social Media
         'social_calendar',
-        'social_budget',
         'manual_social_plan',
         'social_ad_spend',
         'social_management_fee',
         'uses_our_credit_card',
+        'social_media_stage_id',
+        'social_media_stage_order',
+        "social_media_archived",
+        "social_media_notes",
     ];
 
     protected $casts = [
@@ -151,6 +152,12 @@ class Website extends Model
     public function client()
     {
         return $this->belongsTo('App\Client', 'client_id')->get()->first();
+    }
+
+    public function socialMediaCheckLists()
+    {
+        return $this->hasMany(WebsiteSocialMediaCheckList::class)
+            ->whereIn('key', array_keys(WebsiteSocialMediaCheckList::socialMediaCheckLists()));
     }
 
     public function getProductValues($crmProductKeys){
@@ -344,5 +351,16 @@ class Website extends Model
         }
 
         return $websiteProducts;
+    }
+
+    public function getSocialPlanAttribute()
+    {
+        foreach (AngelInvoice::SOCIAL_PLANS_CRM_PRODUCT_KEYS as $crmProductKey) {
+            if ($this->getProductValue($crmProductKey) > 0) {
+                return $crmProductKey;
+            }
+        }
+
+        return null;
     }
 }

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\AngelInvoice;
 use Illuminate\Http\Request;
-
-use App\Website;
-
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
+use App\Website;
+use App\SocialMediaStage;
+use App\WebsiteSocialMediaCheckList;
 
-use App\Http\Helpers\WebsiteHelper;
 class SocialMediaController extends Controller
 {
     /**
@@ -23,88 +21,65 @@ class SocialMediaController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Payroll Websites List
-     */
     public function index(Request $request)
     {
         //Check page permission and redirect
         if( !Auth::user()->hasPagePermission('Social Media') )
             return redirect('/webadmin');
 
-        $query = Website::where('archived', 0);
-        $this->applyFilters($query);
-        
-        $activeWebsites = $query->get();
+        $socialMediaStages = SocialMediaStage::orderBy('order')
+            ->with('websites.socialMediaCheckLists')
+            ->get();
 
-        // Attach plan
-        $activeWebsites->map(function($website) {
-
-            $website->plan = null;
-            
-            foreach (AngelInvoice::SOCIAL_PLANS_CRM_PRODUCT_KEYS as $crmProductKey) {
-                if ($website->getProductValue($crmProductKey) > 0) {
-                    $website->plan = $crmProductKey;
-                    $website->planName = AngelInvoice::products()[$crmProductKey];
-                    break;
-                }
-            }
-
-            return $website;
-        });
-
-        return view('manage-website.social-media-list', [
-            'currentSection'        => 'social-media',
-            'activeWebsites'        => $activeWebsites,
+        return view('manage-website.social-media.index', [
+            'currentSection' => 'social-media',
+            'socialMediaStages' => $socialMediaStages,
+            'socialMediaCheckLists' => \App\WebsiteSocialMediaCheckList::socialMediaCheckLists(),
         ]);
     }
 
-    /**
-     * Archive Website
-     */
-    public function archiveWebsite(Request $request)
-    {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
-            ]);
-        $website->social_media_archived = true;
-        $website->save();
 
-        Session::flash('message', 'Website is archived Successfully!');
-        Session::flash('alert-class', 'alert-success');
+    public function show(Request $request, $websiteId)
+    {
+        $website = Website::findOrFail($websiteId);
+        $website->client = $website->client();
+        $website->socialMediaCheckLists = $website->socialMediaCheckLists()->get()->toArray();
 
         return response()->json([
-            'status'    => 'success'
+            'status' => 'success',
+            'website' => $website->toArray(),
         ]);
     }
 
-    /**
-     * Archive Website
-     */
-    public function unarchiveWebsite(Request $request)
+    public function updateSocialMediaChecklist(Request $request, $websiteId)
     {
-        $website = Website::find($request->input('websiteId'));
-        if( is_null($website) )
-            return response()->json([
-                'status'    => 'error'
+        $website = Website::findOrFail($websiteId);
+
+        $value = $request->input('value') == 'on' ? true : false;
+        $socialMediaKey = $request->input('social_media_key');
+
+        if ($value) {
+            $websiteSocialMediaCheckList = WebsiteSocialMediaCheckList::updateOrCreate([
+                'website_id' => $website->id,
+                'key' => $socialMediaKey,
+            ], [
+                'completed_at' => Carbon::now(),
+                'user_id' => Auth::user()->id,
             ]);
-        $website->social_media_archived = false;
-        $website->save();
-
-        Session::flash('message', 'Website is Re-enabled Successfully!');
-        Session::flash('alert-class', 'alert-success');
-
-        return response()->json([
-            'status'    => 'success'
-        ]);
-    }
-
-    protected function applyFilters($query)
-    {
-        if (request()->input('show_clients_only') == 'on') {
-            $query->whereRaw('social_ad_spend + social_management_fee > 0');
+        } else {
+            WebsiteSocialMediaCheckList::where('website_id', $website->id)
+                ->where('key', $socialMediaKey)
+                ->delete();
         }
+
+        $response = [
+            'status' => 'success',
+        ];
+
+        if ($value) {
+            $response['websiteSocialMediaCheckList'] = $websiteSocialMediaCheckList->toArray();
+        }
+
+        return response()->json($response);
     }
 }

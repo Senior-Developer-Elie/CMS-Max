@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\PaymentGateway;
-class PaymeentGatewaysTableSeeder extends Seeder
+class PaymentGatewaysTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

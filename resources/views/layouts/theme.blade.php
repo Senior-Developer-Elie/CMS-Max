@@ -19,6 +19,9 @@
         <!-- All CSS -->
         <link href="{{ mix('/css/all.css') }}" rel="stylesheet">
 
+        <!-- SCSS -->
+        <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+
         @yield('css')
     </head>
 

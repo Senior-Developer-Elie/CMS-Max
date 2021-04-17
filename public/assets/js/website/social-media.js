@@ -1,276 +1,281 @@
 var Websites_Social_Media = {
-
-    activeWebsitesTable: false,
-    // archivedWebsitesTable: false,
-
-    init : function(){
-        this.initDataTable();
-        this.initInlineEditable();
-        this.initFilterActions();
-        // this.initArchiveActions();
-        this.initTooltip();
+    init: () => {
+        Websites_Social_Media.initToolTip();
+        Websites_Social_Media.iniWebsiteShowAction();
+        Websites_Social_Media.initWebsiteIconActions();
     },
 
-    initTooltip: function() {
-        $('[data-toggle="tooltip"]').tooltip();
+    initToolTip: () => {
+        $('[data-toggle="tooltip"]').tooltip()
     },
 
-    initDataTable: function(){
-        $.fn.dataTable.ext.type.order['float-desc'] = function (x, y) {
-            x = parseFloat($(x).attr('data-value'));
-            y = parseFloat($(y).attr('data-value'));
+    iniWebsiteShowAction: () => {
+        $(document).on("click", ".website-row .social-grid-name-cell", function() {
+            let websiteId = $(this).closest(".social-grid-row").attr("data-website-id");
+            Social_Details_Widget.showWebsite(websiteId);
+        })
+    },
 
-            x = isNaN(x) ? 0 : x;
-            y = isNaN(y) ? 0 : y;
+    initWebsiteIconActions: () => {
+        $(".website-row .website-icon").click(function(e) {
+            e.stopPropagation();
+        })
+    },
+};
 
-            if ( x > y)
-            {
-                return -1;
+var Social_Details_Widget = {
+
+    website: false,
+    socialMediaPlansSource : [],
+    socialMediaStagesSource: [],
+
+    init: function() {
+        Social_Details_Widget.prettifySources();
+        Social_Details_Widget.initSocialMediaCheckListsActions();
+        Social_Details_Widget.initToolBarButtonActions();
+    },
+
+    prettifySources: function() {
+        Social_Details_Widget.socialMediaPlansSource = Object.keys(socialMediaPlans).reduce((acc, cur) => {
+            acc.push({
+                value: cur,
+                text: socialMediaPlans[cur]
+            });
+            return acc;
+        }, []);
+
+        Social_Details_Widget.socialMediaStagesSource = socialMediaStages.map((stage) => {
+            return {
+                'value': stage.id,
+                'text': stage.name,
             }
+        });
+    },
 
-            return 1;
-        };
+    showWebsite: function(websiteId){
 
-        $.fn.dataTable.ext.type.order['float-asc'] = function (x, y) {
-            x = parseFloat($(x).attr('data-value'));
-            y = parseFloat($(y).attr('data-value'));
+        $("#website-details-wrapper").show();
+        $("#website-details-wrapper").animate({left: '60%'}, 350, function(){
+            $(".social-grid").css("width", "60%");
+        });
 
-            x = isNaN(x) ? 0 : x;
-            y = isNaN(y) ? 0 : y;
+        // Show loading
+        $('#website-details-wrapper').waitMe({
+            effect : 'bounce',
+            text : '',
+            bg : 'rgba(255,255,255,0.7)',
+            color : '#000'
+        });
 
-            if ( x > y)
-            {
-                return 1;
-            }
-
-            return -1;
-        };
-
-        $.fn.dataTable.ext.type.order['plan-desc'] = function (x, y) {
-            x = $(x).attr('data-value');
-            y = $(y).attr('data-value');
-
-            return x.localeCompare(y);
-        };
-
-        $.fn.dataTable.ext.type.order['plan-asc'] = function (x, y) {
-            x = $(x).attr('data-value');
-            y = $(y).attr('data-value');
-
-            return y.localeCompare(x);
-        };
-
-        Websites_Social_Media.activeWebsitesTable = $('#website-list-table').DataTable({
-            "order"     : [[ 3, "desc" ]],
-            'paging'    : true,
-            'searching' : true,
-            "pageLength": -1,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columnDefs: [
-                {targets: [3, 4, 5], type: 'float'},
-                {targets: [2], type: 'plan'},
-            ],
-            fixedHeader: true,
-            "footerCallback": function ( row, data, start, end, display ) {
-                var api = this.api(), data;
-
-                // Remove the formatting to get integer data for summation
-                var floatConversion = function ( i ) {
-                    if( i.toString().startsWith("<a") ) {
-                        value = parseFloat($(i).attr('data-value'));
-                        value = isNaN(value) ? 0 : value;
-                        if( value < 0 )
-                            return 0;
-                        return value;
-                    }
-                    else
-                        return 0;
-                };
-
-                for( let i = 3; i <= 5; i++ ) {
-                    // Total over this page
-                    let columnData = api
-                    .column( i, { page: 'current'} )
-                    .data();
-
-                    let pageTotal = 0;
-
-                    for( j = 0; j < columnData.length; j++ ){
-                        pageTotal += floatConversion(columnData[j]);
-                    }
-
-                    // Update footer
-                    $( api.column( i ).footer() ).html(
-                        '$' + Math.round(pageTotal).toLocaleString()
-                    );
+        // Get Website Details
+        $.ajax({
+            type: "GET",
+            url: siteUrl + "/social-media/website-details/" + websiteId,
+            success: function(response){
+                if( response.status == "success" ) {
+                    Social_Details_Widget.setWebsite(response.website);
                 }
-            },
-        });
+            }
+        })
     },
 
-    initFilterActions: function() {
-        $(document).on('change', '#show-clients-only', function() {
-            location.href = siteUrl + "/social-media?show_clients_only=" + ($(this).prop('checked') ? 'on' : '');
-        });
+    setWebsite: function(website){
+        //Remove Selected
+        if( Social_Details_Widget.website != false ){
+            $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").removeClass("selected");
+        }
+        Social_Details_Widget.website = website;
+
+        //Add selected
+        $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").addClass("selected");
+
+        $('#website-details-wrapper').waitMe('hide');
+
+        Social_Details_Widget.setVariables();
+        Social_Details_Widget.setInlineEdit();
     },
 
-    initInlineEditable: function(){
-        //X Editable Options
+    setVariables: function() {
+        let website = Social_Details_Widget.website;
+
+        $("#website-details-wrapper .stage-value").attr('data-value', website.social_media_stage_id);
+        $("#website-details-wrapper .website-name-value").text(website.name);
+        $("#website-details-wrapper .website-edit-link").attr('href', siteUrl + "/websites/" + website.id + "/edit");
+        $("#website-details-wrapper .client-name-value").text(website.client.name);
+        $("#website-details-wrapper .client-edit-link").attr('href', siteUrl + "/client-history?clientId=" + website.client.id);
+        $("#website-details-wrapper .website-url-value").text(website.website);
+        $("#website-details-wrapper .website-url-link").attr('href', '//' + website.website);
+        $("#website-details-wrapper .budget-value").text("$" + (website.social_ad_spend + website.social_management_fee));
+        $("#website-details-wrapper .social-plan-value").attr('data-value', website.manual_social_plan);
+        $("#website-details-wrapper .ad-spend-value").attr('data-value', website.social_ad_spend);
+        $("#website-details-wrapper .management-fee-value").attr('data-value', website.social_management_fee);
+        $("#website-details-wrapper .notes-value").attr('data-value', website.social_media_notes);
+
+        let websiteSocialMediaKeys = Social_Details_Widget.website.socialMediaCheckLists.reduce((acc, cur) => {
+            return [...acc, cur.key];
+        }, [])
+
+        $("#website-details-wrapper input.check-list-option").each(function() {
+            const socialMediaKey = $(this).attr('data-check-list-key');
+            if (websiteSocialMediaKeys.includes(socialMediaKey)) {
+                $(this).prop('checked', true);
+            } else {
+                $(this).prop('checked', false);
+            }
+        })
+    },
+
+    setInlineParams: function() {
         $.fn.editable.defaults.send = "always";
         $.fn.editable.defaults.ajaxOptions = {
             type : 'POST'
         };
         $.fn.editable.defaults.url = siteUrl+"/update-website-attribute";
-        $.fn.editable.defaults.mode = 'popup';
+        $.fn.editable.defaults.mode = 'inline';
         $.fn.editable.defaults.params = function(params) {
             params._token = csrf_token;
             return params;
         };
-
-        $("a.social-media-notes").each(function(index, element){
-            websiteId = $(element).closest('tr').attr('data-website-id');
-            $(element).editable({
-                type        : 'textarea',
-                pk          : websiteId,
-                name        : 'social_media_notes',
-            });
-        })
-
-        $("a.social-ad-spend-value").each(function(index, element){
-            websiteId = $(element).closest('tr').attr('data-website-id');
-            $(element).editable({
-                type        : 'text',
-                pk          : websiteId,
-                name        : 'social_ad_spend',
-                display     : function( value ){
-                    if( value == "0" )
-                    {
-                        $(this).html("$" + value);
-                    }
-                    else if( parseFloat(value) >= 0 )
-                        $(this).html("$" + value);
-                    else
-                        $(this).html("$0");
-                }
-            });
-
-            $(element).on('save', function(e, params) {
-                $(this).attr('data-value', params.newValue);
-                Websites_Social_Media.updateRowValue($(this));
-                Websites_Social_Media.refreshTable();
-            });
-        })
-
-        $("a.social-management-fee-value").each(function(index, element){
-            websiteId = $(element).closest('tr').attr('data-website-id');
-            $(element).editable({
-                type        : 'text',
-                pk          : websiteId,
-                name        : 'social_management_fee',
-                display     : function( value ){
-                    if( value == "0" )
-                    {
-                        $(this).html("$" + value);
-                    }
-                    else if( parseFloat(value) >= 0 )
-                        $(this).html("$" + value);
-                    else
-                        $(this).html("$0");
-                }
-            });
-
-            $(element).on('save', function(e, params) {
-                $(this).attr('data-value', params.newValue);
-                Websites_Social_Media.updateRowValue($(this));
-                Websites_Social_Media.activeWebsitesTable.draw();
-            });
-        })
-
-        let socialPlanSource = Websites_Social_Media.makePrettySource(socialMediaPlans);
-        $("a.manual-social-plan-value").each(function(index, element){
-            websiteId = $(element).closest('tr').attr('data-website-id');
-            $(element).editable({
-                type        : 'select',
-                pk          : websiteId,
-                name        : 'manual_social_plan',
-                showbuttons : false,
-                source      : socialPlanSource,
-            });
-        })
+        $.fn.editable.defaults.onblur = 'submit';
+        $.fn.editable.defaults.showbuttons = false;
+        $.fn.editable.defaults.inputclass = 'attribute-edit-input';
+        $.fn.editable.defaults.pk = Social_Details_Widget.website.id;
     },
 
-    initArchiveActions: function(){
-        $(document).on('click', '.archive-btn', function(){
-            websiteId = $(this).closest('tr').attr('data-website-id');
-            $("#archive-website-modal").attr('data-website-id', websiteId);
-            $("#add-website-modal").modal('hide');
-            $("#archive-website-modal").modal('show');
+    setInlineEdit: function() {
+        Social_Details_Widget.setInlineParams();
+
+        // Stage
+        $("#website-details-wrapper .stage-value").editable("destroy");
+        $("#website-details-wrapper .stage-value").editable({
+            type        : 'select',
+            source      : Social_Details_Widget.socialMediaStagesSource,
+            name        : 'social_media_stage_id',
+        });
+        $('#website-details-wrapper .stage-value').editable('setValue', $("#website-details-wrapper .stage-value").attr('data-value'));
+
+        // Social Manual Plan
+        $("#website-details-wrapper .social-plan-value").editable("destroy");
+        $("#website-details-wrapper .social-plan-value").editable({
+            type        : 'select',
+            source      : Social_Details_Widget.socialMediaPlansSource,
+            name        : 'manual_social_plan',
+        });
+        $('#website-details-wrapper .social-plan-value').editable('setValue', $("#website-details-wrapper .social-plan-value").attr('data-value'));
+
+        // Social Ad Spend
+        $("#website-details-wrapper .ad-spend-value").editable("destroy");
+        $("#website-details-wrapper .ad-spend-value").editable({
+            type        : 'text',
+            name        : 'social_ad_spend',
+            display     : function( value){
+                $(this).html("$" + value);
+            }
+        });
+        $('#website-details-wrapper .ad-spend-value').editable('setValue', $("#website-details-wrapper .ad-spend-value").attr('data-value'));
+
+        // Social Management Fee
+        $("#website-details-wrapper .management-fee-value").editable("destroy");
+        $("#website-details-wrapper .management-fee-value").editable({
+            type        : 'text',
+            name        : 'social_management_fee',
+            display     : function( value){
+                $(this).html("$" + value);
+            }
+        });
+        $('#website-details-wrapper .management-fee-value').editable('setValue', $("#website-details-wrapper .management-fee-value").attr('data-value'));
+
+        // Social Management Fee
+        $("#website-details-wrapper .notes-value").editable("destroy");
+        $("#website-details-wrapper .notes-value").editable({
+            type        : 'textarea',
+            name        : 'social_media_notes',
+        });
+        $('#website-details-wrapper .notes-value').editable('setValue', $("#website-details-wrapper .notes-value").attr('data-value'));
+
+        // Update budget
+        $("#website-details-wrapper .ad-spend-value").on('save', function(e, params) {
+            let value = parseFloat(params.newValue);
+            value = value > 0 ? value : 0;
+            Social_Details_Widget.website.social_ad_spend = value;
+
+            Social_Details_Widget.updateBudgetValue();
+        });
+        $("#website-details-wrapper .management-fee-value").on('save', function(e, params) {
+            let value = parseFloat(params.newValue);
+            value = value > 0 ? value : 0;
+            Social_Details_Widget.website.social_management_fee = value;
+
+            Social_Details_Widget.updateBudgetValue();
         });
 
-        $("#archive-website-modal .confirm-btn").click(function(){
-            websiteId = $("#archive-website-modal").attr('data-website-id');
-            $.ajax({
-                type : 'POST',
-                url : siteUrl + '/social-media/archive-website',
-                data : {
-                    _token : csrf_token,
-                    websiteId
-                },
-                success: function(data){
-                    if( data.status == 'success' ){
-                        location.reload();
-                    }
-                }
-            });
-        });
-
-        $(document).on('click', '.unarchive-btn', function(){
-            websiteId = $(this).closest('tr').attr('data-website-id');
-            $.ajax({
-                type : 'POST',
-                url : siteUrl + '/social-media/un-archive-website',
-                data : {
-                    _token : csrf_token,
-                    websiteId
-                },
-                success: function(data){
-                    if( data.status == 'success' ){
-                        location.reload();
-                    }
-                }
-            });
+        // Update stage
+        $("#website-details-wrapper .stage-value").on('save', function(e, params) {
+            let stageId = parseFloat(params.newValue);
+            
+            let websiteRow = $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").detach();
+            $(".social-grid-stage-wrapper[data-stage-id='" + stageId + "']").find('.social-grid-stage-body').append(websiteRow);
         });
     },
 
-    makePrettySource: function(object){
-        let array = [];
-        Object.keys(object).forEach(key => {
-            array.push({
-                value: key,
-                text : object[key]
+    updateBudgetValue: function() {
+        $("#website-details-wrapper .budget-value").text("$" + (Social_Details_Widget.website.social_ad_spend + Social_Details_Widget.website.social_management_fee));
+    },
+
+    initSocialMediaCheckListsActions: function() {
+        $("#website-details-wrapper input.check-list-option").change(function() {
+            const ajaxData = {
+                social_media_key: $(this).attr('data-check-list-key'),
+                value: $(this).prop('checked') ? 'on' : 'off',
+                _token: csrf_token,
+            }
+
+            $.ajax({
+                type: "POST",
+                url: siteUrl + "/social-media/update-social-media-checklist/" + Social_Details_Widget.website.id,
+                data: ajaxData,
+                success: function(response) {
+                    if (response.status == 'success') {
+                        if (ajaxData.value == 'off') {
+                            Social_Details_Widget.removeSocialMediaKey(ajaxData.social_media_key);
+                        } else {
+                            Social_Details_Widget.addSocialMediaKey(response.websiteSocialMediaCheckList);
+                        }
+                    }
+                }
             })
-        });
-
-        array.sort( (a, b) => {
-            return a.text.localeCompare(b.text);
-        } );
-
-        return array;
+        })
     },
 
-    updateRowValue: function(elementRow) {
-        let adSpend = parseFloat(elementRow.closest('tr').find('a.social-ad-spend-value').attr('data-value'));
-        let managementFee =  parseFloat(elementRow.closest('tr').find('a.social-management-fee-value').attr('data-value'));
+    initToolBarButtonActions: function() {
+        $("#website-details-wrapper .header-tool-button.hide-button").click(function(){
+            $(".website-row").removeClass("selected");
+            $("#website-details-wrapper").animate({left:'100%'}, 350, function(){
+                $("#website-details-wrapper").hide();
+                $(".social-grid").css("width", "100%");
+            });
 
-        elementRow.closest('tr').find('a.social-budget-value').attr('data-value', adSpend + managementFee);
-        elementRow.closest('tr').find('a.social-budget-value').text('$' + (adSpend + managementFee));
+            //Replace Url without refreshing page
+            Social_Details_Widget.website = false;
+        })
     },
 
-    refreshTable: function() {
-        Websites_Social_Media.activeWebsitesTable.draw(false);
+    removeSocialMediaKey: function(socialMediaKey) {
+        Social_Details_Widget.website.socialMediaCheckLists = Social_Details_Widget.website.socialMediaCheckLists.filter((checkList) => checkList.key != socialMediaKey);
+        Social_Details_Widget.updateProgressCount();
+    },
+
+    addSocialMediaKey: function(websiteSocialMediaCheckList) {
+        Social_Details_Widget.website.socialMediaCheckLists.push(websiteSocialMediaCheckList);
+        Social_Details_Widget.updateProgressCount();
+    },
+    
+    updateProgressCount: function() {
+        $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").find(".social-media-checklist-count-value").text(Social_Details_Widget.website.socialMediaCheckLists.length);
     }
 };
 
 $(document).ready(function(){
     Websites_Social_Media.init();
+    Social_Details_Widget.init();
 })

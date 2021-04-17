@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialMediaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -341,7 +342,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/mockups/{mockup_url}', 'MockupController@show');
 
     //Social Media
-    Route::get('/social-media', 'SocialMediaController@index');
-    Route::post('/social-media/archive-website', 'SocialMediaController@archiveWebsite');
-    Route::post('/social-media/un-archive-website', 'SocialMediaController@unarchiveWebsite');
+    Route::prefix('social-media')->group(function () {
+        Route::get('/', 'SocialMediaController@index');
+        Route::get('/website-details/{website_id}', 'SocialMediaController@show');
+        Route::post('/update-social-media-checklist/{website_id}', 'SocialMediaController@updateSocialMediaChecklist');
+    });
 });

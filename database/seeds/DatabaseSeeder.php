@@ -15,8 +15,9 @@ class DatabaseSeeder extends Seeder
       $this->call('CreditRateTableSeeder');
       $this->call('ServicesSeeder');
       $this->call('UsersPermissionsSeeder');
-      $this->call('PaymeentGatewaysTableSeeder');
+      $this->call('PaymentGatewaysTableSeeder');
       $this->call('StagesTableSeeder');
       $this->call('ExpensesTableSeeder');
+      $this->call('SocialMediaStageSeeder');
     }
 }

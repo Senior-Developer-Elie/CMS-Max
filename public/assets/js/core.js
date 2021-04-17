@@ -39,3 +39,6 @@ function UTCToday(){
     var today = new Date();
     return UTCDate(today.getFullYear(), today.getMonth(), today.getDate());
 }
+function prettyPrice(price) {
+	return price.toFixed(2);
+}

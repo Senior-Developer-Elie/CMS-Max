@@ -47,6 +47,11 @@ mix.styles([
     'public/assets/css/base.css'
 ], 'public/css/all.css');
 
+mix.sass('resources/sass/app.scss', 'public/css/app.css')
+    .options({
+        processCssUrls: false
+    });
+
 //Bootstrap Datatable JS
 mix.scripts([
     'resources/adminLTE3/plugins/datatables/jquery.dataTables.js',
