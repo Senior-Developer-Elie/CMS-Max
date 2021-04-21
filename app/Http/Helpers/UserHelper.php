@@ -49,7 +49,7 @@ class UserHelper {
         [
             'name'      => 'Social Media',
             'icon'      => 'fas fa-search-dollar',
-            'link'      => '/social-media?show_clients_only=on',
+            'link'      => '/social-media',
             'section'   => 'social-media'
         ],
         [

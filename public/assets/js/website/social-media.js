@@ -33,6 +33,7 @@ var Social_Details_Widget = {
         Social_Details_Widget.prettifySources();
         Social_Details_Widget.initSocialMediaCheckListsActions();
         Social_Details_Widget.initToolBarButtonActions();
+        Social_Details_Widget.initMarkAsInactiveAction();
     },
 
     prettifySources: function() {
@@ -249,14 +250,41 @@ var Social_Details_Widget = {
 
     initToolBarButtonActions: function() {
         $("#website-details-wrapper .header-tool-button.hide-button").click(function(){
-            $(".website-row").removeClass("selected");
-            $("#website-details-wrapper").animate({left:'100%'}, 350, function(){
-                $("#website-details-wrapper").hide();
-                $(".social-grid").css("width", "100%");
-            });
+            Social_Details_Widget.hideDetailsWidget();
+        })
+    },
 
-            //Replace Url without refreshing page
-            Social_Details_Widget.website = false;
+    hideDetailsWidget: function() {
+        $(".website-row").removeClass("selected");
+        $("#website-details-wrapper").animate({left:'100%'}, 350, function(){
+            $("#website-details-wrapper").hide();
+            $(".social-grid").css("width", "100%");
+        });
+
+        //Replace Url without refreshing page
+        Social_Details_Widget.website = false;
+    },
+
+    initMarkAsInactiveAction: function() {
+        $("#website-details-wrapper .header-tool-button.mark-inactive-button").click(function() {
+            $("#mark-as-inactive-modal .website-name").text(Social_Details_Widget.website.name);
+            $("#mark-as-inactive-modal").modal('show');
+        })
+
+        $("#mark-as-inactive-modal .confirm-btn").click(function() {
+            $.ajax({
+                type: "POST",
+                url: siteUrl + "/social-media/update-social-media-archived/" + Social_Details_Widget.website.id,
+                data: {
+                    _token: csrf_token,
+                    value: 'archived',
+                },
+                success: function(response) {
+                    $("#mark-as-inactive-modal").modal('hide');
+                    $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").remove();
+                    Social_Details_Widget.hideDetailsWidget();
+                }
+            })            
         })
     },
 

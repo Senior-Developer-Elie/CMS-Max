@@ -26,16 +26,26 @@ class SocialMediaController extends Controller
         //Check page permission and redirect
         if( !Auth::user()->hasPagePermission('Social Media') )
             return redirect('/webadmin');
+        
+        $this->data['currentSection'] = 'social-media';
+        if (empty($statusFilter = $request->input('status_filter'))) {
+            $statusFilter = 'active';
+        }
+        $this->data['statusFilter'] = $statusFilter;
 
-        $socialMediaStages = SocialMediaStage::orderBy('order')
-            ->with('websites.socialMediaCheckLists')
-            ->get();
+        if ($statusFilter == 'active') {
+            $this->data['socialMediaStages'] = SocialMediaStage::orderBy('order')
+                ->with('websites.socialMediaCheckLists')
+                ->get();
+            $this->data['socialMediaCheckLists'] = \App\WebsiteSocialMediaCheckList::socialMediaCheckLists();
+        } else {
+            $this->data['websites'] = Website::where('archived', 0)
+                ->where('social_media_archived', 1)
+                ->orderBy('name')
+                ->get();
+        }
 
-        return view('manage-website.social-media.index', [
-            'currentSection' => 'social-media',
-            'socialMediaStages' => $socialMediaStages,
-            'socialMediaCheckLists' => \App\WebsiteSocialMediaCheckList::socialMediaCheckLists(),
-        ]);
+        return view('manage-website.social-media.index', $this->data);
     }
 
 
@@ -81,5 +91,21 @@ class SocialMediaController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    public function updateSocialMediaArchived(Request $request, $websiteId)
+    {
+        $website = Website::findOrFail($websiteId);
+        $socialMediaArchived = $request->input('value') == 'archived';
+
+        $website->social_media_archived = $socialMediaArchived;
+        if (! $socialMediaArchived) {
+            $website->social_media_stage_id = SocialMediaStage::first()->id;
+        }
+        $website->save();
+
+        return response()->json([
+            'status' => 'success',
+        ]);
     }
 }

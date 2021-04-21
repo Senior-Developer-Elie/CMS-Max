@@ -1,5 +1,5 @@
-$social-grid-body-scroll-box-height: calc(100vh - 180px);
-$website-details-wrapper-scroll-box-height: calc(100vh - 190px);
+$social-grid-body-scroll-box-height: calc(100vh - 210px);
+$website-details-wrapper-scroll-box-height: calc(100vh - 220px);
 
 .social-grid-page {
     position: relative;
@@ -197,7 +197,12 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 190px);
 
                 .header-tool-button {
                     cursor: pointer;
-                    fill: #6f7782;
+                    color: #6f7782;
+                    font-size: 15px;
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
                 }
             }
         }

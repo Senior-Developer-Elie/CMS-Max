@@ -346,5 +346,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'SocialMediaController@index');
         Route::get('/website-details/{website_id}', 'SocialMediaController@show');
         Route::post('/update-social-media-checklist/{website_id}', 'SocialMediaController@updateSocialMediaChecklist');
+        Route::post('/update-social-media-archived/{website_id}', 'SocialMediaController@updateSocialMediaArchived');
     });
 });
