@@ -15,7 +15,7 @@ class AddSocialMediaColumnsToWebsitesTable extends Migration
     {
         Schema::table('websites', function (Blueprint $table) {
             $table->bigInteger('social_media_stage_id')->unsigned()->nullable();
-            $table->integer('social_media_stage_order');
+            $table->integer('social_media_stage_order')->nullable();
 
             $table->foreign('social_media_stage_id')
                 ->references('id')
