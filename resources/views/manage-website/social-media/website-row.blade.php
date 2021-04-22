@@ -5,7 +5,7 @@
         <span class="website-icons-wrapper">
             @if( !empty($website->uses_our_credit_card) )
                 <a class="website-icon" data-toggle="tooltip" data-placement="left" title="Uses our Credit Card">
-                    <img src="{{ asset('assets/images/dollar-icon.jpg') }}" />
+                    <img src="{{ asset('assets/images/dollar-icon.png') }}" />
                 </a>
             @endif
             @if( !empty($website->drive) )
