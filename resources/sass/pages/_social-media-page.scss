@@ -214,6 +214,7 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
             .attribute-row {
                 display: flex;
                 align-items: baseline;
+                margin: 5px 0;
 
                 .attribute-name {
                     line-height: 30px;
@@ -264,6 +265,15 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
                             margin-right: 5px;
                         }
                     }
+                }
+            }
+        }
+
+        .social-links {
+            .social-icon {
+                margin-right: 3px;
+                img {
+                    width: 25px;
                 }
             }
         }

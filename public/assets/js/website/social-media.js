@@ -28,6 +28,14 @@ var Social_Details_Widget = {
     website: false,
     socialMediaPlansSource : [],
     socialMediaStagesSource: [],
+    socialFieldNames: [
+        'linkedin_url',
+        'youtube_url',
+        'twitter_url',
+        'facebook_url',
+        'instagram_url',
+        'pinterest_url',
+    ],
 
     init: function() {
         Social_Details_Widget.prettifySources();
@@ -122,6 +130,15 @@ var Social_Details_Widget = {
                 $(this).prop('checked', true);
             } else {
                 $(this).prop('checked', false);
+            }
+        })
+
+        // Set social link icons
+        $("#website-details-wrapper .social-icon").hide();
+        Social_Details_Widget.socialFieldNames.forEach((socialField) => {
+            if (website[socialField]) {
+                $("#website-details-wrapper .social-icon[data-field-name='" + socialField + "']").show();
+                $("#website-details-wrapper .social-icon[data-field-name='" + socialField + "']").attr('href', website[socialField]);
             }
         })
     },

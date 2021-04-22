@@ -57,6 +57,29 @@
                     <a href="#" class="attribute-value notes-value"></a>
                 </div>
                 <div class="attribute-row">
+                    <label class="attribute-name"></label>
+                    <div class="social-links attribute-value">
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="linkedin_url">
+                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-linkedin.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="youtube_url">
+                        <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-youtube.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="twitter_url">
+                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-twitter.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="facebook_url">
+                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-facebook.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="instagram_url">
+                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-instagram.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="pinterest_url">
+                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-pinterest.svg">
+                        </a>
+                    </div>
+                </div>  
+                <div class="attribute-row">
                     <label class="attribute-name">Check List</label>
                     <div class="form-group check-list-checkboxes">
                         @foreach (\App\WebsiteSocialMediaCheckList::socialMediaCheckLists() as $key => $name)

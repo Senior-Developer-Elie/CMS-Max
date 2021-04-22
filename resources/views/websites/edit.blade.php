@@ -141,6 +141,70 @@
                     <div class="card-header">
                         <i class="fa fa-calendar-times-o"></i>
     
+                        <h3 class="card-title">Social Links</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="linkedin_url">LinkedIn</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="linkedin_url" value="{{ old('linkedin_url', $website->linkedin_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="youtube_url">YouTube</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="youtube_url" value="{{ old('youtube_url', $website->youtube_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="twitter_url">Twitter</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="twitter_url" value="{{ old('twitter_url', $website->twitter_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="facebook_url">Facebook</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="facebook_url" value="{{ old('facebook_url', $website->facebook_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="instagram_url">Instagram</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="instagram_url" value="{{ old('instagram_url', $website->instagram_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pinterest_url">Pinterest</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="pinterest_url" value="{{ old('pinterest_url', $website->pinterest_url) }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <i class="fa fa-calendar-times-o"></i>
+    
                         <h3 class="card-title">Attributes</h3>
                     </div>
                     <div class="card-body">
@@ -306,6 +370,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <i class="fa fa-calendar-times-o"></i>

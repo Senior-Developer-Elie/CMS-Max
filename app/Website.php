@@ -73,6 +73,13 @@ class Website extends Model
         'social_media_stage_order',
         "social_media_archived",
         "social_media_notes",
+
+        "linkedin_url",
+        "youtube_url",
+        "twitter_url",
+        "facebook_url",
+        "instagram_url",
+        "pinterest_url",
     ];
 
     protected $casts = [
