@@ -33,20 +33,8 @@ var Post_Live_Checklist = {
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             fixedHeader: true,
             columnDefs: [
-                {targets: [1,2,3,4], type: 'sortme'},
-                {targets: [5], orderable: false}
-            ]
-        });
-
-        $('#archived-websites-table').DataTable({
-            "order"     : [[ 0, "asc" ]],
-            'paging'    : true,
-            'searching' : false,
-            "pageLength": -1,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            fixedHeader: true,
-            columnDefs: [
-                {targets: [1,2,3,4], type: 'sortme'},
+                {targets: [1,2,3], type: 'sortme'},
+                {targets: [4], orderable: false}
             ]
         });
 
@@ -58,7 +46,7 @@ var Post_Live_Checklist = {
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             fixedHeader: true,
             columnDefs: [
-                {targets: [1,2,3,4], type: 'sortme'},
+                {targets: [1,2,3], type: 'sortme'},
             ]
         });
 
