@@ -64,5 +64,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/post-live-checklist.js?v=12') }}"></script>
+    <script src="{{ asset('assets/js/website/post-live-checklist.js?v=13') }}"></script>
 @endsection

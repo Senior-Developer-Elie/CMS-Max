@@ -114,7 +114,7 @@ class WebsiteHelper {
             //"launch-site"               => "Launch Site",
             //"install-ssl"               => "Install SSL",
             //"configure-mailgun"         => "Configure Mailgun",
-            "setup-google-analytics"    => "Setup Google Analytics",
+            // "setup-google-analytics"    => "Setup Google Analytics",
             "configure-search-console"  => "Configure Search Console",
             "install-and-run-sitemap"   => "Install and run Sitemap",
         ];
