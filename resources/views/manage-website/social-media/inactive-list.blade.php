@@ -45,6 +45,6 @@
 
 @section('javascript')
     <script src="{{ mix('js/datatable.js') }}"></script>
-    <script src="{{ asset('assets/js/website/social-media-inactive-list.js') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media-inactive-list.js?v=2') }}"></script>
     <script src="{{ asset('assets/js/website/social-media-filter.js') }}"></script>
 @endsection

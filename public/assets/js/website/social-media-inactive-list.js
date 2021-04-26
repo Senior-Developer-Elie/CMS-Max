@@ -17,10 +17,10 @@ var Social_Media_Inactive_List = {
     },
 
     initMarkAsActiveAction: () => {
-        $(".mark-as-active-button").click(function() {
+        $(document).on("click", ".mark-as-active-button", function() {
             Social_Media_Inactive_List.deletingWebsiteId = $(this).attr('data-website-id');
             $("#mark-as-active-modal").modal('show');
-        })
+        });
 
         $("#mark-as-active-modal .confirm-btn").click(function() {
             $.ajax({
