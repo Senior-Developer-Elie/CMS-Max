@@ -37,7 +37,6 @@ class CreateWebsitesTable extends Migration {
 			$table->string('sitemap', 191)->nullable();
 			$table->string('left_review', 191)->nullable();
 			$table->string('on_portfolio', 191)->nullable();
-			$table->string('shipping_method', 191)->nullable();
 			$table->bigInteger('stage_id')->default(1);
 			$table->bigInteger('priority')->default(0);
 			$table->text('post_live')->nullable();

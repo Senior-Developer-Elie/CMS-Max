@@ -68,16 +68,6 @@
                             <input type="text" class="form-control" id="google-drive" name="drive" placeholder="Enter target area" required>
                         </div>
                     </div>
-                    <div class="form-group" style="display:none;">
-                        <label for="blog-industry">Shipping Method</label>
-                        <div class="">
-                            <select class="form-control website-shipping-method-list" name="shipping_method" style="width: 100%;">
-                                @foreach ($allShippingMethodTypes as $index=>$name)
-                                    <option value="{{ $index }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="blog-industry">Affiliate</label>
                         <div class="">

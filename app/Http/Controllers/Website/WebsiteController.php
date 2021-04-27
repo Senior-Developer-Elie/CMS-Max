@@ -294,7 +294,6 @@ class WebsiteController extends Controller
         $this->data['sitemapTypes'] = WebsiteHelper::getAllSitemapTypes();
         $this->data['leftReviewTypes'] = WebsiteHelper::getAllLeftReviewTypes();
         $this->data['portfolioTypes'] = WebsiteHelper::getOnPortfolioTypes();
-        $this->data['shippingMethodTypes'] = WebsiteHelper::getShippingMethodTypes();
         $this->data['yextTypes'] = WebsiteHelper::getYextTypes();
         $this->data['blogFrequencies'] = WebsiteHelper::getBlogFrequencies();
     }

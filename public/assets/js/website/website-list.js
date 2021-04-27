@@ -187,8 +187,6 @@ var Website_List = {
                 display     : function( value, sourceData ){
                     if( $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ) {
                         let htmlContent = $.fn.editableutils.itemsByValue(value, sourceData)[0].text;
-                        if( value == 'ecommerce' )
-                            htmlContent += "<br>" + allShippingMethodTypes[$(this).attr('data-shipping-method')];
                         $(this).html(htmlContent);
                     }
                     else{

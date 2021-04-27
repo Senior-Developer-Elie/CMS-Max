@@ -2,9 +2,7 @@
 namespace App\Http\Helpers;
 
 use App\PaymentGateway;
-use App\ShippingMethod;
 use App\Affiliate;
-use App\AngelInvoice;
 use App\Dns;
 
 class WebsiteHelper {
@@ -45,16 +43,6 @@ class WebsiteHelper {
             ];
         }
         return $prettyDnss;
-    }
-
-    public static function getShippingMethodTypes()
-    {
-        $shippingMethods = ShippingMethod::orderBy('name')->get();
-        $prettyMethods = [];
-        foreach( $shippingMethods as $method ) {
-            $prettyMethods[$method->id] = $method->name;
-        }
-        return $prettyMethods;
     }
 
     public static function getAllEmailTypes()

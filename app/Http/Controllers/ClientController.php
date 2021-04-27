@@ -118,7 +118,6 @@ class ClientController extends Controller
         $data['allSitemapTypes']        = WebsiteHelper::getAllSitemapTypes();
         $data['allLeftReviewTypes']     = WebsiteHelper::getAllLeftReviewTypes();
         $data['allPortfolioTypes']      = WebsiteHelper::getOnPortfolioTypes();
-        $data['allShippingMethodTypes'] = WebsiteHelper::getShippingMethodTypes();
         $data['allYextTypes']           = WebsiteHelper::getYextTypes();
 
         $blogIndustries = BlogIndustry::orderBy('name')->get();

@@ -53,7 +53,6 @@ class Website extends Model
         'sitemap',
         'left_review',
         'on_portfolio',
-        'shipping_method',
         'stage_id',
         'priority',
         'post_live',

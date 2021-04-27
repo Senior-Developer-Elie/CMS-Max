@@ -207,7 +207,6 @@
         var allSitemapTypes = {!! json_encode($allSitemapTypes) !!};
         var allLeftReviewTypes = {!! json_encode($allLeftReviewTypes) !!};
         var allPortfolioTypes = {!! json_encode($allPortfolioTypes) !!};
-        var allShippingMethodTypes = {!! json_encode($allShippingMethodTypes) !!};
         var allYextTypes = {!! json_encode($allYextTypes) !!};
         var allIndustries = {!! json_encode($allIndustries) !!};
     </script>
@@ -221,6 +220,6 @@
     <script src="{{ asset('assets/js/client-history.js?v=2') }}"></script>
     <script src="{{ asset('assets/js/client/client-add-edit.js?v=15') }}"></script>
     <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=9') }}"></script>
-    <script src="{{ asset('assets/js/website/website-list.js?v=48') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=49') }}"></script>
     <script src="{{ asset('assets/js/upload-action.js?v=3') }}"></script>
 @endsection

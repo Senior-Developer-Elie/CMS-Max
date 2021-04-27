@@ -297,12 +297,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/add-edit-paymentGateway', 'PaymentGatewayController@addEditPaymentGateway');
     Route::post('/delete-paymentGateway', 'PaymentGatewayController@deletePaymentGateway');
 
-    //Manage ShippingMethod
-    Route::get('/manage-shippingMethod', 'ShippingMethodController@index');
-    Route::get('/get-shippingMethod-data', 'ShippingMethodController@getShippingMethod');
-    Route::post('/add-edit-shippingMethod', 'ShippingMethodController@addEditShippingMethod');
-    Route::post('/delete-shippingMethod', 'ShippingMethodController@deleteShippingMethod');
-
     //Manage Affiliate
     Route::get('/manage-affiliate', 'AffiliateController@index');
     Route::get('/get-affiliate-data', 'AffiliateController@getAffiliate');

@@ -42,7 +42,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#" class="website-type" data-value="{{ $website->type }}" data-shipping-method="{{ $website->shipping_method }}">
+                        <a href="#" class="website-type" data-value="{{ $website->type }}">
                         </a>
                     </td>
                     <td>
@@ -141,7 +141,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#" class="website-type" data-value="{{ $website->type }}" data-shipping-method="{{ $website->shipping_method }}">
+                        <a href="#" class="website-type" data-value="{{ $website->type }}">
                         </a>
                     </td>
                     <td>

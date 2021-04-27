@@ -92,7 +92,6 @@
         var allSitemapTypes = {!! json_encode($sitemapTypes) !!};
         var allLeftReviewTypes = {!! json_encode($leftReviewTypes) !!};
         var allPortfolioTypes = {!! json_encode($portfolioTypes) !!};
-        var allShippingMethodTypes = {!! json_encode($shippingMethodTypes) !!};
         var allYextTypes = {!! json_encode($yextTypes) !!};
         var allIndustries = {!! json_encode($blogIndustriesForInline) !!};
     </script>
@@ -102,5 +101,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-list.js?v=48') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=49') }}"></script>
 @endsection

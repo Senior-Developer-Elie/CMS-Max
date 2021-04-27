@@ -216,12 +216,6 @@ class UserHelper {
                     'section'   => 'manage-paymentGateway'
                 ],
                 [
-                    'name'      => 'Manage Shipping Methods',
-                    'icon'      => 'fa fa-cog',
-                    'link'      => '/manage-shippingMethod',
-                    'section'   => 'manage-shippingMethod'
-                ],
-                [
                     'name'      => 'Manage Affiliates',
                     'icon'      => 'fa fa-cog',
                     'link'      => '/manage-affiliate',
