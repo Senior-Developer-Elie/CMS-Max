@@ -349,6 +349,10 @@ class WebsiteController extends Controller
             $query->where('affiliate', request()->input('affilliate_id'));
         }
 
+        if (! empty(request()->input('website_type'))) {
+            $query->where('type', request()->input('website_type'));
+        }
+
         return $query->get();
     }
 

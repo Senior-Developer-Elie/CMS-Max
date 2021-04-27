@@ -187,7 +187,7 @@ var Website_List = {
                 display     : function( value, sourceData ){
                     if( $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ) {
                         let htmlContent = $.fn.editableutils.itemsByValue(value, sourceData)[0].text;
-                        if( value == 'ecommerce' && $(this).attr('data-merchant-center') == 'on')
+                        if($(this).attr('data-merchant-center') == 'on')
                             htmlContent += "<br>Merchant Center";
                         $(this).html(htmlContent);
                     }
@@ -271,8 +271,10 @@ var Website_List = {
     },
 
     initFilter: function() {
-        $("#blog-industry-filter, #affilliate-filter").change(function() {
-            location.href = siteUrl + "/websites?blog_industry_id=" + $("#blog-industry-filter").val() + "&affilliate_id=" + $("#affilliate-filter").val()
+        $("#blog-industry-filter, #affilliate-filter, #website-type-filter").change(function() {
+            location.href = siteUrl + "/websites?blog_industry_id=" + $("#blog-industry-filter").val()
+                + "&affilliate_id=" + $("#affilliate-filter").val()
+                + "&website_type=" + $("#website-type-filter").val()
         });
     }
 };

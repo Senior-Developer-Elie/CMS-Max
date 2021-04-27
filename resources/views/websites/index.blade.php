@@ -54,6 +54,15 @@
                                 @endforeach
                             </select>
 
+                            <select class="form-control" id="website-type-filter">
+                                <option value="">All Types</option>
+                                @foreach (\App\Http\Helpers\WebsiteHelper::getAllWebsiteTypes() as $key => $value)
+                                    <option value="{{ $key }}" {{ Request::input('website_type') == $key ? 'selected' : '' }}>
+                                        {{ $value }}
+                                    </option>
+                                @endforeach
+                            </select>
+
                             @include('manage-website.sections.website-table', [ 'websites' => $websites, 'archived' => false ])
                         </div>
                         <div class="tab-pane fade show" role="tabpanel" id="archived-websites-wrapper">
@@ -101,5 +110,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-list.js?v=49') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=50') }}"></script>
 @endsection
