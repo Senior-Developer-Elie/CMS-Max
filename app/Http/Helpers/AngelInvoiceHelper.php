@@ -9,7 +9,7 @@ class AngelInvoiceHelper {
         4 => 1,
         9 => 12
     ];
-    public static  $apiUrl = "https://billing.evolutionmarketing.com/api/v1";
+    public static  $apiUrl = "https://app.freedominvoicing.com/api/v1";
     protected static $token = "5hfjqhupy4mckigy2k2jssysov53mgrb";
 
     public static function getClients($indexedById = false)
