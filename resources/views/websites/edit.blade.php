@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="blog-industry">Website Type</label>
                                     <div class="">
-                                        <select class="form-control" name="type" style="width: 100%;">
+                                        <select class="website-type-select form-control" name="type" style="width: 100%;">
                                             @foreach ($websiteTypes as $websiteTypeId=>$name)
                                                 <option value="{{ $websiteTypeId }}" {{ old_selected('type', $websiteTypeId, $website->type) }}>
                                                     {{ $name }}
@@ -130,6 +130,13 @@
                                     <label>
                                         <input type="checkbox" name="uses_our_credit_card" {{ old_checked('uses_our_credit_card', $website->uses_our_credit_card) }}>
                                         <strong class="ml-1">Uses our Credit Card</strong>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox merchant-center-checkbox-wrapper">
+                                    <label>
+                                        <input type="checkbox" name="merchant_center" {{ old_checked('merchant_center', $website->merchant_center) }}>
+                                        <strong class="ml-1">Merchant Center</strong>
                                     </label>
                                 </div>
                             </div>

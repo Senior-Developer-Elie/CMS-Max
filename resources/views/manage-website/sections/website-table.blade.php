@@ -141,7 +141,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#" class="website-type" data-value="{{ $website->type }}">
+                        <a href="#" class="website-type" data-value="{{ $website->type }}" data-merchant-center="{{ $website->merchant_center ? 'on' : 'off' }}">
                         </a>
                     </td>
                     <td>

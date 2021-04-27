@@ -35,6 +35,7 @@ class WebsiteValidator extends BaseValidator
             'drive' => 'required',
             'website_products' => 'required|array',
             'uses_our_credit_card' => 'required|in:0,1',
+            'merchant_center' => 'required|in:0,1',
         ],
 
         'update' => [
@@ -61,6 +62,7 @@ class WebsiteValidator extends BaseValidator
             'drive' => 'required',
             'website_products' => 'required|array',
             'uses_our_credit_card' => 'required|in:0,1',
+            'merchant_center' => 'required|in:0,1',
         ],
     ];
 }

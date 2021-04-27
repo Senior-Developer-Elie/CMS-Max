@@ -78,3 +78,10 @@ table.table td{
     background-color: white;
     margin-bottom: 48px !important;
 }
+div.checkbox label{
+    display: flex;
+    align-items: center;
+}
+div.checkbox label input {
+    margin-right: 5px;
+}

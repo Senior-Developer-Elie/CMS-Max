@@ -27,6 +27,7 @@ class Website extends Model
         'dns',
         'payment_gateway',
         'email',
+        'merchant_center',
 
         "completed_at",
 

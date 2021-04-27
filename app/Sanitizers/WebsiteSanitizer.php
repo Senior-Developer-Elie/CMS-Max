@@ -20,6 +20,7 @@ class WebsiteSanitizer extends BaseSanitizer
         'WebsiteProducts',
         'AssigneeId',
         'UsesOurCreditCard',
+        'MerchantCenter',
     ];
 
     protected function sanitizeWebsite()
@@ -91,5 +92,10 @@ class WebsiteSanitizer extends BaseSanitizer
     protected function sanitizeUsesOurCreditCard()
     {
         $this->checkbox('uses_our_credit_card');
+    }
+
+    protected function sanitizeMerchantCenter()
+    {
+        $this->checkbox('merchant_center');
     }
 }

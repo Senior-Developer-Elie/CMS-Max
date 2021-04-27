@@ -3,6 +3,7 @@ var AddWebsite = {
         AddWebsite.initComponents();
         AddWebsite.initBlogAction();
         AddWebsite.initArchiveAction();
+        AddWebsite.initMerchantCenterAction();
     },
 
     initComponents: () => {
@@ -47,6 +48,16 @@ var AddWebsite = {
         $("#restore-button").click(function() {
             $("#restore-website-form").submit();
         })
+    },
+
+    initMerchantCenterAction: () => {
+        $(".website-type-select").change(function() {
+            if ($(this).val() == 'ecommerce') {
+                $(".merchant-center-checkbox-wrapper").show();
+            } else {
+                $(".merchant-center-checkbox-wrapper").hide();
+            }
+        }).trigger('change');
     }
 };
 
