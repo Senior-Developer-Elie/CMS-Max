@@ -130,6 +130,13 @@
                                         <strong class="ml-1">Uses our Credit Card</strong>
                                     </label>
                                 </div>
+
+                                <div class="checkbox merchant-center-checkbox-wrapper">
+                                    <label>
+                                        <input type="checkbox" name="merchant_center" {{ old_checked('merchant_center') }}>
+                                        <strong class="ml-1">Merchant Center</strong>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
