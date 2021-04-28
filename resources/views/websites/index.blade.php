@@ -88,7 +88,7 @@
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=7') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=8') }}">
 @endsection
 
 @section('javascript')
