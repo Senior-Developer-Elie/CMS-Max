@@ -942,3 +942,6 @@ p {
     -webkit-box-flex: 0;
     flex: 0 0 auto;
 }
+div.checkbox label {
+    display: inline !important;
+}

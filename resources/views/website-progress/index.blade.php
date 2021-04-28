@@ -89,7 +89,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/website-progress.css?v=32') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/website-progress.css?v=33') }}">
 @endsection
 
 @section('javascript')
