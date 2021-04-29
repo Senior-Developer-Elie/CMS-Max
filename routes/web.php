@@ -342,4 +342,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/update-social-media-checklist/{website_id}', 'SocialMediaController@updateSocialMediaChecklist');
         Route::post('/update-social-media-archived/{website_id}', 'SocialMediaController@updateSocialMediaArchived');
     });
+
+    // Social Media Checklist
+    Route::resource('social_media_check_lists', 'SocialMediaCheckListsController', [
+        'except' => ['show']
+    ]);
 });

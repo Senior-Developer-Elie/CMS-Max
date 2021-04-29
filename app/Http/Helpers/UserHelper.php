@@ -233,12 +233,12 @@ class UserHelper {
                     'link'      => '/users',
                     'section'   => 'manage-users'
                 ],
-                // [
-                //     'name'      => 'Mailgun Api Keys',
-                //     'icon'      => 'fa fa-mail-bulk',
-                //     'link'      => '/mailgun-api-keys',
-                //     'section'   => 'mailgun-api-keys'
-                // ],
+                [
+                    'name'      => 'Social Media CheckLists',
+                    'icon'      => 'far fa-check-square',
+                    'link'      => '/social_media_check_lists',
+                    'section'   => 'manage-social-media-check-list'
+                ],
             ]
         ],
     ];
