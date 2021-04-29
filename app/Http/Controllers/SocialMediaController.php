@@ -37,7 +37,7 @@ class SocialMediaController extends Controller
             $this->data['socialMediaStages'] = SocialMediaStage::orderBy('order')
                 ->with('websites.socialMediaCheckLists')
                 ->get();
-            $this->data['socialMediaCheckLists'] = \App\WebsiteSocialMediaCheckList::socialMediaCheckLists();
+
         } else {
             $this->data['websites'] = Website::where('archived', 0)
                 ->where('social_media_archived', 1)
@@ -54,6 +54,7 @@ class SocialMediaController extends Controller
         $website = Website::findOrFail($websiteId);
         $website->client = $website->client();
         $website->socialMediaCheckLists = $website->socialMediaCheckLists()->get()->toArray();
+        $website->activeSocialMediaCheckListTargets = $website->getActiveSocialMediaCheckListTargets();
 
         return response()->json([
             'status' => 'success',
@@ -66,19 +67,19 @@ class SocialMediaController extends Controller
         $website = Website::findOrFail($websiteId);
 
         $value = $request->input('value') == 'on' ? true : false;
-        $socialMediaKey = $request->input('social_media_key');
+        $socialMediaCheckListId = $request->input('social_media_check_list_id');
 
         if ($value) {
             $websiteSocialMediaCheckList = WebsiteSocialMediaCheckList::updateOrCreate([
                 'website_id' => $website->id,
-                'key' => $socialMediaKey,
+                'social_media_check_list_id' => $socialMediaCheckListId,
             ], [
                 'completed_at' => Carbon::now(),
                 'user_id' => Auth::user()->id,
             ]);
         } else {
             WebsiteSocialMediaCheckList::where('website_id', $website->id)
-                ->where('key', $socialMediaKey)
+                ->where('social_media_check_list_id', $socialMediaCheckListId)
                 ->delete();
         }
 

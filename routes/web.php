@@ -347,4 +347,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('social_media_check_lists', 'SocialMediaCheckListsController', [
         'except' => ['show']
     ]);
+    Route::get('social_media_check_lists/{social_media_check_list}/delete', ['as' => 'social_media_check_lists.confirm-delete', 'uses' => 'SocialMediaCheckListsController@confirmDelete']);
 });

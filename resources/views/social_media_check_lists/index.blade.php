@@ -34,8 +34,11 @@
                                     <span class="text">{{ $socialMediaCheckList->text }}</span>
 
                                     <div class="tools">
-                                        <a href="{{ route('social_media_check_lists.edit', $socialMediaCheckList) }}">
+                                        <a class="text-info" href="{{ route('social_media_check_lists.edit', $socialMediaCheckList) }}">
                                             <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="text-danger ml-2" href="{{ route('social_media_check_lists.confirm-delete', $socialMediaCheckList) }}">
+                                            <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
                                 </li>

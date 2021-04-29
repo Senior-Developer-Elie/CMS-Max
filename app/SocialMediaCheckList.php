@@ -20,7 +20,7 @@ class SocialMediaCheckList extends Model
     ];
 
     protected static $checkListTypes = [
-        self::CHECKLIST_TYPE_CORE => "Core",
+        self::CHECKLIST_TYPE_CORE => "Onboarding Core",
         self::CHECKLIST_TYPE_FACEBOOK => "Facebook",
         self::CHECKLIST_TYPE_INSTAGRAM => "Instagram",
         self::CHECKLIST_TYPE_YOUTUBE => "YouTube",

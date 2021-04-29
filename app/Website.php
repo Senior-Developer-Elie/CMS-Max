@@ -163,8 +163,7 @@ class Website extends Model
 
     public function socialMediaCheckLists()
     {
-        return $this->hasMany(WebsiteSocialMediaCheckList::class)
-            ->whereIn('key', array_keys(WebsiteSocialMediaCheckList::socialMediaCheckLists()));
+        return $this->hasMany(WebsiteSocialMediaCheckList::class);
     }
 
     public function getProductValues($crmProductKeys){
@@ -369,5 +368,31 @@ class Website extends Model
         }
 
         return null;
+    }
+
+    public function getActiveSocialMediaCheckListTargets()
+    {
+        $targets = [SocialMediaCheckList::CHECKLIST_TYPE_CORE];
+
+        foreach (SocialMediaCheckList::checkListTypes() as $key => $name) {
+            if ($key == SocialMediaCheckList::CHECKLIST_TYPE_CORE) {
+                continue;
+            }
+
+            $attributeName = $key . "_url";
+            if (! empty($this->$attributeName)) {
+                $targets[] = $key;
+            }
+        }
+
+        return $targets;
+    }
+
+    public function getActiveSocialMediaCheckListCount()
+    {
+        $activeTargets = $this->getActiveSocialMediaCheckListTargets();
+
+        return SocialMediaCheckList::whereIn('target', $activeTargets)
+            ->count();
     }
 }

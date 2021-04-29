@@ -84,4 +84,27 @@ class SocialMediaCheckListsController extends Controller
 
         return redirect()->route('social_media_check_lists.index');
     }
+
+    public function confirmDelete($socialMediaCheckListId)
+    {
+        if (! $socialMediaCheckList = SocialMediaCheckList::find($socialMediaCheckListId)) {
+            abort(404);
+        }
+
+        $this->data['socialMediaCheckList'] = $socialMediaCheckList;
+
+        return view('social_media_check_lists.confirm-delete', $this->data);
+    }
+
+    public function destroy($socialMediaCheckListId)
+    {
+        $socialMediaCheckList = SocialMediaCheckList::findOrFail($socialMediaCheckListId);
+
+        $socialMediaCheckList->delete();
+
+        Session::flash('message', 'Social Media Check List deleted successfully.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('social_media_check_lists.index');
+    }
 }

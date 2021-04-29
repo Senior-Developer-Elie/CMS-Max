@@ -50,7 +50,6 @@
 @section('javascript')
     <script>
         var socialMediaPlans = {!! json_encode(\App\AngelInvoice::socialPlanProducts()) !!};
-        var socialMediaCheckLists = {!! json_encode($socialMediaCheckLists) !!};
         var socialMediaStages = {!! json_encode(\App\SocialMediaStage::orderBy('order')->get()->toArray()) !!};
     </script>
     <script src="{{ mix('js/datatable.js') }}"></script>
@@ -59,5 +58,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
     <script src="{{ asset('assets/js/website/social-media-filter.js') }}"></script>
-    <script src="{{ asset('assets/js/website/social-media.js?v=18') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=19') }}"></script>
 @endsection

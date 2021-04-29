@@ -120,16 +120,25 @@ var Social_Details_Widget = {
         $("#website-details-wrapper .management-fee-value").attr('data-value', website.social_management_fee);
         $("#website-details-wrapper .notes-value").attr('data-value', website.social_media_notes);
 
-        let websiteSocialMediaKeys = Social_Details_Widget.website.socialMediaCheckLists.reduce((acc, cur) => {
-            return [...acc, cur.key];
+        // Social Media Check List
+        let websiteSocialMediaCheckListIds = Social_Details_Widget.website.socialMediaCheckLists.reduce((acc, cur) => {
+            return [...acc, cur.social_media_check_list_id];
         }, [])
 
         $("#website-details-wrapper input.check-list-option").each(function() {
-            const socialMediaKey = $(this).attr('data-check-list-key');
-            if (websiteSocialMediaKeys.includes(socialMediaKey)) {
+            const socialMediaCheckListId = parseInt($(this).attr('data-social-media-check-list-id'));
+            if (websiteSocialMediaCheckListIds.includes(socialMediaCheckListId)) {
                 $(this).prop('checked', true);
             } else {
                 $(this).prop('checked', false);
+            }
+        })
+
+        $("#website-details-wrapper .check-list-checkboxes .attribute-row").hide();
+
+        $("#website-details-wrapper .check-list-checkboxes .attribute-row").each(function() {
+            if (Social_Details_Widget.website.activeSocialMediaCheckListTargets.includes($(this).attr('data-social-media-checklist-target'))) {
+                $(this).show();
             }
         })
 
@@ -243,7 +252,7 @@ var Social_Details_Widget = {
     initSocialMediaCheckListsActions: function() {
         $("#website-details-wrapper input.check-list-option").change(function() {
             const ajaxData = {
-                social_media_key: $(this).attr('data-check-list-key'),
+                social_media_check_list_id: $(this).attr('data-social-media-check-list-id'),
                 value: $(this).prop('checked') ? 'on' : 'off',
                 _token: csrf_token,
             }
@@ -255,7 +264,7 @@ var Social_Details_Widget = {
                 success: function(response) {
                     if (response.status == 'success') {
                         if (ajaxData.value == 'off') {
-                            Social_Details_Widget.removeSocialMediaKey(ajaxData.social_media_key);
+                            Social_Details_Widget.removeSocialMediaCheckListId(ajaxData.social_media_check_list_id);
                         } else {
                             Social_Details_Widget.addSocialMediaKey(response.websiteSocialMediaCheckList);
                         }
@@ -305,8 +314,8 @@ var Social_Details_Widget = {
         })
     },
 
-    removeSocialMediaKey: function(socialMediaKey) {
-        Social_Details_Widget.website.socialMediaCheckLists = Social_Details_Widget.website.socialMediaCheckLists.filter((checkList) => checkList.key != socialMediaKey);
+    removeSocialMediaCheckListId: function(socialMediaCheckListId) {
+        Social_Details_Widget.website.socialMediaCheckLists = Social_Details_Widget.website.socialMediaCheckLists.filter((checkList) => checkList.social_media_check_list_id != socialMediaCheckListId);
         Social_Details_Widget.updateProgressCount();
     },
 

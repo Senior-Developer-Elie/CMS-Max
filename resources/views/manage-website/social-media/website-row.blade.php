@@ -26,7 +26,7 @@
     </div>
     <div class="social-grid-cell social-grid-progress-cell">
         <strong>
-            <span class="social-media-checklist-count-value">{{ $website->socialMediaCheckLists->count() }}</span>/{{ count($socialMediaCheckLists) }}
+            <span class="social-media-checklist-count-value">{{ $website->socialMediaCheckLists->count() }}</span>/{{ $website->getActiveSocialMediaCheckListCount() }}
         </strong>
     </div>
 </div>

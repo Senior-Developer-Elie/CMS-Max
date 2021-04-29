@@ -78,19 +78,28 @@
                             <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-pinterest.svg">
                         </a>
                     </div>
-                </div>  
-                <div class="attribute-row">
-                    <label class="attribute-name">Check List</label>
-                    <div class="form-group check-list-checkboxes">
-                        @foreach (\App\WebsiteSocialMediaCheckList::socialMediaCheckLists() as $key => $name)
-                            <div class="checkbox">
-                                <label>
-                                    <input class = "check-list-option" type="checkbox" data-check-list-key="{{ $key }}">
-                                    {{ $name }}
-                                </label>
+                </div>
+
+                <div class="check-list-checkboxes">
+                    @foreach (\App\SocialMediaCheckList::checkListTypes() as $checkListKey => $checkListName)
+                        @php
+                            $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->get();
+                        @endphp
+
+                        <div class="attribute-row" data-social-media-checklist-target="{{ $checkListKey }}">
+                            <label class="attribute-name">{{ $checkListName }}</label>
+                            <div class="form-group">
+                                @foreach ($socialMediaCheckLists as $socialMediaCheckList)
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class = "check-list-option" type="checkbox" data-social-media-check-list-id="{{ $socialMediaCheckList->id }}">
+                                            {{ $socialMediaCheckList->text }}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
