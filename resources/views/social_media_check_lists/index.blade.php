@@ -16,7 +16,7 @@
         <div class="col-12">
             @foreach (\App\SocialMediaCheckList::checkListTypes() as $checkListKey => $checkListName)
                 @php
-                    $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->get();
+                    $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->orderBy('order')->get();
                 @endphp
                 <div class="card card-primary card-outline">
                     <div class="card-header">

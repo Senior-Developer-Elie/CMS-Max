@@ -83,7 +83,7 @@
                 <div class="check-list-checkboxes">
                     @foreach (\App\SocialMediaCheckList::checkListTypes() as $checkListKey => $checkListName)
                         @php
-                            $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->get();
+                            $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->orderBy('order')->get();
                         @endphp
 
                         <div class="attribute-row" data-social-media-checklist-target="{{ $checkListKey }}">

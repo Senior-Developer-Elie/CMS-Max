@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
       $this->call('StagesTableSeeder');
       $this->call('ExpensesTableSeeder');
       $this->call('SocialMediaStageSeeder');
+      $this->call('SocialMediaCheckListSeeder');
     }
 }
