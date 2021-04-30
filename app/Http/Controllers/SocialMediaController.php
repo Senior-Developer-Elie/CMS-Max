@@ -53,7 +53,7 @@ class SocialMediaController extends Controller
     {
         $website = Website::findOrFail($websiteId);
         $website->client = $website->client();
-        $website->socialMediaCheckLists = $website->socialMediaCheckLists()->get()->toArray();
+        $website->socialMediaCheckLists = $website->socialMediaCheckLists()->with('user')->get()->toArray();
         $website->activeSocialMediaCheckListTargets = $website->getActiveSocialMediaCheckListTargets();
 
         return response()->json([
@@ -77,6 +77,7 @@ class SocialMediaController extends Controller
                 'completed_at' => Carbon::now(),
                 'user_id' => Auth::user()->id,
             ]);
+            $websiteSocialMediaCheckList->load('user');
         } else {
             WebsiteSocialMediaCheckList::where('website_id', $website->id)
                 ->where('social_media_check_list_id', $socialMediaCheckListId)

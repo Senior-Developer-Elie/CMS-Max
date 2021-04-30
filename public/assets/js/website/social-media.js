@@ -120,22 +120,24 @@ var Social_Details_Widget = {
         $("#website-details-wrapper .management-fee-value").attr('data-value', website.social_management_fee);
         $("#website-details-wrapper .notes-value").attr('data-value', website.social_media_notes);
 
-        // Social Media Check List
-        let websiteSocialMediaCheckListIds = Social_Details_Widget.website.socialMediaCheckLists.reduce((acc, cur) => {
-            return [...acc, cur.social_media_check_list_id];
-        }, [])
-
-        $("#website-details-wrapper input.check-list-option").each(function() {
-            const socialMediaCheckListId = parseInt($(this).attr('data-social-media-check-list-id'));
-            if (websiteSocialMediaCheckListIds.includes(socialMediaCheckListId)) {
-                $(this).prop('checked', true);
-            } else {
-                $(this).prop('checked', false);
+        // Check selected checkboxes
+        $("#website-details-wrapper input.check-list-option").prop('checked', false);
+        $("#website-details-wrapper .check-list-checkboxes .attribute-row .completed_by").hide();
+        Social_Details_Widget.website.socialMediaCheckLists.forEach(function(checkList) {
+            let $checkBoxElement = $("#website-details-wrapper input.check-list-option[data-social-media-check-list-id='" + checkList.social_media_check_list_id + "']");
+            if ($checkBoxElement.length == 0) {
+                return;
             }
-        })
+            $checkBoxElement.prop('checked', true);
 
+            let $checkedByElement = $checkBoxElement.closest('div.checkbox').find('.completed_by');
+            $checkedByElement.find('.name').text(checkList.user ? checkList.user.name : '');
+            $checkedByElement.find('.date').text(moment(checkList.completed_at).format('M/D'));
+            $checkedByElement.show();
+        });
+
+        // Show active checkbox groups
         $("#website-details-wrapper .check-list-checkboxes .attribute-row").hide();
-
         $("#website-details-wrapper .check-list-checkboxes .attribute-row").each(function() {
             if (Social_Details_Widget.website.activeSocialMediaCheckListTargets.includes($(this).attr('data-social-media-checklist-target'))) {
                 $(this).show();
@@ -317,11 +319,21 @@ var Social_Details_Widget = {
     removeSocialMediaCheckListId: function(socialMediaCheckListId) {
         Social_Details_Widget.website.socialMediaCheckLists = Social_Details_Widget.website.socialMediaCheckLists.filter((checkList) => checkList.social_media_check_list_id != socialMediaCheckListId);
         Social_Details_Widget.updateProgressCount();
+
+        let $checkBoxElement = $("#website-details-wrapper input.check-list-option[data-social-media-check-list-id='" + socialMediaCheckListId + "']");
+        let $checkedByElement = $checkBoxElement.closest('div.checkbox').find('.completed_by');
+        $checkedByElement.hide();
     },
 
     addSocialMediaKey: function(websiteSocialMediaCheckList) {
         Social_Details_Widget.website.socialMediaCheckLists.push(websiteSocialMediaCheckList);
         Social_Details_Widget.updateProgressCount();
+
+        let $checkBoxElement = $("#website-details-wrapper input.check-list-option[data-social-media-check-list-id='" + websiteSocialMediaCheckList.social_media_check_list_id + "']");
+        let $checkedByElement = $checkBoxElement.closest('div.checkbox').find('.completed_by');
+        $checkedByElement.find('.name').text(websiteSocialMediaCheckList.user ? websiteSocialMediaCheckList.user.name : '');
+        $checkedByElement.find('.date').text(moment(websiteSocialMediaCheckList.completed_at).format('M/D'));
+        $checkedByElement.show();
     },
     
     updateProgressCount: function() {

@@ -259,7 +259,7 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
                 div.checkbox {
                     & > label {
                         display: flex;
-                        align-items: center;
+                        align-items: baseline;
 
                         & > input {
                             margin-right: 5px;

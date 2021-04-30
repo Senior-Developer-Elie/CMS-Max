@@ -90,10 +90,15 @@
                             <label class="attribute-name">{{ $checkListName }}</label>
                             <div class="form-group">
                                 @foreach ($socialMediaCheckLists as $socialMediaCheckList)
-                                    <div class="checkbox">
-                                        <label>
+                                    <div class="checkbox mb-1">
+                                        <label class="m-0">
                                             <input class = "check-list-option" type="checkbox" data-social-media-check-list-id="{{ $socialMediaCheckList->id }}">
-                                            {{ $socialMediaCheckList->text }}
+                                            <span>
+                                                {{ $socialMediaCheckList->text }}
+                                                <span class="completed_by text-success">
+                                                    (Checked By <strong class="name">Sam Pizzo</strong> on <strong class="date">04/30</strong>)
+                                                </span>
+                                            </span>
                                         </label>
                                     </div>
                                 @endforeach
