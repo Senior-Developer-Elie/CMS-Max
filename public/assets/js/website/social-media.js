@@ -3,6 +3,10 @@ var Websites_Social_Media = {
         Websites_Social_Media.initToolTip();
         Websites_Social_Media.iniWebsiteShowAction();
         Websites_Social_Media.initWebsiteIconActions();
+
+        if (activeWebsiteId > 0) {
+            Social_Details_Widget.showWebsite(activeWebsiteId);
+        }
     },
 
     initToolTip: () => {
@@ -102,6 +106,7 @@ var Social_Details_Widget = {
 
         Social_Details_Widget.setVariables();
         Social_Details_Widget.setInlineEdit();
+        Social_Details_Widget.setUniqueUrl();
     },
 
     setVariables: function() {
@@ -245,6 +250,10 @@ var Social_Details_Widget = {
             let websiteRow = $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").detach();
             $(".social-grid-stage-wrapper[data-stage-id='" + stageId + "']").find('.social-grid-stage-body').append(websiteRow);
         });
+    },
+
+    setUniqueUrl: function() {
+        window.history.replaceState(null, null, "social-media?status_filter=" + $("#websites-status-filter").val() + "&activeWebsiteId=" + Social_Details_Widget.website.id);
     },
 
     updateBudgetValue: function() {

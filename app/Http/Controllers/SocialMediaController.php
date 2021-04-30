@@ -37,7 +37,7 @@ class SocialMediaController extends Controller
             $this->data['socialMediaStages'] = SocialMediaStage::orderBy('order')
                 ->with('websites.socialMediaCheckLists')
                 ->get();
-
+            $this->data['activeWebsiteId'] = $request->input('activeWebsiteId');
         } else {
             $this->data['websites'] = Website::where('archived', 0)
                 ->where('social_media_archived', 1)
