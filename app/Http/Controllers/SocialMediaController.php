@@ -44,6 +44,16 @@ class SocialMediaController extends Controller
                 ->orderBy('name')
                 ->get();
         }
+        
+        $this->data['totalAdSpend'] = Website::where('archived', 0)
+            ->where('social_media_archived', 0)
+            ->where('social_ad_spend', '>', 0)
+            ->sum('social_ad_spend');
+        
+        $this->data['totalManagementFee'] = Website::where('archived', 0)
+            ->where('social_media_archived', 0)
+            ->where('social_management_fee', '>', 0)
+            ->sum('social_management_fee');
 
         return view('manage-website.social-media.index', $this->data);
     }
