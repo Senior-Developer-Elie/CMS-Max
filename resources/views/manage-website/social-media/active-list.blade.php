@@ -5,6 +5,9 @@
                 <div class="social-grid-cell social-grid-name-cell">
                     <strong>Website Name</strong>
                 </div>
+                <div class="social-grid-cell social-grid-links-cell">
+                    <strong>Links</strong>
+                </div>
                 <div class="social-grid-cell social-grid-progress-cell">
                     <strong>Progress</strong>
                 </div>

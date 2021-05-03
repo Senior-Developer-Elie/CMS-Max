@@ -37,7 +37,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
 
             .social-grid-cell {
                 height: 100%;
-    
                 padding: 0 10px;
                 background-color: #fff;
                 border: 1px solid #e8ecee;
@@ -60,6 +59,17 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
                     width: 90px;
                     justify-content: center;
                     border-right: none;
+                }
+                &.social-grid-links-cell {
+                    width: 206px;
+                    justify-content: start;
+
+                    .social-icon {
+                        img {
+                            width: 25px;
+                            margin: 0 3px;
+                        }
+                    }
                 }
 
                 .website-icons-wrapper {
