@@ -1,5 +1,5 @@
-$social-grid-body-scroll-box-height: calc(100vh - 210px);
-$website-details-wrapper-scroll-box-height: calc(100vh - 220px);
+$social-grid-body-scroll-box-height: calc(100vh - 277px);
+$website-details-wrapper-scroll-box-height: calc(100vh - 312px);
 
 .social-grid-page {
     position: relative;
@@ -288,6 +288,20 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 220px);
                 }
             }
         }
+    }
+}
+
+.social-media-page__filter-wrapper {
+    display: flex;
+    align-items: center;
+
+    .price-wrapper {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    div.info-box {
+        min-height: 65px;
     }
 }
 
