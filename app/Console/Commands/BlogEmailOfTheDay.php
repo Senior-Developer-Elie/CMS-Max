@@ -13,6 +13,9 @@ use Carbon;
 
 class BlogEmailOfTheDay extends Command
 {
+    const PENDING_BLOGS_TO_ADD_IMAGE_USER_ID = 6;
+    const PENDING_BLOGS_TO_ADD_WEBSITE_USER_ID = 7;
+
     /**
      * The name and signature of the console command.
      *
@@ -72,15 +75,6 @@ class BlogEmailOfTheDay extends Command
             $totalCount = 0;
 
             if (true) {
-
-                $pendingBlogsToAddTitle = BlogHelper::getPendingToAddTitleBlogs($admin);
-                if( count($pendingBlogsToAddTitle) > 0 )
-                    $notifications[] = [
-                        'text'  => 'There are ' . count($pendingBlogsToAddTitle) . ' Pending blogs to add title.',
-                        'href'  => url('/blog-list?blogType=pendingToAddTitle')
-                    ];
-                $totalCount += count($pendingBlogsToAddTitle);
-
                 $pendingBlogsToWrite = BlogHelper::getPendingToWriteBlogs($admin);
                 if( count($pendingBlogsToWrite) > 0 ) {
                     $detailLines = [];
@@ -98,21 +92,25 @@ class BlogEmailOfTheDay extends Command
             }
 
             if (true) {
-                $pendingBlogsToAddImage = BlogHelper::getPendingToAddImageBlogs($admin);
-                if( count($pendingBlogsToAddImage) > 0 )
-                    $notifications[] = [
-                        'text'  => 'There are ' . count($pendingBlogsToAddImage) . ' Pending blogs to add image.',
-                        'href'  => url('/blog-list?blogType=pendingToAddImage')
-                    ];
-                $totalCount += count($pendingBlogsToAddImage);
+                if ($admin->id == self::PENDING_BLOGS_TO_ADD_IMAGE_USER_ID) {
+                    $pendingBlogsToAddImage = BlogHelper::getPendingToAddImageBlogs($admin);
+                    if( count($pendingBlogsToAddImage) > 0 )
+                        $notifications[] = [
+                            'text'  => 'There are ' . count($pendingBlogsToAddImage) . ' Pending blogs to add image.',
+                            'href'  => url('/blog-list?blogType=pendingToAddImage')
+                        ];
+                    $totalCount += count($pendingBlogsToAddImage);
+                }
 
-                $pendingBlogsToAddToWebsite = BlogHelper::getPendingToAddToWebsiteBlogs($admin);
-                if( count($pendingBlogsToAddToWebsite) > 0 )
-                    $notifications[] = [
-                        'text'  => 'There are ' . count($pendingBlogsToAddToWebsite) . ' Pending blogs to add to website.',
-                        'href'  => url('/blog-list?blogType=pendingToAddToWebsite')
-                    ];
-                $totalCount += count($pendingBlogsToAddToWebsite);
+                if ($admin->id == self::PENDING_BLOGS_TO_ADD_WEBSITE_USER_ID) {
+                    $pendingBlogsToAddToWebsite = BlogHelper::getPendingToAddToWebsiteBlogs($admin);
+                    if( count($pendingBlogsToAddToWebsite) > 0 )
+                        $notifications[] = [
+                            'text'  => 'There are ' . count($pendingBlogsToAddToWebsite) . ' Pending blogs to add to website.',
+                            'href'  => url('/blog-list?blogType=pendingToAddToWebsite')
+                        ];
+                    $totalCount += count($pendingBlogsToAddToWebsite);
+                }
             }
 
             /**Jobs by Stages Notification */
