@@ -29,10 +29,7 @@ class BlogHelper {
      */
     public static function getAssignedWebsites($user)
     {
-        if( $user->can('content manager') || $user->can('blog images') || $user->can('manage blogs'))
-            return Website::where('is_blog_client', 1)->where('archived', 0)->orderBy('name')->get();
-        else
-            return Website::where('is_blog_client', 1)->where('assignee_id', $user->id)->where('archived', 0)->orderBy('name')->get();
+        return Website::where('is_blog_client', 1)->where('assignee_id', $user->id)->where('archived', 0)->orderBy('name')->get();
     }
 
     /**

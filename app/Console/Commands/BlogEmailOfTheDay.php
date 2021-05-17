@@ -8,8 +8,7 @@ use App\InnerBlog;
 use App\Stage;
 
 use App\Http\Helpers\BlogHelper;
-
-use Carbon;
+use Carbon\Carbon;
 
 class BlogEmailOfTheDay extends Command
 {
@@ -139,8 +138,7 @@ class BlogEmailOfTheDay extends Command
             if( $totalCount > 0 ){ //Send Email
                 \Mail::send('manage-blog.sections.task-notification-mail', ['notifications' => $notifications], function($message) use ($admin, $totalCount){
                     $message->from(env('MAIL_FROM_ADDRESS', 'info@cmsmax.com'), 'Evolution Marketing - CRM');
-                    $message->to($admin->email, 'Evolution Marketing - CRM')->subject
-                        ('You have ' . $totalCount . ' Pending Jobs to do');
+                    $message->to($admin->email, 'Evolution Marketing - CRM')->subject((Carbon::now())->format('m/d/Y') . ' Daily CRM Overview');
                 });
             }
         }
