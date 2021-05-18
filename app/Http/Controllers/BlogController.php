@@ -717,7 +717,7 @@ class BlogController extends Controller
     protected function getFilterUserId()
     {
         if (empty($userId = request()->input('user_id'))) {
-            if (in_array(Auth::user()->id, [1, 2, 3])) {
+            if (in_array(Auth::user()->id, [1, 2, 3, 6])) {
                 $userId = 'all';
             } else {
                 $userId = Auth::user()->id;
