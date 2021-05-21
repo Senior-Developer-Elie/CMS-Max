@@ -3,6 +3,8 @@ var Websites_Social_Media = {
         Websites_Social_Media.initToolTip();
         Websites_Social_Media.iniWebsiteShowAction();
         Websites_Social_Media.initWebsiteIconActions();
+        Websites_Social_Media.setInlineParams();
+        Websites_Social_Media.initInlineEditForAssignee();
 
         if (activeWebsiteId > 0) {
             Social_Details_Widget.showWebsite(activeWebsiteId);
@@ -24,6 +26,50 @@ var Websites_Social_Media = {
         $(".website-row .website-icon").click(function(e) {
             e.stopPropagation();
         })
+    },
+
+    initInlineEditForAssignee: () => {
+        allUsersDataSource = allUsers.map((user) => {
+            return {
+                value : user.id,
+                text : user.name,
+            }
+        });
+
+        $(".website-row .social-media-assignee-value").each(function(index, element) {
+            $(element).editable({
+                type        : 'select',
+                source      : allUsersDataSource,
+                name        : 'social_media_assignee',
+                pk          : $(element).closest('.website-row').attr('data-website-id'),
+                display     : function(value, sourceData){
+                    let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
+                    if( item === false ){
+                        $(this).html("<span class='text-danger'>No Assignee</span>");
+                    }
+                    else {
+                        $(this).html(item.text);
+                    }
+                }
+            });
+        })
+    },
+
+    setInlineParams: function() {
+        $.fn.editable.defaults.send = "always";
+        $.fn.editable.defaults.ajaxOptions = {
+            type : 'POST'
+        };
+        $.fn.editable.defaults.url = siteUrl+"/update-website-attribute";
+        $.fn.editable.defaults.mode = 'inline';
+        $.fn.editable.defaults.params = function(params) {
+            params._token = csrf_token;
+            return params;
+        };
+        $.fn.editable.defaults.onblur = 'submit';
+        $.fn.editable.defaults.showbuttons = false;
+        $.fn.editable.defaults.inputclass = 'attribute-edit-input';
+        $.fn.editable.defaults.pk = Social_Details_Widget.website.id;
     },
 };
 
@@ -159,26 +205,7 @@ var Social_Details_Widget = {
         })
     },
 
-    setInlineParams: function() {
-        $.fn.editable.defaults.send = "always";
-        $.fn.editable.defaults.ajaxOptions = {
-            type : 'POST'
-        };
-        $.fn.editable.defaults.url = siteUrl+"/update-website-attribute";
-        $.fn.editable.defaults.mode = 'inline';
-        $.fn.editable.defaults.params = function(params) {
-            params._token = csrf_token;
-            return params;
-        };
-        $.fn.editable.defaults.onblur = 'submit';
-        $.fn.editable.defaults.showbuttons = false;
-        $.fn.editable.defaults.inputclass = 'attribute-edit-input';
-        $.fn.editable.defaults.pk = Social_Details_Widget.website.id;
-    },
-
     setInlineEdit: function() {
-        Social_Details_Widget.setInlineParams();
-
         // Stage
         $("#website-details-wrapper .stage-value").editable("destroy");
         $("#website-details-wrapper .stage-value").editable({
@@ -256,6 +283,10 @@ var Social_Details_Widget = {
         window.history.replaceState(null, null, "social-media?status_filter=" + $("#websites-status-filter").val() + "&activeWebsiteId=" + Social_Details_Widget.website.id);
     },
 
+    removeUniqueUrl: function() {
+        window.history.replaceState(null, null, "social-media?status_filter=" + $("#websites-status-filter").val());
+    },
+
     updateBudgetValue: function() {
         $("#website-details-wrapper .budget-value").text("$" + (Social_Details_Widget.website.social_ad_spend + Social_Details_Widget.website.social_management_fee));
     },
@@ -300,6 +331,7 @@ var Social_Details_Widget = {
 
         //Replace Url without refreshing page
         Social_Details_Widget.website = false;
+        Social_Details_Widget.removeUniqueUrl();
     },
 
     initMarkAsInactiveAction: function() {

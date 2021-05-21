@@ -55,6 +55,15 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     padding: 0 0 0 20px;
                     border-left: none;
                 }
+                &.social-grid-assignee-cell {
+                    width: 140px;
+                    justify-content: center;
+
+                    a.social-media-assignee-value {
+                        border: none;
+                        font-weight: 550;
+                    }
+                }
                 &.social-grid-progress-cell {
                     width: 90px;
                     justify-content: center;

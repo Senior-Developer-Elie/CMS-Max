@@ -8,6 +8,9 @@
                 <div class="social-grid-cell social-grid-links-cell">
                     <strong>Links</strong>
                 </div>
+                <div class="social-grid-cell social-grid-assignee-cell">
+                    <strong>Assignee</strong>
+                </div>
                 <div class="social-grid-cell social-grid-progress-cell">
                     <strong>Progress</strong>
                 </div>
@@ -54,7 +57,8 @@
     <script>
         var socialMediaPlans = {!! json_encode(\App\AngelInvoice::socialPlanProducts()) !!};
         var socialMediaStages = {!! json_encode(\App\SocialMediaStage::orderBy('order')->get()->toArray()) !!};
-        var activeWebsiteId = {{ (! empty($activeWebsiteId ?? null)) ? $activeWebsiteId : 0 }}
+        var activeWebsiteId = {{ (! empty($activeWebsiteId ?? null)) ? $activeWebsiteId : 0 }};
+        var allUsers = {!! json_encode(\App\User::orderBy('name')->get()) !!};
     </script>
     <script src="{{ mix('js/datatable.js') }}"></script>
 
@@ -62,5 +66,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
     <script src="{{ asset('assets/js/website/social-media-filter.js') }}"></script>
-    <script src="{{ asset('assets/js/website/social-media.js?v=21') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=22') }}"></script>
 @endsection
