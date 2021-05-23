@@ -64,6 +64,9 @@
     <div class="social-grid-cell social-grid-assignee-cell">
         <a class="social-media-assignee-value" data-value="{{ $website->social_media_assignee }}"></a>
     </div>
+    <div class="social-grid-cell social-grid-reviewer-cell">
+        <a class="social-media-reviewer-value" data-value="{{ $website->social_media_reviewer }}"></a>
+    </div>
     <div class="social-grid-cell social-grid-progress-cell">
         <strong>
             <span class="social-media-checklist-count-value">{{ $website->socialMediaCheckLists->count() }}</span>/{{ $website->getActiveSocialMediaCheckListCount() }}

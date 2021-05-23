@@ -4,7 +4,8 @@ var Websites_Social_Media = {
         Websites_Social_Media.iniWebsiteShowAction();
         Websites_Social_Media.initWebsiteIconActions();
         Websites_Social_Media.setInlineParams();
-        Websites_Social_Media.initInlineEditForAssignee();
+        Websites_Social_Media.initInlineEditForAssignees();
+        Websites_Social_Media.initInlineEditForReviewer();
 
         if (activeWebsiteId > 0) {
             Social_Details_Widget.showWebsite(activeWebsiteId);
@@ -28,7 +29,7 @@ var Websites_Social_Media = {
         })
     },
 
-    initInlineEditForAssignee: () => {
+    initInlineEditForAssignees: () => {
         allUsersDataSource = allUsers.map((user) => {
             return {
                 value : user.id,
@@ -46,6 +47,24 @@ var Websites_Social_Media = {
                     let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
                     if( item === false ){
                         $(this).html("<span class='text-danger'>No Assignee</span>");
+                    }
+                    else {
+                        $(this).html(item.text);
+                    }
+                }
+            });
+        })
+
+        $(".website-row .social-media-reviewer-value").each(function(index, element) {
+            $(element).editable({
+                type        : 'select',
+                source      : allUsersDataSource,
+                name        : 'social_media_reviewer',
+                pk          : $(element).closest('.website-row').attr('data-website-id'),
+                display     : function(value, sourceData){
+                    let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
+                    if( item === false ){
+                        $(this).html("<span class='text-danger'>No Reviewer</span>");
                     }
                     else {
                         $(this).html(item.text);

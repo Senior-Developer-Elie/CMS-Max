@@ -64,6 +64,15 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                         font-weight: 550;
                     }
                 }
+                &.social-grid-reviewer-cell {
+                    width: 140px;
+                    justify-content: center;
+
+                    a.social-media-reviewer-value {
+                        border: none;
+                        font-weight: 550;
+                    }
+                }
                 &.social-grid-progress-cell {
                     width: 90px;
                     justify-content: center;

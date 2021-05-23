@@ -74,6 +74,7 @@ class Website extends Model
         "social_media_archived",
         "social_media_notes",
         "social_media_assignee",
+        "social_media_reviewer",
 
         "linkedin_url",
         "youtube_url",

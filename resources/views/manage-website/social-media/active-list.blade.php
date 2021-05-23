@@ -11,6 +11,9 @@
                 <div class="social-grid-cell social-grid-assignee-cell">
                     <strong>Assignee</strong>
                 </div>
+                <div class="social-grid-cell social-grid-reviewer-cell">
+                    <strong>Reviewer</strong>
+                </div>
                 <div class="social-grid-cell social-grid-progress-cell">
                     <strong>Progress</strong>
                 </div>
