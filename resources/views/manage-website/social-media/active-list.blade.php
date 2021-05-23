@@ -61,7 +61,7 @@
         var socialMediaPlans = {!! json_encode(\App\AngelInvoice::socialPlanProducts()) !!};
         var socialMediaStages = {!! json_encode(\App\SocialMediaStage::orderBy('order')->get()->toArray()) !!};
         var activeWebsiteId = {{ (! empty($activeWebsiteId ?? null)) ? $activeWebsiteId : 0 }};
-        var allUsers = {!! json_encode(\App\User::orderBy('name')->get()) !!};
+        var allUsers = {!! json_encode(\App\User::where('type', '!=', \App\User::USER_TYPE_CMS_MAX_DEVELOPER)->orderBy('name')->get()) !!};
     </script>
     <script src="{{ mix('js/datatable.js') }}"></script>
 
