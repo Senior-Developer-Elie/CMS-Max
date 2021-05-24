@@ -242,19 +242,19 @@ class BlogController extends Controller
         if( is_null($blogType) )
             abort(404);
         if( $blogType == 'done' ) {
-            $blogs = BlogHelper::getDoneBlogs(Auth::user());
+            $blogs = BlogHelper::getDoneBlogs();
         }
         else if( $blogType == 'pendingToWrite' ) {
-            $blogs = BlogHelper::getPendingToWriteBlogs(Auth::user());
+            $blogs = BlogHelper::getPendingToWriteBlogs();
         }
         else if( $blogType == 'pendingToAddImage' ) {
-            $blogs = BlogHelper::getPendingToAddImageBlogs(Auth::user());
+            $blogs = BlogHelper::getPendingToAddImageBlogs();
         }
         else if( $blogType == 'pendingToAddToWebsite' ) {
-            $blogs = BlogHelper::getPendingToAddToWebsiteBlogs(Auth::user());
+            $blogs = BlogHelper::getPendingToAddToWebsiteBlogs();
         }
         else if( $blogType == 'pendingToAddTitle' ) {
-            $emptyBlogs = BlogHelper::getPendingToAddTitleBlogs(Auth::user());
+            $emptyBlogs = BlogHelper::getPendingToAddTitleBlogs();
         }
         $headingText = '';
         if( !is_null($blogType) ) {

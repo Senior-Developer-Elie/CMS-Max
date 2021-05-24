@@ -29,14 +29,20 @@ class BlogHelper {
      */
     public static function getAssignedWebsites($user)
     {
-        return Website::where('is_blog_client', 1)->where('assignee_id', $user->id)->where('archived', 0)->orderBy('name')->get();
+        $query = Website::where('is_blog_client', 1)->where('archived', 0)->orderBy('name');
+
+        if (! empty($user)) {
+            $query->where('assignee_id', $user->id);
+        }
+        
+        return $query->get();
     }
 
     /**
      * Get Done blogs For User
      * @param App\User $user
      */
-    public static function getDoneBlogs($user)
+    public static function getDoneBlogs($user = null)
     {
         $assignedWebsiteIds = array_column(self::getAssignedWebsites($user)->toArray(), 'id');
         return Blog::where('marked', 1)
@@ -47,7 +53,7 @@ class BlogHelper {
      * Get Pending To Write Blogs For User
      * @param App\User $user
      */
-    public static function getPendingToWriteBlogs($user)
+    public static function getPendingToWriteBlogs($user = null)
     {
         $assignedWebsiteIds = array_column(self::getAssignedWebsites($user)->toArray(), 'id');
         return Blog::where(function ($subQuery) {
@@ -65,7 +71,7 @@ class BlogHelper {
      * Get Pending To Add Image Blogs For User
      * @param App\User $user
      */
-    public static function getPendingToAddImageBlogs($user)
+    public static function getPendingToAddImageBlogs($user = null)
     {
         $assignedWebsiteIds = array_column(self::getAssignedWebsites($user)->toArray(), 'id');
         return Blog::whereNotNull('blog_url')
@@ -81,7 +87,7 @@ class BlogHelper {
      * Get Pending To Add To Website Blogs For User
      * @param App\User $user
      */
-    public static function getPendingToAddToWebsiteBlogs($user)
+    public static function getPendingToAddToWebsiteBlogs($user = null)
     {
         $assignedWebsiteIds = array_column(self::getAssignedWebsites($user)->toArray(), 'id');
         return Blog::whereNotNull('blog_url')
@@ -96,7 +102,7 @@ class BlogHelper {
      * Get Pending To Add Title Blogs For User
      * @param App\User $user
      */
-    public static function getPendingToAddTitleBlogs($user)
+    public static function getPendingToAddTitleBlogs($user = null)
     {
         $websites = BlogHelper::getAssignedWebsites($user);
         $futureMonths = self::getFutureMonths();
