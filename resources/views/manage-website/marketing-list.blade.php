@@ -36,6 +36,11 @@
                                             {{ $website->website }}
                                         </a>
                                         <div class="website-info-icons">
+                                            @if ($website->merchant_center)
+                                                <a class="website-info-icon" data-toggle="tooltip" data-placement="top" title="Merchant Center">
+                                                    <img src="{{ asset('assets/images/merchant-icon.png') }}" />
+                                                </a>
+                                            @endif
                                             @if( !empty($website->drive) )
                                                 <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
                                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
@@ -115,5 +120,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/marketing.js?v=7') }}"></script>
+    <script src="{{ asset('assets/js/website/marketing.js?v=8') }}"></script>
 @endsection

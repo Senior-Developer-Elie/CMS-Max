@@ -3,9 +3,14 @@ var Websites_Marketing = {
     clientListTable: false,
 
     init : function(){
+        this.initTooltip();
         this.initDataTable();
         this.initInlineEditableForNotes();
         this.initFilterAction();
+    },
+
+    initTooltip: function() {
+        $('[data-toggle="tooltip"]').tooltip();
     },
 
     initDataTable: function(){
