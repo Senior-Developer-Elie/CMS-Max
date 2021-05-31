@@ -4,21 +4,21 @@
     @if (in_array(Auth::user()->id, [1, 2]))
         <div class="row social-media-page__filter-wrapper">
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="info-box">
+                <div class="info-box budget-box">
                     <span class="info-box-icon bg-green"><i class="fas fa-dollar-sign"></i></span>
                     <div class="info-box-content">
                     <span class="info-box-text">Total Ad Spend</span>
-                    <span class="info-box-number">$ {{ prettyFloat($totalAdSpend) }}</span>
+                    <span class="info-box-number">$ {{ prettyFloat($spendsAnalytics['totalAdSpend']) }}</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <div class="info-box">
+                <div class="info-box budget-box">
                     <span class="info-box-icon bg-info"><i class="fas fa-dollar-sign"></i></span>
                     <div class="info-box-content">
                     <span class="info-box-text">Total Management Fee</span>
-                    <span class="info-box-number">$ {{ prettyFloat($totalManagementFee) }}</span>
+                    <span class="info-box-number">$ {{ prettyFloat($spendsAnalytics['totalManagementFee']) }}</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -36,3 +36,13 @@
 @else
     @include('manage-website.social-media.inactive-list')
 @endif
+
+@section('css')
+    @parent
+
+    <style>
+        .budget-box {
+            cursor: pointer;
+        }
+    </style>
+@endsection

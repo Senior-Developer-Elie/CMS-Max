@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Website;
 use App\SocialMediaStage;
 use App\WebsiteSocialMediaCheckList;
+use App\Services\GetSocialMediaBudgetsService;
 
 class SocialMediaController extends Controller
 {
@@ -45,15 +46,7 @@ class SocialMediaController extends Controller
                 ->get();
         }
         
-        $this->data['totalAdSpend'] = Website::where('archived', 0)
-            ->where('social_media_archived', 0)
-            ->where('social_ad_spend', '>', 0)
-            ->sum('social_ad_spend');
-        
-        $this->data['totalManagementFee'] = Website::where('archived', 0)
-            ->where('social_media_archived', 0)
-            ->where('social_management_fee', '>', 0)
-            ->sum('social_management_fee');
+        $this->data['spendsAnalytics'] = GetSocialMediaBudgetsService::call();
 
         return view('manage-website.social-media.index', $this->data);
     }

@@ -46,9 +46,12 @@
     </div>
 
     @include('manage-website.social-media.modals.mark-as-inactive')
+    @include('manage-website.social-media.modals.total-budget-by-assignee')
 @endsection
 
 @section('css')
+    @parent
+
     <link href="{{ mix("css/datatable.css") }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
@@ -57,6 +60,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/social-media-list.css?v=2') }}">
 @endsection
 @section('javascript')
+    @parent
+
     <script>
         var socialMediaPlans = {!! json_encode(\App\AngelInvoice::socialPlanProducts()) !!};
         var socialMediaStages = {!! json_encode(\App\SocialMediaStage::orderBy('order')->get()->toArray()) !!};
@@ -68,6 +73,6 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/social-media-filter.js') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media-filter.js?v=2') }}"></script>
     <script src="{{ asset('assets/js/website/social-media.js?v=23') }}"></script>
 @endsection

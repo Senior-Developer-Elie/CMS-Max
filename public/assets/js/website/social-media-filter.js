@@ -7,6 +7,10 @@ var Social_Media_Filter = {
         $("#websites-status-filter").change(function() {
             location.href = siteUrl + "/social-media?status_filter=" + $(this).val();
         })
+
+        $(".budget-box").click(function() {
+            $("#total-budget-by-assignee-modal").modal('show');
+        })
     }
 };
 
