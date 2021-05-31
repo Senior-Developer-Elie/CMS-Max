@@ -32,6 +32,7 @@ class TaskHelper {
             // "upload-icon"                   => "Upload Icon",
             "favicon"                       => "Favicon",
             "setup-google-recaptcha"        => "Setup Google reCAPTCHA",
+            "affiliate-target-area-industry" => "Affiliate, Target Area & Industry",
             "tap-clicks"                    => "TapClicks",
             "signed-up-for-cms-max"         => "Signed up for CMS Max",
         ];
