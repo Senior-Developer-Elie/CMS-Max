@@ -23,11 +23,6 @@
                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
                                 </a>
                             @endif
-                            @if( !empty($website->data_studio_link) )
-                                <a class="website-data-studio-link-icon" href = "{{ $website->data_studio_link }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Data Studio Link">
-                                    <img src="{{ asset('assets/images/data-studio-icon.png') }}" />
-                                </a>
-                            @endif
                             <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
                                 <img src="{{ asset('assets/images/info-icon.png') }}" />
                             </a>
@@ -89,11 +84,6 @@
                             @if( !empty($website->drive) )
                                 <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
-                                </a>
-                            @endif
-                            @if( !empty($website->data_studio_link) )
-                                <a class="website-data-studio-link-icon" href = "{{ $website->data_studio_link }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Data Studio Link">
-                                    <img src="{{ asset('assets/images/data-studio-icon.png') }}" />
                                 </a>
                             @endif
                             <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">

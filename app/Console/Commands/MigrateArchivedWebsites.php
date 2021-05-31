@@ -89,7 +89,6 @@ class MigrateArchivedWebsites extends Command
                 'credit_card_notes' => $archivedWebsite->credit_card_notes,
                 'drive' => $archivedWebsite->drive,
                 'post_live_check_archived' => $archivedWebsite->post_live_check_archived,
-                'data_studio_link' => $archivedWebsite->data_studio_link,
                 'blog_industry_id' => $blogIndustry ? $blogIndustry->id : NULL
             ]);
 

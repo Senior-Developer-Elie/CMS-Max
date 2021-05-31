@@ -320,8 +320,6 @@ var Website_Add_Edit_Modal = {
 
             $("#blog-client-checkbox").prop("checked", false).trigger("change");
 
-            $('#add-website-modal #data-studio-link').val("");
-
             $("#add-website-modal .archive-btn").hide();
             $("#add-website-modal .unarchive-btn").hide();
 
@@ -365,7 +363,6 @@ var Website_Add_Edit_Modal = {
                         $('#add-website-modal #mid').val(website.mid);
                         $('#add-website-modal #control-scan-user').val(website.control_scan_user);
                         $('#add-website-modal #control-scan-pass').val(website.control_scan_pass);
-                        $('#add-website-modal #data-studio-link').val(website.data_studio_link);
 
                         if( website.control_scan_renewal_date == null )
                             $('#control-scan-renewal-date').val();

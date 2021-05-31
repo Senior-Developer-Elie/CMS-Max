@@ -127,7 +127,6 @@ class MigrateWebsiteVariables extends Command
         $this->fillSimpleEntity($website, $oldWebsite, 'control_scan_user');
         $this->fillSimpleEntity($website, $oldWebsite, 'control_scan_pass');
         $this->fillSimpleEntity($website, $oldWebsite, 'control_scan_renewal_date');
-        $this->fillSimpleEntity($website, $oldWebsite, 'data_studio_link');
         $this->fillSimpleEntity($website, $oldWebsite, 'social_media_archived', false);
         $this->fillSimpleEntity($website, $oldWebsite, 'social_media_notes');
         $this->fillSimpleEntity($website, $oldWebsite, 'credit_card_archived', false);

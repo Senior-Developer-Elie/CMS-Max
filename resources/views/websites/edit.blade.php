@@ -117,17 +117,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="data-studio-link">Data Studio Link</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" name="data_studio_link" value="{{ old('data_studio_link', $website->data_studio_link) }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="social_calendar">Social Calendar</label>
                                     <div class="">
                                         <input type="text" class="form-control" name="social_calendar" value="{{ old('social_calendar', $website->social_calendar) }}">
@@ -135,6 +124,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="checkbox">

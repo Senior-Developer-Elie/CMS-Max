@@ -43,8 +43,6 @@ class Website extends Model
         "control_scan_pass",
         "control_scan_renewal_date",
 
-        "data_studio_link",
-
         "credit_card_archived",
         "credit_card_notes",
 

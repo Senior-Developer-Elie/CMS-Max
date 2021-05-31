@@ -86,6 +86,6 @@
 @endsection
 
 @section('javascript')
-    <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=7') }}"></script>
+    <script src="{{ asset('assets/js/website/website-add-edit-modal.js?v=8') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js?v=8') }}"></script>
 @endsection

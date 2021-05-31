@@ -178,13 +178,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="data-studio-link">Data Studio Link</label>
-                        <div class="">
-                            <input type="text" class="form-control" id="data-studio-link" name="data_studio_link" placeholder="Data Studio Link">
-                        </div>
-                    </div>
-
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" id = "chargebee-checkbox" name="chargebee">
