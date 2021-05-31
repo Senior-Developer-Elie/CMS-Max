@@ -33,6 +33,7 @@ class TaskHelper {
             "favicon"                       => "Favicon",
             "setup-google-recaptcha"        => "Setup Google reCAPTCHA",
             "affiliate-target-area-industry" => "Affiliate, Target Area & Industry",
+            "define-social-urls"            => "Define Social URLs",
             "tap-clicks"                    => "TapClicks",
             "signed-up-for-cms-max"         => "Signed up for CMS Max",
         ];
