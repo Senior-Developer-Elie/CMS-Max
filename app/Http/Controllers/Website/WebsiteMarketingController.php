@@ -37,7 +37,9 @@ class WebsiteMarketingController extends Controller
             if ($website->type != 'redirect-website' && !$website->archived ){
 
                 if( $filterStatus == 'on' ){
-                    if( $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_SPEND) >= 1 OR $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_MANAGEMENT) >= 1 )
+                    if( $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_SPEND) >= 1
+                        OR $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_MANAGEMENT) >= 1 
+                        OR $website->getProductValue(\App\AngelInvoice::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM) >= 1)
                         $marketingWebsites[] = $website;
                 }
                 else{

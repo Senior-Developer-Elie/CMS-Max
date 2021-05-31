@@ -22,8 +22,9 @@
                         <thead>
                             <tr>
                                 <th>Website Url</th>
-                                <th class="text-center">Google Ads</th>
-                                <th class="text-center">Google Management Fee</th>
+                                <th class="text-center">Google Ads - Spend</th>
+                                <th class="text-center">Google Ads - Management</th>
+                                <th class="text-center">Programmatic Display/Video Platform</th>
                                 <th width="200px">Notes</th>
                             </tr>
                         </thead>
@@ -51,6 +52,11 @@
                                         ?>
                                         <span data-value="{{ $googleManagementFee }}">
                                             {{ $googleMangementFeeString }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span data-value="{{ $website->getProductValue(\App\AngelInvoice::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM) }}">
+                                            {{ getPrettyServiceString($website->getProductValue(\App\AngelInvoice::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM)) }}
                                         </span>
                                     </td>
                                     <td>
