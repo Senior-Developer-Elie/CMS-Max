@@ -36,7 +36,7 @@ var Websites_Marketing = {
                         return 0;
                 };
 
-                for( let i = 1; i <= 2; i++ ) {
+                for( let i = 1; i <= 3; i++ ) {
                     // Total over this page
                     let columnData = api
                     .column( i, { page: 'current'} )

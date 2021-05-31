@@ -72,6 +72,7 @@
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>
+                                <th class="text-center"></th>
                             </tr>
                         </tfoot>
                     </table>
@@ -99,5 +100,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/marketing.js?v=6') }}"></script>
+    <script src="{{ asset('assets/js/website/marketing.js?v=7') }}"></script>
 @endsection
