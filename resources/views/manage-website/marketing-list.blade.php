@@ -31,10 +31,25 @@
                         <tbody>
                             @foreach ( $websites as $website )
                                 <tr data-website-id="{{ $website->id }}">
-                                    <td>
-                                        <a href = "//{{ $website->website }}" data-value="{{ $website->website }}" target="_blank">
+                                    <td class="website-url-wrapper">
+                                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                                             {{ $website->website }}
                                         </a>
+                                        <div class="website-info-icons">
+                                            @if( !empty($website->drive) )
+                                                <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
+                                                    <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
+                                                </a>
+                                            @endif
+                                            <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
+                                                <img src="{{ asset('assets/images/info-icon.png') }}" />
+                                            </a>
+                                            @if ($website->chargebee)
+                                                <a class="website-chargebee-icon">
+                                                    <img src="{{ asset('assets/images/chargebee_favicon.png') }}" />
+                                                </a>
+                                            @endif
+                                        </div>
                                     </td>
                                     <td class="text-center">
                                         <span data-value="{{ $website->getProductValue(\App\AngelInvoice::CRM_KEY_GOOGLE_ADS_SPEND) }}">
@@ -88,7 +103,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css?v=2') }}">
 @endsection
 @section('javascript')
     <script>
