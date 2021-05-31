@@ -5,7 +5,6 @@ var Websites_Social_Media = {
         Websites_Social_Media.initWebsiteIconActions();
         Websites_Social_Media.setInlineParams();
         Websites_Social_Media.initInlineEditForAssignees();
-        Websites_Social_Media.initInlineEditForReviewer();
 
         if (activeWebsiteId > 0) {
             Social_Details_Widget.showWebsite(activeWebsiteId);
