@@ -9,6 +9,9 @@ use App\Http\Helpers\WebsiteHelper;
 
 class Website extends Model
 {
+    const SOCIAL_MEDIA_SERVICE_ORGANIC = 'organic';
+    const SOCIAL_MEDIA_SERVICE_PAID = 'paid';
+    const SOCIAL_MEDIA_SERVICE_PAID_AND_ORGANIC = 'paid-and-organic';
 
     protected $fillable = [
         'name',
@@ -73,6 +76,7 @@ class Website extends Model
         "social_media_notes",
         "social_media_assignee",
         "social_media_reviewer",
+        "social_media_service",
 
         "linkedin_url",
         "youtube_url",
@@ -85,6 +89,12 @@ class Website extends Model
     protected $casts = [
         'payment_gateway'   => 'array',
         'post_live'         => 'array'
+    ];
+
+    protected static $socialMediaServices = [
+        self::SOCIAL_MEDIA_SERVICE_ORGANIC => 'Organic',
+        self::SOCIAL_MEDIA_SERVICE_PAID => 'Paid',
+        self::SOCIAL_MEDIA_SERVICE_PAID_AND_ORGANIC => 'Organic & Paid',
     ];
 
     /**
@@ -101,6 +111,11 @@ class Website extends Model
         }
 
         return parent::castAttribute($key, $value);
+    }
+
+    public static function socialMediaServices()
+    {
+        return self::$socialMediaServices;
     }
 
     public function scopeNotArchived($query)

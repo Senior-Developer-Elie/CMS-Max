@@ -61,6 +61,9 @@
             </a>
         @endif
     </div>
+    <div class="social-grid-cell social-grid-service-cell">
+        <a class="social-media-service-value" data-value="{{ $website->social_media_service }}"></a>
+    </div>
     <div class="social-grid-cell social-grid-assignee-cell">
         <a class="social-media-assignee-value" data-value="{{ $website->social_media_assignee }}"></a>
     </div>

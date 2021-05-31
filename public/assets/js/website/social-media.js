@@ -71,6 +71,31 @@ var Websites_Social_Media = {
                 }
             });
         })
+
+        socialMediaServicesDataSource = Object.keys(socialMediaServices).map((key) => {
+            return {
+                value : key,
+                text : socialMediaServices[key],
+            }
+        })
+
+        $(".website-row .social-media-service-value").each(function(index, element) {
+            $(element).editable({
+                type        : 'select',
+                source      : socialMediaServicesDataSource,
+                name        : 'social_media_service',
+                pk          : $(element).closest('.website-row').attr('data-website-id'),
+                display     : function(value, sourceData){
+                    let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
+                    if( item === false ){
+                        $(this).html("<span class='text-danger'>No Service</span>");
+                    }
+                    else {
+                        $(this).html(item.text);
+                    }
+                }
+            });
+        })
     },
 
     setInlineParams: function() {
