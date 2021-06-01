@@ -18,6 +18,16 @@
                             {{ $website->website }}
                         </a>
                         <div class="website-info-icons">
+                            @if (! empty($website->merchant_center))
+                                <a class="website-info-icon" href="{{ $website->merchant_center }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Merchant Center">
+                                    <img src="{{ asset('assets/images/merchant-icon.png') }}" />
+                                </a>
+                            @endif
+                            @if (! empty($website->flow_chart))
+                                <a class="website-info-icon" href="{{ $website->flow_chart }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Flowchart">
+                                    <img src="{{ asset('assets/images/flow-chart-icon.png') }}" />
+                                </a>
+                            @endif
                             @if( !empty($website->drive) )
                                 <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
@@ -81,6 +91,16 @@
                             {{ $website->website }}
                         </a>
                         <div class="website-info-icons">
+                            @if (! empty($website->merchant_center))
+                                <a class="website-info-icon" href="{{ $website->merchant_center }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Merchant Center">
+                                    <img src="{{ asset('assets/images/merchant-icon.png') }}" />
+                                </a>
+                            @endif
+                            @if (! empty($website->flow_chart))
+                                <a class="website-info-icon" href="{{ $website->flow_chart }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Flowchart">
+                                    <img src="{{ asset('assets/images/flow-chart-icon.png') }}" />
+                                </a>
+                            @endif
                             @if( !empty($website->drive) )
                                 <a class="website-google-drive-link-icon" href = "{{ $website->drive }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Google Drive">
                                     <img src="{{ asset('assets/images/google-drive-icon.png') }}" />
@@ -90,9 +110,7 @@
                                 <img src="{{ asset('assets/images/info-icon.png') }}" />
                             </a>
                             @if ($website->chargebee)
-                                <a class="website-chargebee-icon">
-                                    <img src="{{ asset('assets/images/chargebee_favicon.png') }}" />
-                                </a>
+                                <img src="{{ asset('assets/images/chargebee_favicon.png') }}" />
                             @endif
                         </div>
                     </td>

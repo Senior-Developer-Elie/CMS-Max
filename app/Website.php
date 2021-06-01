@@ -31,6 +31,7 @@ class Website extends Model
         'payment_gateway',
         'email',
         'merchant_center',
+        'flow_chart',
 
         "completed_at",
 

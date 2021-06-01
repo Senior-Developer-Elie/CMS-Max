@@ -3,6 +3,16 @@
         {{ $website->name }}
 
         <span class="website-icons-wrapper">
+            @if (! empty($website->merchant_center))
+                <a class="website-icon" href="{{ $website->merchant_center }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Merchant Center">
+                    <img src="{{ asset('assets/images/merchant-icon.png') }}" />
+                </a>
+            @endif
+            @if (! empty($website->flow_chart))
+                <a class="website-icon" href="{{ $website->flow_chart }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Flowchart">
+                    <img src="{{ asset('assets/images/flow-chart-icon.png') }}" />
+                </a>
+            @endif
             @if( !empty($website->uses_our_credit_card) )
                 <a class="website-icon" data-toggle="tooltip" data-placement="left" title="Uses our Credit Card">
                     <img src="{{ asset('assets/images/dollar-icon.png') }}" />

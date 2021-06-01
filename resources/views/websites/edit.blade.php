@@ -97,11 +97,19 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="merchant_center" {{ old_checked('merchant_center', $website->merchant_center) }}>
-                                        <strong class="ml-1">Merchant Center</strong>
-                                    </label>
+                                <div class="form-group">
+                                    <label>Merchant Center</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="merchant_center" value="{{ old('merchant_center', $website->merchant_center) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Flow Chart</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="flow_chart" value="{{ old('flow_chart', $website->flow_chart) }}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
