@@ -33,6 +33,7 @@ class WebsitePostLiveCheckListController extends Controller
 
         foreach( $websites as $website ){
             if ($website->archived) continue;
+            if ($website->type == 'no-website') continue;
             
             if( $website->post_live_check_archived || $website->completedPostWebsite() ) {
                 $completedWebsites[] = $website;
