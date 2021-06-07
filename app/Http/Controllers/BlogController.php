@@ -252,6 +252,7 @@ class BlogController extends Controller
         }
         else if( $blogType == 'pendingToAddToWebsite' ) {
             $blogs = BlogHelper::getPendingToAddToWebsiteBlogs();
+            $blogs->sortByDesc('desired_date');
         }
         else if( $blogType == 'pendingToAddTitle' ) {
             $emptyBlogs = BlogHelper::getPendingToAddTitleBlogs();
