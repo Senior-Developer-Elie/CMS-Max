@@ -112,7 +112,6 @@ var Websites_Social_Media = {
         $.fn.editable.defaults.onblur = 'submit';
         $.fn.editable.defaults.showbuttons = false;
         $.fn.editable.defaults.inputclass = 'attribute-edit-input';
-        $.fn.editable.defaults.pk = Social_Details_Widget.website.id;
     },
 };
 
@@ -249,6 +248,7 @@ var Social_Details_Widget = {
     },
 
     setInlineEdit: function() {
+        $.fn.editable.defaults.pk = Social_Details_Widget.website.id;
         // Stage
         $("#website-details-wrapper .stage-value").editable("destroy");
         $("#website-details-wrapper .stage-value").editable({
