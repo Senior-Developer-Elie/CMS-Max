@@ -252,11 +252,10 @@ class BlogController extends Controller
         }
         else if( $blogType == 'pendingToAddToWebsite' ) {
             $blogs = BlogHelper::getPendingToAddToWebsiteBlogs();
-            $blogs->sortByDesc('desired_date');
 
             $now = Carbon::now();
             $blogs->sort(function ($a, $b) use ($now) {
-                abs($now->diffInSeconds(Carbon::parse($a->desired_date)) - $now->diffInSeconds(Carbon::parse($b->desired_date)));
+                return abs($now->diffInSeconds(Carbon::parse($a->desired_date))) - abs($now->diffInSeconds(Carbon::parse($b->desired_date)));
             });
         }
         else if( $blogType == 'pendingToAddTitle' ) {
