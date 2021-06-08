@@ -38,6 +38,7 @@ class AngelInvoice
     const CRM_KEY_FACEBOOK_REMARKETING = "facebook-remarketing";
     const CRM_KEY_DOMAIN = "domain";
     const CRM_KEY_SEO_AND_SUPPORT = "seo-and-support";
+    const CRM_KEY_SOCIAL_MANAGEMENT = "social-management";
 
     const PRODUCTS = [
         self::CRM_KEY_CMS_MAX => "CMS Max",
@@ -73,6 +74,7 @@ class AngelInvoice
         self::CRM_KEY_FACEBOOK_REMARKETING => "Facebook - Remarketing",
         self::CRM_KEY_DOMAIN => "Domain",
         self::CRM_KEY_SEO_AND_SUPPORT => "SEO & Support",
+        self::CRM_KEY_SOCIAL_MANAGEMENT => "Social Management",
     ];
 
     const EXPENSE_CRM_PRODUCT_KEYS = [
