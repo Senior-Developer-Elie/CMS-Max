@@ -254,7 +254,7 @@ class BlogController extends Controller
             $blogs = BlogHelper::getPendingToAddToWebsiteBlogs();
 
             $now = Carbon::now();
-            $blogs->sort(function ($a, $b) use ($now) {
+            $blogs = $blogs->sort(function ($a, $b) use ($now) {
                 return abs($now->diffInSeconds(Carbon::parse($a->desired_date))) - abs($now->diffInSeconds(Carbon::parse($b->desired_date)));
             });
         }
