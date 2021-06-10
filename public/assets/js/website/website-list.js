@@ -271,10 +271,11 @@ var Website_List = {
     },
 
     initFilter: function() {
-        $("#blog-industry-filter, #affilliate-filter, #website-type-filter").change(function() {
+        $("#blog-industry-filter, #affilliate-filter, #website-type-filter, #sync-status-filter").change(function() {
             location.href = siteUrl + "/websites?blog_industry_id=" + $("#blog-industry-filter").val()
                 + "&affilliate_id=" + $("#affilliate-filter").val()
                 + "&website_type=" + $("#website-type-filter").val()
+                + "&sync_status=" + $("#sync-status-filter").val()
         });
     }
 };

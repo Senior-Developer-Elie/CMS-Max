@@ -353,6 +353,14 @@ class WebsiteController extends Controller
             $query->where('type', request()->input('website_type'));
         }
 
+        if (! empty($syncStatus = request()->input('sync_status'))) {
+            if ($syncStatus == 'synced') {
+                $query->where('sync_from_client', 1);
+            } else {
+                $query->where('sync_from_client', 0);
+            }
+        }
+
         return $query->get();
     }
 

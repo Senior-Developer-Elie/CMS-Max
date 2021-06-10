@@ -50,7 +50,10 @@ table.table tr:hover{
 .select2-container{
     margin-right: 5px !important;
 }
-#blog-industry-filter, #affilliate-filter, #website-type-filter{
+#blog-industry-filter, 
+#affilliate-filter, 
+#website-type-filter,
+#sync-status-filter {
     display: inline;
     margin-bottom: 5px;
     width: 250px;

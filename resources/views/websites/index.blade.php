@@ -63,6 +63,16 @@
                                 @endforeach
                             </select>
 
+                            <select class="form-control" id="sync-status-filter">
+                                <option value="">All Websites</option>
+                                <option value="synced" {{ Request::input('sync_status') == 'synced' ? 'selected' : '' }}>
+                                    Synced
+                                </option>
+                                <option value="not-synced" {{ Request::input('sync_status') == 'not-synced' ? 'selected' : '' }}>
+                                    Not Synced
+                                </option>
+                            </select>
+
                             @include('manage-website.sections.website-table', [ 'websites' => $websites, 'archived' => false ])
                         </div>
                         <div class="tab-pane fade show" role="tabpanel" id="archived-websites-wrapper">
@@ -88,7 +98,7 @@
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=9') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/website-list.css?v=10') }}">
 @endsection
 
 @section('javascript')
@@ -110,5 +120,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-list.js?v=50') }}"></script>
+    <script src="{{ asset('assets/js/website/website-list.js?v=51') }}"></script>
 @endsection
