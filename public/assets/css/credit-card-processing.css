@@ -1,3 +1,26 @@
 .editableform .editable-input textarea{
     min-width: 300px;
 }
+.website-url-wrapper{
+    position: relative;
+}
+.website-info-icons{
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.website-info-icons > a {
+    vertical-align: middle;
+}
+.website-info-icon img{
+    height: 16px;
+}
+.website-google-drive-link-icon img{
+    height: 18px;
+}
+.website-chargebee-icon img{
+    height: 16px;
+}

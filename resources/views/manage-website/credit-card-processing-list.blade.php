@@ -43,10 +43,15 @@
                                 <tbody>
                                     @foreach ( $websites as $website )
                                         <tr data-website-id="{{ $website->id }}">
-                                            <td>
-                                                <a href = "//{{ $website->website }}" data-value="{{ $website->website }}" target="_blank">
+                                            <td class="website-url-wrapper">
+                                                <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                                                     {{ $website->website }}
                                                 </a>
+                                                <div class="website-info-icons">
+                                                    <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
+                                                        <img src="{{ asset('assets/images/info-icon.png') }}" />
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td>
                                                 {!! $website->paymentGatewayString() !!}
@@ -189,7 +194,7 @@
     <link href="{{ mix("css/datatable.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/tip-yellowsimple.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/lib/jquery-editable/css/jquery-editable.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/credit-card-processing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/credit-card-processing.css?v=2') }}">
 @endsection
 
 @section('javascript')
