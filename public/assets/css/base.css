@@ -59,10 +59,10 @@ div.alert[data-notify="container"]{
     background: #DDD !important;
 }
 .tab-content:not(.no-border-tab-content){
-    border-color: #dee2e6 #dee2e6 #fff;
+    /* border-color: #dee2e6 #dee2e6 #fff;
     border: solid 1px #dde2e6;
     border-top: none;
-    padding: 15px;
+    padding: 15px; */
 }
 .tab-content .tab-pane{
     padding-top: 15px;

@@ -257,6 +257,16 @@ class BlogController extends Controller
             $blogs = $blogs->sort(function ($a, $b) use ($now) {
                 return abs($now->diffInSeconds(Carbon::parse($a->desired_date))) - abs($now->diffInSeconds(Carbon::parse($b->desired_date)));
             });
+
+            $data['currentMonthBlogs'] = collect();
+            $data['futureMonthBlogs'] = collect();
+            foreach ($blogs as $blog) {
+                if (Carbon::now()->month == Carbon::parse($blog->desired_date)->month) {
+                    $data['currentMonthBlogs'][] = $blog;
+                } else {
+                    $data['futureMonthBlogs'][] = $blog;
+                }
+            }
         }
         else if( $blogType == 'pendingToAddTitle' ) {
             $emptyBlogs = BlogHelper::getPendingToAddTitleBlogs();
@@ -283,6 +293,11 @@ class BlogController extends Controller
         $data['headingText']    = $headingText;
         $data['blogs']          = $blogs;
         $data['emptyBlogs']     = $emptyBlogs;
+
+        if ($blogType == 'pendingToAddToWebsite') {
+            return view("manage-blog.pending-to-add-to-website-blogs", $data);
+        }
+        
         return view("manage-blog.blog-list", $data);
     }
 
