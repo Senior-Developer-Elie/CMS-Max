@@ -28,13 +28,6 @@ class BlogController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
-        $this->middleware(function ($request, $next) {
-
-            if( !Auth::user()->can('manage blogs') && !Auth::user()->can('blog images') && !Auth::user()->can('content manager') && !Auth::user()->can('writer'))
-                return redirect('/webadmin');
-            return $next($request);
-        });
     }
 
     /**
