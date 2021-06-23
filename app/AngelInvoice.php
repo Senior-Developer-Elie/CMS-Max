@@ -18,7 +18,6 @@ class AngelInvoice
     const CRM_KEY_GOOGLE_ADS_MANAGEMENT = "google_ads_management";
     const CRM_KEY_GOOGLE_ADS_SPEND = "google_ads_spend";
     const CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM = "programmatic_display_video_platform";
-    const CRM_KEY_GEO_FENCING = "geo_fencing";
     const CRM_KEY_FACEBOOK_CUSTOM = "facebook_custom";
     const CRM_KEY_FACEBOOK_ACCELERATE = "facebook_accelerate";
     const CRM_KEY_FACEBOOK_GROW = "facebook_grow";
@@ -36,7 +35,6 @@ class AngelInvoice
     const CRM_KEY_FACEBOOK_ADS_SPEND = "facebook-ads-spend";
     const CRM_KEY_FACEBOOK_MANAGEMENT = "facebook-management";
     const CRM_KEY_FACEBOOK_REMARKETING = "facebook-remarketing";
-    const CRM_KEY_DOMAIN = "domain";
     const CRM_KEY_SEO_AND_SUPPORT = "seo-and-support";
     const CRM_KEY_SOCIAL_MANAGEMENT = "social-management";
 
@@ -53,8 +51,7 @@ class AngelInvoice
         self::CRM_KEY_GRAPHIC_DESIGN => "Graphic Design",
         self::CRM_KEY_GOOGLE_ADS_MANAGEMENT => "Google Ads - Management",
         self::CRM_KEY_GOOGLE_ADS_SPEND => "Google Ads - Spend",
-        self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM => "Programmatic Display/Video Platform",
-        self::CRM_KEY_GEO_FENCING => "Geo-fencing",
+        self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM => "Programmatic Platform",
         self::CRM_KEY_FACEBOOK_CUSTOM => "Facebook - Custom",
         self::CRM_KEY_FACEBOOK_ACCELERATE => "Facebook - Accelerate",
         self::CRM_KEY_FACEBOOK_GROW => "Facebook - Grow",
@@ -72,7 +69,6 @@ class AngelInvoice
         self::CRM_KEY_FACEBOOK_ADS_SPEND => "Facebook Ads - Spend",
         self::CRM_KEY_FACEBOOK_MANAGEMENT => "Facebook - Management",
         self::CRM_KEY_FACEBOOK_REMARKETING => "Facebook - Remarketing",
-        self::CRM_KEY_DOMAIN => "Domain",
         self::CRM_KEY_SEO_AND_SUPPORT => "SEO & Support",
         self::CRM_KEY_SOCIAL_MANAGEMENT => "Social Management",
     ];
@@ -82,7 +78,6 @@ class AngelInvoice
         self::CRM_KEY_PINTEREST_SPEND,
         self::CRM_KEY_LINKEDIN_ADS_SPEND,
         self::CRM_KEY_GOOGLE_ADS_SPEND,
-        self::CRM_KEY_GEO_FENCING,
         self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM,
         self::CRM_KEY_DONT_GO
     ];

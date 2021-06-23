@@ -24,7 +24,7 @@
                                 <th>Website Url</th>
                                 <th class="text-center">Google Ads - Spend</th>
                                 <th class="text-center">Google Ads - Management</th>
-                                <th class="text-center">Programmatic Display/Video Platform</th>
+                                <th class="text-center">Programmatic Platform</th>
                                 <th width="200px">Notes</th>
                             </tr>
                         </thead>
