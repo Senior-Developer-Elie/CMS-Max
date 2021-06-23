@@ -3,7 +3,7 @@
         <div class="checkbox">
             <label>
                 <input type="checkbox" name="sync_from_client" v-model="syncFromClient" />
-                <strong class="ml-1">Sync From Client</strong>
+                <strong class="ml-1">Sync From Client Recurring Invoice</strong>
             </label>
         </div>
 
