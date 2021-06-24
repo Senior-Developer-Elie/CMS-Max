@@ -6,6 +6,19 @@
 
 @section('content')
     <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="info-box budget-box">
+                <span class="info-box-icon bg-green">
+                    <i class="fas fa-dollar-sign"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Profit</span>
+                    <span class="info-box-number total-profit-value">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
                 <div class="card-header">
@@ -123,5 +136,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/marketing.js?v=8') }}"></script>
+    <script src="{{ asset('assets/js/website/marketing.js?v=9') }}"></script>
 @endsection

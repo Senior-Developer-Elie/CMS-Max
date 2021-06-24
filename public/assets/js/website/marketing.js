@@ -41,6 +41,8 @@ var Websites_Marketing = {
                         return 0;
                 };
 
+                let totalValues = new Array(4);
+
                 for( let i = 1; i <= 3; i++ ) {
                     // Total over this page
                     let columnData = api
@@ -57,7 +59,13 @@ var Websites_Marketing = {
                     $( api.column( i ).footer() ).html(
                         '$' + Math.round(pageTotal).toLocaleString()
                     );
+
+                    totalValues[i] = pageTotal;
                 }
+
+                // Update total profit
+                let totalProfit = totalValues[3] * 0.15 + totalValues[1] - totalValues[2];
+                $(".total-profit-value").html("$" + totalProfit.toLocaleString());
             }
         });
         $.fn.dataTable.ext.type.order['sortme-pre'] = function (a, b) {
