@@ -64,7 +64,7 @@ var Websites_Marketing = {
                 }
 
                 // Update total profit
-                let totalProfit = totalValues[3] * 0.15 + totalValues[1] - totalValues[2];
+                let totalProfit = totalValues[3] * 0.15 + totalValues[2];
                 $(".total-profit-value").html("$" + totalProfit.toLocaleString());
             }
         });
