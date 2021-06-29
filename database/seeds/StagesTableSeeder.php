@@ -45,7 +45,7 @@ class StagesTableSeeder extends Seeder
                 'priority' => 8,
             ],
             [
-                'name' => 'Colletions',
+                'name' => 'Collections',
                 'priority' => 9,
             ],
             [
