@@ -82,7 +82,8 @@ class WebsiteHelper {
     {
         return [
             "yes"       => "Yes",
-            "dont-add"  => "Don't add"
+            "dont-add"  => "Don't add",
+            "in-dev"    => "In Dev",
         ];
     }
 
