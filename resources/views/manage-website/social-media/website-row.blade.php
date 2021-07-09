@@ -28,7 +28,7 @@
                     <img src="{{ asset('assets/images/social-calendar-icon.png') }}" />
                 </a>
             @else
-                <a class="website-icon">
+                <a class="website-icon" data-toggle="tooltip" data-placement="left" title="No Social Calendar">
                     <img src="{{ asset('assets/images/social-calendar-disabled-icon.png') }}" />
                 </a>
             @endif
