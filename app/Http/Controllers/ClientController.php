@@ -179,6 +179,7 @@ class ClientController extends Controller
             $client->contacts   = $request->contacts;
             $client->client_lead = $request->client_lead;
             $client->project_manager = $request->project_manager;
+            $client->invoice_sync_type = $request->invoice_sync_type;
             $client->save();
 
             //Add Admin History

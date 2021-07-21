@@ -8,6 +8,9 @@ use App\AngelInvoice;
 use Carbon\Carbon;
 class Client extends Model
 {
+    const INVOICE_SYNC_TYPE_RECURRING = 'recurring';
+    const INVOICE_SYNC_TYPE_LAST_INVOICE = 'last-invoice';
+
     protected $fillable = [
         'name',
         'contacts',
@@ -19,7 +22,18 @@ class Client extends Model
         'archived_at',
         'client_lead',
         'project_manager',
+        'invoice_sync_type',
     ];
+
+    protected static $invoiceSyncTypes = [
+        self::INVOICE_SYNC_TYPE_RECURRING => 'Recurring',
+        self::INVOICE_SYNC_TYPE_LAST_INVOICE => 'From Last Invoice Within 30 days',
+    ];
+
+    public static function invoiceSyncTypes()
+    {
+        return self::$invoiceSyncTypes;
+    }
 
     public function websites(){
         return $this->hasMany('App\Website', 'client_id');

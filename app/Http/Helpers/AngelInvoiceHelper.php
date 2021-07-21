@@ -2,6 +2,8 @@
 namespace App\Http\Helpers;
 
 use App\AngelInvoice;
+use App\Client;
+use Carbon\Carbon;
 
 class AngelInvoiceHelper {
 
@@ -87,16 +89,25 @@ class AngelInvoiceHelper {
     /**
      * Get Recurring invoice for client
      */
-    public static function getRecurringInvoicesForClient($client_id)
+    public static function getInvoicesForClient($client_id, $onlyRecurring = true)
     {
         $invoices = self::get("/invoices?client_id=" . $client_id);
         
-        $recurringInvoices = [];
-        foreach( $invoices as $invoice ){
-            if( !$invoice['is_deleted'] && $invoice['is_recurring'] )
-                $recurringInvoices[] = $invoice;
+        if ($onlyRecurring) {
+            return array_filter($invoices, function ($invoice) {
+                return !$invoice['is_deleted'] && $invoice['is_recurring'];
+            });
         }
-        return $recurringInvoices;
+
+        usort($invoices, function ($a, $b) {
+            return strtotime($b['invoice_date']) - strtotime($a['invoice_date']);
+        });
+
+        if (! empty($invoices[0]['invoice_date'] ?? null) && Carbon::parse($invoices[0]['invoice_date'])->diff(Carbon::now())->days <= 30) {
+            return [$invoices[0]];
+        }
+
+        return [];
     }
 
     /**
@@ -105,10 +116,14 @@ class AngelInvoiceHelper {
      */
     public static function getPrices($client_id, $invoicesData = false)
     {
-        if($invoicesData !== false)
+        if (! empty($client = Client::where('api_id', $client_id)->first()) && $client->invoice_sync_type == Client::INVOICE_SYNC_TYPE_LAST_INVOICE) {
+            $invoices = self::getInvoicesForClient($client_id, false);
+        } else if ($invoicesData !== false) {
             $invoices = $invoicesData;
-        else
-            $invoices = self::getRecurringInvoicesForClient($client_id);
+        }
+        else {
+            $invoices = self::getInvoicesForClient($client_id);
+        }
 
         $prices = [];
         foreach (AngelInvoice::crmProductKeys() as $productCrmKey) {

@@ -59,6 +59,20 @@
                             <textarea class="form-control pull-right" id="contacts" name = "contacts">{{ isset($client) ? $client->contacts : '' }}</textarea>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label>How To Sync Invoice From API:</label>
+                        <div class="">
+                            <select class="form-control" name="invoice_sync_type" style="width: 100%;">
+                                @foreach (\App\Client::invoiceSyncTypes() as $value => $name)
+                                    <option value="{{ $value }}" {{ old_selected('invoice_sync_type', $value, $client->invoice_sync_type ?? null) }}>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="col-6">
                     <div class="form-group">
