@@ -33,6 +33,7 @@
                                         <th>Assigned Websites</th>
                                         <th>Client Lead</th>
                                         <th>Project Manager</th>
+                                        <th>Sync</th>
                                         @if( Auth::user()->hasRole('super admin') )
                                             <th>
                                                 <button id = "sync-all-clent-info" class="btn btn-info">Sync</button>
@@ -63,6 +64,9 @@
                                             </td>
                                             <td>
                                                 {{ $client->projectManager ? $client->projectManager->name : '' }}
+                                            </td>
+                                            <td>
+                                                {{ \App\Client::invoiceSyncTypes()[$client->invoice_sync_type] ?? '' }}
                                             </td>
                                             @if( Auth::user()->hasRole('super admin') )
                                                 <td>

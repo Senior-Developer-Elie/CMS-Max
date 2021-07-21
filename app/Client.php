@@ -27,7 +27,7 @@ class Client extends Model
 
     protected static $invoiceSyncTypes = [
         self::INVOICE_SYNC_TYPE_RECURRING => 'Recurring',
-        self::INVOICE_SYNC_TYPE_LAST_INVOICE => 'From Last Invoice Within 30 days',
+        self::INVOICE_SYNC_TYPE_LAST_INVOICE => 'Last Invoice',
     ];
 
     public static function invoiceSyncTypes()
