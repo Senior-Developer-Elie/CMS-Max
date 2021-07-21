@@ -105,7 +105,7 @@ function getPrettyServiceString($price)
     if ($price == -3) {
         return "Not Interested";
     }
-    return "$" . round($price);
+    return "$" . prettyFloat($price);
 }
 function find_pretty_price($prices, $name)
 {
