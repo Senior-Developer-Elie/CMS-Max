@@ -20,7 +20,7 @@ var Credit_Card_Processing = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columnDefs: [
-                {targets: ([0, 2, 3, 4, 5]), type: 'sortme'},
+                {targets: ([2, 3, 4, 5]), type: 'sortme'},
             ],
             fixedHeader: true
         });

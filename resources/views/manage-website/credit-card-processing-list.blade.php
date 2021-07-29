@@ -44,7 +44,7 @@
                                     @foreach ( $websites as $website )
                                         <tr data-website-id="{{ $website->id }}">
                                             <td class="website-url-wrapper">
-                                                <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
+                                                <a href="{{ route('websites.edit', $website) }}" data-value="{{ $website->website }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
                                                     {{ $website->website }}
                                                 </a>
                                                 <div class="website-info-icons">
@@ -80,7 +80,7 @@
                                     @foreach ($creditCardProcessings as $creditCardProcessing)
                                         <tr data-credit-card-processing-id="{{ $creditCardProcessing->id }}">
                                             <td>
-                                                <a href = "//{{ $creditCardProcessing->company_name }}" data-value="{{ $creditCardProcessing->company_name }}" target="_blank">
+                                                <a data-value="zzzzzzz">
                                                     {{ $creditCardProcessing->company_name }}
                                                 </a>
                                             </td>
@@ -203,5 +203,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/credit-card-processing.js?v=7') }}"></script>
+    <script src="{{ asset('assets/js/website/credit-card-processing.js?v=8') }}"></script>
 @endsection
