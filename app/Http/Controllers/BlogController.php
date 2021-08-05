@@ -257,7 +257,7 @@ class BlogController extends Controller
             $data['currentMonthBlogs'] = collect();
             $data['futureMonthBlogs'] = collect();
             foreach ($blogs as $blog) {
-                if (Carbon::now()->month == Carbon::parse($blog->desired_date)->month) {
+                if (Carbon::now()->firstOfMonth()->gte(Carbon::parse($blog->desired_date)->firstOfMonth())) {
                     $data['currentMonthBlogs'][] = $blog;
                 } else {
                     $data['futureMonthBlogs'][] = $blog;
