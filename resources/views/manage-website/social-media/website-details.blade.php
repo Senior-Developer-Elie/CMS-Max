@@ -60,22 +60,22 @@
                     <label class="attribute-name"></label>
                     <div class="social-links attribute-value">
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="linkedin_url">
-                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-linkedin.svg">
+                            <img src="{{ asset('assets/images/social-linkedin.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="youtube_url">
-                        <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-youtube.svg">
+                            <img src="{{ asset('assets/images/social-youtube.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="twitter_url">
-                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-twitter.svg">
+                            <img src="{{ asset('assets/images/social-twitter.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="facebook_url">
-                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-facebook.svg">
+                            <img src="{{ asset('assets/images/social-facebook.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="instagram_url">
-                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-instagram.svg">
+                            <img src="{{ asset('assets/images/social-instagram.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="pinterest_url">
-                            <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-pinterest.svg">
+                            <img src="{{ asset('assets/images/social-pinterest.png') }}">
                         </a>
                     </div>
                 </div>

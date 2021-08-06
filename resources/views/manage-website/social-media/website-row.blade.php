@@ -37,37 +37,37 @@
     <div class="social-grid-cell social-grid-links-cell">
         @if (! empty($website->linkedin_url))
             <a href="{{ $website->linkedin_url }}" target="_blank" class="social-icon" data-field-name="linkedin_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-linkedin.svg">
+                <img src="{{ asset('assets/images/social-linkedin.png') }}">
             </a>
         @endif
 
         @if (! empty($website->youtube_url))
             <a href="{{ $website->youtube_url }}" target="_blank" class="social-icon" data-field-name="youtube_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-youtube.svg">
+                <img src="{{ asset('assets/images/social-youtube.png') }}">
             </a>
         @endif
 
         @if (! empty($website->twitter_url))
             <a href="{{ $website->twitter_url }}" target="_blank" class="social-icon" data-field-name="twitter_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-twitter.svg">
+                <img src="{{ asset('assets/images/social-twitter.png') }}">
             </a>
         @endif
 
         @if (! empty($website->facebook_url))
             <a href="{{ $website->facebook_url }}" target="_blank" class="social-icon" data-field-name="facebook_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-facebook.svg">
+                <img src="{{ asset('assets/images/social-facebook.png') }}">
             </a>
         @endif
 
         @if (! empty($website->instagram_url))
             <a href="{{ $website->instagram_url }}" target="_blank" class="social-icon" data-field-name="instagram_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-instagram.svg">
+                <img src="{{ asset('assets/images/social-instagram.png') }}">
             </a>
         @endif
 
         @if (! empty($website->pinterest_url))
             <a href="{{ $website->pinterest_url }}" target="_blank" class="social-icon" data-field-name="pinterest_url">
-                <img src="https://media.cmsmax.com/fjliwncknaoc0txjp1m4f/icon-pinterest.svg">
+                <img src="{{ asset('assets/images/social-pinterest.png') }}">
             </a>
         @endif
     </div>
