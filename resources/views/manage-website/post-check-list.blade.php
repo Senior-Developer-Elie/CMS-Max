@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <i class="fa fa-calendar-times-o"></i>
 
-                    <h3 class="card-title">Websites Post Live Checklist</h3>
+                    <h3 class="card-title">Search Console</h3>
                 </div>
                 <div class="card-body">
                     <div class="nav-tabs-custom">
@@ -64,5 +64,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery.poshytip.js') }}"></script>
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/post-live-checklist.js?v=13') }}"></script>
+    <script src="{{ asset('assets/js/website/post-live-checklist.js?v=14') }}"></script>
 @endsection

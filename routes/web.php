@@ -222,8 +222,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/budgeting', 'Website\WebsiteBudgetingController@index');
 
     // Website post live checklist
-    Route::get('/post-live-checklist', 'Website\WebsitePostLiveCheckListController@index');
-    Route::post('/post-live-checklist/archive', 'Website\WebsitePostLiveCheckListController@archive');
+    Route::get('/search-console', 'Website\WebsitePostLiveCheckListController@index');
+    Route::post('/search-console/archive', 'Website\WebsitePostLiveCheckListController@archive');
     Route::post('/update-website-post-live-attribute', 'Website\WebsitePostLiveCheckListController@updatePostLive');
 
     // Website payroll

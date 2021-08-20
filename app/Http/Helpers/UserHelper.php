@@ -38,7 +38,7 @@ class UserHelper {
             'name'      => 'Post-Live Checklist',
             'title'     => 'Search Console',
             'icon'      => 'far fa-check-square',
-            'link'      => '/post-live-checklist',
+            'link'      => '/search-console',
             'section'   => 'post-live-checklist'
         ],
         [

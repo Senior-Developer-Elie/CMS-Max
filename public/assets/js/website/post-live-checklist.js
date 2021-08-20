@@ -70,7 +70,7 @@ var Post_Live_Checklist = {
             websiteId = $("#archive-website-modal").attr('data-website-id');
             $.ajax({
                 type : 'POST',
-                url : siteUrl + '/post-live-checklist/archive',
+                url : siteUrl + '/search-console/archive',
                 data : {
                     _token : csrf_token,
                     websiteId
