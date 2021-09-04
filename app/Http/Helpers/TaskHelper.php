@@ -17,6 +17,7 @@ class TaskHelper {
     {
         return [
             "setup-client-billing"          => "Setup Client Billing",
+            "yext-scan"                     => "Yext Scan",
             "add-client-folder-in-g-drive"  => "Add client folder in G Drive",
             "get-domain-register-info"      => "Get Domain Register Info",
             "get-email-info"                => "Get Email Info",

@@ -1,4 +1,7 @@
 var Website_Progress = {
+    fileUploadPreLiveOptions: [
+        "favicon", "social-media-image", "yext-scan",
+    ],
     init: function(){
         this.initTooltip();
         this.initPrettyDataAction();
@@ -566,12 +569,12 @@ var Task_Details_Widget = {
                 $(element).attr('disabled', 'disabled');
             }
 
-            if( ["favicon", "social-media-image"].includes(option) ){
+            if( Website_Progress.fileUploadPreLiveOptions.includes(option) ){
                 $(element).closest('.checkbox').find('.upload-btn').show();
             }
             if( task.pre_live != null && typeof task.pre_live[option] != 'undefined') {
 
-                if( ["favicon", "social-media-image"].includes(option) && typeof task.pre_live[option].uploaded_by != 'undefined' ){//enable checkbox
+                if( Website_Progress.fileUploadPreLiveOptions.includes(option) && typeof task.pre_live[option].uploaded_by != 'undefined' ){//enable checkbox
                     $(element).removeAttr('disabled');
                     $(element).closest('.checkbox').find('.upload-btn').show();
                     $(element).closest('.checkbox').find('.download-btn').show();
@@ -1324,7 +1327,7 @@ var Task_Details_Widget = {
                             $(this).closest('.checkbox').find('.completed_by').show();
                             $(this).closest('.checkbox').find('.completed_by .name').html(data.checked_by);
                             $(this).closest('.checkbox').find('.completed_by .date').html(data.checked_at);
-                            if( ["favicon", "social-media-image"].includes(option) ){
+                            if( Website_Progress.fileUploadPreLiveOptions.includes(option) ){
                                 $(this).closest('.checkbox').find('.uploaded_by').hide();
                                 $(this).closest('.checkbox').find('.upload-btn').hide();
                                 $(this).closest('.checkbox').find('.download-btn').show();
@@ -1332,7 +1335,7 @@ var Task_Details_Widget = {
                         }
                         else {
                             $(this).closest('.checkbox').find('.completed_by').hide();
-                            if( ["favicon", "social-media-image"].includes(option) ){
+                            if( Website_Progress.fileUploadPreLiveOptions.includes(option) ){
                                 $(this).closest('.checkbox').find('.uploaded_by').show();
                                 $(this).closest('.checkbox').find('.upload-btn').show();
                                 $(this).closest('.checkbox').find('.download-btn').show();

@@ -111,6 +111,6 @@
 
     <script src="{{ mix('/js/download-adaptor.js') }}"></script>
 
-    <script src="{{ asset('assets/js/website/website-progress.js?v=68') }}"></script>
+    <script src="{{ asset('assets/js/website/website-progress.js?v=69') }}"></script>
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
 @endsection
