@@ -25,7 +25,8 @@ class Task extends Model
         "completed",
         "completed_at",
         "sitemap",
-        "home_page_copy"
+        "home_page_copy",
+        "proposal_id",
     ];
 
     /**

@@ -1,6 +1,7 @@
 var Website_Progress = {
     init: function(){
         this.initTooltip();
+        this.initPrettyDataAction();
         this.initWebsiteSortable();
         //this.initStageSortable();
         this.initToggleActions();
@@ -25,6 +26,17 @@ var Website_Progress = {
             taskTypeFilter = $(this).val();
             location.href = siteUrl + "/website-progress?isUniqueView=false&taskTypeFilter=" + taskTypeFilter;
         });
+    },
+
+    initPrettyDataAction: function() {
+        allProposals = Object.keys(allProposals).map((key) => {
+            return {
+                'value': allProposals[key].id,
+                'text': allProposals[key].client_name,
+            }
+        });
+
+        allProposals.sort((a, b) => a.text.localeCompare(b.text))
     },
 
     initTooltip: function(){
@@ -487,11 +499,20 @@ var Task_Details_Widget = {
         $("#task-details-wrapper .client-name-value").attr("data-value", task.client_id);
         $("#task-details-wrapper .client-drive-value").attr("data-value", task.client_drive);
 
+        $("#task-details-wrapper .proposal-value").attr("data-value", task.proposal_id);
+
         if( task.client_id == "" || task.client_id == null ){//if client is not selected
             $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-client").hide();
         }
         else{//if client is selected
             $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-client").show();
+        }
+
+        if( task.proposal_id == "" || task.proposal_id == null ){//if proposal is not selected
+            $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-proposal-page").hide();
+        }
+        else{//if client is selected
+            $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-proposal-page").show();
         }
 
         if( task.client_drive == "" || task.client_drive == null )
@@ -786,6 +807,15 @@ var Task_Details_Widget = {
                 $(this).attr('href', siteUrl + "/client-history?clientId=" + clientId);
             }
         });
+        $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-proposal-page").click(function(e){
+            let proposalId = $(".proposal-value").attr('data-value').trim();
+            if( proposalId == "" || proposalId == 'Empty' ){
+                e.preventDefault();
+            }
+            else {
+                $(this).attr('href', siteUrl + "/edit-proposal?proposalId=" + proposalId);
+            }
+        });
 
         //Select Client Change Event
         $("#task-details-wrapper .client-name-value").on('save', function(e, params) {
@@ -801,6 +831,16 @@ var Task_Details_Widget = {
             }
             else{
                 $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-drive").show();
+            }
+        });
+        $("#task-details-wrapper .proposal-value").on('save', function(e, params) {
+            let newProposalValue = params.newValue;
+            $("#task-details-wrapper .proposal-value").attr('data-value', params.newValue);
+            if( newProposalValue == '' || newProposalValue == 'Empty' ){
+                $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-proposal-page").hide();
+            }
+            else{
+                $("#task-details-wrapper .Attributes-wrapper .attribute-row .show-proposal-page").show();
             }
         });
         //Live Url Value Change event
@@ -1110,6 +1150,29 @@ var Task_Details_Widget = {
             }
         });
         $('#task-details-wrapper .mail-host-value').editable('setValue', $("#task-details-wrapper .mail-host-value").attr('data-value'));
+
+        // Init Proposal inline edit
+        $("#task-details-wrapper .proposal-value").editable("destroy");
+            $("#task-details-wrapper .proposal-value").editable({
+                type        : 'select',
+                source      : allProposals,
+                pk          : Task_Details_Widget.task.id,
+                name        : 'proposal_id',
+                send        : 'always',
+                inputclass  : 'attribute-edit-input',
+                showbuttons : false,
+                onblur      : 'submit',
+                ajaxOptions : {
+                    type : 'POST'
+                },
+                url         : siteUrl+"/update-task-attribute",
+                mode        : "inline",
+                params      : function(params) {
+                    params._token = csrf_token;
+                    return params;
+                }
+            });
+            $('#task-details-wrapper .proposal-value').editable('setValue', $("#task-details-wrapper .proposal-value").attr('data-value'));
     },
 
     _getPrettyWebsitesSource: function(){

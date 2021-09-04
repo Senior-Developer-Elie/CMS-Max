@@ -51,6 +51,11 @@
                     <a class="show-live-url show-link-button" target="_blank"><i class="fas fa-link"></i></a>
                 </div>
                 <div class="attribute-row">
+                    <label class="attribute-name">Proposal</label>
+                    <label class="attribute-value proposal-value"></label>
+                    <a class="show-proposal-page show-link-button" target="_blank"><i class="fas fa-link"></i></a>
+                </div>
+                <div class="attribute-row">
                     <label class="attribute-name">Drive</label>
                     <a href="#" class="attribute-value client-drive-value"></a>
                     <a class="show-drive show-link-button" target="_blank"><i class="fas fa-link"></i></a>

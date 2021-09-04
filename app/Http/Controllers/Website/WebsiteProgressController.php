@@ -12,6 +12,8 @@ use App\Client;
 use Auth;
 
 use App\Http\Helpers\TaskHelper;
+use App\Proposal;
+use App\Services\GetProposalWithClientNamesService;
 
 class WebsiteProgressController extends Controller
 {
@@ -86,7 +88,8 @@ class WebsiteProgressController extends Controller
             'isUniqueView'          => is_null($request->input('isUniqueView')) ? false : ($request->input('isUniqueView') == "false" ? false : true),
             'totalTaskCount'        => $totalTaskCount,
             'allPreLiveOptions'     => TaskHelper::getAllPreLiveOptions(),
-            'allClients'            => $prettyClients
+            'allClients'            => $prettyClients,
+            'allProposals'             => GetProposalWithClientNamesService::call(),
         ]);
     }
 
