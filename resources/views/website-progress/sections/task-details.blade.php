@@ -146,7 +146,7 @@
 <input type="file" id="task-file-input" name="taskFile[]" style="display:none" multiple>
 
 <!--Hidden Input Field For Image Upload For Pre Live Options-->
-<input type="file" id="task-pre-live-image-file" style="display:none" accept="image/*">
+<input type="file" id="task-pre-live-image-file" style="display:none" accept="image/*,application/pdf">
 
 <!--Hidden File Download Form--->
 <form id = "download-pre-image-form" method="GET" action="{{ url('/task-download-pre-image') }}" style="display:none" target="_blank">
