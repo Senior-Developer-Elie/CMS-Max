@@ -12,9 +12,7 @@
                     <h3 class="card-title" style="margin-left:10px;">Proposals List</h3>
                     <div class="card-tools">
                         <select id = "proposal-filter" class="form-control">
-                            <option value="all" {{ $type != 'all' ? 'selected' : '' }}>View All</option>
-                            <option value="not-signed" {{ $type == 'not-signed' ? 'selected' : '' }}>Not Signed</option>
-                            <option value="signed" {{ $type == 'signed' ? 'selected' : '' }}>Signed</option>
+                            <option value="all" {{ $type == 'all' ? 'selected' : '' }}>View All</option>
                             <option value="not-sold" {{ $type == 'not-sold' ? 'selected' : '' }}>Not Sold</option>
                         </select>
                         <a href="{{ url('/add-proposal') }}">

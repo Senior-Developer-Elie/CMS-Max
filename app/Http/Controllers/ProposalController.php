@@ -36,13 +36,9 @@ class ProposalController extends Controller
         if( !Auth::user()->hasPagePermission('Proposals List') )
             return redirect('/webadmin');
 
-        $type = $request->input('type') ? $request->input('type') : 'not-signed';
+        $type = $request->input('type') ? $request->input('type') : 'all';
 
         $query = Proposal::where('id', '>', 0);
-        if( $type == 'not-signed' )
-            $query = $query->where('status', 'not-signed');
-        else if( $type == 'signed' )
-            $query = $query->where('status', "!=", 'not-signed');
         $proposals = $query->get()->toArray();
 
         $data = [
