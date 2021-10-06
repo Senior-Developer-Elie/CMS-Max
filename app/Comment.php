@@ -41,6 +41,6 @@ class Comment extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id')->get()->first();
+        return $this->belongsTo('App\User', 'author_id');
     }
 }

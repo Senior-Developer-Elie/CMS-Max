@@ -370,10 +370,10 @@ class TaskController extends Controller
         foreach( $unSyncedComments as $comment ){
             $prettyComment = $comment->toArray();
 
-            $prettyComment['author_name'] = $comment->author->name ?? "";
+            $prettyComment['author_name'] = $comment->author->name ?? "Deleted User";
             $prettyComment['pretty_created_at'] = (new Carbon($comment->created_at))->format('m/d h:i a');
-            $prettyComment['author_avatar'] = ($comment->author()->avatar == "" || is_null($comment->author()->avatar)) ? false : $comment->author()->getPublicAvatarLink();
-            $prettyComment['author_initials'] = $comment->author()->getInitials();
+            $prettyComment['author_avatar'] = empty($comment->author->avatar ?? '') ? false : $comment->author->getPublicAvatarLink();
+            $prettyComment['author_initials'] = empty($comment->author) ? "" : $comment->author->getInitials();
 
             if( $comment->type == 'file' ) {
                 if( $this->is_file_image($comment->file_origin_name) ){ //and also image
