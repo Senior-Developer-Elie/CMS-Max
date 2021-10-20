@@ -9,31 +9,31 @@ class ProposalTemplateService
     const TEMPLATE_DATA = [
         Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING => [
             'prepared_by' => 'Evolution Marketing',
-            'phone' => "(585) 348-8127",
+            'phone' => "585-981-8463",
             'email' => "info@evolutionmarketing.com",
             'logo' => "evolution_marketing.logo"
         ],
         Proposal::TEMPLATE_TYPE_EVOLUTION_MARKETING_FLORIDA => [
             'prepared_by' => 'Evolution Marketing FLORIDA',
-            'phone' => "954-932-4499",
+            'phone' => "585-981-8463",
             'email' => "info@evolutionsouthflorida.com",
             'logo' => "evolution_marketing_florida.logo"
         ],
         Proposal::TEMPLATE_TYPE_VENICE_ONWARD => [
             'prepared_by' => 'Venice Onward',
-            'phone' => "941-315-4004",
+            'phone' => "585-981-8463",
             'email' => "sam@veniceonward.com",
             'logo' => "venice_onward.logo"  
         ],
         Proposal::TEMPLATE_TYPE_LIQUOR_CMS => [
             'prepared_by' => 'Liquor CMS',
-            'phone' => "585-348-8127",
+            'phone' => "585-981-8463",
             'email' => "sam@liquorcms.com",
             'logo' => "liquor_cms.logo"  
         ],
         Proposal::TEMPLATE_TYPE_CMS_MAX => [
             'prepared_by' => 'CMS MAX',
-            'phone' => "585-348-8127",
+            'phone' => "585-981-8463",
             'email' => "sam@cmsmax.com",
             'logo' => "cms_max.logo"  
         ],
