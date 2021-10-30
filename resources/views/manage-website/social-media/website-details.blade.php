@@ -77,6 +77,9 @@
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="pinterest_url">
                             <img src="{{ asset('assets/images/social-pinterest.png') }}">
                         </a>
+                        <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="tik_tok_url">
+                            <img src="{{ asset('assets/images/tiktok-pinterest.png') }}">
+                        </a>
                     </div>
                 </div>
 
