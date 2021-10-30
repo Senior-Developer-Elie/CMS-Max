@@ -78,5 +78,5 @@
     <script src="{{ asset('assets/lib/jquery-editable/js/jquery-editable-poshytip.js') }}"></script>
 
     <script src="{{ asset('assets/js/website/social-media-filter.js?v=2') }}"></script>
-    <script src="{{ asset('assets/js/website/social-media.js?v=25') }}"></script>
+    <script src="{{ asset('assets/js/website/social-media.js?v=26') }}"></script>
 @endsection

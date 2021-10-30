@@ -85,6 +85,7 @@ class Website extends Model
         "facebook_url",
         "instagram_url",
         "pinterest_url",
+        "tik_tok_url",
     ];
 
     protected $casts = [

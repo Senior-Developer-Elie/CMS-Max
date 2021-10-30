@@ -70,6 +70,12 @@
                 <img src="{{ asset('assets/images/social-pinterest.png') }}">
             </a>
         @endif
+
+        @if (! empty($website->tik_tok_url))
+            <a href="{{ $website->tik_tok_url }}" target="_blank" class="social-icon" data-field-name="tik_tok_url">
+                <img src="{{ asset('assets/images/social-tiktok.png') }}">
+            </a>
+        @endif
     </div>
     <div class="social-grid-cell social-grid-service-cell">
         <a class="social-media-service-value" data-value="{{ $website->social_media_service }}"></a>

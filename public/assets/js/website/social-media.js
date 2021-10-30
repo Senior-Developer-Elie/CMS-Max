@@ -31,23 +31,22 @@ var Websites_Social_Media = {
     initInlineEditForAssignees: () => {
         allUsersDataSource = allUsers.map((user) => {
             return {
-                value : user.id,
-                text : user.name,
+                value: user.id,
+                text: user.name,
             }
         });
 
         $(".website-row .social-media-assignee-value").each(function(index, element) {
             $(element).editable({
-                type        : 'select',
-                source      : allUsersDataSource,
-                name        : 'social_media_assignee',
-                pk          : $(element).closest('.website-row').attr('data-website-id'),
-                display     : function(value, sourceData){
+                type: 'select',
+                source: allUsersDataSource,
+                name: 'social_media_assignee',
+                pk: $(element).closest('.website-row').attr('data-website-id'),
+                display: function(value, sourceData) {
                     let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
-                    if( item === false ){
+                    if (item === false) {
                         $(this).html("<span class='text-danger'>No Assignee</span>");
-                    }
-                    else {
+                    } else {
                         $(this).html(item.text);
                     }
                 }
@@ -56,16 +55,15 @@ var Websites_Social_Media = {
 
         $(".website-row .social-media-reviewer-value").each(function(index, element) {
             $(element).editable({
-                type        : 'select',
-                source      : allUsersDataSource,
-                name        : 'social_media_reviewer',
-                pk          : $(element).closest('.website-row').attr('data-website-id'),
-                display     : function(value, sourceData){
+                type: 'select',
+                source: allUsersDataSource,
+                name: 'social_media_reviewer',
+                pk: $(element).closest('.website-row').attr('data-website-id'),
+                display: function(value, sourceData) {
                     let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
-                    if( item === false ){
+                    if (item === false) {
                         $(this).html("<span class='text-danger'>No Reviewer</span>");
-                    }
-                    else {
+                    } else {
                         $(this).html(item.text);
                     }
                 }
@@ -74,23 +72,22 @@ var Websites_Social_Media = {
 
         socialMediaServicesDataSource = Object.keys(socialMediaServices).map((key) => {
             return {
-                value : key,
-                text : socialMediaServices[key],
+                value: key,
+                text: socialMediaServices[key],
             }
         })
 
         $(".website-row .social-media-service-value").each(function(index, element) {
             $(element).editable({
-                type        : 'select',
-                source      : socialMediaServicesDataSource,
-                name        : 'social_media_service',
-                pk          : $(element).closest('.website-row').attr('data-website-id'),
-                display     : function(value, sourceData){
+                type: 'select',
+                source: socialMediaServicesDataSource,
+                name: 'social_media_service',
+                pk: $(element).closest('.website-row').attr('data-website-id'),
+                display: function(value, sourceData) {
                     let item = $.fn.editableutils.itemsByValue(value, sourceData).length > 0 ? $.fn.editableutils.itemsByValue(value, sourceData)[0] : false;
-                    if( item === false ){
+                    if (item === false) {
                         $(this).html("<span class='text-danger'>No Service</span>");
-                    }
-                    else {
+                    } else {
                         $(this).html(item.text);
                     }
                 }
@@ -101,9 +98,9 @@ var Websites_Social_Media = {
     setInlineParams: function() {
         $.fn.editable.defaults.send = "always";
         $.fn.editable.defaults.ajaxOptions = {
-            type : 'POST'
+            type: 'POST'
         };
-        $.fn.editable.defaults.url = siteUrl+"/update-website-attribute";
+        $.fn.editable.defaults.url = siteUrl + "/update-website-attribute";
         $.fn.editable.defaults.mode = 'inline';
         $.fn.editable.defaults.params = function(params) {
             params._token = csrf_token;
@@ -118,7 +115,7 @@ var Websites_Social_Media = {
 var Social_Details_Widget = {
 
     website: false,
-    socialMediaPlansSource : [],
+    socialMediaPlansSource: [],
     socialMediaStagesSource: [],
     socialFieldNames: [
         'linkedin_url',
@@ -127,6 +124,7 @@ var Social_Details_Widget = {
         'facebook_url',
         'instagram_url',
         'pinterest_url',
+        'tik_tok_url'
     ],
 
     init: function() {
@@ -153,36 +151,36 @@ var Social_Details_Widget = {
         });
     },
 
-    showWebsite: function(websiteId){
+    showWebsite: function(websiteId) {
 
         $("#website-details-wrapper").show();
-        $("#website-details-wrapper").animate({left: '60%'}, 350, function(){
+        $("#website-details-wrapper").animate({ left: '60%' }, 350, function() {
             $(".social-grid").css("width", "60%");
         });
 
         // Show loading
         $('#website-details-wrapper').waitMe({
-            effect : 'bounce',
-            text : '',
-            bg : 'rgba(255,255,255,0.7)',
-            color : '#000'
+            effect: 'bounce',
+            text: '',
+            bg: 'rgba(255,255,255,0.7)',
+            color: '#000'
         });
 
         // Get Website Details
         $.ajax({
             type: "GET",
             url: siteUrl + "/social-media/website-details/" + websiteId,
-            success: function(response){
-                if( response.status == "success" ) {
+            success: function(response) {
+                if (response.status == "success") {
                     Social_Details_Widget.setWebsite(response.website);
                 }
             }
         })
     },
 
-    setWebsite: function(website){
+    setWebsite: function(website) {
         //Remove Selected
-        if( Social_Details_Widget.website != false ){
+        if (Social_Details_Widget.website != false) {
             $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").removeClass("selected");
         }
         Social_Details_Widget.website = website;
@@ -252,27 +250,27 @@ var Social_Details_Widget = {
         // Stage
         $("#website-details-wrapper .stage-value").editable("destroy");
         $("#website-details-wrapper .stage-value").editable({
-            type        : 'select',
-            source      : Social_Details_Widget.socialMediaStagesSource,
-            name        : 'social_media_stage_id',
+            type: 'select',
+            source: Social_Details_Widget.socialMediaStagesSource,
+            name: 'social_media_stage_id',
         });
         $('#website-details-wrapper .stage-value').editable('setValue', $("#website-details-wrapper .stage-value").attr('data-value'));
 
         // Social Manual Plan
         $("#website-details-wrapper .social-plan-value").editable("destroy");
         $("#website-details-wrapper .social-plan-value").editable({
-            type        : 'select',
-            source      : Social_Details_Widget.socialMediaPlansSource,
-            name        : 'manual_social_plan',
+            type: 'select',
+            source: Social_Details_Widget.socialMediaPlansSource,
+            name: 'manual_social_plan',
         });
         $('#website-details-wrapper .social-plan-value').editable('setValue', $("#website-details-wrapper .social-plan-value").attr('data-value'));
 
         // Social Ad Spend
         $("#website-details-wrapper .ad-spend-value").editable("destroy");
         $("#website-details-wrapper .ad-spend-value").editable({
-            type        : 'text',
-            name        : 'social_ad_spend',
-            display     : function( value){
+            type: 'text',
+            name: 'social_ad_spend',
+            display: function(value) {
                 $(this).html("$" + value);
             }
         });
@@ -281,9 +279,9 @@ var Social_Details_Widget = {
         // Social Management Fee
         $("#website-details-wrapper .management-fee-value").editable("destroy");
         $("#website-details-wrapper .management-fee-value").editable({
-            type        : 'text',
-            name        : 'social_management_fee',
-            display     : function( value){
+            type: 'text',
+            name: 'social_management_fee',
+            display: function(value) {
                 $(this).html("$" + value);
             }
         });
@@ -292,8 +290,8 @@ var Social_Details_Widget = {
         // Social Management Fee
         $("#website-details-wrapper .notes-value").editable("destroy");
         $("#website-details-wrapper .notes-value").editable({
-            type        : 'textarea',
-            name        : 'social_media_notes',
+            type: 'textarea',
+            name: 'social_media_notes',
         });
         $('#website-details-wrapper .notes-value').editable('setValue', $("#website-details-wrapper .notes-value").attr('data-value'));
 
@@ -316,7 +314,7 @@ var Social_Details_Widget = {
         // Update stage
         $("#website-details-wrapper .stage-value").on('save', function(e, params) {
             let stageId = parseFloat(params.newValue);
-            
+
             let websiteRow = $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").detach();
             $(".social-grid-stage-wrapper[data-stage-id='" + stageId + "']").find('.social-grid-stage-body').append(websiteRow);
         });
@@ -360,14 +358,14 @@ var Social_Details_Widget = {
     },
 
     initToolBarButtonActions: function() {
-        $("#website-details-wrapper .header-tool-button.hide-button").click(function(){
+        $("#website-details-wrapper .header-tool-button.hide-button").click(function() {
             Social_Details_Widget.hideDetailsWidget();
         })
     },
 
     hideDetailsWidget: function() {
         $(".website-row").removeClass("selected");
-        $("#website-details-wrapper").animate({left:'100%'}, 350, function(){
+        $("#website-details-wrapper").animate({ left: '100%' }, 350, function() {
             $("#website-details-wrapper").hide();
             $(".social-grid").css("width", "100%");
         });
@@ -396,7 +394,7 @@ var Social_Details_Widget = {
                     $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").remove();
                     Social_Details_Widget.hideDetailsWidget();
                 }
-            })            
+            })
         })
     },
 
@@ -419,13 +417,13 @@ var Social_Details_Widget = {
         $checkedByElement.find('.date').text(moment(websiteSocialMediaCheckList.completed_at).format('M/D'));
         $checkedByElement.show();
     },
-    
+
     updateProgressCount: function() {
         $(".website-row[data-website-id='" + Social_Details_Widget.website.id + "']").find(".social-media-checklist-count-value").text(Social_Details_Widget.website.socialMediaCheckLists.length);
     }
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
     Websites_Social_Media.init();
     Social_Details_Widget.init();
 })

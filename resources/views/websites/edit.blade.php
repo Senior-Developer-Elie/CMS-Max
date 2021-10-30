@@ -206,6 +206,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tik_tok_url">TikTok</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" name="tik_tok_url" value="{{ old('tik_tok_url', $website->tik_tok_url) }}">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

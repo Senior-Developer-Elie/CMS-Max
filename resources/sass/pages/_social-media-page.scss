@@ -1,18 +1,13 @@
 $social-grid-body-scroll-box-height: calc(100vh - 277px);
 $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
-
 .social-grid-page {
     position: relative;
-
     .icon {
         height: 16px;
         width: 16px;
     }
-
     .social-grid {
-
         border-bottom: 1px solid #e8ecee;
-    
         .social-grid-row {
             display: flex;
             height: 36px;
@@ -21,20 +16,16 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
             position: relative;
             align-items: center;
             margin-right: 1px;
-            
             &.social-grid-header-row {
                 margin-right: 6px;
             }
-    
-            &.selected .social-grid-cell{
+            &.selected .social-grid-cell {
                 background-color: #edf8ff;
             }
-
-            &:hover .social-grid-cell{
+            &:hover .social-grid-cell {
                 background-color: #f6f8f9;
                 cursor: pointer;
             }
-
             .social-grid-cell {
                 height: 100%;
                 padding: 0 10px;
@@ -49,7 +40,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 justify-content: space-between;
                 margin-right: -1px;
                 z-index: 0;
-    
                 &.social-grid-name-cell {
                     flex: 1 1 auto;
                     padding: 0 0 0 20px;
@@ -58,7 +48,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 &.social-grid-service-cell {
                     width: 140px;
                     justify-content: center;
-
                     a.social-media-service-value {
                         border: none;
                         font-weight: 550;
@@ -67,7 +56,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 &.social-grid-assignee-cell {
                     width: 140px;
                     justify-content: center;
-
                     a.social-media-assignee-value {
                         border: none;
                         font-weight: 550;
@@ -76,7 +64,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 &.social-grid-reviewer-cell {
                     width: 140px;
                     justify-content: center;
-
                     a.social-media-reviewer-value {
                         border: none;
                         font-weight: 550;
@@ -88,9 +75,8 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     border-right: none;
                 }
                 &.social-grid-links-cell {
-                    width: 206px;
+                    width: 234px;
                     justify-content: start;
-
                     .social-icon {
                         img {
                             width: 25px;
@@ -98,7 +84,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                         }
                     }
                 }
-
                 .website-icons-wrapper {
                     .website-icon {
                         margin-right: 2px;
@@ -109,12 +94,11 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 }
             }
         }
-    
         .social-grid-stage-wrapper {
             .social-grid-stage-header {
                 height: 50px;
                 width: 100%;
-                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 21px;
@@ -127,7 +111,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 padding-right: 30px;
                 position: relative;
                 cursor: grab;
-    
                 .social-grid-stage-toggle-button {
                     padding: 0;
                     padding-right: 1px;
@@ -139,14 +122,12 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     background: transparent;
                     border: 0;
                 }
-    
                 .social-grid-stage-header-container {
                     flex-grow: 0;
                     min-width: 1px;
                     align-items: center;
                     display: flex;
                     height: 100%;
-    
                     .social-grid-stage-title {
                         margin-bottom: 0;
                         font-size: 16px;
@@ -166,11 +147,9 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     }
                 }
             }
-    
             .left-triangle-icon {
                 display: none;
             }
-    
             &.open {
                 .left-triangle-icon {
                     display: inline;
@@ -180,7 +159,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 }
             }
         }
-
         .social-grid-body {
             overflow-x: hidden;
             .scroll-box {
@@ -188,7 +166,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
             }
         }
     }
-    
     #website-details-wrapper {
         background-color: #fff;
         border: 1px solid #e8ecee;
@@ -201,18 +178,15 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
         transition: transform .2s ease-in;
         min-height: 100%;
         margin-left: 1px;
-
         .scroll-box {
             height: $website-details-wrapper-scroll-box-height;
         }
-
         .website-details-header {
             position: relative;
             padding-left: 20px;
             padding-right: 220px;
             border-bottom: 1px solid #e8ecee;
             box-shadow: 0 4px 2px -2px #fafafafa;
-
             .website-name-value-wrapper {
                 display: flex;
                 align-items: center;
@@ -220,39 +194,32 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                 margin: 10px 0;
                 min-height: 20px;
                 font-size: 20px;
-
                 .website-edit-link {
                     margin-left: 5px;
                     font-size: 17px;
                 }
             }
-
             .website-tool-bar-buttons-wrapper {
                 position: absolute;
                 right: 15px;
                 top: 0px;
-
                 .header-tool-button {
                     cursor: pointer;
                     color: #6f7782;
                     font-size: 15px;
-
                     &:not(:last-child) {
                         margin-right: 10px;
                     }
                 }
             }
         }
-
         .attribute-wrapper {
             padding: 0 25px 15px 25px;
             margin-top: 20px;
-
             .attribute-row {
                 display: flex;
                 align-items: baseline;
                 margin: 5px 0;
-
                 .attribute-name {
                     line-height: 30px;
                     color: #9ca6af;
@@ -261,7 +228,6 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     min-width: 120px;
                     margin-right: 5px;
                 }
-
                 .attribute-value {
                     line-height: 30px;
                     font-weight: 600;
@@ -270,11 +236,9 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     border-bottom: none;
                     line-height: inherit;
                 }
-
                 .link-button {
                     margin-left: 5px;
                 }
-
                 .editable-container {
                     flex: 1 1 auto;
                     form.editableform {
@@ -291,21 +255,18 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                     }
                 }
             }
-
             .check-list-checkboxes {
                 div.checkbox {
-                    & > label {
+                    &>label {
                         display: flex;
                         align-items: baseline;
-
-                        & > input {
+                        &>input {
                             margin-right: 5px;
                         }
                     }
                 }
             }
         }
-
         .social-links {
             margin: 10px 0;
             .social-icon {
@@ -321,40 +282,46 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
 .social-media-page__filter-wrapper {
     display: flex;
     align-items: center;
-
     .price-wrapper {
         font-size: 16px;
         font-weight: 500;
     }
-
     div.info-box {
         min-height: 65px;
     }
 }
 
+
 /**Scroll Bar Style Start**/
+
 .scroll-bar-wrap {
     position: relative;
 }
+
 .scroll-box {
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
+
 .scroll-box::-webkit-scrollbar {
     width: 5px;
 }
+
 .scroll-box::-webkit-scrollbar,
 .scroll-box::-webkit-scrollbar-thumb {
-    overflow:visible;
+    overflow: visible;
     border-radius: 4px;
 }
+
 .scroll-box::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, .2);
 }
+
 .cover-bar {
     position: absolute;
-    background: #fff;;
+    background: #fff;
+    ;
     height: 100%;
     top: 0;
     right: 0;
@@ -362,9 +329,14 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
     -webkit-transition: all .5s;
     opacity: 1;
 }
+
+
 /* MAGIC HAPPENS HERE */
+
 .scroll-bar-wrap:hover .cover-bar {
     opacity: 0;
     -webkit-transition: all .5s;
 }
+
+
 /**Scroll Bar Style End**/
