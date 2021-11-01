@@ -8,7 +8,6 @@ class AngelInvoice
     const CRM_KEY_CMS_MAX = "cms_max";
     const CRM_KEY_WEBSITE_DEVELOPMENT = "website_development";
     const CRM_KEY_SUPPORT_MAINTENANCE = "support_maintenance";
-    const CRM_KEY_SEO = "seo";
     const CRM_KEY_PINTEREST_MANAGEMENT = "pinterest_management";
     const CRM_KEY_PINTEREST_SPEND = "pinterest_spend";
     const CRM_KEY_LISTINGS_MANAGEMENT = "listings_management";
@@ -42,7 +41,6 @@ class AngelInvoice
         self::CRM_KEY_CMS_MAX => "CMS Max",
         self::CRM_KEY_WEBSITE_DEVELOPMENT => "Website Development",
         self::CRM_KEY_SUPPORT_MAINTENANCE => "Support/Maintenance",
-        self::CRM_KEY_SEO => "SEO",
         self::CRM_KEY_PINTEREST_MANAGEMENT => "Pinterest - Management",
         self::CRM_KEY_PINTEREST_SPEND => "Pinterest Ads - Spend",
         self::CRM_KEY_LISTINGS_MANAGEMENT => "Listings Management",
