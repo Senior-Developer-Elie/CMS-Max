@@ -89,5 +89,5 @@
 @endsection
 @section('javascript')
     <script src="{{ mix('js/datatable.js') }}"></script>
-    <script src="{{ asset('assets/js/website/budgeting.js?v=28') }}"></script>
+    <script src="{{ asset('assets/js/website/budgeting.js?v=29') }}"></script>
 @endsection
