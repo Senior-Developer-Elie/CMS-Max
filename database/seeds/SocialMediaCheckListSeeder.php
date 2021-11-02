@@ -65,7 +65,7 @@ class SocialMediaCheckListSeeder extends Seeder
                 'Upload cover photo',
                 'Add bio and website URL',
             ],
-            SocialMediaCheckList::CHECKLIST_TYPE_TWITTER => [
+            SocialMediaCheckList::CHECKLIST_TYPE_TIKTOK => [
                 'Bio Set Up',
                 'Has a URL properly written in the correct format',
                 'Business account',
