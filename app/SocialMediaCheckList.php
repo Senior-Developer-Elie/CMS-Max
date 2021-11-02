@@ -12,6 +12,7 @@ class SocialMediaCheckList extends Model
     const CHECKLIST_TYPE_YOUTUBE = 'youtube';
     const CHECKLIST_TYPE_PINTEREST = 'pinterest';
     const CHECKLIST_TYPE_TWITTER = 'twitter';
+    const CHECKLIST_TYPE_TIKTOK = 'ticktok';
 
     protected $fillable = [
         'target',
@@ -26,6 +27,7 @@ class SocialMediaCheckList extends Model
         self::CHECKLIST_TYPE_YOUTUBE => "YouTube",
         self::CHECKLIST_TYPE_PINTEREST => "Pinterest",
         self::CHECKLIST_TYPE_TWITTER => "Twitter",
+        self::CHECKLIST_TYPE_TIKTOK => "TikTok",
     ];
 
     public static function checkListTypes()

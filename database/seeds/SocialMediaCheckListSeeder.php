@@ -65,6 +65,13 @@ class SocialMediaCheckListSeeder extends Seeder
                 'Upload cover photo',
                 'Add bio and website URL',
             ],
+            SocialMediaCheckList::CHECKLIST_TYPE_TWITTER => [
+                'Bio Set Up',
+                'Has a URL properly written in the correct format',
+                'Business account',
+                'TikTok Business Account/Ad Account Created',
+                'Partner Access set up',
+            ],
         ];
 
         foreach ($checkLists as $target => $checkLists) {
