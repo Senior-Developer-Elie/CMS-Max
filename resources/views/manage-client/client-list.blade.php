@@ -34,11 +34,9 @@
                                         <th>Client Lead</th>
                                         <th>Project Manager</th>
                                         <th>Sync</th>
-                                        @if( Auth::user()->hasRole('super admin') )
-                                            <th>
-                                                <button id = "sync-all-clent-info" class="btn btn-info">Sync</button>
-                                            </th>
-                                        @endcan
+                                        <th>
+                                            <button id = "sync-all-clent-info" class="btn btn-info">Sync</button>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,12 +66,9 @@
                                             <td>
                                                 {{ \App\Client::invoiceSyncTypes()[$client->invoice_sync_type] ?? '' }}
                                             </td>
-                                            @if( Auth::user()->hasRole('super admin') )
-                                                <td>
-                                                    {{--<button class="btn btn-primary select-api-client-btn">Sync</button>--}}
-                                                    <button class="btn btn-primary sync-single-client-info">Sync</button>
-                                                </td>
-                                            @endif
+                                            <td>
+                                                <button class="btn btn-primary sync-single-client-info">Sync</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
