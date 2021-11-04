@@ -55,6 +55,8 @@ class BlogController extends Controller
 
         $currentMonth = (Carbon::now())->month;
 
+        $statisticsMonth = [$currentMonth, $currentMonth + 1];
+
         $totalBlogsForMonth = array_fill(0, count($futureMonths), 0);
         foreach( $websites as $website ){
 
@@ -86,7 +88,7 @@ class BlogController extends Controller
                             'blogName'  => ''
                         ];
                         
-                        if ($futureMonth->month == $currentMonth) $pendingBlogsToAddTitle++;
+                        if (in_array($futureMonth->month, $statisticsMonth)) $pendingBlogsToAddTitle++;
 
                     }
                     else{
@@ -115,12 +117,12 @@ class BlogController extends Controller
                                 $prettyFutureBlog['class'] = 'empty';
                                 $prettyFutureBlog['blogName'] = '';
 
-                                if ($futureMonth->month == $currentMonth) $pendingBlogsToAddTitle++;
+                                if (in_array($futureMonth->month, $statisticsMonth)) $pendingBlogsToAddTitle++;
                             }
                             else {
                                 $prettyFutureBlog['class'] = 'normal';
                                 $prettyFutureBlog['blogName'] = $blog->name;
-                                if ($futureMonth->month == $currentMonth) $pendingBlogsToWrite++;
+                                if (in_array($futureMonth->month, $statisticsMonth)) $pendingBlogsToWrite++;
                             }
                         }
                         else{
@@ -128,20 +130,20 @@ class BlogController extends Controller
                             if( is_null($blog->blog_image) || $blog->blog_image === '' ){
                                 $prettyFutureBlog['class'] = 'pending-to-add-image';
                                 $prettyFutureBlog['blogName'] = 'Pending To Add Image';
-                                if ($futureMonth->month == $currentMonth) $pendingBlogsToAddImage++;
+                                if (in_array($futureMonth->month, $statisticsMonth)) $pendingBlogsToAddImage++;
                             }
                             else {
                                 if( $blog->marked == false) {
                                     $prettyFutureBlog['class'] = 'pending';
                                     $prettyFutureBlog['blogName'] = 'Pending To Add To Website';
-                                    if ($futureMonth->month == $currentMonth) $pendingBlogsToAddToWebsite++;
+                                    if (in_array($futureMonth->month, $statisticsMonth)) $pendingBlogsToAddToWebsite++;
                                 }
                                 else {
                                     $prettyFutureBlog['class'] = 'done';
                                     $prettyFutureBlog['blogName'] = 'Done';
                                     $prettyFutureBlog['blogWebsite'] = $blog->blog_website;
                                     $prettyFutureBlog['blogTitle'] = $blog->name;
-                                    if ($futureMonth->month == $currentMonth) $blogsDone++;
+                                    if (in_array($futureMonth->month, $statisticsMonth)) $blogsDone++;
                                 }
                             }
                         }
