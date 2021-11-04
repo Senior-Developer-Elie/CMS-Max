@@ -212,6 +212,7 @@ var Social_Details_Widget = {
         $("#website-details-wrapper .client-edit-link").attr('href', siteUrl + "/client-history?clientId=" + website.client.id);
         $("#website-details-wrapper .website-url-value").text(website.website);
         $("#website-details-wrapper .website-url-link").attr('href', '//' + website.website);
+        $("#website-details-wrapper .website-edit-link").attr('href', `/websites/${website.id}/edit`);
         $("#website-details-wrapper .budget-value").text("$" + (website.social_ad_spend + website.social_management_fee));
         $("#website-details-wrapper .social-plan-value").attr('data-value', website.manual_social_plan);
         $("#website-details-wrapper .ad-spend-value").attr('data-value', website.social_ad_spend);

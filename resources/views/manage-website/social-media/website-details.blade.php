@@ -32,7 +32,10 @@
                 <div class="attribute-row">
                     <label class="attribute-name">Website</label>
                     <span class="attribute-value website-url-value"></span>
-                    <a href="" target="_blank" class="link-button website-url-link">
+                    <a href="" target="_blank" class="link-button website-edit-link" data-toggle="tooltip" data-placement="top" title="Edit Website">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a href="" target="_blank" class="link-button website-url-link" data-toggle="tooltip" data-placement="top" title="View Website">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
