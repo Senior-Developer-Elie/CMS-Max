@@ -22,8 +22,7 @@
                         <thead>
                             <tr>
                                 <th width="200px">Website</th>
-                                <th width="150px" class="text-center">Blog</th>
-                                @foreach (\App\AngelInvoice::apiProductKeys() as $apiProductKey)
+                                @foreach (\App\AngelInvoice::budgetingApiProductKeys() as $apiProductKey)
                                     <th class="text-center" style="white-space: nowrap;">{{ $apiProductKey }}</th>    
                                 @endforeach
                                 <th class="text-center">Total</th>
@@ -33,16 +32,8 @@
                             @foreach ( $websites as $website )
                                 <tr data-website-id="{{ $website->id }}">
                                     <?php
-                                        $websiteService = $website->getProductValues(\App\AngelInvoice::crmProductKeys());
+                                        $websiteService = $website->getProductValues(\App\AngelInvoice::budgetingCrmProductKeys());
                                     ?>
-                                    <td class="website-url-wrapper">
-                                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
-                                            {{ $website->website }}
-                                        </a>
-                                        <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
-                                            <i class="fa fa-info-circle"></i>
-                                        </a>
-                                    </td>
                                     <td>
                                         <span data-value="{{ $website->is_blog_client ? '1' : '0' }}">
                                             {{ $website->is_blog_client ? 'Yes' : 'No' }}
@@ -52,7 +43,7 @@
                                             {{ ucfirst($website->frequency) }}
                                         @endif
                                     </td>
-                                    @foreach (\App\AngelInvoice::crmProductKeys() as $crmProductKey)
+                                    @foreach (\App\AngelInvoice::budgetingCrmProductKeys() as $crmProductKey)
                                         <td class="text-center">
                                             <span data-value="{{ $websiteService[$crmProductKey] }}">
                                                 {{ getPrettyServiceString($websiteService[$crmProductKey], true) }}
@@ -70,8 +61,7 @@
                         <tfoot>
                             <tr>
                                 <th>Total</th>
-                                <th class="text-center"></th>
-                                @foreach (\App\AngelInvoice::crmProductKeys() as $crmProductKey)
+                                @foreach (\App\AngelInvoice::budgetingCrmProductKeys() as $crmProductKey)
                                     <th class="text-center"></th>
                                 @endforeach
                                 <th class="text-center"></th>
@@ -89,5 +79,5 @@
 @endsection
 @section('javascript')
     <script src="{{ mix('js/datatable.js') }}"></script>
-    <script src="{{ asset('assets/js/website/budgeting.js?v=30') }}"></script>
+    <script src="{{ asset('assets/js/website/budgeting.js?v=31') }}"></script>
 @endsection

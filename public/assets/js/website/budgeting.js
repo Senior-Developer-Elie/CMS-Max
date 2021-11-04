@@ -18,7 +18,7 @@ var Websites_Budgeting = {
             "pageLength": -1,
             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columnDefs: [
-                {targets: ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]), type: 'sortme'},
+                {targets: ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]), type: 'sortme'},
             ],
             fixedHeader: true,
             "scrollX": true,
@@ -43,7 +43,7 @@ var Websites_Budgeting = {
                         return 0;
                 };
 
-                for( let i = 2; i <= 19; i++ ) {
+                for( let i = 1; i <= 15; i++ ) {
                     // Total over this page
                     let columnData = api
                     .column( i, { page: 'current'} )

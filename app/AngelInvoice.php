@@ -55,6 +55,23 @@ class AngelInvoice
     const SOCIAL_PLANS_CRM_PRODUCT_KEYS = [
     ];
 
+    const BUDGETING_PRODUCT_KEYS = [
+        self::CRM_KEY_CMS_MAX,
+        self::CRM_KEY_SUPPORT_MAINTENANCE,
+        self::CRM_KEY_PINTEREST_SPEND,
+        self::CRM_KEY_LISTINGS_MANAGEMENT,
+        self::CRM_KEY_LINKEDIN_ADS_SPEND,
+        self::CRM_KEY_GOOGLE_ADS_MANAGEMENT,
+        self::CRM_KEY_GOOGLE_ADS_SPEND,
+        self::CRM_KEY_PROGRAMMATIC_DISPLAY_VIDEO_PLATFORM,
+        self::CRM_KEY_GOOGLE_WORKSPACE,
+        self::CRM_KEY_SNAPCHAT_ADS_SPEND,
+        self::CRM_KEY_TIKTOK_ADS_SPEND,
+        self::CRM_KEY_FACEBOOK_ADS_SPEND,
+        self::CRM_KEY_SEO_AND_SUPPORT,
+        self::CRM_KEY_SOCIAL_MANAGEMENT,
+    ];
+
     public static function products()
     {
         return self::PRODUCTS;
@@ -71,6 +88,25 @@ class AngelInvoice
     {
         $products = self::PRODUCTS;
         asort($products);
+
+        return array_values($products);
+    }
+
+    public static function budgetingCrmProductKeys()
+    {
+        return self::BUDGETING_PRODUCT_KEYS;
+    }
+
+    public static function budgetingApiProductKeys()
+    {
+        $products = self::PRODUCTS;
+        asort($products);
+
+        foreach ($products as $key => $value) {
+            if (!in_array($key, self::BUDGETING_PRODUCT_KEYS)) {
+                unset($products[$key]);
+            }
+        }
 
         return array_values($products);
     }
