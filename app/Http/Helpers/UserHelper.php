@@ -72,12 +72,12 @@ class UserHelper {
             'link'      => '/financial-reports',
             'section'   => 'profit-loss'
         ],
-        [
-            'name'      => 'Billing',
-            'icon'      => 'fas fa-search-dollar',
-            'link'      => '/billing',
-            'section'   => 'billing'
-        ],
+        // [
+        //     'name'      => 'Billing',
+        //     'icon'      => 'fas fa-search-dollar',
+        //     'link'      => '/billing',
+        //     'section'   => 'billing'
+        // ],
         [
             'name'      => 'Admin History',
             'icon'      => 'fa fa-history',

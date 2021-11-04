@@ -248,7 +248,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/website-completed-statistics', 'Website\WebsitesStatisticsController@getWebsiteCompletionStatusForBarChart');
 
     // Website Billing
-    Route::get('/billing', 'Website\WebsiteBillingController@index');
+    // Route::get('/billing', 'Website\WebsiteBillingController@index');
 
     //Task Route
     Route::post('/update-task-priorities', 'TaskController@updateTaskPriorities');
