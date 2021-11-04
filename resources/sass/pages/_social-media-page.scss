@@ -254,6 +254,25 @@ $website-details-wrapper-scroll-box-height: calc(100vh - 312px);
                         }
                     }
                 }
+
+                &.check-list-wrapper {
+                    .check-list-title {
+                        cursor: pointer;
+                    }
+
+                    .checklist-truncated-content {
+                        display: none;
+                    }
+                    &.collapsed {
+                        .checklist-content {
+                            display: none;
+                        }
+
+                        .checklist-truncated-content {
+                            display: block;
+                        }
+                    }
+                }
             }
             .check-list-checkboxes {
                 div.checkbox {

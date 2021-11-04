@@ -78,7 +78,7 @@
                             <img src="{{ asset('assets/images/social-pinterest.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/evolution-marketing-inc" target="_blank" class="social-icon" data-field-name="tik_tok_url">
-                            <img src="{{ asset('assets/images/tiktok-pinterest.png') }}">
+                            <img src="{{ asset('assets/images/social-tiktok.png') }}">
                         </a>
                     </div>
                 </div>
@@ -89,9 +89,12 @@
                             $socialMediaCheckLists = \App\SocialMediaCheckList::byTarget($checkListKey)->orderBy('order')->get();
                         @endphp
 
-                        <div class="attribute-row" data-social-media-checklist-target="{{ $checkListKey }}">
-                            <label class="attribute-name">{{ $checkListName }}</label>
-                            <div class="form-group">
+                        <div class="attribute-row check-list-wrapper collapsed" data-social-media-checklist-target="{{ $checkListKey }}">
+                            <label class="attribute-name check-list-title">{{ $checkListName }}</label>
+                            <div class="form-group checklist-truncated-content">
+                                Click left to see full check lists...
+                            </div>
+                            <div class="form-group checklist-content">
                                 @foreach ($socialMediaCheckLists as $socialMediaCheckList)
                                     <div class="checkbox mb-1">
                                         <label class="m-0">

@@ -132,6 +132,13 @@ var Social_Details_Widget = {
         Social_Details_Widget.initSocialMediaCheckListsActions();
         Social_Details_Widget.initToolBarButtonActions();
         Social_Details_Widget.initMarkAsInactiveAction();
+        Social_Details_Widget.initCheckListCollapseAction();
+    },
+
+    initCheckListCollapseAction: function() {
+        $("#website-details-wrapper .attribute-row.check-list-wrapper .check-list-title").click(function() {
+            $wrapper = $(this).closest('.check-list-wrapper').toggleClass('collapsed');
+        })
     },
 
     prettifySources: function() {
