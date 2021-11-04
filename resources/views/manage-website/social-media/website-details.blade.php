@@ -44,10 +44,6 @@
                     <span class="attribute-value budget-value"></span>
                 </div>
                 <div class="attribute-row">
-                    <label class="attribute-name">Plan</label>
-                    <a href="#" class="attribute-value social-plan-value"></a>
-                </div>
-                <div class="attribute-row">
                     <label class="attribute-name">Ad Spend</label>
                     <a href="#" class="attribute-value ad-spend-value"></a>
                 </div>

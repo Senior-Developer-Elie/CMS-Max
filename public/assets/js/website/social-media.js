@@ -214,7 +214,6 @@ var Social_Details_Widget = {
         $("#website-details-wrapper .website-url-link").attr('href', '//' + website.website);
         $("#website-details-wrapper .website-edit-link").attr('href', `/websites/${website.id}/edit`);
         $("#website-details-wrapper .budget-value").text("$" + (website.social_ad_spend + website.social_management_fee));
-        $("#website-details-wrapper .social-plan-value").attr('data-value', website.manual_social_plan);
         $("#website-details-wrapper .ad-spend-value").attr('data-value', website.social_ad_spend);
         $("#website-details-wrapper .management-fee-value").attr('data-value', website.social_management_fee);
         $("#website-details-wrapper .notes-value").attr('data-value', website.social_media_notes);
@@ -263,15 +262,6 @@ var Social_Details_Widget = {
             name: 'social_media_stage_id',
         });
         $('#website-details-wrapper .stage-value').editable('setValue', $("#website-details-wrapper .stage-value").attr('data-value'));
-
-        // Social Manual Plan
-        $("#website-details-wrapper .social-plan-value").editable("destroy");
-        $("#website-details-wrapper .social-plan-value").editable({
-            type: 'select',
-            source: Social_Details_Widget.socialMediaPlansSource,
-            name: 'manual_social_plan',
-        });
-        $('#website-details-wrapper .social-plan-value').editable('setValue', $("#website-details-wrapper .social-plan-value").attr('data-value'));
 
         // Social Ad Spend
         $("#website-details-wrapper .ad-spend-value").editable("destroy");
