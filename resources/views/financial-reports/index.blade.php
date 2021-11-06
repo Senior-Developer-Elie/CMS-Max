@@ -23,9 +23,9 @@
                         <thead>
                             <tr>
                                 <th style="min-width: 100px">Date</th>
-                                <th>Profit</th>
+                                <th>Sales</th>
                                 <th>Expense</th>
-                                <th>Total</th>
+                                <th>Profit</th>
                                 @foreach ($profitNames as $profitName)
                                     <th style="white-space: nowrap;">{{ $profitName }}</th>
                                 @endforeach
