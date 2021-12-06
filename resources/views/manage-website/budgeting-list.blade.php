@@ -34,14 +34,13 @@
                                     <?php
                                         $websiteService = $website->getProductValues(\App\AngelInvoice::budgetingCrmProductKeys());
                                     ?>
-                                    <td>
-                                        <span data-value="{{ $website->is_blog_client ? '1' : '0' }}">
-                                            {{ $website->is_blog_client ? 'Yes' : 'No' }}
-                                        </span>
-                                        @if( $website->is_blog_client )
-                                            <br>
-                                            {{ ucfirst($website->frequency) }}
-                                        @endif
+                                    <td class="website-url-wrapper">
+                                        <a href="{{ route('websites.edit', $website) }}" data-toggle="tooltip" data-placement="top" title="Edit Website" data-html="true">
+                                            {{ $website->website }}
+                                        </a>
+                                        <a class="website-info-icon" href = "//{{ $website->website }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Go to Website">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
                                     </td>
                                     @foreach (\App\AngelInvoice::budgetingCrmProductKeys() as $crmProductKey)
                                         <td class="text-center">
