@@ -159,9 +159,6 @@ class UserHelper {
             ]
         ],
 
-
-
-
         [
             'name'          => 'Settings',
             'icon'          => 'fa fa-cogs',
@@ -240,6 +237,13 @@ class UserHelper {
                     'section'   => 'manage-social-media-check-list'
                 ],
             ]
+        ],
+
+        [
+            'name'      => 'CMS Max',
+            'icon'      => 'fa fa-globe',
+            'link'      => '/cms-max',
+            'section'   => 'cms-max'
         ],
     ];
 

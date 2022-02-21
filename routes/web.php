@@ -348,4 +348,10 @@ Route::group(['middleware' => 'web'], function () {
         'except' => ['show']
     ]);
     Route::get('social_media_check_lists/{social_media_check_list}/delete', ['as' => 'social_media_check_lists.confirm-delete', 'uses' => 'SocialMediaCheckListsController@confirmDelete']);
+
+    // CMS-Max
+
+    Route::resource('cms-max', 'CmsMax\CmsMaxController', [
+        'except' => ['show']
+    ]);
 });

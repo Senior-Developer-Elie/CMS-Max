@@ -43,7 +43,7 @@ class WebsiteController extends Controller
 
         $this->data = [];
 
-        $this->data['blogIndustries']           = $this->getBlogIndustriesForFilter();
+        $this->data['blogIndustries']          = $this->getBlogIndustriesForFilter();
         $this->data['blogIndustriesForInline'] = array_map(function($blogIndustry){
             return [
                 'value' => $blogIndustry['id'],
